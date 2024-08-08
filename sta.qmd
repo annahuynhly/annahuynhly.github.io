@@ -1,0 +1,109 @@
+---
+title: "STA260 Summer 2024"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+Here are the tutorial notes written by Anna Ly and Ting Lin for STA260 during the summer 2024 semester.
+
+The instructor was [Luai Al Labadi](https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&hl=en) and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.
+
+Some questions were picked from past tests and exams from varying instructors and are high in difficulty.
+
+## Tutorial 1 
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial1.pdf)
+
+Interesting remark (a good question that a student had from tutorial.)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial1/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial1/Question3.pdf)
+
+## Tutorial 2
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial2.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+
+## Tutorial 3
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial3.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+
+## Tutorial 4
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial4.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3
+
+The reason for picking $a = 0.02$ is because you are focusing on the support of $w$, which is $0 < w < 1$. If you were to pick $a > 1$, then $P(W \leq a) = F_{W}(a) = 1$, which does not provide what we want.
+
+## Tutorial 5
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial5.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3
+
+## Tutorial 6
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial6.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3
+
+## Tutorial 7
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial7.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+
+There is a slight typo for question 2. It should be: $$
+\frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
+$$
+
+Instead of $= h(x)$.
+
+## Tutorial 8
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial8.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+
+There is a small typo in the worksheet; the Fisher's Information is:
+
+$$
+I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\partial^{2}\theta} \ln(f_{Y}(y|\theta)) \right] \right)
+$$
+
+Here, we use the partial derivative: $\partial$, not the univariate derivative $d$. These are not the same (I am not trying to get killed by a mathematician.)
+
+## Tutorial 9
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial9.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3
+
+## Tutorial 10
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial10.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3
+
+There is a typo for the final solution of the second question because $\sigma^{2}$ should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.
+
+## Tutorial 11 & 12
+
+This tutorial was for final exam review.
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial11.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4 ✦ Q5
+
+## Cancelled Tutorial
+
+Previous iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf)
+
+Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4

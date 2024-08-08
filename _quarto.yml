@@ -7,8 +7,12 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: "Home"
       - about.qmd
+      - text: "Teaching"
+        menu: 
+          - href: sta.qmd
+            text: "STA260 Summer 2024"
 
 format:
   html:
