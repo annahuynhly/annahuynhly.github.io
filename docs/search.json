@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Anna Ly",
     "section": "",
-    "text": "Hello everyone! My name is Anna Ly. This is my personal page!"
+    "text": "Welcome to my website!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of both the Ontario Graduate Scholarship and the Milos Novotny Fellowship. I finished my undergraduate studies at the University of Toronto.\nSince childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.\n\n\n\nI also challenged my family’s love for lotteries. Even back then, I had a sense of the gambler’s fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.\nAs an undergraduate student, I have received the privilege to be a teaching assistant for an introductory probability course. I shared how to compute probabilities and expected values of winning a Lotto 649 jackpot. Unfortunately, I still can’t convince my father. :)\nI love studying statistics because it allows me to comprehend the results of many studies without being an expert! Unlike previous generations, we live in a world where data and information are easily accessible, yet opinions formed without statistical evidence prevail. Conversely, I shape my perspectives similarly to a Bayesian model: I maintain prior beliefs but am always eager to adapt and refine them in the face of compelling evidence.\nI am passionate about teaching statistics because I recognize the importance of a supportive teaching assistant. I’ve always been inspired by those who guide their students with understanding and without judgment. I am deeply grateful for the effective educators who have positively influenced my academic journey."
   },
   {
     "objectID": "sta.html",
@@ -32,7 +32,7 @@
     "href": "sta.html#tutorial-2",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 2",
-    "text": "Tutorial 2\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+    "text": "Tutorial 2\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is an issue with the answer for Q3; you’re not supposed to claim:\n\\[\n2X \\sim \\chi^{2}_{(2)} \\Rightarrow X \\sim \\frac{\\chi^{2}_{(2)}}{2}\n\\]\nInstead, what happens is:\n\\[\n\\frac{2X}{2Y} = \\frac{X/2}{Y/2} = \\frac{\\chi^{2}_{(2)}/2}{\\chi^{2}_{(2)}/2} = F(2,2)\n\\]"
   },
   {
     "objectID": "sta.html#tutorial-3",
@@ -46,7 +46,7 @@
     "href": "sta.html#tutorial-4",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 4",
-    "text": "Tutorial 4\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want."
+    "text": "Tutorial 4\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want.\nA common question is that when using the table of values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions, we typically assume \\((\\alpha/2)\\) for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume \\((1 - \\alpha/2)\\) for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):\n\\[\n1-\\alpha/2 = P(X \\leq x) = F_{X}(x)\n\\]\nWhereas the textbook provides upper-tail values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions. Some other textbooks tend to be consistent with the cumulative distribution function.\nIf you’re coding, R is consistent with the cumulative distributions functions."
   },
   {
     "objectID": "sta.html#tutorial-5",
@@ -60,14 +60,14 @@
     "href": "sta.html#tutorial-6",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 6",
-    "text": "Tutorial 6\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+    "text": "Tutorial 6\nWorksheet\nSolutions: Q1 ✦ Q2 Solution 1 | Solution 2 ✦ Q3 Solution 1 | Solution 2\nThere is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless."
   },
   {
     "objectID": "sta.html#tutorial-7",
     "href": "sta.html#tutorial-7",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 7",
-    "text": "Tutorial 7\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\)."
+    "text": "Tutorial 7\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\) when reciting the fundamental theorem of calculus."
   },
   {
     "objectID": "sta.html#tutorial-8",
@@ -117,5 +117,180 @@
     "title": "STA260 Summer 2024",
     "section": "Cancelled Tutorial",
     "text": "Cancelled Tutorial\nPrevious iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+  },
+  {
+    "objectID": "sta260summer2024.html",
+    "href": "sta260summer2024.html",
+    "title": "STA260 Summer 2024",
+    "section": "",
+    "text": "Here are the tutorial notes written by Anna Ly and Ting Lin for STA260 during the summer 2024 semester. Although it’s called “Probability and Statistics II”, a more appropriate name would be “an introduction to mathematical statistics” based off of the course description, content, and textbook used.\nThe instructor was Luai Al Labadi and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.\nSome questions were picked from past tests and exams from varying instructors and are high in difficulty."
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-1",
+    "href": "sta260summer2024.html#tutorial-1",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 1",
+    "text": "Tutorial 1\nWorksheet\nInteresting remark (a good question that a student had from tutorial.)\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-2",
+    "href": "sta260summer2024.html#tutorial-2",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 2",
+    "text": "Tutorial 2\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is an issue with the answer for Q3; you’re not supposed to claim:\n\\[\n2X \\sim \\chi^{2}_{(2)} \\Rightarrow X \\sim \\frac{\\chi^{2}_{(2)}}{2}\n\\]\nInstead, what happens is:\n\\[\n\\frac{2X}{2Y} = \\frac{X/2}{Y/2} = \\frac{\\chi^{2}_{(2)}/2}{\\chi^{2}_{(2)}/2} = F(2,2)\n\\]"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-3",
+    "href": "sta260summer2024.html#tutorial-3",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 3",
+    "text": "Tutorial 3\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-4",
+    "href": "sta260summer2024.html#tutorial-4",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 4",
+    "text": "Tutorial 4\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want.\nA common question is that when using the table of values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions, we typically assume \\((\\alpha/2)\\) for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume \\((1 - \\alpha/2)\\) for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):\n\\[\n1-\\alpha/2 = P(X \\leq x) = F_{X}(x)\n\\]\nWhereas the textbook provides upper-tail values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions. Some other textbooks tend to be consistent with the cumulative distribution function.\nIf you’re coding, R is consistent with the cumulative distributions functions."
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-5",
+    "href": "sta260summer2024.html#tutorial-5",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 5",
+    "text": "Tutorial 5\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-6",
+    "href": "sta260summer2024.html#tutorial-6",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 6",
+    "text": "Tutorial 6\nWorksheet\nSolutions: Q1 ✦ Q2 Solution 1 | Solution 2 ✦ Q3 Solution 1 | Solution 2\nThere is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless."
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-7",
+    "href": "sta260summer2024.html#tutorial-7",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 7",
+    "text": "Tutorial 7\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\) when reciting the fundamental theorem of calculus."
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-8",
+    "href": "sta260summer2024.html#tutorial-8",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 8",
+    "text": "Tutorial 8\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a small typo in the worksheet; the Fisher’s Information is:\n\\[\nI_{n}(\\theta) = n I(\\theta) = n \\left( -\\mathbb{E} \\left[ \\frac{\\partial^{2}}{\\partial^{2}\\theta} \\ln(f_{Y}(y|\\theta)) \\right] \\right)\n\\]\nHere, we use the partial derivative: \\(\\partial\\), not the univariate derivative \\(d\\). These are not the same (I am not trying to get killed by a mathematician.)"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-9",
+    "href": "sta260summer2024.html#tutorial-9",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 9",
+    "text": "Tutorial 9\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-10",
+    "href": "sta260summer2024.html#tutorial-10",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 10",
+    "text": "Tutorial 10\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThere is a typo for the final solution of the second question because \\(\\sigma^{2}\\) should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9."
+  },
+  {
+    "objectID": "sta260summer2024.html#tutorial-11-12",
+    "href": "sta260summer2024.html#tutorial-11-12",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 11 & 12",
+    "text": "Tutorial 11 & 12\nThis tutorial was for final exam review.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4 ✦ Q5"
+  },
+  {
+    "objectID": "sta260summer2024.html#cancelled-tutorial",
+    "href": "sta260summer2024.html#cancelled-tutorial",
+    "title": "STA260 Summer 2024",
+    "section": "Cancelled Tutorial",
+    "text": "Cancelled Tutorial\nPrevious iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+  },
+  {
+    "objectID": "sta304.html",
+    "href": "sta304.html",
+    "title": "STA304 Project Resources",
+    "section": "",
+    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and faciliating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students that take STA304 don’t know much about hypothesis testing and do not know as a code. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review"
+  },
+  {
+    "objectID": "sta260summer2024.html#additional-guides",
+    "href": "sta260summer2024.html#additional-guides",
+    "title": "STA260 Summer 2024",
+    "section": "Additional Guides",
+    "text": "Additional Guides\nThese are some additional notes that may be useful for students.\n\nReview Sheet\nBelow is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.\nSTA260 Formula/Review Sheet\n\n\nTextbook Solution Manual\nThere’s a public solution manual found here.\nWarnings:\n\nThis is not an official solution manuals, and there are plenty of typos.\nMany solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.\nIt is pretty good at providing directions if you’re lost.\n\n\n\nGuides for Using Statistical Tables\nThese are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).\n\\(Z\\) Table Guide ✦ \\(t_{v}\\) Table Guide ✦ \\(F_{n_{1}, n_{2}}\\) Table Guide ✦ \\(\\chi^{2}_{n}\\) Table Guide"
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "TBA…"
+  },
+  {
+    "objectID": "cv.html#education",
+    "href": "cv.html#education",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "TBA…"
+  },
+  {
+    "objectID": "cv.html#experience",
+    "href": "cv.html#experience",
+    "title": "Curriculum Vitae",
+    "section": "Experience",
+    "text": "Experience\nTBA…"
+  },
+  {
+    "objectID": "cv.html#skills",
+    "href": "cv.html#skills",
+    "title": "Curriculum Vitae",
+    "section": "Skills",
+    "text": "Skills\nTBA…"
+  },
+  {
+    "objectID": "cv.html#publications",
+    "href": "cv.html#publications",
+    "title": "Curriculum Vitae",
+    "section": "Publications",
+    "text": "Publications\nTBA…"
+  },
+  {
+    "objectID": "cv.html#conferences",
+    "href": "cv.html#conferences",
+    "title": "Curriculum Vitae",
+    "section": "Conferences",
+    "text": "Conferences\nTBA…"
+  },
+  {
+    "objectID": "cv.html#scholarships-awards",
+    "href": "cv.html#scholarships-awards",
+    "title": "Curriculum Vitae",
+    "section": "Scholarships & Awards",
+    "text": "Scholarships & Awards\nTBA…"
+  },
+  {
+    "objectID": "about.html#my-story",
+    "href": "about.html#my-story",
+    "title": "About",
+    "section": "",
+    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of both the Ontario Graduate Scholarship and the Milos Novotny Fellowship. I finished my undergraduate studies at the University of Toronto.\nSince childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.\n\n\n\nI also challenged my family’s love for lotteries. Even back then, I had a sense of the gambler’s fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.\nAs an undergraduate student, I have received the privilege to be a teaching assistant for an introductory probability course. I shared how to compute probabilities and expected values of winning a Lotto 649 jackpot. Unfortunately, I still can’t convince my father. :)\nI love studying statistics because it allows me to comprehend the results of many studies without being an expert! Unlike previous generations, we live in a world where data and information are easily accessible, yet opinions formed without statistical evidence prevail. Conversely, I shape my perspectives similarly to a Bayesian model: I maintain prior beliefs but am always eager to adapt and refine them in the face of compelling evidence.\nI am passionate about teaching statistics because I recognize the importance of a supportive teaching assistant. I’ve always been inspired by those who guide their students with understanding and without judgment. I am deeply grateful for the effective educators who have positively influenced my academic journey."
+  },
+  {
+    "objectID": "about.html#academic-interests",
+    "href": "about.html#academic-interests",
+    "title": "About",
+    "section": "Academic Interests",
+    "text": "Academic Interests\nI’m briefly interested in the following branches of statistics:\n\nNonparametric Statistics\nStatistical Learning\nComputational Statistics\n\nI currently don’t know what my thesis is going to be about. I just started graduate school!"
+  },
+  {
+    "objectID": "about.html#fun-facts-about-me",
+    "href": "about.html#fun-facts-about-me",
+    "title": "About",
+    "section": "Fun Facts About Me",
+    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI used to doodle all of the time; I hope to get back to drawing.\nI love reading webcomics. One of my favourite series is One Last God Kubera.\n\nI mostly read trashy romance though. They are too shameful to be revealed here. :)\n\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\n\nI have followed a strict plant-based diet since 2019. I have never experienced brain fog, except for times I could not sleep!\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
   }
 ]

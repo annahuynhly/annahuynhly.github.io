@@ -204,42 +204,57 @@ window.Quarto = {
 <section id="tutorial-2" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-2">Tutorial 2</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial2.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf">Q4</a></p>
+<p>There is an issue with the answer for Q3; you’re not supposed to claim:</p>
+<p><span class="math display">\[
+2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
+\]</span></p>
+<p>Instead, what happens is:</p>
+<p><span class="math display">\[
+\frac{2X}{2Y} = \frac{X/2}{Y/2} = \frac{\chi^{2}_{(2)}/2}{\chi^{2}_{(2)}/2} = F(2,2)
+\]</span></p>
 </section>
 <section id="tutorial-3" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-3">Tutorial 3</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial3.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf">Q4</a></p>
 </section>
 <section id="tutorial-4" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-4">Tutorial 4</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial4.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question3.pdf">Q3</a></p>
 <p>The reason for picking <span class="math inline">\(a = 0.02\)</span> is because you are focusing on the support of <span class="math inline">\(w\)</span>, which is <span class="math inline">\(0 &lt; w &lt; 1\)</span>. If you were to pick <span class="math inline">\(a &gt; 1\)</span>, then <span class="math inline">\(P(W \leq a) = F_{W}(a) = 1\)</span>, which does not provide what we want.</p>
+<p>A common question is that when using the table of values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions, we typically assume <span class="math inline">\((\alpha/2)\)</span> for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume <span class="math inline">\((1 - \alpha/2)\)</span> for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):</p>
+<p><span class="math display">\[
+1-\alpha/2 = P(X \leq x) = F_{X}(x)
+\]</span></p>
+<p>Whereas the textbook provides upper-tail values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions. Some other textbooks tend to be consistent with the cumulative distribution function.</p>
+<p>If you’re coding, R is consistent with the cumulative distributions functions.</p>
 </section>
 <section id="tutorial-5" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-5">Tutorial 5</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial5.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf">Q3</a></p>
 </section>
 <section id="tutorial-6" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-6">Tutorial 6</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial6.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf">Q1</a> ✦ Q2 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-2.pdf">Solution 2</a> ✦ Q3 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-2.pdf">Solution 2</a></p>
+<p>There is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless.</p>
 </section>
 <section id="tutorial-7" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-7">Tutorial 7</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial7.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question4.pdf">Q4</a></p>
 <p>There is a slight typo for question 2. It should be: <span class="math display">\[
 \frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
 \]</span></p>
-<p>Instead of <span class="math inline">\(= h(x)\)</span>.</p>
+<p>Instead of <span class="math inline">\(= h(x)\)</span> when reciting the fundamental theorem of calculus.</p>
 </section>
 <section id="tutorial-8" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-8">Tutorial 8</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial8.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question4.pdf">Q4</a></p>
 <p>There is a small typo in the worksheet; the Fisher’s Information is:</p>
 <p><span class="math display">\[
 I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\partial^{2}\theta} \ln(f_{Y}(y|\theta)) \right] \right)
@@ -249,25 +264,25 @@ I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\p
 <section id="tutorial-9" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-9">Tutorial 9</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial9.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf">Q3</a></p>
 </section>
 <section id="tutorial-10" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-10">Tutorial 10</h2>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial10.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf">Q3</a></p>
 <p>There is a typo for the final solution of the second question because <span class="math inline">\(\sigma^{2}\)</span> should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.</p>
 </section>
 <section id="tutorial-11-12" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-11-12">Tutorial 11 &amp; 12</h2>
 <p>This tutorial was for final exam review.</p>
 <p><a href="assets/STA260/Summer2024/Worksheets/Tutorial11.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4 ✦ Q5</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question4.pdf">Q4</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question5.pdf">Q5</a></p>
 </section>
 <section id="cancelled-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="cancelled-tutorial">Cancelled Tutorial</h2>
 <p>Previous iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.</p>
 <p><a href="assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf">Worksheet</a></p>
-<p>Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question4.pdf">Q4</a></p>
 
 
 </section>

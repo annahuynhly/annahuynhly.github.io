@@ -1,0 +1,161 @@
+---
+title: "STA260 Summer 2024"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+Here are the tutorial notes written by Anna Ly and Ting Lin for [STA260](https://utm.calendar.utoronto.ca/course/sta260h5) during the summer 2024 semester. Although it's called "Probability and Statistics II", a more appropriate name would be "an introduction to mathematical statistics" based off of the course description, content, and textbook used.
+
+The instructor was [Luai Al Labadi](https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&hl=en) and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.
+
+Some questions were picked from past tests and exams from varying instructors and are high in difficulty.
+
+## Tutorial 1
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial1.pdf)
+
+Interesting remark (a good question that a student had from tutorial.)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial1/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial1/Question3.pdf)
+
+## Tutorial 2
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial2.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf)
+
+There is an issue with the answer for Q3; you're not supposed to claim:
+
+$$
+2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
+$$
+
+Instead, what happens is:
+
+$$
+\frac{2X}{2Y} = \frac{X/2}{Y/2} = \frac{\chi^{2}_{(2)}/2}{\chi^{2}_{(2)}/2} = F(2,2)
+$$
+
+## Tutorial 3
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial3.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf)
+
+## Tutorial 4
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial4.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial4/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial4/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial4/Question3.pdf)
+
+The reason for picking $a = 0.02$ is because you are focusing on the support of $w$, which is $0 < w < 1$. If you were to pick $a > 1$, then $P(W \leq a) = F_{W}(a) = 1$, which does not provide what we want.
+
+A common question is that when using the table of values for the $Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}$ distributions, we typically assume $(\alpha/2)$ for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume $(1 - \alpha/2)$ for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):
+
+$$
+1-\alpha/2 = P(X \leq x) = F_{X}(x)
+$$
+
+Whereas the textbook provides upper-tail values for the $Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}$ distributions. Some other textbooks tend to be consistent with the cumulative distribution function.
+
+If you're coding, R is consistent with the cumulative distributions functions.
+
+## Tutorial 5
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial5.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf)
+
+## Tutorial 6
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial6.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf) ✦ Q2 [Solution 1](assets/STA260/Summer2024/Solutions/Tutorial6/Question2-1.pdf) \| [Solution 2](assets/STA260/Summer2024/Solutions/Tutorial6/Question2-2.pdf) ✦ Q3 [Solution 1](assets/STA260/Summer2024/Solutions/Tutorial6/Question3-1.pdf) \| [Solution 2](assets/STA260/Summer2024/Solutions/Tutorial6/Question3-2.pdf)
+
+There is a rendering issue for the second solution of question 3... The question is the same in the worksheet regardless.
+
+## Tutorial 7
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial7.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial7/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial7/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial7/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial7/Question4.pdf)
+
+There is a slight typo for question 2. It should be: $$
+\frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
+$$
+
+Instead of $= h(x)$ when reciting the fundamental theorem of calculus.
+
+## Tutorial 8
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial8.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial8/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial8/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial8/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial8/Question4.pdf)
+
+There is a small typo in the worksheet; the Fisher's Information is:
+
+$$
+I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\partial^{2}\theta} \ln(f_{Y}(y|\theta)) \right] \right)
+$$
+
+Here, we use the partial derivative: $\partial$, not the univariate derivative $d$. These are not the same (I am not trying to get killed by a mathematician.)
+
+## Tutorial 9
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial9.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf)
+
+## Tutorial 10
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial10.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf)
+
+There is a typo for the final solution of the second question because $\sigma^{2}$ should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.
+
+## Tutorial 11 & 12
+
+This tutorial was for final exam review.
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial11.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial11/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial11/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial11/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial11/Question4.pdf) ✦ [Q5](assets/STA260/Summer2024/Solutions/Tutorial11/Question5.pdf)
+
+## Cancelled Tutorial
+
+Previous iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.
+
+[Worksheet](assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf)
+
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Cancelled/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Cancelled/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Cancelled/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Cancelled/Question4.pdf)
+
+## Additional Guides
+
+These are some additional notes that may be useful for students.
+
+### Review Sheet
+
+Below is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.
+
+[STA260 Formula/Review Sheet](assets/STA260/STA260Formula.pdf)
+
+### Textbook Solution Manual
+
+There's a public solution manual [found here](https://usermanual.wiki/Document/SolutionManualMathematicalStatisticsWithApplications7thEditionWackerly.313163145/view).
+
+Warnings:
+
+-   This is not an official solution manuals, and there are plenty of typos.
+
+-   Many solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.
+
+-   It is pretty good at providing directions if you're lost.
+
+### Guides for Using Statistical Tables
+
+These are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).
+
+[$Z$ Table Guide](assets/STA260/ZTableGuide.pdf) ✦ [$t_{v}$ Table Guide](assets/STA260/TTableGuide.pdf) ✦ [$F_{n_{1}, n_{2}}$ Table Guide](assets/STA260/FTableGuide.pdf) ✦ [$\chi^{2}_{n}$ Table Guide](assets/STA260/ChisqTableGuide.pdf)

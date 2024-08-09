@@ -6,7 +6,7 @@ toc-location: left
 toc-collapsible: true
 ---
 
-Here are the tutorial notes written by Anna Ly and Ting Lin for STA260 during the summer 2024 semester.
+Here are the tutorial notes written by Anna Ly and Ting Lin for [STA260](https://utm.calendar.utoronto.ca/course/sta260h5) during the summer 2024 semester. Although it's called "Probability and Statistics II", a more appropriate name would be "an introduction to mathematical statistics" based off of the course description, content, and textbook used.
 
 The instructor was [Luai Al Labadi](https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&hl=en) and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.
 
@@ -24,51 +24,75 @@ Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf) ✦ 
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial2.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf)
+
+There is an issue with the answer for Q3; you're not supposed to claim:
+
+$$
+2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
+$$
+
+Instead, what happens is:
+
+$$
+\frac{2X}{2Y} = \frac{X/2}{Y/2} = \frac{\chi^{2}_{(2)}/2}{\chi^{2}_{(2)}/2} = F(2,2)
+$$
 
 ## Tutorial 3
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial3.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf)
 
 ## Tutorial 4
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial4.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial4/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial4/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial4/Question3.pdf)
 
 The reason for picking $a = 0.02$ is because you are focusing on the support of $w$, which is $0 < w < 1$. If you were to pick $a > 1$, then $P(W \leq a) = F_{W}(a) = 1$, which does not provide what we want.
+
+A common question is that when using the table of values for the $Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}$ distributions, we typically assume $(\alpha/2)$ for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume $(1 - \alpha/2)$ for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):
+
+$$
+1-\alpha/2 = P(X \leq x) = F_{X}(x)
+$$
+
+Whereas the textbook provides upper-tail values for the $Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}$ distributions. Some other textbooks tend to be consistent with the cumulative distribution function.
+
+If you're coding, R is consistent with the cumulative distributions functions.
 
 ## Tutorial 5
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial5.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf)
 
 ## Tutorial 6
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial6.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf) ✦ Q2 [Solution 1](assets/STA260/Summer2024/Solutions/Tutorial6/Question2-1.pdf) \| [Solution 2](assets/STA260/Summer2024/Solutions/Tutorial6/Question2-2.pdf) ✦ Q3 [Solution 1](assets/STA260/Summer2024/Solutions/Tutorial6/Question3-1.pdf) \| [Solution 2](assets/STA260/Summer2024/Solutions/Tutorial6/Question3-2.pdf)
+
+There is a rendering issue for the second solution of question 3... The question is the same in the worksheet regardless.
 
 ## Tutorial 7
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial7.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial7/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial7/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial7/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial7/Question4.pdf)
 
 There is a slight typo for question 2. It should be: $$
 \frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
 $$
 
-Instead of $= h(x)$.
+Instead of $= h(x)$ when reciting the fundamental theorem of calculus.
 
 ## Tutorial 8
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial8.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial8/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial8/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial8/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial8/Question4.pdf)
 
 There is a small typo in the worksheet; the Fisher's Information is:
 
@@ -82,13 +106,13 @@ Here, we use the partial derivative: $\partial$, not the univariate derivative $
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial9.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf)
 
 ## Tutorial 10
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial10.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf)
 
 There is a typo for the final solution of the second question because $\sigma^{2}$ should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.
 
@@ -98,7 +122,7 @@ This tutorial was for final exam review.
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial11.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4 ✦ Q5
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial11/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial11/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial11/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial11/Question4.pdf) ✦ [Q5](assets/STA260/Summer2024/Solutions/Tutorial11/Question5.pdf)
 
 ## Cancelled Tutorial
 
@@ -106,4 +130,4 @@ Previous iterations of the course tend to cover simple linear regression. Howeve
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf)
 
-Solutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4
+Solutions: [Q1](assets/STA260/Summer2024/Solutions/Cancelled/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Cancelled/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Cancelled/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Cancelled/Question4.pdf)

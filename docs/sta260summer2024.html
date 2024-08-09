@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.47">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STA260 Summer 2024 – Anna Ly’s Personal Website</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Anna Ly’s Personal Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">cv.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-teaching" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Teaching</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-teaching">    
+        <li>
+    <a class="dropdown-item" href="./sta304.html">
+ <span class="dropdown-text">STA304 Project Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sta260summer2024.html">
+ <span class="dropdown-text">STA260 Summer 2024</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tutorial-1" id="toc-tutorial-1" class="nav-link active" data-scroll-target="#tutorial-1">Tutorial 1</a></li>
+  <li><a href="#tutorial-2" id="toc-tutorial-2" class="nav-link" data-scroll-target="#tutorial-2">Tutorial 2</a></li>
+  <li><a href="#tutorial-3" id="toc-tutorial-3" class="nav-link" data-scroll-target="#tutorial-3">Tutorial 3</a></li>
+  <li><a href="#tutorial-4" id="toc-tutorial-4" class="nav-link" data-scroll-target="#tutorial-4">Tutorial 4</a></li>
+  <li><a href="#tutorial-5" id="toc-tutorial-5" class="nav-link" data-scroll-target="#tutorial-5">Tutorial 5</a></li>
+  <li><a href="#tutorial-6" id="toc-tutorial-6" class="nav-link" data-scroll-target="#tutorial-6">Tutorial 6</a></li>
+  <li><a href="#tutorial-7" id="toc-tutorial-7" class="nav-link" data-scroll-target="#tutorial-7">Tutorial 7</a></li>
+  <li><a href="#tutorial-8" id="toc-tutorial-8" class="nav-link" data-scroll-target="#tutorial-8">Tutorial 8</a></li>
+  <li><a href="#tutorial-9" id="toc-tutorial-9" class="nav-link" data-scroll-target="#tutorial-9">Tutorial 9</a></li>
+  <li><a href="#tutorial-10" id="toc-tutorial-10" class="nav-link" data-scroll-target="#tutorial-10">Tutorial 10</a></li>
+  <li><a href="#tutorial-11-12" id="toc-tutorial-11-12" class="nav-link" data-scroll-target="#tutorial-11-12">Tutorial 11 &amp; 12</a></li>
+  <li><a href="#cancelled-tutorial" id="toc-cancelled-tutorial" class="nav-link" data-scroll-target="#cancelled-tutorial">Cancelled Tutorial</a></li>
+  <li><a href="#additional-guides" id="toc-additional-guides" class="nav-link" data-scroll-target="#additional-guides">Additional Guides</a>
+  <ul class="collapse">
+  <li><a href="#review-sheet" id="toc-review-sheet" class="nav-link" data-scroll-target="#review-sheet">Review Sheet</a></li>
+  <li><a href="#textbook-solution-manual" id="toc-textbook-solution-manual" class="nav-link" data-scroll-target="#textbook-solution-manual">Textbook Solution Manual</a></li>
+  <li><a href="#guides-for-using-statistical-tables" id="toc-guides-for-using-statistical-tables" class="nav-link" data-scroll-target="#guides-for-using-statistical-tables">Guides for Using Statistical Tables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STA260 Summer 2024</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Here are the tutorial notes written by Anna Ly and Ting Lin for <a href="https://utm.calendar.utoronto.ca/course/sta260h5">STA260</a> during the summer 2024 semester. Although it’s called “Probability and Statistics II”, a more appropriate name would be “an introduction to mathematical statistics” based off of the course description, content, and textbook used.</p>
+<p>The instructor was <a href="https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&amp;hl=en">Luai Al Labadi</a> and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.</p>
+<p>Some questions were picked from past tests and exams from varying instructors and are high in difficulty.</p>
+<section id="tutorial-1" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-1">Tutorial 1</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial1.pdf">Worksheet</a></p>
+<p>Interesting remark (a good question that a student had from tutorial.)</p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question3.pdf">Q3</a></p>
+</section>
+<section id="tutorial-2" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-2">Tutorial 2</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial2.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf">Q4</a></p>
+<p>There is an issue with the answer for Q3; you’re not supposed to claim:</p>
+<p><span class="math display">\[
+2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
+\]</span></p>
+<p>Instead, what happens is:</p>
+<p><span class="math display">\[
+\frac{2X}{2Y} = \frac{X/2}{Y/2} = \frac{\chi^{2}_{(2)}/2}{\chi^{2}_{(2)}/2} = F(2,2)
+\]</span></p>
+</section>
+<section id="tutorial-3" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-3">Tutorial 3</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial3.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf">Q4</a></p>
+</section>
+<section id="tutorial-4" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-4">Tutorial 4</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial4.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question3.pdf">Q3</a></p>
+<p>The reason for picking <span class="math inline">\(a = 0.02\)</span> is because you are focusing on the support of <span class="math inline">\(w\)</span>, which is <span class="math inline">\(0 &lt; w &lt; 1\)</span>. If you were to pick <span class="math inline">\(a &gt; 1\)</span>, then <span class="math inline">\(P(W \leq a) = F_{W}(a) = 1\)</span>, which does not provide what we want.</p>
+<p>A common question is that when using the table of values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions, we typically assume <span class="math inline">\((\alpha/2)\)</span> for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume <span class="math inline">\((1 - \alpha/2)\)</span> for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):</p>
+<p><span class="math display">\[
+1-\alpha/2 = P(X \leq x) = F_{X}(x)
+\]</span></p>
+<p>Whereas the textbook provides upper-tail values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions. Some other textbooks tend to be consistent with the cumulative distribution function.</p>
+<p>If you’re coding, R is consistent with the cumulative distributions functions.</p>
+</section>
+<section id="tutorial-5" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-5">Tutorial 5</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial5.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf">Q3</a></p>
+</section>
+<section id="tutorial-6" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-6">Tutorial 6</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial6.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf">Q1</a> ✦ Q2 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-2.pdf">Solution 2</a> ✦ Q3 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-2.pdf">Solution 2</a></p>
+<p>There is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless.</p>
+</section>
+<section id="tutorial-7" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-7">Tutorial 7</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial7.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question4.pdf">Q4</a></p>
+<p>There is a slight typo for question 2. It should be: <span class="math display">\[
+\frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
+\]</span></p>
+<p>Instead of <span class="math inline">\(= h(x)\)</span> when reciting the fundamental theorem of calculus.</p>
+</section>
+<section id="tutorial-8" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-8">Tutorial 8</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial8.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question4.pdf">Q4</a></p>
+<p>There is a small typo in the worksheet; the Fisher’s Information is:</p>
+<p><span class="math display">\[
+I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\partial^{2}\theta} \ln(f_{Y}(y|\theta)) \right] \right)
+\]</span></p>
+<p>Here, we use the partial derivative: <span class="math inline">\(\partial\)</span>, not the univariate derivative <span class="math inline">\(d\)</span>. These are not the same (I am not trying to get killed by a mathematician.)</p>
+</section>
+<section id="tutorial-9" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-9">Tutorial 9</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial9.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf">Q3</a></p>
+</section>
+<section id="tutorial-10" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-10">Tutorial 10</h2>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial10.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf">Q3</a></p>
+<p>There is a typo for the final solution of the second question because <span class="math inline">\(\sigma^{2}\)</span> should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.</p>
+</section>
+<section id="tutorial-11-12" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-11-12">Tutorial 11 &amp; 12</h2>
+<p>This tutorial was for final exam review.</p>
+<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial11.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question4.pdf">Q4</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question5.pdf">Q5</a></p>
+</section>
+<section id="cancelled-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="cancelled-tutorial">Cancelled Tutorial</h2>
+<p>Previous iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.</p>
+<p><a href="assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf">Worksheet</a></p>
+<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question4.pdf">Q4</a></p>
+</section>
+<section id="additional-guides" class="level2">
+<h2 class="anchored" data-anchor-id="additional-guides">Additional Guides</h2>
+<p>These are some additional notes that may be useful for students.</p>
+<section id="review-sheet" class="level3">
+<h3 class="anchored" data-anchor-id="review-sheet">Review Sheet</h3>
+<p>Below is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.</p>
+<p><a href="assets/STA260/STA260Formula.pdf">STA260 Formula/Review Sheet</a></p>
+</section>
+<section id="textbook-solution-manual" class="level3">
+<h3 class="anchored" data-anchor-id="textbook-solution-manual">Textbook Solution Manual</h3>
+<p>There’s a public solution manual <a href="https://usermanual.wiki/Document/SolutionManualMathematicalStatisticsWithApplications7thEditionWackerly.313163145/view">found here</a>.</p>
+<p>Warnings:</p>
+<ul>
+<li><p>This is not an official solution manuals, and there are plenty of typos.</p></li>
+<li><p>Many solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.</p></li>
+<li><p>It is pretty good at providing directions if you’re lost.</p></li>
+</ul>
+</section>
+<section id="guides-for-using-statistical-tables" class="level3">
+<h3 class="anchored" data-anchor-id="guides-for-using-statistical-tables">Guides for Using Statistical Tables</h3>
+<p>These are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).</p>
+<p><a href="assets/STA260/ZTableGuide.pdf"><span class="math inline">\(Z\)</span> Table Guide</a> ✦ <a href="assets/STA260/TTableGuide.pdf"><span class="math inline">\(t_{v}\)</span> Table Guide</a> ✦ <a href="assets/STA260/FTableGuide.pdf"><span class="math inline">\(F_{n_{1}, n_{2}}\)</span> Table Guide</a> ✦ <a href="assets/STA260/ChisqTableGuide.pdf"><span class="math inline">\(\chi^{2}_{n}\)</span> Table Guide</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
