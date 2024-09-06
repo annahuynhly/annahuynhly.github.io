@@ -3,4 +3,4 @@ title: "Anna Ly"
 format: html
 ---
 
-Welcome to my website!
+Welcome to my personal website! I made this site using [Quarto](https://quarto.org/docs/websites/).

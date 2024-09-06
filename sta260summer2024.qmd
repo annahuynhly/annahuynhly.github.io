@@ -14,19 +14,23 @@ Some questions were picked from past tests and exams from varying instructors an
 
 ## Tutorial 1
 
+**Topics:** sample variance, sampling distributions related to the normal distribution such as the $\chi^{2}$ distribution.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial1.pdf)
 
-Interesting remark (a good question that a student had from tutorial.)
+[Interesting remark](assets/STA260/Summer2024/Tut1Remark.pdf) (a good question that a student had from tutorial.)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial1/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial1/Question3.pdf)
 
 ## Tutorial 2
 
+**Topics:** properties of sampling distributions related to the normal distribution, central limit theorem, normal approximation to the binomial distribution.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial2.pdf)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf)
 
-There is an issue with the answer for Q3; you're not supposed to claim:
+There is an issue with the answer for Q3; you're NOT supposed to claim:
 
 $$
 2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
@@ -40,11 +44,15 @@ $$
 
 ## Tutorial 3
 
+**Topics:** biased and unbiased estimators.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial3.pdf)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf) ✦ [Q4](assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf)
 
 ## Tutorial 4
+
+**Topics:** pivotal quantity, confidence intervals.
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial4.pdf)
 
@@ -64,11 +72,15 @@ If you're coding, R is consistent with the cumulative distributions functions.
 
 ## Tutorial 5
 
+**Topics:** confidence intervals using distributions related to the normal distribution, computing variance of sample variance.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial5.pdf)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf)
 
 ## Tutorial 6
+
+**Topics:** relative efficiency, consistency.
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial6.pdf)
 
@@ -77,6 +89,8 @@ Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf) ✦ 
 There is a rendering issue for the second solution of question 3... The question is the same in the worksheet regardless.
 
 ## Tutorial 7
+
+**Topics:** sufficiency, completeness, Rao-Blackwell theorem.
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial7.pdf)
 
@@ -89,6 +103,8 @@ $$
 Instead of $= h(x)$ when reciting the fundamental theorem of calculus.
 
 ## Tutorial 8
+
+**Topics:** Cramer-Rao inequality, exponential family.
 
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial8.pdf)
 
@@ -104,17 +120,23 @@ Here, we use the partial derivative: $\partial$, not the univariate derivative $
 
 ## Tutorial 9
 
+**Topics:** maximum likelihood estimators, method of moments estimators.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial9.pdf)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf)
 
 ## Tutorial 10
 
+**Topics:** hypothesis testing using NP-lemma and likelihood ratio tests.
+
 [Worksheet](assets/STA260/Summer2024/Worksheets/Tutorial10.pdf)
 
 Solutions: [Q1](assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf) ✦ [Q2](assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf) ✦ [Q3](assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf)
 
 There is a typo for the final solution of the second question because $\sigma^{2}$ should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.
+
+There is a typo for question 3: it should be $\chi^{2}_{(1)}$ instead of $\chi^{2}_{(16)}$. That being said, the numerical value is associated with degrees of freedom of 1 (I miswrote what I meant to say).
 
 ## Tutorial 11 & 12
 

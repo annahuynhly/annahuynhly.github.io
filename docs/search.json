@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Anna Ly",
     "section": "",
-    "text": "Welcome to my website!"
+    "text": "Welcome to my personal website! I made this site using Quarto."
   },
   {
     "objectID": "about.html",
@@ -130,70 +130,70 @@
     "href": "sta260summer2024.html#tutorial-1",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 1",
-    "text": "Tutorial 1\nWorksheet\nInteresting remark (a good question that a student had from tutorial.)\nSolutions: Q1 ✦ Q2 ✦ Q3"
+    "text": "Tutorial 1\nTopics: sample variance, sampling distributions related to the normal distribution such as the \\(\\chi^{2}\\) distribution.\nWorksheet\nInteresting remark (a good question that a student had from tutorial.)\nSolutions: Q1 ✦ Q2 ✦ Q3"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-2",
     "href": "sta260summer2024.html#tutorial-2",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 2",
-    "text": "Tutorial 2\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is an issue with the answer for Q3; you’re not supposed to claim:\n\\[\n2X \\sim \\chi^{2}_{(2)} \\Rightarrow X \\sim \\frac{\\chi^{2}_{(2)}}{2}\n\\]\nInstead, what happens is:\n\\[\n\\frac{2X}{2Y} = \\frac{X/2}{Y/2} = \\frac{\\chi^{2}_{(2)}/2}{\\chi^{2}_{(2)}/2} = F(2,2)\n\\]"
+    "text": "Tutorial 2\nTopics: properties of sampling distributions related to the normal distribution, central limit theorem, normal approximation to the binomial distribution.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is an issue with the answer for Q3; you’re NOT supposed to claim:\n\\[\n2X \\sim \\chi^{2}_{(2)} \\Rightarrow X \\sim \\frac{\\chi^{2}_{(2)}}{2}\n\\]\nInstead, what happens is:\n\\[\n\\frac{2X}{2Y} = \\frac{X/2}{Y/2} = \\frac{\\chi^{2}_{(2)}/2}{\\chi^{2}_{(2)}/2} = F(2,2)\n\\]"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-3",
     "href": "sta260summer2024.html#tutorial-3",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 3",
-    "text": "Tutorial 3\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+    "text": "Tutorial 3\nTopics: biased and unbiased estimators.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-4",
     "href": "sta260summer2024.html#tutorial-4",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 4",
-    "text": "Tutorial 4\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want.\nA common question is that when using the table of values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions, we typically assume \\((\\alpha/2)\\) for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume \\((1 - \\alpha/2)\\) for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):\n\\[\n1-\\alpha/2 = P(X \\leq x) = F_{X}(x)\n\\]\nWhereas the textbook provides upper-tail values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions. Some other textbooks tend to be consistent with the cumulative distribution function.\nIf you’re coding, R is consistent with the cumulative distributions functions."
+    "text": "Tutorial 4\nTopics: pivotal quantity, confidence intervals.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want.\nA common question is that when using the table of values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions, we typically assume \\((\\alpha/2)\\) for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume \\((1 - \\alpha/2)\\) for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):\n\\[\n1-\\alpha/2 = P(X \\leq x) = F_{X}(x)\n\\]\nWhereas the textbook provides upper-tail values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions. Some other textbooks tend to be consistent with the cumulative distribution function.\nIf you’re coding, R is consistent with the cumulative distributions functions."
   },
   {
     "objectID": "sta260summer2024.html#tutorial-5",
     "href": "sta260summer2024.html#tutorial-5",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 5",
-    "text": "Tutorial 5\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+    "text": "Tutorial 5\nTopics: confidence intervals using distributions related to the normal distribution, computing variance of sample variance.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-6",
     "href": "sta260summer2024.html#tutorial-6",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 6",
-    "text": "Tutorial 6\nWorksheet\nSolutions: Q1 ✦ Q2 Solution 1 | Solution 2 ✦ Q3 Solution 1 | Solution 2\nThere is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless."
+    "text": "Tutorial 6\nTopics: relative efficiency, consistency.\nWorksheet\nSolutions: Q1 ✦ Q2 Solution 1 | Solution 2 ✦ Q3 Solution 1 | Solution 2\nThere is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless."
   },
   {
     "objectID": "sta260summer2024.html#tutorial-7",
     "href": "sta260summer2024.html#tutorial-7",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 7",
-    "text": "Tutorial 7\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\) when reciting the fundamental theorem of calculus."
+    "text": "Tutorial 7\nTopics: sufficiency, completeness, Rao-Blackwell theorem.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\) when reciting the fundamental theorem of calculus."
   },
   {
     "objectID": "sta260summer2024.html#tutorial-8",
     "href": "sta260summer2024.html#tutorial-8",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 8",
-    "text": "Tutorial 8\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a small typo in the worksheet; the Fisher’s Information is:\n\\[\nI_{n}(\\theta) = n I(\\theta) = n \\left( -\\mathbb{E} \\left[ \\frac{\\partial^{2}}{\\partial^{2}\\theta} \\ln(f_{Y}(y|\\theta)) \\right] \\right)\n\\]\nHere, we use the partial derivative: \\(\\partial\\), not the univariate derivative \\(d\\). These are not the same (I am not trying to get killed by a mathematician.)"
+    "text": "Tutorial 8\nTopics: Cramer-Rao inequality, exponential family.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a small typo in the worksheet; the Fisher’s Information is:\n\\[\nI_{n}(\\theta) = n I(\\theta) = n \\left( -\\mathbb{E} \\left[ \\frac{\\partial^{2}}{\\partial^{2}\\theta} \\ln(f_{Y}(y|\\theta)) \\right] \\right)\n\\]\nHere, we use the partial derivative: \\(\\partial\\), not the univariate derivative \\(d\\). These are not the same (I am not trying to get killed by a mathematician.)"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-9",
     "href": "sta260summer2024.html#tutorial-9",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 9",
-    "text": "Tutorial 9\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+    "text": "Tutorial 9\nTopics: maximum likelihood estimators, method of moments estimators.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
   },
   {
     "objectID": "sta260summer2024.html#tutorial-10",
     "href": "sta260summer2024.html#tutorial-10",
     "title": "STA260 Summer 2024",
     "section": "Tutorial 10",
-    "text": "Tutorial 10\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThere is a typo for the final solution of the second question because \\(\\sigma^{2}\\) should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9."
+    "text": "Tutorial 10\nTopics: hypothesis testing using NP-lemma and likelihood ratio tests.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThere is a typo for the final solution of the second question because \\(\\sigma^{2}\\) should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.\nThere is a typo for question 3: it should be \\(\\chi^{2}_{(1)}\\) instead of \\(\\chi^{2}_{(16)}\\). That being said, the numerical value is associated with degrees of freedom of 1 (I miswrote what I meant to say)."
   },
   {
     "objectID": "sta260summer2024.html#tutorial-11-12",
@@ -214,7 +214,7 @@
     "href": "sta304.html",
     "title": "STA304 Project Resources",
     "section": "",
-    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review"
+    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review\nNote: at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I may re-write this in the future after obtaining more training in approaches and best practices."
   },
   {
     "objectID": "sta260summer2024.html#additional-guides",
@@ -242,7 +242,7 @@
     "href": "cv.html#experience",
     "title": "Curriculum Vitae",
     "section": "Experience",
-    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nI will be a teaching assistant for STATS 2D03 - Introduction to Probability in the Fall 2024 term!\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for streamlined ROC & AUC analysis to be used by researchers. You may view my work here on Github.\nCurrently working on another unreleased project!\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for the computer science department. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\nSeptember 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\nApril 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention."
+    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nI am a teaching assistant for STATS 2D03 - Introduction to Probability for the Fall 2024 term!\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for streamlined ROC & AUC analysis to be used by researchers. You may view my work here on Github.\nCurrently working on another unreleased project!\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for the computer science department. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\nSeptember 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\nApril 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention."
   },
   {
     "objectID": "cv.html#skills",
@@ -291,7 +291,7 @@
     "href": "about.html#fun-facts-about-me",
     "title": "About",
     "section": "Fun Facts About Me",
-    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI grew up in Niagara Falls, Canada. From my parent’s house, it takes only 45 minutes to walk to the falls. People say I’m lucky to have easy access to the magnificient falls but I’ve spent more time looking at that waterfall than studying statistics; it’s become an eyesore to me.\nMy ethnic background is a mystery, even to myself. For now I just tell people I’m Vietnamese because that’s what my parents speak at home, but it’s complicated.\n\nI don’t speak Vietnamese.\n\nI used to doodle all of the time; I hope to get back to drawing.\nI love reading webcomics. One of my favourite series is One Last God Kubera.\n\nI mostly read trashy romance though. They are too shameful to be revealed here. :)\nI one day would love to make my own webcomic. (It would take a lot of time, though…)\n\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\n\nI have followed a strict plant-based diet since 2019. I have never experienced brain fog, except for times I could not sleep!\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
+    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI grew up in Niagara Falls, Canada. From my parent’s house, it takes only 45 minutes to walk to the falls. People say I’m lucky to have easy access to the magnificient falls but I’ve spent more time looking at that waterfall than studying statistics; it’s become an eyesore to me.\nMy ethnic background is a mystery, even to myself. For now I just tell people I’m Vietnamese because that’s what my parents speak at home, but it’s complicated.\n\nI don’t speak Vietnamese.\n\nI used to doodle all of the time; I hope to get back to drawing.\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\n\nI have followed a strict plant-based diet since 2019. I have never experienced brain fog, except for times I could not sleep!\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
   },
   {
     "objectID": "about.html#where-to-find-me",
@@ -306,5 +306,40 @@
     "title": "Curriculum Vitae",
     "section": "Conferenceserences",
     "text": "Conferenceserences\n2. Joint Statistical Meetings (JSM) - Aug 2023\nPanelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts\n1. International Association for Statistical Education (IASE) - July 2023\nPoster Presentor: Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts"
+  },
+  {
+    "objectID": "advice_grad.html",
+    "href": "advice_grad.html",
+    "title": "Graduate School Advice",
+    "section": "",
+    "text": "As a teaching assistant, I’ve had lots of students come up to me for advice regarding graduate school. Below I am answering common questions I get in hopes that this helps students.\nWARNING: I am not done yet…."
+  },
+  {
+    "objectID": "advice_grad.html#q-whats-the-real-reason-why-you-didnt-go-to-university-of-toronto-for-graduate-studies",
+    "href": "advice_grad.html#q-whats-the-real-reason-why-you-didnt-go-to-university-of-toronto-for-graduate-studies",
+    "title": "Graduate School Advice",
+    "section": "Q: What’s the real reason why you didn’t go to University of Toronto for graduate studies?",
+    "text": "Q: What’s the real reason why you didn’t go to University of Toronto for graduate studies?\nI’m going to be blunt: I do not have a rich background and I mostly need to take care of myself, and in the future, I am expected to take care of my family financially.\nThere are many different master’s programs at UofT that are statistics-related; all of them are self-funded, even for the theoretical fields. Coupled with the fact that Greater Toronto Area is expensive, UofT is financially unviable.\nI heard they had funding at one point though, but they got rid of it in order to accept more international applicants. I am aware that I can TA and get paid, however, TAing only makes up approximately 33% of my stipend at McMaster.\nThere was one semester at UofT where I had 300 TAing hours as an undergraduate student; I developed some wrinkles. Meanwhile, I have less than 300 TAing hours at McMaster for the whole academic year (and I am being compensated well.)\nFurthermore, although the brand name does matter, going to UofT does not guarantee you success in finding a job. If I knew, with 99% certainty, that UofT would help me land an instant six-figure job; then sure. Perhaps debt is worth it. However, the course work in the statistics master’s program is focused on theory as opposed to applications.\nI also really wanted to do a thesis program instead of a course-based one! :)\nSo far, I don’t regret my decision. I am loving my time at McMaster. The professors are tech-saavy, intelligent, wise, and considerate. I have already learned so much in such a short period of time without sacrificing my mental health.\nAnother thing I love about McMaster is that the professors are supportive of all alternative career paths; they don’t care whether you go to academia or industry. They just want you to succeed in whatever you desire. Obviously, this means I may know less theorems than a UofT counterpart, but I’m confident in my coding skills."
+  },
+  {
+    "objectID": "advice_grad.html#q-should-i-go-to-graduate-school",
+    "href": "advice_grad.html#q-should-i-go-to-graduate-school",
+    "title": "Graduate School Advice",
+    "section": "Q: Should I go to graduate school?",
+    "text": "Q: Should I go to graduate school?\nIf you want a real career in statistics, yes. You do not learn enough during your undergraduate degree to be sufficient enough to handle data. You can read this passage written by Jerry Brunner, a retired statistics professor at UofT.\nHowever, there are many people that do work with data without a statistics degree. However, they’re likely doing more elementary work, like business analysis.\nYou can make lots of money without a graduate degree, but the master’s degree just opens more doors.\n[incomplete]"
+  },
+  {
+    "objectID": "advice_grad.html#q-should-i-do-a-professional-based-or-a-theoretical-based-masters",
+    "href": "advice_grad.html#q-should-i-do-a-professional-based-or-a-theoretical-based-masters",
+    "title": "Graduate School Advice",
+    "section": "Q: Should I do a professional based or a theoretical based masters?",
+    "text": "Q: Should I do a professional based or a theoretical based masters?\n“Professional” and “theoretical” are terms I loosely heard; in this passage, I mean the following:\nProfessional: the goal is for you to get a career. These are typically terminal degrees (i.e., the last one you aim to get.)\nTheoretical: the goal is for you to be prepared to get a Ph.D. These are typically thesis programs, but can be course-based.\n[incomplete]"
+  },
+  {
+    "objectID": "advice_grad.html#q-which-school-should-i-apply-for",
+    "href": "advice_grad.html#q-which-school-should-i-apply-for",
+    "title": "Graduate School Advice",
+    "section": "Q: Which school should I apply for?",
+    "text": "Q: Which school should I apply for?\nOne thing I realise that many students do at UofT is care about brand names. Names do matter; but they’re only one part of the application process. (If the weight was super important, I would’ve went into debt to go to UofT for the master’s program.)\n[incomplete]"
   }
 ]

@@ -1,0 +1,59 @@
+---
+title: "Graduate School Advice"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+As a teaching assistant, I've had lots of students come up to me for advice regarding graduate school. Below I am answering common questions I get in hopes that this helps students.
+
+WARNING: I am not done yet....
+
+## Q: What's the real reason why you didn't go to University of Toronto for graduate studies?
+
+I'm going to be blunt: I do not have a rich background and I mostly need to take care of myself, and in the future, I am expected to take care of my family financially.
+
+There are many different master's programs at UofT that are statistics-related; all of them are self-funded, [even for the theoretical fields](https://www.statistics.utoronto.ca/graduate/msc-application-information). Coupled with the fact that Greater Toronto Area is expensive, UofT is financially unviable.
+
+I heard they had funding at one point though, but they got rid of it in order to accept more international applicants. I am aware that I can TA and get paid, however, TAing only makes up approximately 33% of my stipend at McMaster. 
+
+There was one semester at UofT where I had 300 TAing hours as an undergraduate student; I developed some wrinkles. Meanwhile, I have less than 300 TAing hours at McMaster for the whole academic year (and I am being compensated well.)
+
+Furthermore, although the brand name does matter, going to UofT does not guarantee you success in finding a job. If I knew, with 99% certainty, that UofT would help me land an instant six-figure job; then sure. Perhaps debt is worth it. However, the course work in the statistics master's program is focused on theory as opposed to applications.
+
+I also really wanted to do a thesis program instead of a course-based one! :) 
+
+So far, I don't regret my decision. I am loving my time at McMaster. The professors are tech-saavy, intelligent, wise, and considerate. I have already learned so much in such a short period of time without sacrificing my mental health.
+
+Another thing I love about McMaster is that the professors are supportive of all alternative career paths; they don't care whether you go to academia or industry. They just want you to succeed in whatever you desire. Obviously, this means I may know less theorems than a UofT counterpart, but I'm confident in my coding skills.
+
+## Q: Should I go to graduate school?
+
+If you want a real career in statistics, yes. You do not learn enough during your undergraduate degree to be sufficient enough to handle data. You can read [this passage written by Jerry Brunner](https://utstat.toronto.edu/brunner/whattodo.html), a retired statistics professor at UofT.
+
+However, there are many people that do work with data without a statistics degree. However, they're likely doing more elementary work, like business analysis.
+
+You can make lots of money without a graduate degree, but the master's degree just opens more doors.
+
+[incomplete]
+
+## Q: Should I do a professional based or a theoretical based masters?
+
+"Professional" and "theoretical" are terms I loosely heard; in this passage, I mean the following:
+
+Professional: the goal is for you to get a career. These are typically terminal degrees (i.e., the last one you aim to get.)
+
+Theoretical: the goal is for you to be prepared to get a Ph.D. These are typically thesis programs, but can be course-based.
+
+[incomplete]
+
+## Q: Which school should I apply for?
+
+One thing I realise that many students do at UofT is care about brand names. Names do matter; but they're only one part of the application process. (If the weight was super important, I would've went into debt to go to UofT for the master's program.)
+
+[incomplete]
+
+
+
+

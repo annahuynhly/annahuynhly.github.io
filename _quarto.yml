@@ -10,6 +10,10 @@ website:
         text: "Home"
       - about.qmd
       - cv.qmd
+      - text: "Advice"
+        menu: 
+          - href: advice_grad.qmd
+            text: "Graduate School"
       - text: "Teaching"
         menu: 
           - href: sta304.qmd
