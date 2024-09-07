@@ -24,9 +24,7 @@ I am a teaching assistant for [STATS 2D03](https://academiccalendars.romcmaster.
 
 **Research Assistant ✦ November 2022 - August 2024**
 
-Under the direction of [Mike Evans](https://utstat.toronto.edu/mikevans/), I spearheaded development of a full-stack R Shiny web application for streamlined ROC & AUC analysis to be used by researchers. You may view my work here on [Github](github.com/annahuynhly/ROCAnalysisRelativeBeliefRatio).
-
-Currently working on another unreleased project!
+Under the direction of [Mike Evans](https://utstat.toronto.edu/mikevans/), I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work [here](https://www.utstat.utoronto.ca/mikevans/relativebeliefcode.html).
 
 ### Epson Canada
 
@@ -64,15 +62,19 @@ All of my appointments:
 
 **Research Assistant**
 
-I've had multiple contracts as a research assistant for the computer science department. Below are some of the dates I've worked, as well as a brief description of what I completed.
+I've had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I've worked, as well as a brief description of what I completed.
 
--   **September 2020 - August 2021**
+-   **(Computer Science Education) September 2020 - August 2021**
 
     -   Under the guidance of [Andrew Petersen](https://utmandrew.bitbucket.io/), I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers' insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.
 
--   **April 2023 - August 2023, April 2024 - August 2024**
+-   **(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024**
 
     -   Working under the supervision of [Tingting Zhu](https://sites.utm.utoronto.ca/tzhu/content/tingting-zhu), I performed quantitative analysis on survey data to understand whether different types of videos improve students' learning. Additionally, I analyzed Youtube analytics to understand audience retention.
+
+-   **(Statistical Education)** **April 2024 - August 2024**
+
+    -   Advised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses.
 
 ## Skills
 

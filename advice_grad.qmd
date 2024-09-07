@@ -1,5 +1,5 @@
 ---
-title: "Graduate School Advice"
+title: "Graduate School Advice (Statistics)"
 toc: true
 toc-depth: 3 # This sets the depth of headers included in the TOC
 toc-location: left
@@ -8,7 +8,7 @@ toc-collapsible: true
 
 As a teaching assistant, I've had lots of students come up to me for advice regarding graduate school. Below I am answering common questions I get in hopes that this helps students.
 
-WARNING: I am not done yet....
+A lot of this information I learned through experience and searching articles online. I hope you find this detailed guide helpful.
 
 ## Q: What's the real reason why you didn't go to University of Toronto for graduate studies?
 
@@ -16,13 +16,13 @@ I'm going to be blunt: I do not have a rich background and I mostly need to take
 
 There are many different master's programs at UofT that are statistics-related; all of them are self-funded, [even for the theoretical fields](https://www.statistics.utoronto.ca/graduate/msc-application-information). Coupled with the fact that Greater Toronto Area is expensive, UofT is financially unviable.
 
-I heard they had funding at one point though, but they got rid of it in order to accept more international applicants. I am aware that I can TA and get paid, however, TAing only makes up approximately 33% of my stipend at McMaster. 
+I heard they had funding at one point though, but they got rid of it in order to accept more international applicants. I am aware that I can TA and get paid, however, TAing only makes up approximately 33% of my stipend at McMaster.
 
 There was one semester at UofT where I had 300 TAing hours as an undergraduate student; I developed some wrinkles. Meanwhile, I have less than 300 TAing hours at McMaster for the whole academic year (and I am being compensated well.)
 
 Furthermore, although the brand name does matter, going to UofT does not guarantee you success in finding a job. If I knew, with 99% certainty, that UofT would help me land an instant six-figure job; then sure. Perhaps debt is worth it. However, the course work in the statistics master's program is focused on theory as opposed to applications.
 
-I also really wanted to do a thesis program instead of a course-based one! :) 
+I also really wanted to do a thesis program instead of a course-based one! :)
 
 So far, I don't regret my decision. I am loving my time at McMaster. The professors are tech-saavy, intelligent, wise, and considerate. I have already learned so much in such a short period of time without sacrificing my mental health.
 
@@ -36,24 +36,260 @@ However, there are many people that do work with data without a statistics degre
 
 You can make lots of money without a graduate degree, but the master's degree just opens more doors.
 
-[incomplete]
-
 ## Q: Should I do a professional based or a theoretical based masters?
 
 "Professional" and "theoretical" are terms I loosely heard; in this passage, I mean the following:
 
 Professional: the goal is for you to get a career. These are typically terminal degrees (i.e., the last one you aim to get.)
 
+You should get this type of master's if:
+
+-   You know, with 100% certainty, that you don't want to do a Ph.D (ever).
+
+-   You know, with 100% certainty, that you don't want to become a professor.
+
+-   The motivation for getting a master's degree is for the career prospects as opposed to genuinely being interested in the subject.
+
+-   You don't like theory (and school).
+
 Theoretical: the goal is for you to be prepared to get a Ph.D. These are typically thesis programs, but can be course-based.
 
-[incomplete]
+I would go for a theoretical based master's if the above four bullet points do not apply to you (i.e., you may want to do a Ph.D, you may want to become a professor, you genuinely like statistics and statistical theory).
+
+## Q: Were there any benefits from switching institutions?
+
+If you hang around graduate school forums you'll eventually see some advice where it is recommended to switch schools for each degree (and for your post-doc) rather than staying at one institution multiple times.
+
+I notice such large changes from two different yet well respected institutions that if I ever pursue a PhD or a post-doc, I want to ensure these are all in different institutions. Ideally I should also extend this to a full-time professorship as well, but I can see myself wanting to gain tenure-ship at UTM if given the opportunity. (The reasons for this is completely personal, likely not applicable to the reader, so it will not be shared.)
+
+Now of course, finances are a huge consideration (i.e., if you already live near a good university and not have to worry about paying as much rent then it isn't too bad to stay in one place). But if you're like me and you are constantly moving to one area to another & paying rent, you should absolutely move.
+
+Here are some benefits that I've personally noticed:
+
+1.  **You will meet professors with much different opinions and outlook on research & subject material than ones in your original institution.**
+
+For instance, one professor may not believe in using hypothesis testing but would rather use statistical coverage. Another professor may be more tech saavy than others.
+
+In some sense, staying at one institution guarantees you'll be in an echo-chamber. You don't know what you don't know. Going to multiple equips you with different perspectives that may inspire you in your research and academic journey.
+
+There are countless of things I have noticed at McMaster compared to professors at UofT. Some of these include:
+
+-   Frequently collaborating with professors from other institutions. (I find that at UofT, professors tend to keep to their own faculty.)
+
+-   Massive importance in keeping up to date to technology and data science podcasts.
+
+-   Different mathematical notation. (It's great to be exposed to multiple as different textbooks will use different notation anyhow.)
+
+2.  **Multiple alumni networks & work opportunities.**
+
+Now you can participate in multiple alumni events and make more unique connections on Linkedin.
+
+As a recent UofT graduate (and as someone who has collaborated with UofT professors), I get job opportunity suggestions from current UofT faculty and now from McMaster faculty as well. It's a massive win-win!
+
+3.  **Learning what it's like to be in a different area.**
+
+Not all Ontario cities are created equal. I've **lived** (not just visited) in Niagara Falls, Mississauga, Markham, and now I'm in Hamilton. All of these cities are different and it's good to have a change of environment to make a more educated opinion of the type of area you want to settle in the future.
 
 ## Q: Which school should I apply for?
 
 One thing I realise that many students do at UofT is care about brand names. Names do matter; but they're only one part of the application process. (If the weight was super important, I would've went into debt to go to UofT for the master's program.)
 
-[incomplete]
+If you are aiming to get into academia, and you want to stay in Canada, you should go to a [U15 institution](https://en.wikipedia.org/wiki/U15_Group_of_Canadian_Research_Universities).
 
+If you are aiming to get into industry, the program itself matters more than just the school title. There are more important questions to consider.
 
+## Things to consider for choosing where to apply
 
+I attempted to order the below from most important to least important.
 
+### 1. If doing a thesis program, potential supervisors.
+
+You should be looking for potential supervisors during August-November of the school year before you apply. The best faculty members will be poached around August.
+
+One thing I've noticed at the University of Toronto is that it's quite common for professors in the research stream to have... Around 10 PhD students under supervision. Depending on how much support and a close relationship you want to have with your supervisor, this could be a red flag.
+
+You want a supervisor that’ll actually respond to emails. A couple schools have a policy where you can't reach out to find your own supervisor (i.e., Western). However, if possible reach out to prospective supervisors and ask to get in on a meeting. If they respond, here are some very important questions to consider:
+
+-   How many students have they supervised in total, and where did they end up?
+
+    -   If they had students that pursued industry over academia, does the professor seem proud or not care?
+
+-   How many students do they supervise at a time?
+
+    -   More than 10 students at a time is a massive red flag.
+
+    -   1-2 at a time is an awesome amount; however, these supervisors are very picky with student selection (for good reason!)
+
+    -   If possible, always try to reach out to the students (Linkedin is a good resource).
+
+-   What are their expectations for their students?
+
+    -   When do you expect students to start working on their thesis?
+
+    -   What do you expect students to know before
+
+    -   What does early mentorship look like (how will they train/mentor you?)
+
+    -   How much time does it take for their students to graduate?
+
+    -   How much time do they spend on a student per week?
+
+    -   How much time do you expect students to focus on their projects?
+
+    -   What do students do that can make them frustrated?
+
+    -   What kind of student does the supervisor want?
+
+-   What is their RMP score?
+
+    -   Genuinely read the reviews; most students will rate based off of how easy it was to get an A. However, detailed ones regarding a professor's attitude is important. Does the prof not respond well to questions or email? Is the prof dismissive to mental health concerns and accessibility?
+
+-   Do they like collaborating with external faculty?
+
+    -   It's generally a green flag if they love collaboration; it also means you're likely to talk to students going to a variety of different institutions as well.
+
+### 2. Prestige of faculty members
+
+You generally want ones that are well liked, respected, and prestigious. You want to be surrounded by positive influences (especially in the case where you want to change supervisors as well.)
+
+Consider the following:
+
+-   Who is the most "prestigious" professor and what are they prestigious for?
+
+-   How many professors are "prestigious"? (this can be measured a really high citation score, also known as an H-index.)
+
+-   How are the RMP scores for the faculty overall? You should take RMP scores with a grain of salt; many studies tend to judge based on their final mark. However, some comments will provide potential green or red flags, such as attitude and temperament.)
+
+-   How many professors are graduates from even more prestigious universities? From my personal experience, professors that have studied or did their post-doc at an ivy-league school have been good.
+
+### 3. Courses: they should align with your future goals.
+
+-   Most schools will advertise more courses than what will actually be offered year by year. Look at previous timetables (if possible) to get a realistic idea of what electives you will be able to choose from.
+
+-   Additionally, check the mandatory courses you will have to take. They differ from school to school, and ensure you are interested in these courses. For example, the M.Sc in statistics at UofT is very math-heavy whereas other schools will emphasize applications.
+
+-   Lower ranked schools, particularly those that are not part of the U15 may have statistics masters programs that are highly cross-listed with the undergraduate courses. Many might have already been covered within the bachelors statistics program at UofT.
+
+    -   You don't want to take redundant courses! You want to learn.
+
+-   Some course syllabus will name topics you might've already learned in undergrad, but the focus is so different that the material may be new to you. So pay attention and try to get as many resources as possible!
+
+### 4. Co-op
+
+I did not do co-op but based off of research (aka browsing Reddit) these are the general tips or warnings:
+
+-   Most schools that have a co-op option don't guarantee co-op. It’ll be easier since there will be companies targeting certain schools but you will still have to work hard for it.
+
+-   For those who fail to get a co-op, typically students write a paper or do TA work instead! (Which you definitely don't want to do!)
+
+-   Look at previous graduates on Linkedin and see where they did their internships; this will give you a better idea of what companies you could be working for.
+
+### 5. Current graduate students & alumni
+
+-   See if you can find graduates and see which companies they are currently working at.
+
+-   Reach out to previous or current graduate students about their experiences regarding the program.
+
+-   It’s also good to ask whether the skills they learned were applicable to their career, and how supportive their supervisor was.
+
+### 6. Prestige of the University
+
+Notice that points 3-5 can essentially be summarized as "prestige of the program" itself.
+
+Prestige of a university absolutely matters and anyone who says it doesn’t is ignorant, but just because you're going to a "brand name" university doesn’t mean the program is good. There are also measures to prestige: in undergrad, some schools are popular for business (Western), others are for co-op in engineering & mathematics (Waterloo).
+
+Notice that I ranked this one last. That is because in graduate school, the prestige of your supervisor, or the faculty members you will be working with, will exceed the prestige of the university.
+
+Those inside the academia bubble may ask you questions regarding your thesis, your research area, how many papers you wrote, citations for each, grants you've won, conferences, you've attended... If you have a great supervisor, you will be able to answer these questions confidently, regardless of how prestigious the university you attended.
+
+Nonetheless, please consider the following points:
+
+-   If you’re staying in Canada, you **should** attend a U15 university. You want a university that focuses on research and output if you’re doing a thesis; these will generally be better funded too.
+
+-   Prestigious schools tend to be larger and will have more faculty to choose from.
+
+-   Prestigious titles attract those attracted to prestige. Hence, the professors will likely be more hardworking, qualified, etc.
+
+Prestige is great for the following:
+
+-   Boosts your chances of getting a career (as a professor or otherwise); it’ll stand out in your application.
+
+-   Connections. People at UofT tend to be attracted to prestige so they’re more likely to be smart, harder workers, etc. It’s always good to surround yourself with these types of people. Lots of UofT alumni also have worked for great companies than others (you can check on Linkedin.)
+
+-   Ego boost (although this could be a con; too much ego isn't good for you either.)
+
+Now in terms of finding a job: everyone has their own biases. If the hiring manager is from UofT, they'll probably be biased towards those who went to UofT. If they went to Western, they'll probably be biased towards someone who went to Western. There's a positive reputation amongst Waterloo graduates - after all, they do a lot of co-op terms.
+
+So prestige of a school is good, it does matter, but the extent in which it matters is overrated.
+
+### 7. Stipend & Funding
+
+If you are well off and you or your family can cover your tuition and potential living expenses without sweating, then this section is not applicable to you. There is no shame in using resources available to you and if my father won the lottery I will happily pursue academia without any worry or stress (if he isn't going to be stingy.)
+
+Now if you're the average person then yeah, having funding to cover for tuition, housing, investments, and the occasional recreation is awesome. I had offers from 4 different universities, the one that gave the most to the least amount of funding is as follows:
+
+University of McMaster -\> University of Alberta -\> University of Waterloo -\> Western University
+
+For reference I didn't even apply to UofT because I knew with 100% certainty I wouldn't go there due to lack of funding. (I did get rejected from McGill though!)
+
+## Q: Who should be writing my reference letters?
+
+Most graduate school programs require 2-3 reference letters. A lot of professors tend to have different criteria for writing a letter - the first challenge is to find professors that **enthusiastically agree**.
+
+If any of the following occurs:
+
+1.  You're trying to send more than one email asking for a recommendation letter.
+
+2.  The professor shows any hesitancy to write it (i.e. they don't know you well, wanting higher grades...)
+
+Then don't have them write your reference letter. You are not allowed to see the reference letter, and you'll likely get a bad one.
+
+Each professor has their own requirements: some only care about a high grade and recognising their face, and some reserve it for those they have done research with. You will just need to ask.
+
+If you are fortunate to have many professors that are willing to write reference letters, you want a professor that has the following traits:
+
+-   High rank & experienced. The order is: Distinguished professor -\> Professor -\> Associate Professor -\> Assistant Professor. Any other title implies they’re a temporary contract worker and not a professor.
+
+-   Someone that has closely worked with you. These could be RA supervisors, independent study/ROP supervisors, etc. (Bonus tip: you don't need to take a course under the professor either if you've done awesome research for them!)
+
+-   Someone that is picky when it comes to writing reference letters for students. From my experience, picky professors are that way because they want their recommendation letters to carry weight. These professors are prestigious - and recommending a poor student could even ruin their reputation!
+
+-   Is part of a department or a professor of a field that you are applying to. For example, if you are applying to statistics then you should have statistics professors write your reference letters.
+
+## Q: What courses are useful for pursuing graduate studies in statistics or related to statistics?
+
+In general, people who attend graduate school may come from a variety of different backgrounds. At the **bare minimum**, you should have the following courses (the course codes correspond to the courses at University of Toronto):
+
+1.  Linear Algebra (MAT223 & MAT224 or MAT240)
+
+2.  First & Second Year Calculus (up to Multivariate Calculus is okay.)
+
+3.  Real Analysis (MAT337): for any REPUTABLE statistics program, this is the most important course. This is basically POSt but for stats majors. (If you don't know what POSt is, it's a UofT concept where you're not registered into a program and you need to compete for it in second year.) Any statistics program that accepts you without real analysis must a professional program or not related to statistics at all.
+
+4.  First year probability & mathematical statistics (STA256, STA260)
+
+As you can tell, most of **what you need is math, not stats**.
+
+If any particular course you're wondering about is not on the above list, and you’re extra paranoid, just look at the courses you have to take in the master's degree program. If you're lucky, you may even be able to see posted requirements.
+
+If the course isn’t part of the program, and the pre-requisites, then NO it is not useful.
+
+## Q: W**hat is the best undergraduate program to enroll to be a suitable candidate for graduate school statistics?**
+
+If you want to pursue statistics at UofT, or any other university which program emphasizes math instead of statistics (you can tell via looking at the academic calendar), then probably a math specialist with a statistics minor.
+
+I am serious; most people generally do poor in statistics due to their poor math skills. Just like how a mathematician can easily pick up economics, the same is for statistics.
+
+That being said, if you're going to a program that is a little more applied (McMaster, for instance) then the statistics specialist (ensuring you take statistical learning) with a math major is appropriate.
+
+## Q: What would you have done differently when applying to graduate school programs?
+
+I wouldn't have done much (regarding my graduate school admissions) differently; so far I'm loving McMaster and I wouldn't have done things much differently.
+
+1.  Research into prospective supervisors before applying to graduate school and get them to respond. This would've saved me from applying to schools without a supervisor in mind.
+
+2.  Write my letters of intent before the school semester begins to save time (you definitely don't need any school time to do this.) Writing good letters can take a whole day, and you definitely don't want to use ChatGPT to write it for you (trust me, most people are and it'll make it hard for you to stand out.)
+
+3.  Research more into the specific type of research you want to do.
+
+4.  Realise that if you want to do research in statistics, either do a topic in biostatistics or machine learning. Those are the only profitable fields. :)
