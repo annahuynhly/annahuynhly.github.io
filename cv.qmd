@@ -74,7 +74,11 @@ I've had multiple contracts as a research assistant for computer science researc
 
 -   **(Statistical Education)** **April 2024 - August 2024**
 
-    -   Advised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses.
+<<<<<<< HEAD
+    -   Advised by [Luai Al Labadi](https://www.utm.utoronto.ca/math-cs-stats/people/luai-al-labadi), I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses. I also researched best ways to incorporate projects to maximize student's experiences for the Fall 2024 - Winter 2025 academic year.
+=======
+    -   Advised by [Luai Al Labadi](https://www.utm.utoronto.ca/math-cs-stats/people/luai-al-labadi), I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses [Surveys, Sampling and Observational Data](https://utm.calendar.utoronto.ca/course/sta304h5) and [Experimental Design](https://utm.calendar.utoronto.ca/course/sta305h5). We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year.
+>>>>>>> 39e0864f2da7dba2a0b9806bcbdab84ee905848b
 
 ## Skills
 
@@ -190,7 +194,7 @@ Awarded to the student who achieves the highest average in their graduating clas
 
 Fun fact: If I did not receive this award, my parents would've been disappointed. (˶ˆᗜˆ˵)
 
-My parents didn't even want me to pursue graduate studies. What were they expecting!? (•᷄‎ࡇ•᷅)
+My parents didn't even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)
 
 **1. Dr. Angelo Albanese Memorial Scholarship -** **Saint Michael's Catholic High School (2019)**
 

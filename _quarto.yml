@@ -13,7 +13,9 @@ website:
       - text: "Advice"
         menu: 
           - href: advice_grad.qmd
-            text: "Graduate School"
+            text: "Graduate School Admissions"
+          - href: advice_undergrad.qmd
+            text: "Succeeding in Undergrad"
       - text: "Teaching"
         menu: 
           - href: sta304.qmd

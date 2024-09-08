@@ -1,0 +1,81 @@
+---
+title: "Advice for Undergraduate Students (Statistics)"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+Here I outline my advice and truths behind my success.
+
+## My key to success
+
+I consider myself a successful person because I finished my undergraduate degree with eight research papers under my name, and a couple of others have not been published yet (they may need some revision here and there.) I'm not the primary author for most of them either, but I still contributed to way more research than most undergraduate students. I've also been an undergraduate teaching assistant for three years and completed my studies with a 3.92/4.00 cGPA.
+
+My secret: I sacrificed everything else. I didn't spend much time with family or friends, I almost completely stopped drawing and playing video games, I don't really use social media.
+
+Due to my sacrifices, some may argue that I am not successful and my outcomes is the natural outcome of what I did.
+
+I am not a better person than you, or anyone who decided to slack off during their undergraduate degree. People have other priorities, such as family, friends, physical health, etc. A life of accomplishments can be a lonely one.
+
+Nonetheless, obviously some accomplishments are good to have. It's fine to be just be a student with a moderate cGPA (a 3.5 is great at UofT, for instance), just be a teaching assistant for a couple of courses, and maybe have two research papers. You can definitely achieve that kind of success with moderation!
+
+Hence below I provide some practical advice to hopefully give you some direction and perhaps save some of your energy.
+
+## Proper attitude for studying mathematics
+
+When I was an undergraduate student, the worst advice that was ever given to me was "you should study 1 hour per 1 hour lecture. If you do more, you are being inefficient."
+
+I didn't really take that advice seriously, but if you did, you're wrecking yourself. Here's more realistic advice if you're pursuing a math-related field: "if you're reading a math textbook and you take less than 1 hour to read a page, you're doing it wrong."
+
+Perhaps the above isn't applicable if you're reading a book on how to do computations. However, if you're reading a book on proofs, the reality is that math is a massive time sink. Forgive yourself that you cannot learn it as fast as you learned arithmetic. Give yourself as much time as possible to understand the material. I need to consistently re-read a math textbook, countless times, to understand what is going on.
+
+You can never cram math. It's not a suggestion to read a little every day, it's a requirement.
+
+That being said, a high level of intelligence would definitely lessen the time it takes to learn. However, I'm not highly intelligent, but with time I believe I can catch up. :)
+
+## How to make academic friends in courses
+
+1.  Talk to students who are waiting to go to class early.
+2.  Talk to the students who sit in the front of the class and ask useful questions.
+3.  Talk to students who regularly attend office hours, ask on Piazza, etc.
+
+Obviously not everyone is willing to be your friend, but you're guaranteed to make a couple of useful friends (and you need to show that you care about the course material too.)
+
+You'll also increase your chances of making friends if people notice that you display some or all of the three above traits.
+
+## How to gain opportunities for research
+
+Most of my opportunities were literally connections. Now suppose you don't have connections, here is how you build them:
+
+1.  Go to your professor's office hours, regularly.
+2.  Get close enough to them that they recognise you by your first name.
+3.  Briefly read what their research is about and ask them about it.
+4.  Ask for research opportunities.
+5.  Work for them (successfully).
+6.  They refer you to other researchers in the same field.
+
+Now suppose you want to branch out a little bit, i.e., you are unsatisfied with your current roster of professors. Then, my suggestion is:
+
+1.  Look at the whole faculty list of the department you are a student of.
+2.  Look at all of the professor's research area and make a list of whose research aligns with yours.
+3.  If the professor is part of a lab, see if there's an application process.
+4.  If the professor isn't a part of a lab, read their paper (abstract, conclusion is fine) and email them asking if you could join their research. Tell them what you could offer.
+
+Note: realistically, if you are a statistics major you mostly can offer data analysis skills, which are awesome to have. If you know many statistical tests, as well as regression, you could definitely offer your skills to many different departments. I did a lot of research for the computer science department, for example.
+
+## How to become an undergraduate TA
+
+This advice is mostly applicable to programs that have undergraduate TA's, which is more common in math, statistics, and computer science compared to other fields.
+
+Similar to gaining research experience,
+
+1.  Go to your professor's office hours, regularly.
+2.  Get close enough to them that they recognise you by your first name.
+3.  Also be super active on class discussion boards, such as Piazza (you want to be more active than the TA.)
+4.  Ask about teaching assistant opportunities.
+5.  Do really good in their course (90%+).
+
+Note: usually you're going to have to find whoever is in charge of TA hiring and then try your best to become close with the professor.
+
+I've only met one student who became a TA strictly due to having extremely high marks; most students I know became undergaduate TAs because they became close with a professor.
