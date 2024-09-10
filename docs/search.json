@@ -425,5 +425,334 @@
     "title": "Advice for Undergraduate Students (Statistics)",
     "section": "How to become an undergraduate TA",
     "text": "How to become an undergraduate TA\nThis advice is mostly applicable to programs that have undergraduate TA’s, which is more common in math, statistics, and computer science compared to other fields.\nSimilar to gaining research experience,\n\nGo to your professor’s office hours, regularly.\nGet close enough to them that they recognise you by your first name.\nAlso be super active on class discussion boards, such as Piazza (you want to be more active than the TA.)\nAsk about teaching assistant opportunities.\nDo really good in their course (90%+).\n\nNote: usually you’re going to have to find whoever is in charge of TA hiring and then try your best to become close with the professor.\nI’ve only met one student who became a TA strictly due to having extremely high marks; most students I know became undergaduate TAs because they became close with a professor."
+  },
+  {
+    "objectID": "mathematical_stats.html",
+    "href": "mathematical_stats.html",
+    "title": "Notes on Mathematical Statistics",
+    "section": "",
+    "text": "This section is not complete and will be changed overtime. I am just compiling notes on mathematical statistics, which may be useful for others (or I may use it as a reference for teaching in the future.) Most of these notes are meant to be high-level explanations as opposed to formal proofs.\nThere is no promise that these notes will be consistently updated.\n\nSuppose that \\(X = (x_{1}, x_{2}, ..., x_{n})^{T}\\) where \\(x_{i}\\) are i.i.d samples.\nA statistic is just a function of the data.\nA statistic \\(T(X)\\) is called sufficient of \\(\\theta\\) if all of the necessary information needed to estimate \\(\\theta\\) is contained in \\(T(X)\\). The goal of finding sufficient statistics is to essentially achieve data reduction by ignoring unnecessary information.\nNote that if \\(T(X)\\) is sufficient, then any function containing \\(T(X)\\) is also sufficient. However, if sufficient statistics was invented to achieve data reduction, then it’s important to find the most simple sufficient statistic.\n\\(T(X)\\) is called a minimal sufficient statistic if for all sufficient statistics \\(T'(X)\\), \\(T'(X)\\) contains \\(T(X)\\)."
+  },
+  {
+    "objectID": "pages/about.html",
+    "href": "pages/about.html",
+    "title": "About",
+    "section": "",
+    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of both the Ontario Graduate Scholarship and the Milos Novotny Fellowship. I finished my undergraduate studies at the University of Toronto.\nSince childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.\n\n\n\nI also challenged my family’s love for lotteries. Even back then, I had a sense of the gambler’s fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.\nAs an undergraduate student, I have received the privilege to be a teaching assistant for an introductory probability course. I shared how to compute probabilities and expected values of winning a Lotto 649 jackpot. Unfortunately, I still can’t convince my father. :)\nI love studying statistics because it allows me to comprehend the results of many studies without being an expert! Unlike previous generations, we live in a world where data and information are easily accessible, yet opinions formed without statistical evidence prevail. Conversely, I shape my perspectives similarly to a Bayesian model: I maintain prior beliefs but am always eager to adapt and refine them in the face of compelling evidence.\nI am passionate about teaching statistics because I recognize the importance of a supportive teaching assistant. I’ve always been inspired by those who guide their students with understanding and without judgment. I am deeply grateful for the effective educators who have positively influenced my academic journey.\nSome of you may wonder why I decided to pursue McMaster for graduate school instead of UofT, or a more prestigious school. I was actually born at the McMaster Children’s Hospital. I knew from the womb that I needed to return to my birth of origin. I wanted to return so quickly I visited during my teenage years and was locked up in the mental health ward. More importantly, I wanted to have an academically pure bloodline."
+  },
+  {
+    "objectID": "pages/about.html#my-story",
+    "href": "pages/about.html#my-story",
+    "title": "About",
+    "section": "",
+    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of both the Ontario Graduate Scholarship and the Milos Novotny Fellowship. I finished my undergraduate studies at the University of Toronto.\nSince childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.\n\n\n\nI also challenged my family’s love for lotteries. Even back then, I had a sense of the gambler’s fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.\nAs an undergraduate student, I have received the privilege to be a teaching assistant for an introductory probability course. I shared how to compute probabilities and expected values of winning a Lotto 649 jackpot. Unfortunately, I still can’t convince my father. :)\nI love studying statistics because it allows me to comprehend the results of many studies without being an expert! Unlike previous generations, we live in a world where data and information are easily accessible, yet opinions formed without statistical evidence prevail. Conversely, I shape my perspectives similarly to a Bayesian model: I maintain prior beliefs but am always eager to adapt and refine them in the face of compelling evidence.\nI am passionate about teaching statistics because I recognize the importance of a supportive teaching assistant. I’ve always been inspired by those who guide their students with understanding and without judgment. I am deeply grateful for the effective educators who have positively influenced my academic journey.\nSome of you may wonder why I decided to pursue McMaster for graduate school instead of UofT, or a more prestigious school. I was actually born at the McMaster Children’s Hospital. I knew from the womb that I needed to return to my birth of origin. I wanted to return so quickly I visited during my teenage years and was locked up in the mental health ward. More importantly, I wanted to have an academically pure bloodline."
+  },
+  {
+    "objectID": "pages/about.html#academic-interests",
+    "href": "pages/about.html#academic-interests",
+    "title": "About",
+    "section": "Academic Interests",
+    "text": "Academic Interests\nI’m briefly interested in the following branches of statistics:\n\nNonparametric Statistics\nStatistical Learning\nComputational Statistics\n\nI currently don’t know what my thesis is going to be about. I just started graduate school!"
+  },
+  {
+    "objectID": "pages/about.html#where-to-find-me",
+    "href": "pages/about.html#where-to-find-me",
+    "title": "About",
+    "section": "Where to Find Me",
+    "text": "Where to Find Me\nIf you try to search for my name, you’ll have a rough time finding me. There’s even another “Anna Ly” in my extended family… There were multiple Anna Ly’s at the University of Toronto. Sometimes students would email the incorrect one and be upset that I didn’t respond to their email. Anyways, I could vent about this all day. Here are my actual profiles:\n\nGithub\nLinkedin\nGoogle Scholar\nStackoverflow (all I do is ask questions.)\n\nIf the username so happens to include “Huynh” in the middle (i.e., annahuynhly) then it’s more likely to be me. It is a common misconception that “Huynh” is my middle name. I have no middle name; it’s my mom’s last name."
+  },
+  {
+    "objectID": "pages/about.html#fun-facts-about-me",
+    "href": "pages/about.html#fun-facts-about-me",
+    "title": "About",
+    "section": "Fun Facts About Me",
+    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI grew up in Niagara Falls, Canada. From my parent’s house, it takes only 45 minutes to walk to the falls. People say I’m lucky to have easy access to the magnificient falls but I’ve spent more time looking at that waterfall than studying statistics; it’s become an eyesore to me.\nMy ethnic background is a mystery, even to myself. For now I just tell people I’m Vietnamese because that’s what my parents speak at home, but it’s complicated.\n\nI don’t speak Vietnamese.\n\nI used to doodle all of the time; I hope to get back to drawing.\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\n\nI have followed a strict plant-based diet since 2019. I have never experienced brain fog, except for times I could not sleep!\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
+  },
+  {
+    "objectID": "pages/cv.html",
+    "href": "pages/cv.html",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)"
+  },
+  {
+    "objectID": "pages/cv.html#education",
+    "href": "pages/cv.html#education",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)"
+  },
+  {
+    "objectID": "pages/cv.html#experience",
+    "href": "pages/cv.html#experience",
+    "title": "Curriculum Vitae",
+    "section": "Experience",
+    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nI am a teaching assistant for STATS 2D03 - Introduction to Probability for the Fall 2024 term!\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work here.\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\n(Computer Science Education) September 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\n(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention.\n\n(Statistical Education) April 2024 - August 2024\n\nAdvised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses Surveys, Sampling and Observational Data and Experimental Design. We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year."
+  },
+  {
+    "objectID": "pages/cv.html#skills",
+    "href": "pages/cv.html#skills",
+    "title": "Curriculum Vitae",
+    "section": "Skills",
+    "text": "Skills\n\nProgramming Languages: R, Python, SAS, HTML/CSS, Excel VBA\nR Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown\nPython Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations\nQuarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive"
+  },
+  {
+    "objectID": "pages/cv.html#publications",
+    "href": "pages/cv.html#publications",
+    "title": "Curriculum Vitae",
+    "section": "Publications",
+    "text": "Publications\n8. A Short Note on Generating a Random Sample from Finite Mixture Distributions\n\nAuthors: Luai Al Labadi, Anna Ly\nAxioms 2023 ✦ Volume 13 (5), Page 307 ✦ https://doi.org/10.3390/axioms13050307\n\n7. Evaluating Storytelling Videos Using YouTube Analytics\n\nAuthors: Anna Ly, Tingting Zhu, Andrew Petersen\nSIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 2 ✦ Pages 1730 - 1731 ✦ https://doi.org/10.1145/3626253.3635503\n\n6. “I Didn’t Know”: Examining Student Understanding of Academic Dishonesty in Computer Science\n\nAuthors: Michael Liut, Anna Ly, Jessica Jia-Ni Xu, Justice Banson, Paul Vrbik, Caroline D Hardin\nSIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 ✦ Pages 757 - 763 ✦ https://doi.org/10.1145/3626252.3630753\n\n5. Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n\nAuthors: Luai Al-Labadi, Mohammed Hamlili, Anna Ly\nAxioms 2023 ✦ Volume 12 (9), Page 887 ✦ https://doi.org/10.3390/axioms12090887\n\n4. “I Am Not Enough”: Impostor Phenomenon Experiences of University Students\n\nAuthors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Sadia Sharmin, Lisa Zhang, Andrew Petersen\nITiCSE 2023: Proceedings of the 2023 Conference on Innovation and Technology in Computer Science Education V. 1 ✦ Pages 313 - 319 ✦ https://doi.org/10.1145/3587102.3588779\n\n3. Additional Evidence for the Prevalence of the Impostor Phenomenon in Computing\n\nAuthors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Andrew Petersen, Sadia Sharmin, Lisa Zhang\nSIGCSE 2022: Proceedings of the 53rd ACM Technical Symposium on Computer Science Education - Volume 1 ✦ Pages 654 - 660 ✦ https://doi.org/10.1145/3478431.3499282\n\n2. Spatial Skills and Demographic Factors in CS1\n\nAuthors: Anna Ly, Jack Parkinson, Quintin Cutts, Michael Liut, Andrew Petersen\nKoli Calling ’21: Proceedings of the 21st Koli Calling International Conference on Computing Education Research ✦ Article No.: 4, Pages 1 - 10 ✦ https://doi.org/10.1145/3488042.3488049\n\n1. Revisiting syntax exercises in CS1\n\nAuthors: Anna Ly, John Edwards, Michael Liut, Andrew Petersen\nSIGITE ’21: Proceedings of the 22nd Annual Conference on Information Technology Education ✦ Pages 9 - 14 ✦ https://doi.org/10.1145/3450329.3476855"
+  },
+  {
+    "objectID": "pages/cv.html#conferences",
+    "href": "pages/cv.html#conferences",
+    "title": "Curriculum Vitae",
+    "section": "Conferences",
+    "text": "Conferences\n2. Joint Statistical Meetings (JSM) - Aug 2023\nPanelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts\n1. International Association for Statistical Education (IASE) - July 2023\nPoster Presenter: Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts"
+  },
+  {
+    "objectID": "pages/cv.html#scholarships-awards",
+    "href": "pages/cv.html#scholarships-awards",
+    "title": "Curriculum Vitae",
+    "section": "Scholarships & Awards",
+    "text": "Scholarships & Awards\n9. Milos Novotny Fellowship - McMaster University (2024)\nEstablished through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.\n8. Ontario Graduate Scholarship (OGS) - McMaster University (2024)\nThe Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.\n7. NSERC Undergraduate Student Research Awards (USRA) - University of Toronto (2023)\nA scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.\nPaper: Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n6. UTM Undergraduate Research Grant - University of Toronto (2022)\nThese grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.\n\nPaper 1: A Short Note on Generating a Random Sample from Finite Mixture Distributions\nPaper 2: TBA…\n\n5. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n4. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n3. President’s Scholars of Excellence Scholarship - University of Toronto (2019)\nAwarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.\n2. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school.\nFun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)\nMy parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)\n1. Dr. Angelo Albanese Memorial Scholarship - Saint Michael’s Catholic High School (2019)\nAwarded to a student who best demonstrates a mature approach to academics and a determination to succeed."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html",
+    "href": "pages/teaching/sta260summer2024.html",
+    "title": "STA260 Summer 2024",
+    "section": "",
+    "text": "Here are the tutorial notes written by Anna Ly and Ting Lin for STA260 during the summer 2024 semester. Although it’s called “Probability and Statistics II”, a more appropriate name would be “an introduction to mathematical statistics” based off of the course description, content, and textbook used.\nThe instructor was Luai Al Labadi and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.\nSome questions were picked from past tests and exams from varying instructors and are high in difficulty."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-1",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-1",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 1",
+    "text": "Tutorial 1\nTopics: sample variance, sampling distributions related to the normal distribution such as the \\(\\chi^{2}\\) distribution.\nWorksheet\nInteresting remark (a good question that a student had from tutorial.)\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-2",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-2",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 2",
+    "text": "Tutorial 2\nTopics: properties of sampling distributions related to the normal distribution, central limit theorem, normal approximation to the binomial distribution.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is an issue with the answer for Q3; you’re NOT supposed to claim:\n\\[\n2X \\sim \\chi^{2}_{(2)} \\Rightarrow X \\sim \\frac{\\chi^{2}_{(2)}}{2}\n\\]\nInstead, what happens is:\n\\[\n\\frac{2X}{2Y} = \\frac{X/2}{Y/2} = \\frac{\\chi^{2}_{(2)}/2}{\\chi^{2}_{(2)}/2} = F(2,2)\n\\]"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-3",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-3",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 3",
+    "text": "Tutorial 3\nTopics: biased and unbiased estimators.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-4",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-4",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 4",
+    "text": "Tutorial 4\nTopics: pivotal quantity, confidence intervals.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThe reason for picking \\(a = 0.02\\) is because you are focusing on the support of \\(w\\), which is \\(0 &lt; w &lt; 1\\). If you were to pick \\(a &gt; 1\\), then \\(P(W \\leq a) = F_{W}(a) = 1\\), which does not provide what we want.\nA common question is that when using the table of values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions, we typically assume \\((\\alpha/2)\\) for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume \\((1 - \\alpha/2)\\) for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):\n\\[\n1-\\alpha/2 = P(X \\leq x) = F_{X}(x)\n\\]\nWhereas the textbook provides upper-tail values for the \\(Z, \\chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\\) distributions. Some other textbooks tend to be consistent with the cumulative distribution function.\nIf you’re coding, R is consistent with the cumulative distributions functions."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-5",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-5",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 5",
+    "text": "Tutorial 5\nTopics: confidence intervals using distributions related to the normal distribution, computing variance of sample variance.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-6",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-6",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 6",
+    "text": "Tutorial 6\nTopics: relative efficiency, consistency.\nWorksheet\nSolutions: Q1 ✦ Q2 Solution 1 | Solution 2 ✦ Q3 Solution 1 | Solution 2\nThere is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-7",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-7",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 7",
+    "text": "Tutorial 7\nTopics: sufficiency, completeness, Rao-Blackwell theorem.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a slight typo for question 2. It should be: \\[\n\\frac{d}{dx} \\int_{a}^{x} f(t) dt = f(x)\n\\]\nInstead of \\(= h(x)\\) when reciting the fundamental theorem of calculus."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-8",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-8",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 8",
+    "text": "Tutorial 8\nTopics: Cramer-Rao inequality, exponential family.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4\nThere is a small typo in the worksheet; the Fisher’s Information is:\n\\[\nI_{n}(\\theta) = n I(\\theta) = n \\left( -\\mathbb{E} \\left[ \\frac{\\partial^{2}}{\\partial^{2}\\theta} \\ln(f_{Y}(y|\\theta)) \\right] \\right)\n\\]\nHere, we use the partial derivative: \\(\\partial\\), not the univariate derivative \\(d\\). These are not the same (I am not trying to get killed by a mathematician.)"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-9",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-9",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 9",
+    "text": "Tutorial 9\nTopics: maximum likelihood estimators, method of moments estimators.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-10",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-10",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 10",
+    "text": "Tutorial 10\nTopics: hypothesis testing using NP-lemma and likelihood ratio tests.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3\nThere is a typo for the final solution of the second question because \\(\\sigma^{2}\\) should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.\nThere is a typo for question 3: it should be \\(\\chi^{2}_{(1)}\\) instead of \\(\\chi^{2}_{(16)}\\). That being said, the numerical value is associated with degrees of freedom of 1 (I miswrote what I meant to say)."
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#tutorial-11-12",
+    "href": "pages/teaching/sta260summer2024.html#tutorial-11-12",
+    "title": "STA260 Summer 2024",
+    "section": "Tutorial 11 & 12",
+    "text": "Tutorial 11 & 12\nThis tutorial was for final exam review.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4 ✦ Q5"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#cancelled-tutorial",
+    "href": "pages/teaching/sta260summer2024.html#cancelled-tutorial",
+    "title": "STA260 Summer 2024",
+    "section": "Cancelled Tutorial",
+    "text": "Cancelled Tutorial\nPrevious iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.\nWorksheet\nSolutions: Q1 ✦ Q2 ✦ Q3 ✦ Q4"
+  },
+  {
+    "objectID": "pages/teaching/sta260summer2024.html#additional-guides",
+    "href": "pages/teaching/sta260summer2024.html#additional-guides",
+    "title": "STA260 Summer 2024",
+    "section": "Additional Guides",
+    "text": "Additional Guides\nThese are some additional notes that may be useful for students.\n\nReview Sheet\nBelow is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.\nSTA260 Formula/Review Sheet\n\n\nTextbook Solution Manual\nThere’s a public solution manual found here.\nWarnings:\n\nThis is not an official solution manuals, and there are plenty of typos.\nMany solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.\nIt is pretty good at providing directions if you’re lost.\n\n\n\nGuides for Using Statistical Tables\nThese are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).\n\\(Z\\) Table Guide ✦ \\(t_{v}\\) Table Guide ✦ \\(F_{n_{1}, n_{2}}\\) Table Guide ✦ \\(\\chi^{2}_{n}\\) Table Guide"
+  },
+  {
+    "objectID": "pages/index.html",
+    "href": "pages/index.html",
+    "title": "Anna Ly",
+    "section": "",
+    "text": "Welcome to my personal website! I made this site using Quarto.\nHere, you can gather information on me as well as some of my teaching notes."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html",
+    "href": "pages/advice/advice_grad.html",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "",
+    "text": "As a teaching assistant, I’ve had lots of students come up to me for advice regarding graduate school. Below I am answering common questions I get in hopes that this helps students.\nA lot of this information I learned through experience and searching articles online. I hope you find this detailed guide helpful."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-whats-the-real-reason-why-you-didnt-go-to-university-of-toronto-for-graduate-studies",
+    "href": "pages/advice/advice_grad.html#q-whats-the-real-reason-why-you-didnt-go-to-university-of-toronto-for-graduate-studies",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: What’s the real reason why you didn’t go to University of Toronto for graduate studies?",
+    "text": "Q: What’s the real reason why you didn’t go to University of Toronto for graduate studies?\nI’m going to be blunt: I do not have a rich background and I mostly need to take care of myself, and in the future, I am expected to take care of my family financially.\nThere are many different master’s programs at UofT that are statistics-related; all of them are self-funded, even for the theoretical fields. Coupled with the fact that Greater Toronto Area is expensive, UofT is financially unviable.\nI heard they had funding at one point though, but they got rid of it in order to accept more international applicants. I am aware that I can TA and get paid, however, TAing only makes up approximately 33% of my stipend at McMaster.\nThere was one semester at UofT where I had 300 TAing hours as an undergraduate student; I developed some wrinkles. Meanwhile, I have less than 300 TAing hours at McMaster for the whole academic year (and I am being compensated well.)\nFurthermore, although the brand name does matter, going to UofT does not guarantee you success in finding a job. If I knew, with 99% certainty, that UofT would help me land an instant six-figure job; then sure. Perhaps debt is worth it. However, the course work in the statistics master’s program is focused on theory as opposed to applications.\nI also really wanted to do a thesis program instead of a course-based one! :)\nSo far, I don’t regret my decision. I am loving my time at McMaster. The professors are tech-saavy, intelligent, wise, and considerate. I have already learned so much in such a short period of time without sacrificing my mental health.\nAnother thing I love about McMaster is that the professors are supportive of all alternative career paths; they don’t care whether you go to academia or industry. They just want you to succeed in whatever you desire. Obviously, this means I may know less theorems than a UofT counterpart, but I’m confident in my coding skills."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-should-i-go-to-graduate-school",
+    "href": "pages/advice/advice_grad.html#q-should-i-go-to-graduate-school",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: Should I go to graduate school?",
+    "text": "Q: Should I go to graduate school?\nIf you want a real career in statistics, yes. You do not learn enough during your undergraduate degree to be sufficient enough to handle data. You can read this passage written by Jerry Brunner, a retired statistics professor at UofT.\nHowever, there are many people that do work with data without a statistics degree. However, they’re likely doing more elementary work, like business analysis.\nYou can make lots of money without a graduate degree, but the master’s degree just opens more doors."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-should-i-do-a-professional-based-or-a-theoretical-based-masters",
+    "href": "pages/advice/advice_grad.html#q-should-i-do-a-professional-based-or-a-theoretical-based-masters",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: Should I do a professional based or a theoretical based masters?",
+    "text": "Q: Should I do a professional based or a theoretical based masters?\n“Professional” and “theoretical” are terms I loosely heard; in this passage, I mean the following:\nProfessional: the goal is for you to get a career. These are typically terminal degrees (i.e., the last one you aim to get.)\nYou should get this type of master’s if:\n\nYou know, with 100% certainty, that you don’t want to do a Ph.D (ever).\nYou know, with 100% certainty, that you don’t want to become a professor.\nThe motivation for getting a master’s degree is for the career prospects as opposed to genuinely being interested in the subject.\nYou don’t like theory (and school).\n\nTheoretical: the goal is for you to be prepared to get a Ph.D. These are typically thesis programs, but can be course-based.\nI would go for a theoretical based master’s if the above four bullet points do not apply to you (i.e., you may want to do a Ph.D, you may want to become a professor, you genuinely like statistics and statistical theory)."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-were-there-any-benefits-from-switching-institutions",
+    "href": "pages/advice/advice_grad.html#q-were-there-any-benefits-from-switching-institutions",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: Were there any benefits from switching institutions?",
+    "text": "Q: Were there any benefits from switching institutions?\nIf you hang around graduate school forums you’ll eventually see some advice where it is recommended to switch schools for each degree (and for your post-doc) rather than staying at one institution multiple times.\nI notice such large differences from two different yet well respected institutions that if I ever pursue a PhD or a post-doc, I want to ensure these are all in different institutions. Ideally I should also extend this to a full-time professorship as well, but I can see myself wanting to gain tenure-ship at UTM if given the opportunity. (The reasons for this is completely personal, likely not applicable to the reader, so it will not be shared.)\nNow of course, finances are a huge consideration (i.e., if your parents already live near a good university and you don’t have to worry about rent expenses then it isn’t too bad to stay in one place). But if you’re like me and you are constantly moving to one area to another & paying rent, you should absolutely move.\nHere are some benefits that I’ve personally noticed:\n\nYou will meet professors with much different opinions and outlook on research & subject material than ones in your original institution.\n\nFor instance, one professor may not believe in using hypothesis testing but would rather use statistical coverage. Another professor may be more tech saavy than others.\nIn some sense, staying at one institution guarantees you’ll be in an echo-chamber. You don’t know what you don’t know. Going to multiple equips you with different perspectives that may inspire you in your research and academic journey.\nThere are countless of things I have noticed at McMaster compared to professors at UofT. Some of these include:\n\nFrequently collaborating with professors from other institutions. (I find that at UofT, professors tend to keep to their own faculty.)\nMassive importance in keeping up to date to technology and data science podcasts.\nDifferent mathematical notation. (It’s great to be exposed to multiple as different textbooks will use different notation anyhow.)\n\n\nMultiple alumni networks & work opportunities.\n\nNow you can participate in multiple alumni events and make more unique connections on Linkedin.\nAs a recent UofT graduate (and as someone who has collaborated with UofT professors), I get job opportunity suggestions from current UofT faculty and now from McMaster faculty as well. It’s a massive win-win!\n\nLearning what it’s like to be in a different area.\n\nNot all Ontario cities are created equal. I’ve lived (not just visited) in Niagara Falls, Mississauga, Markham, and now I’m in Hamilton. All of these cities are different and it’s good to have a change of environment to make a more educated opinion of the type of area you want to settle in the future."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-which-school-should-i-apply-for",
+    "href": "pages/advice/advice_grad.html#q-which-school-should-i-apply-for",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: Which school should I apply for?",
+    "text": "Q: Which school should I apply for?\nOne thing I realise that many students do at UofT is care about brand names. Names do matter; but they’re only one part of the application process. (If the weight was super important, I would’ve went into debt to go to UofT for the master’s program.)\nIf you are aiming to get into academia, and you want to stay in Canada, you should go to a U15 institution.\nIf you are aiming to get into industry, the program itself matters more than just the school title. There are more important questions to consider."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#things-to-consider-for-choosing-where-to-apply",
+    "href": "pages/advice/advice_grad.html#things-to-consider-for-choosing-where-to-apply",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Things to consider for choosing where to apply",
+    "text": "Things to consider for choosing where to apply\nI attempted to order the below from most important to least important.\n\n1. If doing a thesis program, potential supervisors.\nYou should be looking for potential supervisors during August-November of the school year before you apply. The best faculty members will be poached around August.\nOne thing I’ve noticed at the University of Toronto is that it’s quite common for professors in the research stream to have… Around 10 PhD students under supervision. Depending on how much support and a close relationship you want to have with your supervisor, this could be a red flag.\nYou want a supervisor that’ll actually respond to emails. A couple schools have a policy where you can’t reach out to find your own supervisor (i.e., Western). However, if possible reach out to prospective supervisors and ask to get in on a meeting. If they respond, here are some very important questions to consider:\n\nHow many students have they supervised in total, and where did they end up?\n\nIf they had students that pursued industry over academia, does the professor seem proud or not care?\n\nHow many students do they supervise at a time?\n\nMore than 10 students at a time is a massive red flag.\n1-2 at a time is an awesome amount; however, these supervisors are very picky with student selection (for good reason!)\nIf possible, always try to reach out to their current and past students. You can find them on the professor’s personal website.\n\nWhat are their expectations for their students?\n\nWhen do you expect students to start working on their thesis?\nWhat do you expect students to know before starting graduate school?\nWhat does early mentorship look like (how will they train/mentor you?)\nHow much time does it take for their students to graduate?\nHow much time do they spend on a student per week?\nHow much time do you expect students to focus on their projects per week?\nWhat do students do that can make them frustrated?\nWhat kind of student does the supervisor want?\n\nWhat is their RMP score?\n\nGenuinely read the reviews; most students will rate based off of how easy it was to get an A. However, detailed ones regarding a professor’s attitude is important. Does the prof not respond well to questions or email? Is the prof dismissive to mental health concerns and accessibility?\n\nDo they like collaborating with external faculty?\n\nIt’s generally a green flag if they love collaboration; it also means you’re likely to talk to students going to a variety of different institutions as well.\n\n\n\n\n2. Prestige of faculty members\nYou generally want ones that are well liked, respected, and prestigious. You want to be surrounded by positive influences (especially in the case where you want to change supervisors as well.)\nConsider the following:\n\nWho is the most “prestigious” professor and what are they prestigious for?\nHow many professors are “prestigious”? (this can be measured a really high citation score, also known as an H-index.)\nHow are the RMP scores for the faculty overall? You should take RMP scores with a grain of salt; many studies tend to judge based on their final mark. However, some comments will provide potential green or red flags, such as attitude and temperament.)\nHow many professors are graduates from even more prestigious universities? From my personal experience, professors that have studied or did their post-doc at an ivy-league school have been good.\n\n\n\n3. Courses: they should align with your future goals.\n\nMost schools will advertise more courses than what will actually be offered year by year. Look at previous timetables (if possible) to get a realistic idea of what electives you will be able to choose from.\nAdditionally, check the mandatory courses you will have to take. They differ from school to school, and ensure you are interested in these courses. For example, the M.Sc in statistics at UofT is very math-heavy whereas other schools will emphasize applications.\nLower ranked schools, particularly those that are not part of the U15 may have statistics masters programs that are highly cross-listed with the undergraduate courses. Many might have already been covered within the bachelors statistics program at UofT.\n\nYou don’t want to take redundant courses! You want to learn.\n\nSome course syllabus will name topics you might’ve already learned in undergrad, but the focus is so different that the material may be new to you. So pay attention and try to get as many resources as possible!\n\n\n\n4. Co-op\nI did not do co-op but based off of research (aka browsing Reddit) these are the general tips or warnings:\n\nMost schools that have a co-op option don’t guarantee co-op. It’ll be easier since there will be companies targeting certain schools but you will still have to work hard for it.\nFor those who fail to get a co-op, typically students write a paper or do TA work instead! (Which you definitely don’t want to do!)\nLook at previous graduates on Linkedin and see where they did their internships; this will give you a better idea of what companies you could be working for.\n\n\n\n5. Current graduate students & alumni\n\nSee if you can find graduates and see which companies they are currently working at.\nReach out to previous or current graduate students about their experiences regarding the program.\nIt’s also good to ask whether the skills they learned were applicable to their career, and how supportive their supervisor was.\n\n\n\n6. Prestige of the University\nNotice that points 3-5 can essentially be summarized as “prestige of the program” itself.\nPrestige of a university absolutely matters and anyone who says it doesn’t is ignorant, but just because you’re going to a “brand name” university doesn’t mean the program is good. There are also measures to prestige: in undergrad, some schools are popular for business (Western), others are for co-op in engineering & mathematics (Waterloo).\nNotice that I ranked this one last. That is because in graduate school, the prestige of your supervisor, or the faculty members you will be working with, will exceed the prestige of the university (in terms of importance).\nThose inside the academia bubble may ask you questions regarding your thesis, your research area, how many papers you wrote, citations for each, grants you’ve won, conferences, you’ve attended… If you have a great supervisor, you will be able to answer these questions confidently, regardless of how prestigious the university you attended.\nNonetheless, please consider the following points:\n\nIf you’re staying in Canada, you should attend a U15 university. You want a university that focuses on research and output if you’re doing a thesis; these will generally be better funded too.\nPrestigious schools tend to be larger and will have more faculty to choose from.\nPrestigious titles attract those attracted to prestige. Hence, the professors will likely be more hardworking, qualified, etc.\n\nPrestige is great for the following:\n\nBoosts your chances of getting a career (as a professor or otherwise); it’ll stand out in your application.\nConnections. People at UofT tend to be attracted to prestige so they’re more likely to be smart, harder workers, etc. It’s always good to surround yourself with these types of people. Lots of UofT alumni also have worked for great companies compared to students in other universities (you can check on Linkedin.)\nEgo boost (although this could be a con; too much ego isn’t good for you either.)\n\nNow in terms of finding a job: everyone has their own biases. If the hiring manager is from UofT, they’ll probably be biased towards those who went to UofT. If they went to Western, they’ll probably be biased towards someone who went to Western. There’s a positive reputation amongst Waterloo graduates - after all, they do a lot of co-op terms.\nHere’s what I have noticed when I was on co-op: they exclusively hired Waterloo and UofT students as interns, however, many full-time hires came from a variety of different Canadian universities. So early career it can be a boost but it doesn’t matter in the long-term.\nSo prestige of a school is good, it does matter, but the extent in which it matters is overrated.\n\n\n7. Stipend & Funding\nIf you are well off and you or your family can cover your tuition and potential living expenses without sweating, then this section is not applicable to you. There is no shame in using resources available to you and if my father won the lottery I will happily pursue academia without any worry or stress (if he isn’t going to be stingy.)\nNow if you’re the average person then yeah, having funding to cover for tuition, housing, investments, and the occasional recreation is awesome. I had offers from 4 different universities, the one that gave the most to the least amount of funding is as follows:\nUniversity of McMaster -&gt; University of Alberta -&gt; University of Waterloo -&gt; Western University\nThat being said, this doesn’t apply to all programs and all admissions; this is from my personal experience.\nFurthermore, I didn’t even apply to UofT because I knew with 100% certainty I wouldn’t go there due to lack of funding. (I did get rejected from McGill though, but allegedly their stipend is also less than Western’s.)"
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-who-should-be-writing-my-reference-letters",
+    "href": "pages/advice/advice_grad.html#q-who-should-be-writing-my-reference-letters",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: Who should be writing my reference letters?",
+    "text": "Q: Who should be writing my reference letters?\nMost graduate school programs require 2-3 reference letters. A lot of professors tend to have different criteria for writing a letter - the first challenge is to find professors that enthusiastically agree.\nIf any of the following occurs:\n\nYou’re trying to send more than one email asking for a recommendation letter.\nThe professor shows any hesitancy to write it (i.e. they don’t know you well, wanting higher grades…)\n\nThen don’t have them write your reference letter. You are not allowed to see the reference letter, and you’ll likely get a bad one.\nEach professor has their own requirements: some only care about a high grade and recognising their face, and some reserve it for those they have done research with. You will just need to ask.\nIf you are fortunate to have many professors that are willing to write reference letters, you want a professor that has the following traits:\n\nHigh rank & experienced. The order is: Distinguished professor -&gt; Professor -&gt; Associate Professor -&gt; Assistant Professor. Any other title implies they’re a temporary contract worker and not a professor.\nSomeone that has closely worked with you. These could be RA supervisors, independent study/ROP supervisors, etc. (Bonus tip: you don’t need to take a course under the professor either if you’ve done awesome research for them!)\nSomeone that is picky when it comes to writing reference letters for students. From my experience, picky professors are that way because they want their recommendation letters to carry weight. These professors are prestigious - and recommending a poor student could even ruin their reputation!\nIs part of a department or a professor of a field that you are applying to. For example, if you are applying to statistics then you should have statistics professors write your reference letters. It would be odd if you had a professor from another department write your letter."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-what-courses-are-useful-for-pursuing-graduate-studies-in-statistics-or-related-to-statistics",
+    "href": "pages/advice/advice_grad.html#q-what-courses-are-useful-for-pursuing-graduate-studies-in-statistics-or-related-to-statistics",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: What courses are useful for pursuing graduate studies in statistics or related to statistics?",
+    "text": "Q: What courses are useful for pursuing graduate studies in statistics or related to statistics?\nIn general, people who attend graduate school may come from a variety of different backgrounds. At the bare minimum, you should have the following courses (the course codes correspond to the courses at University of Toronto):\n\nLinear Algebra (MAT223 & MAT224 or MAT240)\nFirst & Second Year Calculus (up to Multivariate Calculus is okay.)\nReal Analysis (MAT337): for any REPUTABLE statistics program, this is the most important course. This is basically POSt but for stats majors. (If you don’t know what POSt is, it’s a UofT concept where you’re not registered into a program and you need to compete for it in second year.) Any statistics program that accepts you without real analysis must a professional program or not related to statistics at all.\nFirst year probability & mathematical statistics (STA256, STA260)\n\nAs you can tell, most of what you need is math, not stats.\nIf any particular course you’re wondering about is not on the above list, and you’re extra paranoid, just look at the courses you have to take in the master’s degree program. If you’re lucky, you may even be able to see posted requirements.\nIf the course isn’t part of the program, and the pre-requisites, then NO it is not useful."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-what-is-the-best-undergraduate-program-to-enroll-to-be-a-suitable-candidate-for-graduate-school-statistics",
+    "href": "pages/advice/advice_grad.html#q-what-is-the-best-undergraduate-program-to-enroll-to-be-a-suitable-candidate-for-graduate-school-statistics",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: What is the best undergraduate program to enroll to be a suitable candidate for graduate school statistics?",
+    "text": "Q: What is the best undergraduate program to enroll to be a suitable candidate for graduate school statistics?\nIf you want to pursue statistics at UofT, or any other university which program emphasizes math instead of statistics (you can tell via looking at the academic calendar), then probably a math specialist with a statistics minor.\nI am serious; most people generally do poor in statistics due to their poor math skills. Just like how a mathematician can easily pick up economics, the same is for statistics.\nThat being said, if you’re going to a program that is a little more applied (McMaster, for instance) then you should probably do at least a statistics major. As an elective, taking statistical learning is a must and a course in bayesian statistics is awesome to have.\nAgain, you need to look at the academic calendar of the program you’re applying to, since some programs emphasize different areas of statistics."
+  },
+  {
+    "objectID": "pages/advice/advice_grad.html#q-what-would-you-have-done-differently-when-applying-to-graduate-school-programs",
+    "href": "pages/advice/advice_grad.html#q-what-would-you-have-done-differently-when-applying-to-graduate-school-programs",
+    "title": "Graduate School Advice (Statistics)",
+    "section": "Q: What would you have done differently when applying to graduate school programs?",
+    "text": "Q: What would you have done differently when applying to graduate school programs?\nI wouldn’t have done much (regarding my graduate school admissions) differently; so far I’m loving McMaster and I wouldn’t have done things much differently.\n\nResearch into prospective supervisors before applying to graduate school and get them to respond. This would’ve saved me from applying to schools without a supervisor in mind.\nWrite my letters of intent before the school semester begins to save time (you definitely don’t need any school time to do this.) Writing good letters can take a whole day, and you definitely don’t want to use ChatGPT to write it for you (trust me, most people are and it’ll make it hard for you to stand out.)\nResearch more into the specific type of research you want to do.\nRealise that if you want to do research in statistics, either do a topic in biostatistics or machine learning. Those are the only profitable fields. :)"
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html",
+    "href": "pages/advice/advice_undergrad.html",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "",
+    "text": "Here I outline my advice and truths behind my success."
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html#my-key-to-success",
+    "href": "pages/advice/advice_undergrad.html#my-key-to-success",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "My key to success",
+    "text": "My key to success\nI consider myself a successful person because I finished my undergraduate degree with eight research papers under my name, and a couple of others have not been published yet (they may need some revision here and there.) I’m not the primary author for most of them either, but I still contributed to way more research than most undergraduate students. I’ve also been an undergraduate teaching assistant for three years and completed my studies with a 3.92/4.00 cGPA.\nMy secret: I sacrificed everything else. I didn’t spend much time with family or friends, I almost completely stopped drawing and playing video games, I don’t really use social media.\nDue to my sacrifices, some may argue that I am not successful and my outcomes is the natural outcome of what I did.\nI am not a better person than you, or anyone who decided to slack off during their undergraduate degree. People have other priorities, such as family, friends, physical health, etc. A life of accomplishments can be a lonely one.\nNonetheless, obviously some accomplishments are good to have. It’s fine to be just be a student with a moderate cGPA (a 3.5 is great at UofT, for instance), just be a teaching assistant for a couple of courses, and maybe have two research papers. You can definitely achieve that kind of success with moderation!\nHence below I provide some practical advice to hopefully give you some direction and perhaps save some of your energy."
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html#proper-attitude-for-studying-mathematics",
+    "href": "pages/advice/advice_undergrad.html#proper-attitude-for-studying-mathematics",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "Proper attitude for studying mathematics",
+    "text": "Proper attitude for studying mathematics\nWhen I was an undergraduate student, the worst advice that was ever given to me was “you should study 1 hour per 1 hour lecture. If you do more, you are being inefficient.”\nI didn’t really take that advice seriously, but if you did, you’re wrecking yourself. Here’s more realistic advice if you’re pursuing a math-related field: “if you’re reading a math textbook and you take less than 1 hour to read a page, you’re doing it wrong.”\nPerhaps the above isn’t applicable if you’re reading a book on how to do computations. However, if you’re reading a book on proofs, the reality is that math is a massive time sink. Forgive yourself that you cannot learn it as fast as you learned arithmetic. Give yourself as much time as possible to understand the material. I need to consistently re-read a math textbook, countless times, to understand what is going on.\nYou can never cram math. It’s not a suggestion to read a little every day, it’s a requirement.\nThat being said, a high level of intelligence would definitely lessen the time it takes to learn. However, I’m not highly intelligent, but with time I believe I can catch up. :)"
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html#how-to-make-academic-friends-in-courses",
+    "href": "pages/advice/advice_undergrad.html#how-to-make-academic-friends-in-courses",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "How to make academic friends in courses",
+    "text": "How to make academic friends in courses\n\nTalk to students who are waiting to go to class early.\nTalk to the students who sit in the front of the class and ask useful questions.\nTalk to students who regularly attend office hours, ask on Piazza, etc.\n\nObviously not everyone is willing to be your friend, but you’re guaranteed to make a couple of useful friends (and you need to show that you care about the course material too.)\nYou’ll also increase your chances of making friends if people notice that you display some or all of the three above traits."
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html#how-to-gain-opportunities-for-research",
+    "href": "pages/advice/advice_undergrad.html#how-to-gain-opportunities-for-research",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "How to gain opportunities for research",
+    "text": "How to gain opportunities for research\nMost of my opportunities were literally connections. Now suppose you don’t have connections, here is how you build them:\n\nGo to your professor’s office hours, regularly.\nGet close enough to them that they recognise you by your first name.\nBriefly read what their research is about and ask them about it.\nAsk for research opportunities.\nWork for them (successfully).\nThey refer you to other researchers in the same field.\n\nNow suppose you want to branch out a little bit, i.e., you are unsatisfied with your current roster of professors. Then, my suggestion is:\n\nLook at the whole faculty list of the department you are a student of.\nLook at all of the professor’s research area and make a list of whose research aligns with yours.\nIf the professor is part of a lab, see if there’s an application process.\nIf the professor isn’t a part of a lab, read their paper (abstract, conclusion is fine) and email them asking if you could join their research. Tell them what you could offer.\n\nNote: realistically, if you are a statistics major you mostly can offer data analysis skills, which are awesome to have. If you know many statistical tests, as well as regression, you could definitely offer your skills to many different departments. I did a lot of research for the computer science department, for example."
+  },
+  {
+    "objectID": "pages/advice/advice_undergrad.html#how-to-become-an-undergraduate-ta",
+    "href": "pages/advice/advice_undergrad.html#how-to-become-an-undergraduate-ta",
+    "title": "Advice for Undergraduate Students (Statistics)",
+    "section": "How to become an undergraduate TA",
+    "text": "How to become an undergraduate TA\nThis advice is mostly applicable to programs that have undergraduate TA’s, which is more common in math, statistics, and computer science compared to other fields.\nSimilar to gaining research experience,\n\nGo to your professor’s office hours, regularly.\nGet close enough to them that they recognise you by your first name.\nAlso be super active on class discussion boards, such as Piazza (you want to be more active than the TA.)\nAsk about teaching assistant opportunities.\nDo really good in their course (90%+).\n\nNote: usually you’re going to have to find whoever is in charge of TA hiring and then try your best to become close with the professor.\nI’ve only met one student who became a TA strictly due to having extremely high marks; most students I know became undergaduate TAs because they became close with a professor."
+  },
+  {
+    "objectID": "pages/notes/mathematical_stats.html",
+    "href": "pages/notes/mathematical_stats.html",
+    "title": "Notes on Mathematical Statistics",
+    "section": "",
+    "text": "This section is not complete and will be changed overtime. I am just compiling notes on mathematical statistics, which may be useful for others (or I may use it as a reference for teaching in the future.) Most of these notes are meant to be high-level explanations as opposed to formal proofs.\nThere is no promise that these notes will be consistently updated.\n\nSuppose that \\(X = (x_{1}, x_{2}, ..., x_{n})^{T}\\) where \\(x_{i}\\) are i.i.d samples.\nA statistic is just a function of the data.\nA statistic \\(T(X)\\) is called sufficient of \\(\\theta\\) if all of the necessary information needed to estimate \\(\\theta\\) is contained in \\(T(X)\\). The goal of finding sufficient statistics is to essentially achieve data reduction by ignoring unnecessary information.\nNote that if \\(T(X)\\) is sufficient, then any function containing \\(T(X)\\) is also sufficient. However, if sufficient statistics was invented to achieve data reduction, then it’s important to find the most simple sufficient statistic.\n\\(T(X)\\) is called a minimal sufficient statistic if every sufficient statistic contains \\(T(X)\\)."
+  },
+  {
+    "objectID": "pages/teaching/sta304.html",
+    "href": "pages/teaching/sta304.html",
+    "title": "STA304 Project Resources",
+    "section": "",
+    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review\nNote: at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I may re-write this in the future after obtaining more training in approaches and best practices."
   }
 ]

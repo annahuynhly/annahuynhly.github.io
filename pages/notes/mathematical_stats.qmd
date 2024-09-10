@@ -1,0 +1,23 @@
+---
+title: "Notes on Mathematical Statistics"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+This section is not complete and will be changed overtime. I am just compiling notes on mathematical statistics, which may be useful for others (or I may use it as a reference for teaching in the future.) Most of these notes are meant to be high-level explanations as opposed to formal proofs.
+
+There is no promise that these notes will be consistently updated.
+
+------------------------------------------------------------------------
+
+Suppose that $X = (x_{1}, x_{2}, ..., x_{n})^{T}$ where $x_{i}$ are i.i.d samples.
+
+A **statistic** is just a function of the data.
+
+A statistic $T(X)$ is called **sufficient** of $\theta$ if all of the necessary information needed to estimate $\theta$ is contained in $T(X)$. The goal of finding sufficient statistics is to essentially achieve data reduction by ignoring unnecessary information.
+
+Note that if $T(X)$ is sufficient, then any function containing $T(X)$ is also sufficient. However, if sufficient statistics was invented to achieve data reduction, then it's important to find the most simple sufficient statistic.
+
+$T(X)$ is called a **minimal sufficient statistic** if every sufficient statistic contains $T(X)$.

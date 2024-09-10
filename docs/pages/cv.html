@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STA260 Summer 2024 – Anna Ly’s Personal Website</title>
+<title>Curriculum Vitae – Anna Ly’s Personal Website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,37 +67,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="floating nav-fixed">
@@ -107,7 +78,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Anna Ly’s Personal Website</span>
     </a>
   </div>
@@ -118,15 +89,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../pages/index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../pages/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv.html"> 
+    <a class="nav-link active" href="../pages/cv.html" aria-current="page"> 
 <span class="menu-text">Curriculum Vitae</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -135,7 +106,7 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-random-notes">    
         <li>
-    <a class="dropdown-item" href="./mathematical_stats.html">
+    <a class="dropdown-item" href="../pages/notes/mathematical_stats.html">
  <span class="dropdown-text">Mathematial Statistics</span></a>
   </li>  
     </ul>
@@ -146,11 +117,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-advice">    
         <li>
-    <a class="dropdown-item" href="./advice_grad.html">
+    <a class="dropdown-item" href="../pages/advice/advice_grad.html">
  <span class="dropdown-text">Graduate School Admissions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./advice_undergrad.html">
+    <a class="dropdown-item" href="../pages/advice/advice_undergrad.html">
  <span class="dropdown-text">Succeeding in Undergrad</span></a>
   </li>  
     </ul>
@@ -161,11 +132,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-teaching">    
         <li>
-    <a class="dropdown-item" href="./sta304.html">
+    <a class="dropdown-item" href="../pages/teaching/sta304.html">
  <span class="dropdown-text">STA304 Project Resources</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sta260summer2024.html">
+    <a class="dropdown-item" href="../pages/teaching/sta260summer2024.html">
  <span class="dropdown-text">STA260 Summer 2024</span></a>
   </li>  
     </ul>
@@ -185,24 +156,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tutorial-1" id="toc-tutorial-1" class="nav-link active" data-scroll-target="#tutorial-1">Tutorial 1</a></li>
-  <li><a href="#tutorial-2" id="toc-tutorial-2" class="nav-link" data-scroll-target="#tutorial-2">Tutorial 2</a></li>
-  <li><a href="#tutorial-3" id="toc-tutorial-3" class="nav-link" data-scroll-target="#tutorial-3">Tutorial 3</a></li>
-  <li><a href="#tutorial-4" id="toc-tutorial-4" class="nav-link" data-scroll-target="#tutorial-4">Tutorial 4</a></li>
-  <li><a href="#tutorial-5" id="toc-tutorial-5" class="nav-link" data-scroll-target="#tutorial-5">Tutorial 5</a></li>
-  <li><a href="#tutorial-6" id="toc-tutorial-6" class="nav-link" data-scroll-target="#tutorial-6">Tutorial 6</a></li>
-  <li><a href="#tutorial-7" id="toc-tutorial-7" class="nav-link" data-scroll-target="#tutorial-7">Tutorial 7</a></li>
-  <li><a href="#tutorial-8" id="toc-tutorial-8" class="nav-link" data-scroll-target="#tutorial-8">Tutorial 8</a></li>
-  <li><a href="#tutorial-9" id="toc-tutorial-9" class="nav-link" data-scroll-target="#tutorial-9">Tutorial 9</a></li>
-  <li><a href="#tutorial-10" id="toc-tutorial-10" class="nav-link" data-scroll-target="#tutorial-10">Tutorial 10</a></li>
-  <li><a href="#tutorial-11-12" id="toc-tutorial-11-12" class="nav-link" data-scroll-target="#tutorial-11-12">Tutorial 11 &amp; 12</a></li>
-  <li><a href="#cancelled-tutorial" id="toc-cancelled-tutorial" class="nav-link" data-scroll-target="#cancelled-tutorial">Cancelled Tutorial</a></li>
-  <li><a href="#additional-guides" id="toc-additional-guides" class="nav-link" data-scroll-target="#additional-guides">Additional Guides</a>
+  <li><a href="#education" id="toc-education" class="nav-link active" data-scroll-target="#education">Education</a></li>
+  <li><a href="#experience" id="toc-experience" class="nav-link" data-scroll-target="#experience">Experience</a>
   <ul class="collapse">
-  <li><a href="#review-sheet" id="toc-review-sheet" class="nav-link" data-scroll-target="#review-sheet">Review Sheet</a></li>
-  <li><a href="#textbook-solution-manual" id="toc-textbook-solution-manual" class="nav-link" data-scroll-target="#textbook-solution-manual">Textbook Solution Manual</a></li>
-  <li><a href="#guides-for-using-statistical-tables" id="toc-guides-for-using-statistical-tables" class="nav-link" data-scroll-target="#guides-for-using-statistical-tables">Guides for Using Statistical Tables</a></li>
+  <li><a href="#department-of-mathematics-statistics-mcmaster" id="toc-department-of-mathematics-statistics-mcmaster" class="nav-link" data-scroll-target="#department-of-mathematics-statistics-mcmaster"><strong>Department of Mathematics &amp; Statistics, McMaster</strong></a></li>
+  <li><a href="#department-of-statistical-sciences-university-of-toronto" id="toc-department-of-statistical-sciences-university-of-toronto" class="nav-link" data-scroll-target="#department-of-statistical-sciences-university-of-toronto"><strong>Department of Statistical Sciences, University of Toronto</strong></a></li>
+  <li><a href="#epson-canada" id="toc-epson-canada" class="nav-link" data-scroll-target="#epson-canada">Epson Canada</a></li>
+  <li><a href="#department-of-mathematical-and-computational-sciences-university-of-toronto" id="toc-department-of-mathematical-and-computational-sciences-university-of-toronto" class="nav-link" data-scroll-target="#department-of-mathematical-and-computational-sciences-university-of-toronto">Department of Mathematical and Computational Sciences, University of Toronto</a></li>
   </ul></li>
+  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
+  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
+  <li><a href="#conferences" id="toc-conferences" class="nav-link" data-scroll-target="#conferences">Conferences</a></li>
+  <li><a href="#scholarships-awards" id="toc-scholarships-awards" class="nav-link" data-scroll-target="#scholarships-awards">Scholarships &amp; Awards</a></li>
   </ul>
 </nav>
 </nav>
@@ -215,7 +180,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">STA260 Summer 2024</h1>
+<h1 class="title">Curriculum Vitae</h1>
 </div>
 
 
@@ -232,134 +197,152 @@ window.Quarto = {
 </header>
 
 
-<p>Here are the tutorial notes written by Anna Ly and Ting Lin for <a href="https://utm.calendar.utoronto.ca/course/sta260h5">STA260</a> during the summer 2024 semester. Although it’s called “Probability and Statistics II”, a more appropriate name would be “an introduction to mathematical statistics” based off of the course description, content, and textbook used.</p>
-<p>The instructor was <a href="https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&amp;hl=en">Luai Al Labadi</a> and we followed the Mathematical Statistics with Applications (7th Edition) by Dennis Wackerly, William Mendenhall, and Richard L. Scheaffer.</p>
-<p>Some questions were picked from past tests and exams from varying instructors and are high in difficulty.</p>
-<section id="tutorial-1" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-1">Tutorial 1</h2>
-<p><strong>Topics:</strong> sample variance, sampling distributions related to the normal distribution such as the <span class="math inline">\(\chi^{2}\)</span> distribution.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial1.pdf">Worksheet</a></p>
-<p><a href="assets/STA260/Summer2024/Tut1Remark.pdf">Interesting remark</a> (a good question that a student had from tutorial.)</p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial1/Question3.pdf">Q3</a></p>
+<section id="education" class="level2">
+<h2 class="anchored" data-anchor-id="education">Education</h2>
+<p><strong>McMaster University ✦ M.Sc in Statistics.</strong> (September 2024 - Present)</p>
+<p><strong>University of Toronto ✦ H.B.Sc in Applied Statistics &amp; Mathematics.</strong> (September 2019 - June 2024)</p>
 </section>
-<section id="tutorial-2" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-2">Tutorial 2</h2>
-<p><strong>Topics:</strong> properties of sampling distributions related to the normal distribution, central limit theorem, normal approximation to the binomial distribution.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial2.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial2/Question4.pdf">Q4</a></p>
-<p>There is an issue with the answer for Q3; you’re NOT supposed to claim:</p>
-<p><span class="math display">\[
-2X \sim \chi^{2}_{(2)} \Rightarrow X \sim \frac{\chi^{2}_{(2)}}{2}
-\]</span></p>
-<p>Instead, what happens is:</p>
-<p><span class="math display">\[
-\frac{2X}{2Y} = \frac{X/2}{Y/2} = \frac{\chi^{2}_{(2)}/2}{\chi^{2}_{(2)}/2} = F(2,2)
-\]</span></p>
+<section id="experience" class="level2">
+<h2 class="anchored" data-anchor-id="experience">Experience</h2>
+<section id="department-of-mathematics-statistics-mcmaster" class="level3">
+<h3 class="anchored" data-anchor-id="department-of-mathematics-statistics-mcmaster"><strong>Department of Mathematics &amp; Statistics, McMaster</strong></h3>
+<p><strong>Teaching Assistant ✦ September 2024 - TBA</strong></p>
+<p>I am a teaching assistant for <a href="https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&amp;coid=266605">STATS 2D03</a> - Introduction to Probability for the Fall 2024 term!</p>
 </section>
-<section id="tutorial-3" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-3">Tutorial 3</h2>
-<p><strong>Topics:</strong> biased and unbiased estimators.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial3.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial3/Question4.pdf">Q4</a></p>
+<section id="department-of-statistical-sciences-university-of-toronto" class="level3">
+<h3 class="anchored" data-anchor-id="department-of-statistical-sciences-university-of-toronto"><strong>Department of Statistical Sciences, University of Toronto</strong></h3>
+<p><strong>Research Assistant ✦ November 2022 - August 2024</strong></p>
+<p>Under the direction of <a href="https://utstat.toronto.edu/mikevans/">Mike Evans</a>, I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work <a href="https://www.utstat.utoronto.ca/mikevans/relativebeliefcode.html">here</a>.</p>
 </section>
-<section id="tutorial-4" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-4">Tutorial 4</h2>
-<p><strong>Topics:</strong> pivotal quantity, confidence intervals.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial4.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial4/Question3.pdf">Q3</a></p>
-<p>The reason for picking <span class="math inline">\(a = 0.02\)</span> is because you are focusing on the support of <span class="math inline">\(w\)</span>, which is <span class="math inline">\(0 &lt; w &lt; 1\)</span>. If you were to pick <span class="math inline">\(a &gt; 1\)</span>, then <span class="math inline">\(P(W \leq a) = F_{W}(a) = 1\)</span>, which does not provide what we want.</p>
-<p>A common question is that when using the table of values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions, we typically assume <span class="math inline">\((\alpha/2)\)</span> for the area to the right (upper-tail), whereas when directly computing from the cumulative distribution function we assume <span class="math inline">\((1 - \alpha/2)\)</span> for the right (upper-tail). The reason for this is because the definition of the cumulative distribution directly implies to use the values to the left (lower-tail):</p>
-<p><span class="math display">\[
-1-\alpha/2 = P(X \leq x) = F_{X}(x)
-\]</span></p>
-<p>Whereas the textbook provides upper-tail values for the <span class="math inline">\(Z, \chi^{2}_{n}, t_{v}, F_{n_{1}, n_{2}}\)</span> distributions. Some other textbooks tend to be consistent with the cumulative distribution function.</p>
-<p>If you’re coding, R is consistent with the cumulative distributions functions.</p>
+<section id="epson-canada" class="level3">
+<h3 class="anchored" data-anchor-id="epson-canada">Epson Canada</h3>
+<p><strong>Data &amp; Evaluation Specialist</strong> <strong>✦ May 2022 - August 2023</strong></p>
+<p>I performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.</p>
+<p>Teams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design &amp; deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate &amp; rapid cost analysis of 3D computer vision solutions for management.</p>
 </section>
-<section id="tutorial-5" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-5">Tutorial 5</h2>
-<p><strong>Topics:</strong> confidence intervals using distributions related to the normal distribution, computing variance of sample variance.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial5.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial5/Question3.pdf">Q3</a></p>
-</section>
-<section id="tutorial-6" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-6">Tutorial 6</h2>
-<p><strong>Topics:</strong> relative efficiency, consistency.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial6.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question1.pdf">Q1</a> ✦ Q2 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question2-2.pdf">Solution 2</a> ✦ Q3 <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-1.pdf">Solution 1</a> | <a href="assets/STA260/Summer2024/Solutions/Tutorial6/Question3-2.pdf">Solution 2</a></p>
-<p>There is a rendering issue for the second solution of question 3… The question is the same in the worksheet regardless.</p>
-</section>
-<section id="tutorial-7" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-7">Tutorial 7</h2>
-<p><strong>Topics:</strong> sufficiency, completeness, Rao-Blackwell theorem.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial7.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial7/Question4.pdf">Q4</a></p>
-<p>There is a slight typo for question 2. It should be: <span class="math display">\[
-\frac{d}{dx} \int_{a}^{x} f(t) dt = f(x)
-\]</span></p>
-<p>Instead of <span class="math inline">\(= h(x)\)</span> when reciting the fundamental theorem of calculus.</p>
-</section>
-<section id="tutorial-8" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-8">Tutorial 8</h2>
-<p><strong>Topics:</strong> Cramer-Rao inequality, exponential family.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial8.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial8/Question4.pdf">Q4</a></p>
-<p>There is a small typo in the worksheet; the Fisher’s Information is:</p>
-<p><span class="math display">\[
-I_{n}(\theta) = n I(\theta) = n \left( -\mathbb{E} \left[ \frac{\partial^{2}}{\partial^{2}\theta} \ln(f_{Y}(y|\theta)) \right] \right)
-\]</span></p>
-<p>Here, we use the partial derivative: <span class="math inline">\(\partial\)</span>, not the univariate derivative <span class="math inline">\(d\)</span>. These are not the same (I am not trying to get killed by a mathematician.)</p>
-</section>
-<section id="tutorial-9" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-9">Tutorial 9</h2>
-<p><strong>Topics:</strong> maximum likelihood estimators, method of moments estimators.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial9.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial9/Question3.pdf">Q3</a></p>
-</section>
-<section id="tutorial-10" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-10">Tutorial 10</h2>
-<p><strong>Topics:</strong> hypothesis testing using NP-lemma and likelihood ratio tests.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial10.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial10/Question3.pdf">Q3</a></p>
-<p>There is a typo for the final solution of the second question because <span class="math inline">\(\sigma^{2}\)</span> should be 9, not 3. Hence, you would need to multiply the last value in the rejection region by 9.</p>
-<p>There is a typo for question 3: it should be <span class="math inline">\(\chi^{2}_{(1)}\)</span> instead of <span class="math inline">\(\chi^{2}_{(16)}\)</span>. That being said, the numerical value is associated with degrees of freedom of 1 (I miswrote what I meant to say).</p>
-</section>
-<section id="tutorial-11-12" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-11-12">Tutorial 11 &amp; 12</h2>
-<p>This tutorial was for final exam review.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/Tutorial11.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question4.pdf">Q4</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Tutorial11/Question5.pdf">Q5</a></p>
-</section>
-<section id="cancelled-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="cancelled-tutorial">Cancelled Tutorial</h2>
-<p>Previous iterations of the course tend to cover simple linear regression. However, during this semester there was not enough time to cover this. It is typically re-taught in STA302. Nonetheless, the worksheets are posted here for reference.</p>
-<p><a href="assets/STA260/Summer2024/Worksheets/CancelledTutorial.pdf">Worksheet</a></p>
-<p>Solutions: <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question1.pdf">Q1</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question2.pdf">Q2</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question3.pdf">Q3</a> ✦ <a href="assets/STA260/Summer2024/Solutions/Cancelled/Question4.pdf">Q4</a></p>
-</section>
-<section id="additional-guides" class="level2">
-<h2 class="anchored" data-anchor-id="additional-guides">Additional Guides</h2>
-<p>These are some additional notes that may be useful for students.</p>
-<section id="review-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="review-sheet">Review Sheet</h3>
-<p>Below is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.</p>
-<p><a href="assets/STA260/STA260Formula.pdf">STA260 Formula/Review Sheet</a></p>
-</section>
-<section id="textbook-solution-manual" class="level3">
-<h3 class="anchored" data-anchor-id="textbook-solution-manual">Textbook Solution Manual</h3>
-<p>There’s a public solution manual <a href="https://usermanual.wiki/Document/SolutionManualMathematicalStatisticsWithApplications7thEditionWackerly.313163145/view">found here</a>.</p>
-<p>Warnings:</p>
+<section id="department-of-mathematical-and-computational-sciences-university-of-toronto" class="level3">
+<h3 class="anchored" data-anchor-id="department-of-mathematical-and-computational-sciences-university-of-toronto">Department of Mathematical and Computational Sciences, University of Toronto</h3>
+<p><strong>Teaching Assistant ✦ July 2021 - August 2024</strong></p>
+<p>I prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling &amp; Survey Design and Experimental Design.</p>
+<p>In fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.</p>
+<p>All of my appointments:</p>
 <ul>
-<li><p>This is not an official solution manuals, and there are plenty of typos.</p></li>
-<li><p>Many solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.</p></li>
-<li><p>It is pretty good at providing directions if you’re lost.</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/mat136h5">MAT136H5</a>: Integral Calculus (Winter 2022)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta107h5">STA107H5</a>: An Introduction to Probability and Modelling (Winter 2022)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta256h5">STA256H5</a>: Probability &amp; Statistics I (Summer 2021, Fall 2021)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta258h5">STA258H5</a>: Statistics with Applied Probability (Winter 2022)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta260h5">STA260H5</a>: Probability &amp; Statistics II (Winter 2022, Fall 2023, Summer 2024)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta304h5">STA304H5</a>: Sampling &amp; Survey Design (Fall 2022, Fall 2023)</p></li>
+<li><p><a href="https://utm.calendar.utoronto.ca/course/sta305h5">STA305H5</a>: Experimental Design (Winter 2023, Winter 2024)</p></li>
+<li><p><a href="https://www.utm.utoronto.ca/math-cs-stats/outreach/math-circles">Math Circles</a>: After-School Program for Secondary Students (Winter 2022, Fall 2023)</p></li>
+</ul>
+<p><strong>Research Assistant</strong></p>
+<p>I’ve had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I’ve worked, as well as a brief description of what I completed.</p>
+<ul>
+<li><p><strong>(Computer Science Education) September 2020 - August 2021</strong></p>
+<ul>
+<li>Under the guidance of <a href="https://utmandrew.bitbucket.io/">Andrew Petersen</a>, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.</li>
+</ul></li>
+<li><p><strong>(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024</strong></p>
+<ul>
+<li>Working under the supervision of <a href="https://sites.utm.utoronto.ca/tzhu/content/tingting-zhu">Tingting Zhu</a>, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention.</li>
+</ul></li>
+<li><p><strong>(Statistical Education)</strong> <strong>April 2024 - August 2024</strong></p>
+<ul>
+<li>Advised by <a href="https://www.utm.utoronto.ca/math-cs-stats/people/luai-al-labadi">Luai Al Labadi</a>, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses <a href="https://utm.calendar.utoronto.ca/course/sta304h5">Surveys, Sampling and Observational Data</a> and <a href="https://utm.calendar.utoronto.ca/course/sta305h5">Experimental Design</a>. We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year.</li>
+</ul></li>
 </ul>
 </section>
-<section id="guides-for-using-statistical-tables" class="level3">
-<h3 class="anchored" data-anchor-id="guides-for-using-statistical-tables">Guides for Using Statistical Tables</h3>
-<p>These are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).</p>
-<p><a href="assets/STA260/ZTableGuide.pdf"><span class="math inline">\(Z\)</span> Table Guide</a> ✦ <a href="assets/STA260/TTableGuide.pdf"><span class="math inline">\(t_{v}\)</span> Table Guide</a> ✦ <a href="assets/STA260/FTableGuide.pdf"><span class="math inline">\(F_{n_{1}, n_{2}}\)</span> Table Guide</a> ✦ <a href="assets/STA260/ChisqTableGuide.pdf"><span class="math inline">\(\chi^{2}_{n}\)</span> Table Guide</a></p>
-
-
 </section>
+<section id="skills" class="level2">
+<h2 class="anchored" data-anchor-id="skills">Skills</h2>
+<ul>
+<li><p>Programming Languages: R, Python, SAS, HTML/CSS, Excel VBA</p></li>
+<li><p>R Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown</p></li>
+<li><p>Python Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations</p></li>
+<li><p>Quarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive</p></li>
+</ul>
+</section>
+<section id="publications" class="level2">
+<h2 class="anchored" data-anchor-id="publications">Publications</h2>
+<p><strong>8. A Short Note on Generating a Random Sample from Finite Mixture Distributions</strong></p>
+<ul>
+<li><p>Authors: Luai Al Labadi, Anna Ly</p></li>
+<li><p>Axioms 2023 ✦ Volume 13 (5), Page 307 ✦ <a href="https://doi.org/10.3390/axioms13050307" class="uri">https://doi.org/10.3390/axioms13050307</a></p></li>
+</ul>
+<p><strong>7. Evaluating Storytelling Videos Using YouTube Analytics</strong></p>
+<ul>
+<li><p>Authors: Anna Ly, Tingting Zhu, Andrew Petersen</p></li>
+<li><p>SIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 2 ✦ Pages 1730 - 1731 ✦ <a href="https://doi.org/10.1145/3626253.3635503" class="uri">https://doi.org/10.1145/3626253.3635503</a></p></li>
+</ul>
+<p><strong>6. “I Didn’t Know”: Examining Student Understanding of Academic Dishonesty in Computer Science</strong></p>
+<ul>
+<li><p>Authors: Michael Liut, Anna Ly, Jessica Jia-Ni Xu, Justice Banson, Paul Vrbik, Caroline D Hardin</p></li>
+<li><p>SIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 ✦ Pages 757 - 763 ✦ <a href="https://doi.org/10.1145/3626252.3630753" class="uri">https://doi.org/10.1145/3626252.3630753</a></p></li>
+</ul>
+<p><strong>5. Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity</strong></p>
+<ul>
+<li><p>Authors: Luai Al-Labadi, Mohammed Hamlili, Anna Ly</p></li>
+<li><p>Axioms 2023 ✦ Volume 12 (9), Page 887 ✦ <a href="https://doi.org/10.3390/axioms12090887" class="uri">https://doi.org/10.3390/axioms12090887</a></p></li>
+</ul>
+<p><strong>4. “I Am Not Enough”: Impostor Phenomenon Experiences of University Students</strong></p>
+<ul>
+<li><p>Authors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Sadia Sharmin, Lisa Zhang, Andrew Petersen</p></li>
+<li><p>ITiCSE 2023: Proceedings of the 2023 Conference on Innovation and Technology in Computer Science Education V. 1 ✦ Pages 313 - 319 ✦ <a href="https://doi.org/10.1145/3587102.3588779" class="uri">https://doi.org/10.1145/3587102.3588779</a></p></li>
+</ul>
+<p><strong>3. Additional Evidence for the Prevalence of the Impostor Phenomenon in Computing</strong></p>
+<ul>
+<li><p>Authors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Andrew Petersen, Sadia Sharmin, Lisa Zhang</p></li>
+<li><p>SIGCSE 2022: Proceedings of the 53rd ACM Technical Symposium on Computer Science Education - Volume 1 ✦ Pages 654 - 660 ✦ <a href="https://doi.org/10.1145/3478431.3499282" class="uri">https://doi.org/10.1145/3478431.3499282</a></p></li>
+</ul>
+<p><strong>2. Spatial Skills and Demographic Factors in CS1</strong></p>
+<ul>
+<li><p>Authors: Anna Ly, Jack Parkinson, Quintin Cutts, Michael Liut, Andrew Petersen</p></li>
+<li><p>Koli Calling ’21: Proceedings of the 21st Koli Calling International Conference on Computing Education Research ✦ Article No.: 4, Pages 1 - 10 ✦ <a href="https://doi.org/10.1145/3488042.3488049" class="uri">https://doi.org/10.1145/3488042.3488049</a></p></li>
+</ul>
+<p><strong>1. Revisiting syntax exercises in CS1</strong></p>
+<ul>
+<li><p>Authors: Anna Ly, John Edwards, Michael Liut, Andrew Petersen</p></li>
+<li><p>SIGITE ’21: Proceedings of the 22nd Annual Conference on Information Technology Education ✦ Pages 9 - 14 ✦ <a href="https://doi.org/10.1145/3450329.3476855" class="uri">https://doi.org/10.1145/3450329.3476855</a></p></li>
+</ul>
+</section>
+<section id="conferences" class="level2">
+<h2 class="anchored" data-anchor-id="conferences">Conferences</h2>
+<p><strong>2. Joint Statistical Meetings (JSM) - Aug 2023</strong></p>
+<p>Panelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts</p>
+<p><strong>1. International Association for Statistical Education (IASE) - July 2023</strong></p>
+<p>Poster Presenter: <a href="https://iase-web.org/Webinars.php?p=230711_2000">Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts</a></p>
+</section>
+<section id="scholarships-awards" class="level2">
+<h2 class="anchored" data-anchor-id="scholarships-awards">Scholarships &amp; Awards</h2>
+<p><strong>9. <a href="https://gs.mcmaster.ca/program/mathematics/#nav-scholarships">Milos Novotny Fellowship</a> - McMaster University (2024)</strong></p>
+<p>Established through the generosity of Dr.&nbsp;M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.</p>
+<p><strong>8. <a href="https://osap.gov.on.ca/OSAPPortal/en/A-ZListofAid/PRDR019245.html">Ontario Graduate Scholarship (OGS)</a> - McMaster University (2024)</strong></p>
+<p>The Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.</p>
+<p><strong>7. <a href="https://www.utm.utoronto.ca/math-cs-stats/news/2023-mcs-awards-ceremony-and-winners-congratulations">NSERC Undergraduate Student Research Awards (USRA)</a> - University of Toronto (2023)</strong></p>
+<p>A scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.</p>
+<p>Paper: <a href="https://www.mdpi.com/2075-1680/12/9/887">Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity</a></p>
+<p><strong>6. <a href="https://www.utm.utoronto.ca/dean/awards-grants/undergraduate-awards-grants/utm-undergraduate-research-grants">UTM Undergraduate Research Grant</a> - University of Toronto (2022)</strong></p>
+<p>These grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.</p>
+<ul>
+<li><p>Paper 1: <a href="https://www.mdpi.com/2075-1680/13/5/307">A Short Note on Generating a Random Sample from Finite Mixture Distributions</a></p></li>
+<li><p>Paper 2: TBA…</p></li>
+</ul>
+<p><strong>5.</strong> <a href="https://artsci.calendar.utoronto.ca/academic-record#recog-acad-achievement"><strong>Dean’s List Scholar</strong></a> <strong>- University of Toronto (2020, 2021, 2022)</strong></p>
+<p>Conferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.</p>
+<p><strong>4. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)</strong></p>
+<p>Awarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in <a href="https://www.utm.utoronto.ca/math-cs-stats/awards/honour-roll/2020-2021">2021</a> and in <a href="https://www.utm.utoronto.ca/math-cs-stats/awards/student-awards/honour-roll/2021-2022">2022</a>.</p>
+<p>This award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)</p>
+<p><strong>3. <a href="https://future.utoronto.ca/scholarships/presidents-scholars-of-excellence-program/">President’s Scholars of Excellence Scholarship</a> - University of Toronto (2019)</strong></p>
+<p>Awarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.</p>
+<p><strong>2. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)</strong></p>
+<p>Awarded to the student who achieves the highest average in their graduating class in high school.</p>
+<p>Fun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)</p>
+<p>My parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)</p>
+<p><strong>1. Dr.&nbsp;Angelo Albanese Memorial Scholarship -</strong> <strong>Saint Michael’s Catholic High School (2019)</strong></p>
+<p>Awarded to a student who best demonstrates a mature approach to academics and a determination to succeed.</p>
+
+
 </section>
 
 </main> <!-- /main -->

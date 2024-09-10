@@ -22,5 +22,32 @@
   },
   "advice_undergrad.qmd": {
     "advice_undergrad.html": "147b879e"
+  },
+  "mathematical_stats.qmd": {
+    "mathematical_stats.html": "b6228133"
+  },
+  "pages/about.qmd": {
+    "about.html": "e22d935c"
+  },
+  "pages/advice/advice_grad.qmd": {
+    "advice_grad.html": "49ea084a"
+  },
+  "pages/advice/advice_undergrad.qmd": {
+    "advice_undergrad.html": "3ea2a741"
+  },
+  "pages/index.qmd": {
+    "index.html": "dd89077c"
+  },
+  "pages/notes/mathematical_stats.qmd": {
+    "mathematical_stats.html": "4de0562e"
+  },
+  "pages/teaching/sta260summer2024.qmd": {
+    "sta260summer2024.html": "82cd61b7"
+  },
+  "pages/teaching/sta304.qmd": {
+    "sta304.html": "b4d4cea9"
+  },
+  "pages/cv.qmd": {
+    "cv.html": "734b53e5"
   }
 }

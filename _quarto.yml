@@ -6,21 +6,25 @@ website:
   title: "Anna Ly's Personal Website"
   navbar:
     right:
-      - href: index.qmd
+      - href: pages/index.qmd
         text: "Home"
-      - about.qmd
-      - cv.qmd
+      - pages/about.qmd
+      - pages/cv.qmd
+      - text: "Random Notes"
+        menu:
+          - href: pages/notes/mathematical_stats.qmd
+            text: "Mathematial Statistics"
       - text: "Advice"
         menu: 
-          - href: advice_grad.qmd
+          - href: pages/advice/advice_grad.qmd
             text: "Graduate School Admissions"
-          - href: advice_undergrad.qmd
+          - href: pages/advice/advice_undergrad.qmd
             text: "Succeeding in Undergrad"
       - text: "Teaching"
         menu: 
-          - href: sta304.qmd
+          - href: pages/teaching/sta304.qmd
             text: "STA304 Project Resources"
-          - href: sta260summer2024.qmd
+          - href: pages/teaching/sta260summer2024.qmd
             text: "STA260 Summer 2024"
 
 format:
