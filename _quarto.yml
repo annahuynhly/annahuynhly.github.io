@@ -10,10 +10,6 @@ website:
         text: "Home"
       - pages/about.qmd
       - pages/cv.qmd
-      - text: "Random Notes"
-        menu:
-          - href: pages/notes/mathematical_stats.qmd
-            text: "Mathematial Statistics"
       - text: "Advice"
         menu: 
           - href: pages/advice/advice_grad.qmd
@@ -24,8 +20,10 @@ website:
         menu: 
           - href: pages/teaching/sta304.qmd
             text: "STA304 Project Resources"
+          - href: pages/teaching/stats2d03fall2024.qmd
+            text: "STATS 2D03 Fall 2024 (MAC)"
           - href: pages/teaching/sta260summer2024.qmd
-            text: "STA260 Summer 2024"
+            text: "STA260 Summer 2024 (UTM)"
 
 format:
   html:

@@ -1,0 +1,85 @@
+---
+title: "STATS 2D03 Summer 2024"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+Here are the tutorial notes written by Anna Ly for [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury.
+
+The instructors were [Katherine Davies](https://experts.mcmaster.ca/display/daviek5) and [J. E. Paguyo](https://www.jepaguyo.com/home). We followed A First Course in Probability by Sheldon Ross, 10th edition.
+
+The textbook that we followed had a higher emphasis for word problems. If you are interesting in pursuing statistics and mathematics, I would highly recommend **Probability and Statistical Inference by Robert Hogg, Elliot Tanis, and Dale Zimmerman** instead, which focuses heavily more on mathematics.
+
+I used LaTeX for most of the tutorials up until there were more calculus, as most of these tutorials consisted of counting problems.
+
+The questions in tutorial were from the textbook, except for tutorial 7 which Hyuna came up with.
+
+Moment generating functions and the convolution transformation method was covered in the course, but there were no tutorials covering those parts.
+
+## Tutorial 1
+
+**Topic**: elementary counting problems.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial2.pdf)
+
+## Tutorial 2
+
+**Topics**: sample spaces, probability.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial2.pdf)
+
+## Tutorial 3
+
+**Topic**: conditional probability.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial3.pdf)
+
+## Tutorial 4
+
+**Topic:** probability mass functions.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial4.pdf)
+
+## Tutorial 5
+
+**Topics:** discrete cumulative distribution functions and expected values.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial5.pdf)
+
+## Tutorial 6
+
+**Topics:** total law of probability, poisson approximation to binomial.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial6.pdf)
+
+## Tutorial 7
+
+**Topics:** discrete probability distributions such as binomial, geometric, hypergeometic, negative binomial.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial7.pdf)
+
+## Tutorial 8
+
+**Topic:** probability density function.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial8.pdf)
+
+## Tutorial 9
+
+**Topics:** standard normal distribution, binomial approximation to normal.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial9.pdf)
+
+## Tutorial 10
+
+**Topics:** univariate transformations, bivariate probability distributions.
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial10.pdf)
+
+## Tutorial 11
+
+**Topics:** sum of two probability distributions (not using moment generating functions)
+
+[Worksheet & Solution](assets/STATS2D03/Tutorial11.pdf)

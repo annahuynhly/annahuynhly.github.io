@@ -754,5 +754,89 @@
     "title": "STA304 Project Resources",
     "section": "",
     "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review\nNote: at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I may re-write this in the future after obtaining more training in approaches and best practices."
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html",
+    "href": "pages/teaching/stats2d03fall2024.html",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "",
+    "text": "Here are the tutorial notes written by Anna Ly for STATS 2D03 during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury.\nThe instructors were Katherine Davies and J. E. Paguyo. We followed A First Course in Probability by Sheldon Ross, 10th edition.\nThe textbook that we followed had a higher emphasis for word problems. If you are interesting in pursuing statistics and mathematics, I would highly recommend Probability and Statistical Inference by Robert Hogg, Elliot Tanis, and Dale Zimmerman instead, which focuses heavily more on mathematics.\nI used LaTeX for most of the tutorials up until there were more calculus, as most of these tutorials consisted of counting problems.\nThe questions in tutorial were from the textbook, except for tutorial 7 which Hyuna came up with.\nMoment generating functions and the convolution transformation method was covered in the course, but there were no tutorials covering those parts."
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-1",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-1",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 1",
+    "text": "Tutorial 1\nTopic: elementary counting problems.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-2",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-2",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 2",
+    "text": "Tutorial 2\nTopics: sample spaces, probability.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-3",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-3",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 3",
+    "text": "Tutorial 3\nTopic: conditional probability.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-4",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-4",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 4",
+    "text": "Tutorial 4\nTopic: probability mass functions.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-5",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-5",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 5",
+    "text": "Tutorial 5\nTopics: discrete cumulative distribution functions and expected values.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-6",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-6",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 6",
+    "text": "Tutorial 6\nTopics: total law of probability, poisson approximation to binomial.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-7",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-7",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 7",
+    "text": "Tutorial 7\nTopics: discrete probability distributions such as binomial, geometric, hypergeometic, negative binomial.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-8",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-8",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 8",
+    "text": "Tutorial 8\nTopic: probability density function.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-9",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-9",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 9",
+    "text": "Tutorial 9\nTopics: standard normal distribution, binomial approximation to normal.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-10",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-10",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 10",
+    "text": "Tutorial 10\nTopics: univariate transformations, bivariate probability distributions.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-11",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-11",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 11",
+    "text": "Tutorial 11\nTopics: sum of two probability distributions (not using moment generating functions)\nWorksheet & Solution"
   }
 ]
