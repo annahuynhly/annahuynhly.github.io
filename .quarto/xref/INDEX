@@ -1,56 +1,29 @@
 {
-  "index.qmd": {
-    "index.html": "6cf0a959"
-  },
-  "about.qmd": {
-    "about.html": "3342ac8d"
-  },
-  "sta.qmd": {
-    "sta.html": "fe56246f"
-  },
-  "sta260summer2024.qmd": {
-    "sta260summer2024.html": "8f0cae7b"
-  },
-  "sta304.qmd": {
-    "sta304.html": "35577d36"
-  },
-  "cv.qmd": {
-    "cv.html": "82017dc5"
-  },
-  "advice_grad.qmd": {
-    "advice_grad.html": "07466d6a"
-  },
-  "advice_undergrad.qmd": {
-    "advice_undergrad.html": "147b879e"
-  },
-  "mathematical_stats.qmd": {
-    "mathematical_stats.html": "b6228133"
+  "pages/index.qmd": {
+    "index.html": "46c59da0"
   },
   "pages/about.qmd": {
-    "about.html": "e22d935c"
-  },
-  "pages/advice/advice_grad.qmd": {
-    "advice_grad.html": "49ea084a"
-  },
-  "pages/advice/advice_undergrad.qmd": {
-    "advice_undergrad.html": "3ea2a741"
-  },
-  "pages/index.qmd": {
-    "index.html": "dd89077c"
-  },
-  "pages/notes/mathematical_stats.qmd": {
-    "mathematical_stats.html": "4de0562e"
-  },
-  "pages/teaching/sta260summer2024.qmd": {
-    "sta260summer2024.html": "82cd61b7"
-  },
-  "pages/teaching/sta304.qmd": {
-    "sta304.html": "b4d4cea9"
+    "about.html": "2417e73a"
   },
   "pages/cv.qmd": {
-    "cv.html": "734b53e5"
+    "cv.html": "af5d4c64"
+  },
+  "pages/advice/advice_grad.qmd": {
+    "advice_grad.html": "da2e7d18"
+  },
+  "pages/advice/advice_undergrad.qmd": {
+    "advice_undergrad.html": "83e3c1ec"
+  },
+  "pages/notes/mathematical_stats.qmd": {
+    "mathematical_stats.html": "5952e998"
+  },
+  "pages/teaching/sta260summer2024.qmd": {
+    "sta260summer2024.html": "4e8a1c9b"
+  },
+  "pages/teaching/sta304.qmd": {
+    "sta304.html": "9f553f4d"
   },
   "pages/teaching/stats2d03fall2024.qmd": {
-    "stats2d03fall2024.html": "d084f876"
+    "stats2d03fall2024.html": "9bf36103"
   }
 }

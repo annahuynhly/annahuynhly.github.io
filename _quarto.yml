@@ -21,9 +21,9 @@ website:
           - href: pages/teaching/sta304.qmd
             text: "STA304 Project Resources"
           - href: pages/teaching/stats2d03fall2024.qmd
-            text: "STATS 2D03 Fall 2024 (MAC)"
+            text: "STATS 2D03 Fall 2024"
           - href: pages/teaching/sta260summer2024.qmd
-            text: "STA260 Summer 2024 (UTM)"
+            text: "STA260 Summer 2024"
 
 format:
   html:
