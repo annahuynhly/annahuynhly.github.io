@@ -6,13 +6,13 @@ toc-location: left
 toc-collapsible: true
 ---
 
-**TL;DR: this article is about how I convinced myself to be a Bayesian.**
+**TL;DR: this article is about how I convinced myself to be a Bayesian. Note that Frequentist vs Bayesian is a common debate amongst statisticians.**
 
 My undergraduate prince (c)harming (now ex) was determined to challenge me on everything I believed in. He was incredibly skilled at arguing and usually had better answers for almost everything, and I usually depended on him for things I didn't know. He left one question for me to answer: how did I benefit him in our relationship? I never found a sufficient answer for him. Due to my insecurities, I did things I shouldn’t have and I contributed to the dramatic end of our relationship.
 
 At the start of undergrad, I decided to go vegan for ethical reasons, and I was determined to stick with it. I believed in living that lifestyle—and still do. To stay resolute, I became obsessed with watching vegan debate videos. These two experiences—going vegan and frequently debating in my past relationship—shaped me into someone who can argue.
 
-I’ve always enjoyed phrasing situations in ways that catch people’s attention, crafting sentences that even generative AI might struggle to dream up. One early morning, as the sun was just rising on a random Wednesday, I spontaneously made an obscure comparison to my graduate school sweetheart: “Being Bayesian is like being vegan.”
+I’ve always enjoyed shouting weird phrases in ways that catch people’s attention, crafting sentences that even generative AI can never form. One early morning, as the sun was just rising on a random Wednesday, I spontaneously made an obscure comparison to my graduate school sweetheart: “Being Bayesian is like being vegan.”
 
 Wanting to push the analogy further, I continued, “People will tell you that being Bayesian is too computationally expensive… but really, with modern computers, it’s not an excuse.”
 
@@ -28,6 +28,6 @@ Ultimately, the main reason people stick with frequentist methods is convenience
 
 I’m not going to delve into the details of how this is analogous to arguments for veganism, but if you genuinely consider why people choose to go vegan, you’ll understand. I also recognize that veganism is fundamentally a moral issue. But similarly, if you care about pursuing true knowledge in academia, there’s something troubling about modeling data incorrectly.
 
-That said, I’m still not a true Bayesian. There are times when I will use frequentist methods simply because they’re universally accepted and required for certain situations. However, I aspire to improve my statistical skills and, one day, consistently employ Bayesian approaches—even for simple tests such as the comparisons of means between two groups.
+That said, I’m still not a true Bayesian. There are times when I will use frequentist methods simply because they’re universally accepted and required for certain situations, and I am ashamed of it! I aspire to improve my statistical skills and, one day, consistently employ Bayesian approaches—even for simple tests such as the comparisons of means between two groups. (That being said, you may need to be a frequentist so you don't get fired from your career.)
 
 I may cringe at this piece in the future—and that would be a good thing! It would mean I’ve grown and learned. But for now, I’ve accidentally convinced myself to become a Bayesian. Such is the curse of learning how to argue.
