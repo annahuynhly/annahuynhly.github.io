@@ -6,6 +6,8 @@ toc-location: left
 toc-collapsible: true
 ---
 
+**This website has been updated on December 19th. My opinions obviously change with experience. This will likely be updated multiple times throughout my graduate school journey.**
+
 As a teaching assistant, I've had lots of students come up to me for advice regarding graduate school. Below I am answering common questions I get in hopes that this helps students.
 
 A lot of this information I learned through experience and searching articles online. I hope you find this detailed guide helpful.
@@ -24,17 +26,15 @@ Furthermore, although the brand name does matter, going to UofT does not guarant
 
 I also really wanted to do a thesis program instead of a course-based one! :)
 
-So far, I don't regret my decision. I am loving my time at McMaster. The professors are tech-saavy, intelligent, wise, and considerate. I have already learned so much in such a short period of time without sacrificing my mental health.
-
-Another thing I love about McMaster is that the professors are supportive of all alternative career paths; they don't care whether you go to academia or industry. They just want you to succeed in whatever you desire. Obviously, this means I may know less theorems than a UofT counterpart, but I'm confident in my coding skills.
+I don't regret my decision. It's interesting to see how different other institutions run.
 
 ## Q: Should I go to graduate school?
 
-If you want a real career in statistics, yes. You do not learn enough during your undergraduate degree to be sufficient enough to handle data. You can read [this passage written by Jerry Brunner](https://utstat.toronto.edu/brunner/whattodo.html), a retired statistics professor at UofT.
+If you want a real career in statistics, **yes**. You do not learn enough during your undergraduate degree to be sufficient enough to handle data. You can read [this passage written by Jerry Brunner](https://utstat.toronto.edu/brunner/whattodo.html), a retired statistics professor at UofT.
 
 However, there are many people that do work with data without a statistics degree. However, they're likely doing more elementary work, like business analysis.
 
-You can make lots of money without a graduate degree, but the master's degree just opens more doors.
+You can make lots of money without a graduate degree, but the master's degree just opens more doors. Besides, everyone is getting one these days anyways...
 
 ## Q: Should I do a professional based or a theoretical based masters?
 
@@ -42,7 +42,7 @@ You can make lots of money without a graduate degree, but the master's degree ju
 
 Professional: the goal is for you to get a career. These are typically terminal degrees (i.e., the last one you aim to get.)
 
-You should get this type of master's if:
+You should get this type (professional) if:
 
 -   You know, with 100% certainty, that you don't want to do a Ph.D (ever).
 
@@ -60,9 +60,9 @@ I would go for a theoretical based master's if the above four bullet points do n
 
 If you hang around graduate school forums you'll eventually see some advice where it is recommended to switch schools for each degree (and for your post-doc) rather than staying at one institution multiple times.
 
-I notice such large differences from two different yet well respected institutions that if I ever pursue a PhD or a post-doc, I want to ensure these are all in different institutions. Ideally I should also extend this to a full-time professorship as well, but I can see myself wanting to gain tenure-ship at UTM if given the opportunity. (The reasons for this is completely personal, likely not applicable to the reader, so it will not be shared.)
+I notice such large differences from two different yet well respected institutions. Initially I had the opinion that if I ever pursue a PhD, I would want to ensure it's at a different institution *again.* However, I've changed my opinion upon a personal realization. If you're really curious you can message/email me about it, but it will be omitted since it is inapplicable to the reader.
 
-Now of course, finances are a huge consideration (i.e., if your parents already live near a good university and you don't have to worry about rent expenses then it isn't too bad to stay in one place). But if you're like me and you are constantly moving to one area to another & paying rent, you should absolutely move.
+Now of course, finances are a huge consideration (i.e., if your parents already live near a good university and you don't have to worry about rent expenses then it isn't too bad to stay in one place). But if you're like me and you are constantly moving to one area to another & paying rent, you should absolutely be open to move.
 
 Here are some benefits that I've personally noticed:
 
@@ -72,13 +72,11 @@ For instance, one professor may not believe in using hypothesis testing but woul
 
 In some sense, staying at one institution guarantees you'll be in an echo-chamber. You don't know what you don't know. Going to multiple equips you with different perspectives that may inspire you in your research and academic journey.
 
-There are countless of things I have noticed at McMaster compared to professors at UofT. Some of these include:
+There are countless of things I have noticed at McMaster compared to professors at UofT. Some include:
 
 -   Frequently collaborating with professors from other institutions. (I find that at UofT, professors tend to keep to their own faculty.)
 
 -   Massive importance in keeping up to date to technology and data science podcasts.
-
--   Different mathematical notation. (It's great to be exposed to multiple as different textbooks will use different notation anyhow.)
 
 2.  **Multiple alumni networks & work opportunities.**
 
@@ -92,7 +90,7 @@ Not all Ontario cities are created equal. I've **lived** (not just visited) in N
 
 ## Q: Which school should I apply for?
 
-One thing I realise that many students do at UofT is care about brand names. Names do matter; but they're only one part of the application process. (If the weight was super important, I would've went into debt to go to UofT for the master's program.)
+One thing I realise that UofT students care about brand names. Names do matter; but they're only one part of the application process. (If the weight was super important, I would've went into debt to go to UofT for the master's program.)
 
 If you are aiming to get into academia, and you want to stay in Canada, you should go to a [U15 institution](https://en.wikipedia.org/wiki/U15_Group_of_Canadian_Research_Universities).
 
@@ -108,7 +106,7 @@ You should be looking for potential supervisors during August-November of the sc
 
 One thing I've noticed at the University of Toronto is that it's quite common for professors in the research stream to have... Around 10 PhD students under supervision. Depending on how much support and a close relationship you want to have with your supervisor, this could be a red flag.
 
-You want a supervisor that’ll actually respond to emails. A couple schools have a policy where you can't reach out to find your own supervisor (i.e., Western). However, if possible reach out to prospective supervisors and ask to get in on a meeting. If they respond, here are some very important questions to consider:
+You want a supervisor that will actually respond to emails. A couple schools have a policy where you can't reach out to find your own supervisor (i.e., Western). However, if possible reach out to prospective supervisors and ask to get in on a meeting. If they respond, here are some very important questions to consider:
 
 -   How many students have they supervised in total, and where did they end up?
 
@@ -170,7 +168,7 @@ Consider the following:
 
 -   Lower ranked schools, particularly those that are not part of the U15 may have statistics masters programs that are highly cross-listed with the undergraduate courses. Many might have already been covered within the bachelors statistics program at UofT.
 
-    -   You don't want to take redundant courses! You want to learn.
+    -   You don't want to take redundant courses! You want to learn. (If you're doing a thesis based program though, it isn't too bad to have a bird course though...)
 
 -   Some course syllabus will name topics you might've already learned in undergrad, but the focus is so different that the material may be new to you. So pay attention and try to get as many resources as possible!
 
@@ -289,8 +287,6 @@ That being said, if you're going to a program that is a little more applied (McM
 Again, you need to look at the academic calendar of the program you're applying to, since some programs emphasize different areas of statistics.
 
 ## Q: What would you have done differently when applying to graduate school programs?
-
-I wouldn't have done much (regarding my graduate school admissions) differently; so far I'm loving McMaster and I wouldn't have done things much differently.
 
 1.  Research into prospective supervisors before applying to graduate school and get them to respond. This would've saved me from applying to schools without a supervisor in mind.
 

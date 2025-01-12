@@ -22,64 +22,64 @@ Moment generating functions and the convolution transformation method was covere
 
 **Topic**: elementary counting problems.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial2.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial1.pdf)
 
 ## Tutorial 2
 
 **Topics**: sample spaces, probability.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial2.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial2.pdf)
 
 ## Tutorial 3
 
 **Topic**: conditional probability.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial3.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial3.pdf)
 
 ## Tutorial 4
 
 **Topic:** probability mass functions.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial4.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial4.pdf)
 
 ## Tutorial 5
 
 **Topics:** discrete cumulative distribution functions and expected values.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial5.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial5.pdf)
 
 ## Tutorial 6
 
 **Topics:** total law of probability, poisson approximation to binomial.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial6.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial6.pdf)
 
 ## Tutorial 7
 
 **Topics:** discrete probability distributions such as binomial, geometric, hypergeometic, negative binomial.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial7.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial7.pdf)
 
 ## Tutorial 8
 
 **Topic:** probability density function.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial8.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial8.pdf)
 
 ## Tutorial 9
 
 **Topics:** standard normal distribution, binomial approximation to normal.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial9.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial9.pdf)
 
 ## Tutorial 10
 
 **Topics:** univariate transformations, bivariate probability distributions.
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial10.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial10.pdf)
 
 ## Tutorial 11
 
 **Topics:** sum of two probability distributions (not using moment generating functions)
 
-[Worksheet & Solution](assets/STATS2D03/Tutorial11.pdf)
+[Worksheet & Solution](STATS2D03/Tutorial11.pdf)
