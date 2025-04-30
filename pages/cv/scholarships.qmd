@@ -1,0 +1,64 @@
+---
+title: "Scholarships & Awards"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+## Awards
+
+**3.** [**Dean’s List Scholar**](https://artsci.calendar.utoronto.ca/academic-record#recog-acad-achievement) **- University of Toronto (2020, 2021, 2022)**
+
+Conferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.
+
+**2. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)**
+
+Awarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in [2021](https://www.utm.utoronto.ca/math-cs-stats/awards/honour-roll/2020-2021) and in [2022](https://www.utm.utoronto.ca/math-cs-stats/awards/student-awards/honour-roll/2021-2022).
+
+This award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)
+
+**1. Governor General’s Academic Bronze Medal - Saint Michael's Catholic High School (2019)**
+
+Awarded to the student who achieves the highest average in their graduating class in high school.
+
+Fun fact: If I did not receive this award, my parents would've been disappointed. (˶ˆᗜˆ˵)
+
+My parents didn't even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)
+
+
+## Scholarships
+
+**7. Ashbaugh Graduate Scholarship - McMaster University (2025)**
+
+The Ashabaugh Graduate Scholarships were established in 1987 by the bequest of F.K. Ashbaugh in memory of Mary Eliza Kingston, to support committed graduate students in their academic pursuits.
+
+**6. [Milos Novotny Fellowship](https://gs.mcmaster.ca/program/mathematics/#nav-scholarships) - McMaster University (2024)**
+
+Established through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.
+
+**5. [Ontario Graduate Scholarship (OGS)](https://osap.gov.on.ca/OSAPPortal/en/A-ZListofAid/PRDR019245.html) - McMaster University (2024)**
+
+The Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.
+
+**4. [NSERC Undergraduate Student Research Awards (USRA)](https://www.utm.utoronto.ca/math-cs-stats/news/2023-mcs-awards-ceremony-and-winners-congratulations) - University of Toronto (2023)**
+
+A scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.
+
+Paper: [Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity](https://www.mdpi.com/2075-1680/12/9/887)
+
+**3. [UTM Undergraduate Research Grant](https://www.utm.utoronto.ca/dean/awards-grants/undergraduate-awards-grants/utm-undergraduate-research-grants) - University of Toronto (2022)**
+
+These grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.
+
+-   Paper 1: [A Short Note on Generating a Random Sample from Finite Mixture Distributions](https://www.mdpi.com/2075-1680/13/5/307)
+
+-   Paper 2: [Evaluating model fit for type II censored data: a Bayesian non-parametric approach based on the Kullback-Leibler divergence estimation](https://doi.org/10.1080/03610918.2024.2417808)
+
+**2. [President's Scholars of Excellence Scholarship](https://future.utoronto.ca/scholarships/presidents-scholars-of-excellence-program/) - University of Toronto (2019)**
+
+Awarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.
+
+**1. Dr. Angelo Albanese Memorial Scholarship -** **Saint Michael's Catholic High School (2019)**
+
+Awarded to a student who best demonstrates a mature approach to academics and a determination to succeed.

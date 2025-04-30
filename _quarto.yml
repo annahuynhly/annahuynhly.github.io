@@ -9,15 +9,20 @@ website:
       - href: pages/index.qmd
         text: "Home"
       - pages/about.qmd
-      - pages/cv.qmd
+      - text: "Curriculum Vitae"
+        menu: 
+        - href: pages/cv/edu_exp.qmd
+          text: "Education & Experience"
+        - href: pages/cv/publications.qmd
+          text: "Publications & Conferences"
+        - href: pages/cv/scholarships.qmd
+          text: "Scholarships & Awards"
       - text: "Advice & Other"
         menu: 
           - href: pages/advice/advice_grad.qmd
             text: "Graduate School Admissions"
           - href: pages/advice/advice_undergrad.qmd
             text: "Succeeding in Undergrad"
-          - href: pages/bayesian.qmd
-            text: "Frequentist or Bayesian?"
       - text: "Teaching"
         menu: 
           - href: pages/teaching/sta304.qmd
@@ -26,7 +31,8 @@ website:
             text: "STATS 2D03 Fall 2024"
           - href: pages/teaching/sta260summer2024.qmd
             text: "STA260 Summer 2024"
-
+          - href: pages/teaching/math1aa3_1zb3winter2025.qmd
+            text: "MATH 1AA3 / 1ZB3 Winter 2025"
 format:
   html:
     theme: flatly

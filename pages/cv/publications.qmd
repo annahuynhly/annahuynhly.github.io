@@ -1,0 +1,79 @@
+---
+title: "Publications & Conferences"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+## Publications
+
+**10. Comparing physical analogue and traditional videos for learning and emotional engagement**
+
+-   Authors: Tingting Zhu, Rutwa Engineer, Xaria Prempeh, Anna Ly, Michelle Craig, Andrew Petersen
+
+-   Discover Education ✦ Volume 4 Issue 1 ✦ Pages 71 ✦ Springer International Publishing ✦ <https://doi.org/10.1007/s44217-025-00454-1>
+
+**9. Evaluating model fit for type II censored data: a Bayesian non-parametric approach based on the Kullback-Leibler divergence estimation**
+
+-   Authors: Luai Al-Labadi, Forough Fazeli-Asl, Anna Ly
+
+-   Communications in Statistics-Simulation and Computation ✦ Pages 1-15 ✦ Taylor & Francis ✦ <https://doi.org/10.1080/03610918.2024.2417808>
+
+**8. A Short Note on Generating a Random Sample from Finite Mixture Distributions**
+
+-   Authors: Luai Al Labadi, Anna Ly
+
+-   Axioms 2023 ✦ Volume 13 (5), Page 307 ✦ <https://doi.org/10.3390/axioms13050307>
+
+**7. Evaluating Storytelling Videos Using YouTube Analytics**
+
+-   Authors: Anna Ly, Tingting Zhu, Andrew Petersen
+
+-   SIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 2 ✦ Pages 1730 - 1731 ✦ <https://doi.org/10.1145/3626253.3635503>
+
+**6. "I Didn't Know": Examining Student Understanding of Academic Dishonesty in Computer Science**
+
+-   Authors: Michael Liut, Anna Ly, Jessica Jia-Ni Xu, Justice Banson, Paul Vrbik, Caroline D Hardin
+
+-   SIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 ✦ Pages 757 - 763 ✦ <https://doi.org/10.1145/3626252.3630753>
+
+**5. Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity**
+
+-   Authors: Luai Al-Labadi, Mohammed Hamlili, Anna Ly
+
+-   Axioms 2023 ✦ Volume 12 (9), Page 887 ✦ <https://doi.org/10.3390/axioms12090887>
+
+**4. "I Am Not Enough": Impostor Phenomenon Experiences of University Students**
+
+-   Authors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Sadia Sharmin, Lisa Zhang, Andrew Petersen
+
+-   ITiCSE 2023: Proceedings of the 2023 Conference on Innovation and Technology in Computer Science Education V. 1 ✦ Pages 313 - 319 ✦ <https://doi.org/10.1145/3587102.3588779>
+
+**3. Additional Evidence for the Prevalence of the Impostor Phenomenon in Computing**
+
+-   Authors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Andrew Petersen, Sadia Sharmin, Lisa Zhang
+
+-   SIGCSE 2022: Proceedings of the 53rd ACM Technical Symposium on Computer Science Education - Volume 1 ✦ Pages 654 - 660 ✦ <https://doi.org/10.1145/3478431.3499282>
+
+**2. Spatial Skills and Demographic Factors in CS1**
+
+-   Authors: Anna Ly, Jack Parkinson, Quintin Cutts, Michael Liut, Andrew Petersen
+
+-   Koli Calling '21: Proceedings of the 21st Koli Calling International Conference on Computing Education Research ✦ Article No.: 4, Pages 1 - 10 ✦ <https://doi.org/10.1145/3488042.3488049>
+
+**1. Revisiting syntax exercises in CS1**
+
+-   Authors: Anna Ly, John Edwards, Michael Liut, Andrew Petersen
+
+-   SIGITE '21: Proceedings of the 22nd Annual Conference on Information Technology Education ✦ Pages 9 - 14 ✦ <https://doi.org/10.1145/3450329.3476855>
+
+## Conferences
+
+**2. Joint Statistical Meetings (JSM) - Aug 2023**
+
+Panelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts
+
+**1. International Association for Statistical Education (IASE) - July 2023**
+
+Poster Presenter: [Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts](https://iase-web.org/Webinars.php?p=230711_2000)

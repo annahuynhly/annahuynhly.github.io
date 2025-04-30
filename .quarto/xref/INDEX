@@ -28,5 +28,17 @@
   },
   "pages/bayesian.qmd": {
     "bayesian.html": "a9d5f554"
+  },
+  "pages/teaching/math1aa3_1zb3winter2025.qmd": {
+    "math1aa3_1zb3winter2025.html": "1b4c6e95"
+  },
+  "pages/cv/scholarships.qmd": {
+    "scholarships.html": "e14ea731"
+  },
+  "pages/cv/publications.qmd": {
+    "publications.html": "c6072f69"
+  },
+  "pages/cv/edu_exp.qmd": {
+    "edu_exp.html": "53a94acb"
   }
 }

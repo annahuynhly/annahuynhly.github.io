@@ -8,15 +8,15 @@ toc-collapsible: true
 
 ## My Story
 
-::: {style="display: flex; align-items: flex-start; gap: 20px;"}
+:::: {style="display: flex; align-items: flex-start; gap: 20px;"}
 ::: {style="flex: 1;"}
-My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of both the Ontario Graduate Scholarship and the Milos Novotny Fellowship. I finished my undergraduate studies at the University of Toronto.
+My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of the Ontario Graduate Scholarship, the Milos Novotny Fellowship, and the Ashbaugh Graduate Scholarship. I finished my undergraduate studies at the University of Toronto.
 
 Since childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.
 :::
 
 <img src="assets/me.jpg" alt="Description" style="width: 200px; margin-left: 20px;"/>
-:::
+::::
 
 I also challenged my family's love for lotteries. Even back then, I had a sense of the gambler's fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.
 
@@ -28,29 +28,15 @@ I am passionate about teaching statistics because I recognize the importance of 
 
 Some of you may wonder why I decided to pursue McMaster for graduate school instead of UofT, or a more prestigious school. I was actually born at the McMaster Children's Hospital. I knew from the womb that I needed to return to my birth of origin. I wanted to return so quickly I visited during my teenage years and was locked up in the mental health ward. More importantly, I wanted to have an [academically pure bloodline](https://link.springer.com/article/10.1007/s12564-015-9391-8).
 
-## Academic Interests
+## Master's Thesis Topic
 
-I'm briefly interested in the following branches of statistics:
-
--   [Nonparametric Statistics](https://en.wikipedia.org/wiki/Nonparametric_statistics)
-
--   [Statistical Learning](https://en.wikipedia.org/wiki/Statistical_learning_theory)
-
--   [Computational Statistics](https://en.wikipedia.org/wiki/Computational_statistics)
-
-I currently don't know what my thesis is going to be about. I just started graduate school!
+I will be working on computing the Pitman closeness criterion for type-II hybrid censored data from the exponential distribution.
 
 ## Where to Find Me
 
 If you try to search for my name, you'll have a rough time finding me. There's even another "Anna Ly" in my extended family... There were multiple Anna Ly's at the University of Toronto. Sometimes students would email the incorrect one and be upset that I didn't respond to their email. Anyways, I could vent about this all day. Here are my actual profiles:
 
--   [Github](https://github.com/annahuynhly)
-
--   [Linkedin](https://www.linkedin.com/in/anna-ly-statistics-specialist/)
-
--   [Google Scholar](https://scholar.google.com/citations?user=9w41oS8AAAAJ&hl=en)
-
--   [Stackoverflow](https://stackoverflow.com/users/20815709/annahuynhly) (all I do is ask questions.)
+[Github](https://github.com/annahuynhly) \| [Linkedin](https://www.linkedin.com/in/anna-ly-statistics-specialist/) \| [Google Scholar](https://scholar.google.com/citations?user=9w41oS8AAAAJ&hl=en) \| [Stackoverflow](https://stackoverflow.com/users/20815709/annahuynhly) \| [Reddit](https://www.reddit.com/user/annahuynhly/) \| [Medium](https://medium.com/@AnnaLyStats) (personal blog)
 
 If the username so happens to include "Huynh" in the middle (i.e., annahuynhly) then it's more likely to be me. It is a common misconception that "Huynh" is my middle name. I have no middle name; it's my mom's last name.
 

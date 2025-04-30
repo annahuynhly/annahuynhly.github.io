@@ -6,3 +6,5 @@ format: html
 Welcome to my personal website! I made this site using [Quarto](https://quarto.org/docs/websites/).
 
 Here, you can gather information on me as well as some of my teaching notes.
+
+Last updated: April 29 2025

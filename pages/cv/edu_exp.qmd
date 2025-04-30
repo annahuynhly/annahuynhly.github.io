@@ -1,0 +1,101 @@
+---
+title: "Education, Experience, & Skills"
+toc: true
+toc-depth: 3 # This sets the depth of headers included in the TOC
+toc-location: left
+toc-collapsible: true
+---
+
+## Education
+
+**McMaster University ✦ M.Sc in Statistics.** (September 2024 - Present)
+
+-   CGPA: 12/12
+
+**University of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics.** (September 2019 - June 2024)
+
+-   CGPA: 3.92/4.00
+
+## Experience
+
+### **Department of Mathematics & Statistics, McMaster**
+
+**Teaching Assistant ✦ September 2024 - TBA**
+
+My appointments:
+
+-   [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) - Introduction to Probability (Fall 2024)
+
+-   [STATS 3A03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266607) - Applied Regression Analysis with SAS (Fall 2024; grading only)
+
+-   [MATH 1AA3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264957) - Calculus For Science II (Winter 2025)
+
+-   [MATH 1ZB3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264967) - Engineering Mathematics II (Winter 2025)
+
+-   [MATH 1XX3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264965) - Calculus for Math and Stats II (Winter 2025; grading only)
+
+### **Department of Statistical Sciences, University of Toronto**
+
+**Research Assistant ✦ November 2022 - August 2024**
+
+Under the direction of [Mike Evans](https://utstat.toronto.edu/mikevans/), I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work [here](https://www.utstat.utoronto.ca/mikevans/relativebeliefcode.html).
+
+### Epson Canada
+
+**Data & Evaluation Specialist** **✦ May 2022 - August 2023**
+
+I performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.
+
+Teams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.
+
+### Department of Mathematical and Computational Sciences, University of Toronto
+
+**Teaching Assistant ✦ July 2021 - August 2024**
+
+I prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students' questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.
+
+In fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.
+
+All of my appointments:
+
+-   [MAT136H5](https://utm.calendar.utoronto.ca/course/mat136h5): Integral Calculus (Winter 2022)
+
+-   [STA107H5](https://utm.calendar.utoronto.ca/course/sta107h5): An Introduction to Probability and Modelling (Winter 2022)
+
+-   [STA256H5](https://utm.calendar.utoronto.ca/course/sta256h5): Probability & Statistics I (Summer 2021, Fall 2021)
+
+-   [STA258H5](https://utm.calendar.utoronto.ca/course/sta258h5): Statistics with Applied Probability (Winter 2022)
+
+-   [STA260H5](https://utm.calendar.utoronto.ca/course/sta260h5): Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)
+
+-   [STA304H5](https://utm.calendar.utoronto.ca/course/sta304h5): Sampling & Survey Design (Fall 2022, Fall 2023)
+
+-   [STA305H5](https://utm.calendar.utoronto.ca/course/sta305h5): Experimental Design (Winter 2023, Winter 2024)
+
+-   [Math Circles](https://www.utm.utoronto.ca/math-cs-stats/outreach/math-circles): After-School Program for Secondary Students (Winter 2022, Fall 2023)
+
+**Research Assistant**
+
+I've had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I've worked, as well as a brief description of what I completed.
+
+-   **(Computer Science Education) September 2020 - August 2021**
+
+    -   Under the guidance of [Andrew Petersen](https://utmandrew.bitbucket.io/), I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers' insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.
+
+-   **(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024**
+
+    -   Working under the supervision of [Tingting Zhu](https://sites.utm.utoronto.ca/tzhu/content/tingting-zhu), I performed quantitative analysis on survey data to understand whether different types of videos improve students' learning. Additionally, I analyzed Youtube analytics to understand audience retention.
+
+-   **(Statistical Education)** **April 2024 - August 2024**
+
+    -   Advised by [Luai Al Labadi](https://www.utm.utoronto.ca/math-cs-stats/people/luai-al-labadi), I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses [Surveys, Sampling and Observational Data](https://utm.calendar.utoronto.ca/course/sta304h5) and [Experimental Design](https://utm.calendar.utoronto.ca/course/sta305h5). We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year.
+
+## Skills
+
+-   Programming Languages: R, Python, SAS, HTML/CSS, Excel VBA
+
+-   R Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown
+
+-   Python Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations
+
+-   Quarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive
