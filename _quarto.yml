@@ -17,12 +17,6 @@ website:
           text: "Publications & Conferences"
         - href: pages/cv/scholarships.qmd
           text: "Scholarships & Awards"
-      - text: "Advice & Other"
-        menu: 
-          - href: pages/advice/advice_grad.qmd
-            text: "Graduate School Admissions"
-          - href: pages/advice/advice_undergrad.qmd
-            text: "Succeeding in Undergrad"
       - text: "Teaching"
         menu: 
           - href: pages/teaching/sta304.qmd

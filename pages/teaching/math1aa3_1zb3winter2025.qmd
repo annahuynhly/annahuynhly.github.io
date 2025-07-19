@@ -8,7 +8,7 @@ toc-collapsible: true
 
 Here are the tutorial notes written by Anna Ly for MATH 1AA3 (Calculus For Science II) and MATH 1ZB3 (Engineering Mathematics II) during the winter 2025 semester. Despite the different course codes, the course content is actually the same.
 
-We followed Calculus by Steward et al. 9th edition. Tutorials focused on questions uploaded on [Childsmath](https://www.childsmath.ca/). 
+We followed Calculus by Steward et al. 9th edition. Tutorials focused on questions uploaded on [Childsmath](https://www.childsmath.ca/).
 
 Some of the titles in the document do not necessarily match the titles listed here; this is because one section was earlier than the other, where I essentially skipped one week of content to match their due dates.
 
@@ -42,7 +42,7 @@ Here, questions were taken from the uploaded sample test.
 
 [Worksheet & Solution (Sample 1)](MATH1AA3_1ZB3/calc2_tut5_part1.pdf)
 
-[Worksheet & Solution (Sample 2)](MATH1AA3_1ZB3/calc2_tut5_part1.pdf)
+[Worksheet & Solution (Sample 2)](MATH1AA3_1ZB3/calc2_tut5_part2.pdf)
 
 # Tutorial 6 (Assignment 5)
 
@@ -52,7 +52,7 @@ Chapters: 11.9-11.11, and 8.2
 
 # Tutorial 7 (Assignment 6)
 
-Chapters: 8.3, 9.1, 9.3, and 3.8 
+Chapters: 8.3, 9.1, 9.3, and 3.8
 
 [Worksheet & Solution](MATH1AA3_1ZB3/calc2_tut7.pdf)
 

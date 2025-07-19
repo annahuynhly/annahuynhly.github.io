@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "pages/index.html",
-    "href": "pages/index.html",
-    "title": "Anna Ly",
-    "section": "",
-    "text": "Welcome to my personal website! I made this site using Quarto.\nHere, you can gather information on me as well as some of my teaching notes.\nLast updated: April 29 2025"
-  },
-  {
     "objectID": "pages/about.html",
     "href": "pages/about.html",
     "title": "About",
@@ -21,11 +14,11 @@
     "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of the Ontario Graduate Scholarship, the Milos Novotny Fellowship, and the Ashbaugh Graduate Scholarship. I finished my undergraduate studies at the University of Toronto.\nSince childhood, I have always been interested in probability and data visualization. I vividly recall the excitement of using crayons to colour bar plots, and that is when I knew statistics and I were a dynamic duo.\n\n\n\nI also challenged my family’s love for lotteries. Even back then, I had a sense of the gambler’s fallacy and understood that casinos were not in the business of giving money away, but I could not prove it.\nAs an undergraduate student, I have received the privilege to be a teaching assistant for an introductory probability course. I shared how to compute probabilities and expected values of winning a Lotto 649 jackpot. Unfortunately, I still can’t convince my father. :)\nI love studying statistics because it allows me to comprehend the results of many studies without being an expert! Unlike previous generations, we live in a world where data and information are easily accessible, yet opinions formed without statistical evidence prevail. Conversely, I shape my perspectives similarly to a Bayesian model: I maintain prior beliefs but am always eager to adapt and refine them in the face of compelling evidence.\nI am passionate about teaching statistics because I recognize the importance of a supportive teaching assistant. I’ve always been inspired by those who guide their students with understanding and without judgment. I am deeply grateful for the effective educators who have positively influenced my academic journey.\nSome of you may wonder why I decided to pursue McMaster for graduate school instead of UofT, or a more prestigious school. I was actually born at the McMaster Children’s Hospital. I knew from the womb that I needed to return to my birth of origin. I wanted to return so quickly I visited during my teenage years and was locked up in the mental health ward. More importantly, I wanted to have an academically pure bloodline."
   },
   {
-    "objectID": "pages/about.html#academic-interests",
-    "href": "pages/about.html#academic-interests",
+    "objectID": "pages/about.html#masters-thesis-topic",
+    "href": "pages/about.html#masters-thesis-topic",
     "title": "About",
-    "section": "Academic Interests",
-    "text": "Academic Interests\nI’m briefly interested in the following branches of statistics:\n\nNonparametric Statistics\nStatistical Learning\nComputational Statistics\n\nI currently don’t know what my thesis is going to be about. I just started graduate school!"
+    "section": "Master’s Thesis Topic",
+    "text": "Master’s Thesis Topic\nI will be working on computing the Pitman closeness criterion for type-II hybrid censored data from the exponential distribution."
   },
   {
     "objectID": "pages/about.html#where-to-find-me",
@@ -39,140 +32,70 @@
     "href": "pages/about.html#fun-facts-about-me",
     "title": "About",
     "section": "Fun Facts About Me",
-    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI grew up in Niagara Falls, Canada. From my parent’s house, it takes only 45 minutes to walk to the falls. People say I’m lucky to have easy access to the magnificent falls but I’ve spent more time looking at that waterfall than studying statistics; it’s become an eyesore to me.\nMy ethnic background is a mystery, even to myself. For now I just tell people I’m Vietnamese because that’s what my parents speak at home, but it’s complicated.\n\nI don’t speak Vietnamese.\n\nI used to doodle all of the time; I hope to get back to drawing.\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\nIn an alternative timeline where I didn’t go to school, I’d be interested in becoming a Megaman speed-runner.\n\nI have followed a strict plant-based diet since 2019. I have never experienced brain fog, except for times I could not sleep!\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
+    "text": "Fun Facts About Me\nIn this section you’ll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)\n\nI grew up in Niagara Falls, Canada. From my parent’s house, it takes only 45 minutes to walk to the falls. People say I’m lucky to have easy access to the magnificent falls but I’ve spent more time looking at that waterfall than studying statistics; it’s become an eyesore to me.\nI personally identify as Vietnamese Canadian as its the language my parents speak at home, although my ethnic background is complicated (and I’d rather not elaborate). I do not speak Vietnamese. Growing up, my parents were often working multiple jobs, so I mostly picked up language and communication through television.\nI used to doodle all of the time; I hope to get back to drawing.\nI have a very modest Pokemon card collection. (I don’t play modern Pokemon though).\nI love Mega Man, especially the Battle Network and Zero series.\n\nI own a book that’s “worth” thousands of dollars… (I paid less than a hundred for it.)\nIn an alternative timeline where I didn’t go to school, I’d be interested in becoming a Megaman speed-runner.\n\nI have followed a strict plant-based diet since 2019.\nMy favourite youtubers are Catherine Klein and Lifting Vegan Logic."
   },
   {
-    "objectID": "pages/cv.html",
-    "href": "pages/cv.html",
-    "title": "Curriculum Vitae",
+    "objectID": "pages/cv/scholarships.html",
+    "href": "pages/cv/scholarships.html",
+    "title": "Scholarships & Awards",
     "section": "",
-    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)"
+    "text": "3. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n2. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n1. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school."
   },
   {
-    "objectID": "pages/cv.html#education",
-    "href": "pages/cv.html#education",
-    "title": "Curriculum Vitae",
+    "objectID": "pages/cv/scholarships.html#awards",
+    "href": "pages/cv/scholarships.html#awards",
+    "title": "Scholarships & Awards",
     "section": "",
-    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)"
+    "text": "3. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n2. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n1. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school."
   },
   {
-    "objectID": "pages/cv.html#experience",
-    "href": "pages/cv.html#experience",
-    "title": "Curriculum Vitae",
+    "objectID": "pages/cv/scholarships.html#scholarships",
+    "href": "pages/cv/scholarships.html#scholarships",
+    "title": "Scholarships & Awards",
+    "section": "Scholarships",
+    "text": "Scholarships\n7. Ashbaugh Graduate Scholarship - McMaster University (2025)\nThe Ashabaugh Graduate Scholarships were established in 1987 by the bequest of F.K. Ashbaugh in memory of Mary Eliza Kingston, to support committed graduate students in their academic pursuits.\n6. Milos Novotny Fellowship - McMaster University (2024)\nEstablished through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.\n5. Ontario Graduate Scholarship (OGS) - McMaster University (2024)\nThe Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.\n4. NSERC Undergraduate Student Research Awards (USRA) - University of Toronto (2023)\nA scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.\nPaper: Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n3. UTM Undergraduate Research Grant - University of Toronto (2022)\nThese grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.\n\nPaper 1: A Short Note on Generating a Random Sample from Finite Mixture Distributions\nPaper 2: Evaluating model fit for type II censored data: a Bayesian non-parametric approach based on the Kullback-Leibler divergence estimation\n\n2. President’s Scholars of Excellence Scholarship - University of Toronto (2019)\nAwarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.\n1. Dr. Angelo Albanese Memorial Scholarship - Saint Michael’s Catholic High School (2019)\nAwarded to a student who best demonstrates a mature approach to academics and a determination to succeed."
+  },
+  {
+    "objectID": "pages/index.html",
+    "href": "pages/index.html",
+    "title": "Anna Ly",
+    "section": "",
+    "text": "Welcome to my personal website! I made this site using Quarto.\nHere, you can gather information on me as well as some of my teaching notes.\nI recently deleted my “advice” page, as I plan to re-write them once/if I become a PhD student. However, if you would like access, feel free to contact me on Linkedin.\nLast updated: July 19 2025"
+  },
+  {
+    "objectID": "pages/cv/edu_exp.html",
+    "href": "pages/cv/edu_exp.html",
+    "title": "Education, Experience, & Skills",
+    "section": "",
+    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\n\nCGPA: 12/12\n\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)\n\nCGPA: 3.92/4.00"
+  },
+  {
+    "objectID": "pages/cv/edu_exp.html#education",
+    "href": "pages/cv/edu_exp.html#education",
+    "title": "Education, Experience, & Skills",
+    "section": "",
+    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\n\nCGPA: 12/12\n\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)\n\nCGPA: 3.92/4.00"
+  },
+  {
+    "objectID": "pages/cv/edu_exp.html#experience",
+    "href": "pages/cv/edu_exp.html#experience",
+    "title": "Education, Experience, & Skills",
     "section": "Experience",
-    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nI am a teaching assistant for STATS 2D03 - Introduction to Probability for the Fall 2024 term!\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work here.\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\n(Computer Science Education) September 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\n(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention.\n\n(Statistical Education) April 2024 - August 2024\n\nAdvised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses Surveys, Sampling and Observational Data and Experimental Design. We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year."
+    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nMy appointments:\n\nSTATS 2D03 - Introduction to Probability (Fall 2024)\nSTATS 3A03 - Applied Regression Analysis with SAS (Fall 2024; grading only)\nMATH 1AA3 - Calculus For Science II (Winter 2025)\nMATH 1ZB3 - Engineering Mathematics II (Winter 2025)\nMATH 1XX3 - Calculus for Math and Stats II (Winter 2025; grading only)\n\nR Programmer (Research Assistant) ✦ June 2025 - August 2025\nResolving issues in lme4, a widely used R package for (generalized) linear mixed-fixed effects models.\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work here.\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\n(Computer Science Education) September 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\n(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention.\n\n(Statistical Education) April 2024 - August 2024\n\nAdvised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses Surveys, Sampling and Observational Data and Experimental Design. We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year."
   },
   {
-    "objectID": "pages/cv.html#skills",
-    "href": "pages/cv.html#skills",
-    "title": "Curriculum Vitae",
+    "objectID": "pages/cv/edu_exp.html#skills",
+    "href": "pages/cv/edu_exp.html#skills",
+    "title": "Education, Experience, & Skills",
     "section": "Skills",
-    "text": "Skills\n\nProgramming Languages: R, Python, SAS, HTML/CSS, Excel VBA\nR Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown\nPython Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations\nQuarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive"
+    "text": "Skills\n\nProgramming Languages: R, Python, SAS, HTML/CSS, Excel VBA\nR Libraries: Shiny, Tidyverse, Easystats, Markdown\nPython Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations\nQuarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive"
   },
   {
-    "objectID": "pages/cv.html#publications",
-    "href": "pages/cv.html#publications",
-    "title": "Curriculum Vitae",
-    "section": "Publications",
-    "text": "Publications\n8. A Short Note on Generating a Random Sample from Finite Mixture Distributions\n\nAuthors: Luai Al Labadi, Anna Ly\nAxioms 2023 ✦ Volume 13 (5), Page 307 ✦ https://doi.org/10.3390/axioms13050307\n\n7. Evaluating Storytelling Videos Using YouTube Analytics\n\nAuthors: Anna Ly, Tingting Zhu, Andrew Petersen\nSIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 2 ✦ Pages 1730 - 1731 ✦ https://doi.org/10.1145/3626253.3635503\n\n6. “I Didn’t Know”: Examining Student Understanding of Academic Dishonesty in Computer Science\n\nAuthors: Michael Liut, Anna Ly, Jessica Jia-Ni Xu, Justice Banson, Paul Vrbik, Caroline D Hardin\nSIGCSE 2024: Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 ✦ Pages 757 - 763 ✦ https://doi.org/10.1145/3626252.3630753\n\n5. Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n\nAuthors: Luai Al-Labadi, Mohammed Hamlili, Anna Ly\nAxioms 2023 ✦ Volume 12 (9), Page 887 ✦ https://doi.org/10.3390/axioms12090887\n\n4. “I Am Not Enough”: Impostor Phenomenon Experiences of University Students\n\nAuthors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Sadia Sharmin, Lisa Zhang, Andrew Petersen\nITiCSE 2023: Proceedings of the 2023 Conference on Innovation and Technology in Computer Science Education V. 1 ✦ Pages 313 - 319 ✦ https://doi.org/10.1145/3587102.3588779\n\n3. Additional Evidence for the Prevalence of the Impostor Phenomenon in Computing\n\nAuthors: Angela Zavaleta Bernuy, Anna Ly, Brian Harrington, Michael Liut, Andrew Petersen, Sadia Sharmin, Lisa Zhang\nSIGCSE 2022: Proceedings of the 53rd ACM Technical Symposium on Computer Science Education - Volume 1 ✦ Pages 654 - 660 ✦ https://doi.org/10.1145/3478431.3499282\n\n2. Spatial Skills and Demographic Factors in CS1\n\nAuthors: Anna Ly, Jack Parkinson, Quintin Cutts, Michael Liut, Andrew Petersen\nKoli Calling ’21: Proceedings of the 21st Koli Calling International Conference on Computing Education Research ✦ Article No.: 4, Pages 1 - 10 ✦ https://doi.org/10.1145/3488042.3488049\n\n1. Revisiting syntax exercises in CS1\n\nAuthors: Anna Ly, John Edwards, Michael Liut, Andrew Petersen\nSIGITE ’21: Proceedings of the 22nd Annual Conference on Information Technology Education ✦ Pages 9 - 14 ✦ https://doi.org/10.1145/3450329.3476855"
-  },
-  {
-    "objectID": "pages/cv.html#conferences",
-    "href": "pages/cv.html#conferences",
-    "title": "Curriculum Vitae",
-    "section": "Conferences",
-    "text": "Conferences\n2. Joint Statistical Meetings (JSM) - Aug 2023\nPanelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts\n1. International Association for Statistical Education (IASE) - July 2023\nPoster Presenter: Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts"
-  },
-  {
-    "objectID": "pages/cv.html#scholarships-awards",
-    "href": "pages/cv.html#scholarships-awards",
-    "title": "Curriculum Vitae",
-    "section": "Scholarships & Awards",
-    "text": "Scholarships & Awards\n9. Milos Novotny Fellowship - McMaster University (2024)\nEstablished through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.\n8. Ontario Graduate Scholarship (OGS) - McMaster University (2024)\nThe Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.\n7. NSERC Undergraduate Student Research Awards (USRA) - University of Toronto (2023)\nA scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.\nPaper: Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n6. UTM Undergraduate Research Grant - University of Toronto (2022)\nThese grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.\n\nPaper 1: A Short Note on Generating a Random Sample from Finite Mixture Distributions\nPaper 2: TBA…\n\n5. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n4. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n3. President’s Scholars of Excellence Scholarship - University of Toronto (2019)\nAwarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.\n2. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school.\nFun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)\nMy parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)\n1. Dr. Angelo Albanese Memorial Scholarship - Saint Michael’s Catholic High School (2019)\nAwarded to a student who best demonstrates a mature approach to academics and a determination to succeed."
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html",
-    "href": "pages/teaching/stats2d03fall2024.html",
-    "title": "STATS 2D03 Summer 2024",
+    "objectID": "pages/bayesian.html",
+    "href": "pages/bayesian.html",
+    "title": "Frequentist or Bayesian?",
     "section": "",
-    "text": "Here are the tutorial notes written by Anna Ly for STATS 2D03 during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury.\nThe instructors were Katherine Davies and J. E. Paguyo. We followed A First Course in Probability by Sheldon Ross, 10th edition.\nThe textbook that we followed had a higher emphasis for word problems. If you are interesting in pursuing statistics and mathematics, I would highly recommend Probability and Statistical Inference by Robert Hogg, Elliot Tanis, and Dale Zimmerman instead, which focuses heavily more on mathematics.\nI used LaTeX for most of the tutorials up until there were more calculus, as most of these tutorials consisted of counting problems.\nThe questions in tutorial were from the textbook, except for tutorial 7 which Hyuna came up with.\nMoment generating functions and the convolution transformation method was covered in the course, but there were no tutorials covering those parts."
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-1",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-1",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 1",
-    "text": "Tutorial 1\nTopic: elementary counting problems.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-2",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-2",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 2",
-    "text": "Tutorial 2\nTopics: sample spaces, probability.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-3",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-3",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 3",
-    "text": "Tutorial 3\nTopic: conditional probability.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-4",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-4",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 4",
-    "text": "Tutorial 4\nTopic: probability mass functions.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-5",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-5",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 5",
-    "text": "Tutorial 5\nTopics: discrete cumulative distribution functions and expected values.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-6",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-6",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 6",
-    "text": "Tutorial 6\nTopics: total law of probability, poisson approximation to binomial.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-7",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-7",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 7",
-    "text": "Tutorial 7\nTopics: discrete probability distributions such as binomial, geometric, hypergeometic, negative binomial.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-8",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-8",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 8",
-    "text": "Tutorial 8\nTopic: probability density function.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-9",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-9",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 9",
-    "text": "Tutorial 9\nTopics: standard normal distribution, binomial approximation to normal.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-10",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-10",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 10",
-    "text": "Tutorial 10\nTopics: univariate transformations, bivariate probability distributions.\nWorksheet & Solution"
-  },
-  {
-    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-11",
-    "href": "pages/teaching/stats2d03fall2024.html#tutorial-11",
-    "title": "STATS 2D03 Summer 2024",
-    "section": "Tutorial 11",
-    "text": "Tutorial 11\nTopics: sum of two probability distributions (not using moment generating functions)\nWorksheet & Solution"
+    "text": "TL;DR: this article is about how I convinced myself to be a Bayesian. Note that Frequentist vs Bayesian is a common debate amongst statisticians.\nMy undergraduate prince (c)harming (now ex) was determined to challenge me on everything I believed in. He was incredibly skilled at arguing and usually had better answers for almost everything, and I usually depended on him for things I didn’t know. He left one question for me to answer: how did I benefit him in our relationship? I never found a sufficient answer for him. Due to my insecurities, I did things I shouldn’t have and I contributed to the dramatic end of our relationship.\nAt the start of undergrad, I decided to go vegan for ethical reasons, and I was determined to stick with it. I believed in living that lifestyle—and still do. To stay resolute, I became obsessed with watching vegan debate videos. These two experiences—going vegan and frequently debating in my past relationship—shaped me into someone who can argue.\nI’ve always enjoyed shouting weird phrases in ways that catch people’s attention, crafting sentences that even generative AI can never form. One early morning, as the sun was just rising on a random Wednesday, I spontaneously made an obscure comparison to my graduate school sweetheart: “Being Bayesian is like being vegan.”\nWanting to push the analogy further, I continued, “People will tell you that being Bayesian is too computationally expensive… but really, with modern computers, it’s not an excuse.”\nMy voice rising, I added, “And everyone swears by frequentist methods because that’s how we started, and it’s what we’ve always done—just like people eat meat because they were born into families that eat meat. But that doesn’t necessarily mean Bayesian methods are bad!\nThere’s so much evidence for why we should adopt Bayesian approaches. First, we can probably all agree that frequentist hypothesis testing is flawed and that p-values are widely misunderstood. A simple null hypothesis—the foundation of most common tests—is almost never true. The probability of obtaining a statistic that exactly matches the null hypothesis is incredibly low.\nSecond, the complete class theorem (Ferguson, 1967) demonstrates that for any procedure, there exists a better Bayesian alternative. Bayesian statistics is also more general: frequentist methods assume that population parameters are fixed, while Bayesian methods do not! The only fixed element in Bayesian statistics is the prior you choose to use (from my understanding…)\nCritics often say Bayesian statistics is ‘more subjective,’ but frequentist models come with their own assumptions—assumptions that often don’t hold. For instance, many people claim their data follows a normal distribution when it doesn’t. As the saying goes, all models are wrong, but Bayesian ones have the flexibility to pull us closer to the truth.\nUltimately, the main reason people stick with frequentist methods is convenience. And just because something is easier doesn’t mean it’s the best approach.”\nI’m not going to delve into the details of how this is analogous to arguments for veganism, but if you genuinely consider why people choose to go vegan, you’ll understand. I also recognize that veganism is fundamentally a moral issue. But similarly, if you care about pursuing true knowledge in academia, there’s something troubling about modeling data incorrectly.\nThat said, I’m still not a true Bayesian. There are times when I will use frequentist methods simply because they’re universally accepted and required for certain situations, and I am ashamed of it! I aspire to improve my statistical skills and, one day, consistently employ Bayesian approaches—even for simple tests such as the comparisons of means between two groups. (That being said, you may need to be a frequentist so you don’t get fired from your career.)\nI may cringe at this piece in the future—and that would be a good thing! It would mean I’ve grown and learned. But for now, I’ve accidentally convinced myself to become a Bayesian. Such is the curse of learning how to argue."
   },
   {
     "objectID": "pages/teaching/sta260summer2024.html",
@@ -271,6 +194,90 @@
     "title": "STA260 Summer 2024",
     "section": "Additional Guides",
     "text": "Additional Guides\nThese are some additional notes that may be useful for students.\n\nReview Sheet\nBelow is a formula sheet that was created for the final exam during the winter 2022 session. However, these were not provided for STA260 summer 2022 final exam. Nonetheless, this is a good summary of most equations/formulas you should know before the term tests and exams.\nSTA260 Formula/Review Sheet\n\n\nTextbook Solution Manual\nThere’s a public solution manual found here.\nWarnings:\n\nThis is not an official solution manuals, and there are plenty of typos.\nMany solutions only make sense if you understand the course material; they do not go in depth. If you wrote their solutions, word-for-word on an assessment, it is unlikely for you to receive full marks.\nIt is pretty good at providing directions if you’re lost.\n\n\n\nGuides for Using Statistical Tables\nThese are guides for using the statistical tables located in Mathematical Statistics with Applications (7th Edition).\n\\(Z\\) Table Guide ✦ \\(t_{v}\\) Table Guide ✦ \\(F_{n_{1}, n_{2}}\\) Table Guide ✦ \\(\\chi^{2}_{n}\\) Table Guide"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html",
+    "href": "pages/teaching/stats2d03fall2024.html",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "",
+    "text": "Here are the tutorial notes written by Anna Ly for STATS 2D03 during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury. In fact, Hyuna picked the questions.\nThe instructors were Katherine Davies and J. E. Paguyo. We followed A First Course in Probability by Sheldon Ross, 10th edition.\nThe textbook that we followed had a higher emphasis for word problems. If you are interesting in pursuing statistics and mathematics, I would highly recommend Probability and Statistical Inference by Robert Hogg, Elliot Tanis, and Dale Zimmerman instead, which focuses heavily more on mathematics.\nI used LaTeX for most of the tutorials up until there were more calculus, as most of these tutorials consisted of counting problems.\nThe questions in tutorial were from the textbook, except for tutorial 7 which Hyuna came up with.\nMoment generating functions and the convolution transformation method was covered in the course, but there were no tutorials covering those parts."
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-1",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-1",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 1",
+    "text": "Tutorial 1\nTopic: elementary counting problems.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-2",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-2",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 2",
+    "text": "Tutorial 2\nTopics: sample spaces, probability.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-3",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-3",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 3",
+    "text": "Tutorial 3\nTopic: conditional probability.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-4",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-4",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 4",
+    "text": "Tutorial 4\nTopic: probability mass functions.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-5",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-5",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 5",
+    "text": "Tutorial 5\nTopics: discrete cumulative distribution functions and expected values.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-6",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-6",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 6",
+    "text": "Tutorial 6\nTopics: total law of probability, poisson approximation to binomial.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-7",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-7",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 7",
+    "text": "Tutorial 7\nTopics: discrete probability distributions such as binomial, geometric, hypergeometic, negative binomial.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-8",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-8",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 8",
+    "text": "Tutorial 8\nTopic: probability density function.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-9",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-9",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 9",
+    "text": "Tutorial 9\nTopics: standard normal distribution, binomial approximation to normal.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-10",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-10",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 10",
+    "text": "Tutorial 10\nTopics: univariate transformations, bivariate probability distributions.\nWorksheet & Solution"
+  },
+  {
+    "objectID": "pages/teaching/stats2d03fall2024.html#tutorial-11",
+    "href": "pages/teaching/stats2d03fall2024.html#tutorial-11",
+    "title": "STATS 2D03 Summer 2024",
+    "section": "Tutorial 11",
+    "text": "Tutorial 11\nTopics: sum of two probability distributions (not using moment generating functions)\nWorksheet & Solution"
   },
   {
     "objectID": "pages/advice/advice_undergrad.html",
@@ -399,27 +406,6 @@
     "text": "This section is not complete and will be changed overtime. I am just compiling notes on mathematical statistics, which may be useful for others (or I may use it as a reference for teaching in the future.) Most of these notes are meant to be high-level explanations as opposed to formal proofs.\nThere is no promise that these notes will be consistently updated.\n\nSuppose that \\(X = (x_{1}, x_{2}, ..., x_{n})^{T}\\) where \\(x_{i}\\) are i.i.d samples.\nA statistic is just a function of the data.\nA statistic \\(T(X)\\) is called sufficient of \\(\\theta\\) if all of the necessary information needed to estimate \\(\\theta\\) is contained in \\(T(X)\\). The goal of finding sufficient statistics is to essentially achieve data reduction by ignoring unnecessary information.\nNote that if \\(T(X)\\) is sufficient, then any function containing \\(T(X)\\) is also sufficient. However, if sufficient statistics was invented to achieve data reduction, then it’s important to find the most simple sufficient statistic.\n\\(T(X)\\) is called a minimal sufficient statistic if every sufficient statistic contains \\(T(X)\\)."
   },
   {
-    "objectID": "pages/teaching/sta304.html",
-    "href": "pages/teaching/sta304.html",
-    "title": "STA304 Project Resources",
-    "section": "",
-    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nSTA304 Hypothesis Testing & Statistical Tests Review\nWARNING: at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I may re-write this in the future after obtaining more training in approaches and best practices.\nAs of December 19th 2024, I generally disagree with a lot that I have written and I would like to revise it, heavily. Nonetheless, it’s still beyond what students are expected to know for STA304 but I would like to give some warnings."
-  },
-  {
-    "objectID": "pages/bayesian.html",
-    "href": "pages/bayesian.html",
-    "title": "Frequentist or Bayesian?",
-    "section": "",
-    "text": "TL;DR: this article is about how I convinced myself to be a Bayesian. Note that Frequentist vs Bayesian is a common debate amongst statisticians.\nMy undergraduate prince (c)harming (now ex) was determined to challenge me on everything I believed in. He was incredibly skilled at arguing and usually had better answers for almost everything, and I usually depended on him for things I didn’t know. He left one question for me to answer: how did I benefit him in our relationship? I never found a sufficient answer for him. Due to my insecurities, I did things I shouldn’t have and I contributed to the dramatic end of our relationship.\nAt the start of undergrad, I decided to go vegan for ethical reasons, and I was determined to stick with it. I believed in living that lifestyle—and still do. To stay resolute, I became obsessed with watching vegan debate videos. These two experiences—going vegan and frequently debating in my past relationship—shaped me into someone who can argue.\nI’ve always enjoyed shouting weird phrases in ways that catch people’s attention, crafting sentences that even generative AI can never form. One early morning, as the sun was just rising on a random Wednesday, I spontaneously made an obscure comparison to my graduate school sweetheart: “Being Bayesian is like being vegan.”\nWanting to push the analogy further, I continued, “People will tell you that being Bayesian is too computationally expensive… but really, with modern computers, it’s not an excuse.”\nMy voice rising, I added, “And everyone swears by frequentist methods because that’s how we started, and it’s what we’ve always done—just like people eat meat because they were born into families that eat meat. But that doesn’t necessarily mean Bayesian methods are bad!\nThere’s so much evidence for why we should adopt Bayesian approaches. First, we can probably all agree that frequentist hypothesis testing is flawed and that p-values are widely misunderstood. A simple null hypothesis—the foundation of most common tests—is almost never true. The probability of obtaining a statistic that exactly matches the null hypothesis is incredibly low.\nSecond, the complete class theorem (Ferguson, 1967) demonstrates that for any procedure, there exists a better Bayesian alternative. Bayesian statistics is also more general: frequentist methods assume that population parameters are fixed, while Bayesian methods do not! The only fixed element in Bayesian statistics is the prior you choose to use (from my understanding…)\nCritics often say Bayesian statistics is ‘more subjective,’ but frequentist models come with their own assumptions—assumptions that often don’t hold. For instance, many people claim their data follows a normal distribution when it doesn’t. As the saying goes, all models are wrong, but Bayesian ones have the flexibility to pull us closer to the truth.\nUltimately, the main reason people stick with frequentist methods is convenience. And just because something is easier doesn’t mean it’s the best approach.”\nI’m not going to delve into the details of how this is analogous to arguments for veganism, but if you genuinely consider why people choose to go vegan, you’ll understand. I also recognize that veganism is fundamentally a moral issue. But similarly, if you care about pursuing true knowledge in academia, there’s something troubling about modeling data incorrectly.\nThat said, I’m still not a true Bayesian. There are times when I will use frequentist methods simply because they’re universally accepted and required for certain situations, and I am ashamed of it! I aspire to improve my statistical skills and, one day, consistently employ Bayesian approaches—even for simple tests such as the comparisons of means between two groups. (That being said, you may need to be a frequentist so you don’t get fired from your career.)\nI may cringe at this piece in the future—and that would be a good thing! It would mean I’ve grown and learned. But for now, I’ve accidentally convinced myself to become a Bayesian. Such is the curse of learning how to argue."
-  },
-  {
-    "objectID": "pages/about.html#masters-thesis-topic",
-    "href": "pages/about.html#masters-thesis-topic",
-    "title": "About",
-    "section": "Master’s Thesis Topic",
-    "text": "Master’s Thesis Topic\nI will be working on computing the Pitman closeness criterion for type-II hybrid censored data from the exponential distribution."
-  },
-  {
     "objectID": "pages/teaching/math1aa3_1zb3winter2025.html",
     "href": "pages/teaching/math1aa3_1zb3winter2025.html",
     "title": "MATH 1AA3/1ZB3 Winter 2025",
@@ -427,46 +413,11 @@
     "text": "Here are the tutorial notes written by Anna Ly for MATH 1AA3 (Calculus For Science II) and MATH 1ZB3 (Engineering Mathematics II) during the winter 2025 semester. Despite the different course codes, the course content is actually the same.\nWe followed Calculus by Steward et al. 9th edition. Tutorials focused on questions uploaded on Childsmath.\nSome of the titles in the document do not necessarily match the titles listed here; this is because one section was earlier than the other, where I essentially skipped one week of content to match their due dates.\n\nTutorial 1 (Assignment 1)\nChapters: 7.5 and 7.8\nWorksheet & Solution\n\n\nTutorial 2 (Assignment 2)\nChapters: 11.1-11.2\nWorksheet & Solution\n\n\nTutorial 3 (Assignment 3)\nChapters: 11.2-11.4\nWorksheet & Solution\n\n\nTutorial 4 (Assignment 4)\nChapters: 11.5-11.8\nWorksheet & Solution\n\n\nTutorial 5 (Test Review)\nHere, questions were taken from the uploaded sample test.\nWorksheet & Solution (Sample 1)\nWorksheet & Solution (Sample 2)\n\n\nTutorial 6 (Assignment 5)\nChapters: 11.9-11.11, and 8.2\nWorksheet & Solution\n\n\nTutorial 7 (Assignment 6)\nChapters: 8.3, 9.1, 9.3, and 3.8\nWorksheet & Solution\n\n\nTutorial 8 (Assignment 7)\nChapters: 9.5, 10.1, and 10.2\nWorksheet & Solution\n\n\nTutorial 9 (Test Review)\nA custom made exam review was created, going over most of the concepts needed for the term test.\nBeamer Slides\n\n\nTutorial 10 (Assignment 8)\nChapters: 10.2-10.4 and 14.1-14.3\nWorksheet & Solution\n\n\nTutorial 11 (Assignment 9)\nChapters: 14.4-14.6\nWorksheet & Solution\n\n\nTutorial 12 (Exam Review)\nExam review focused on questions from uploaded sample tests.\nWorksheet & Solution (Sample 1)\nWorksheet & Solution (Sample 2)\nBeamer Slides (Few Relevant Equations/Theorems))\nAdditional Practice Problems"
   },
   {
-    "objectID": "pages/cv/scholarships.html",
-    "href": "pages/cv/scholarships.html",
-    "title": "Scholarships & Awards",
+    "objectID": "pages/teaching/sta304.html",
+    "href": "pages/teaching/sta304.html",
+    "title": "STA304 Project Resources",
     "section": "",
-    "text": "3. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n2. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n1. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school.\nFun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)\nMy parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)"
-  },
-  {
-    "objectID": "pages/cv/scholarships.html#scholarships-awards",
-    "href": "pages/cv/scholarships.html#scholarships-awards",
-    "title": "Scholarships & Awards",
-    "section": "",
-    "text": "10. Ashbaugh Graduate Scholarship - McMaster University (2025)\nThe Ashabaugh Graduate Scholarships were established in 1987 by the bequest of F.K. Ashbaugh in memory of Mary Eliza Kingston, to support committed graduate students in their academic pursuits.\n9. Milos Novotny Fellowship - McMaster University (2024)\nEstablished through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.\n8. Ontario Graduate Scholarship (OGS) - McMaster University (2024)\nThe Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.\n7. NSERC Undergraduate Student Research Awards (USRA) - University of Toronto (2023)\nA scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.\nPaper: Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n6. UTM Undergraduate Research Grant - University of Toronto (2022)\nThese grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.\n\nPaper 1: A Short Note on Generating a Random Sample from Finite Mixture Distributions\nPaper 2: TBA…\n\n5. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n4. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n3. President’s Scholars of Excellence Scholarship - University of Toronto (2019)\nAwarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.\n2. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school.\nFun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)\nMy parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)\n1. Dr. Angelo Albanese Memorial Scholarship - Saint Michael’s Catholic High School (2019)\nAwarded to a student who best demonstrates a mature approach to academics and a determination to succeed."
-  },
-  {
-    "objectID": "pages/cv/edu_exp.html",
-    "href": "pages/cv/edu_exp.html",
-    "title": "Education, Experience, & Skills",
-    "section": "",
-    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\n\nCGPA: 12/12\n\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)\n\nCGPA: 3.92/4.00"
-  },
-  {
-    "objectID": "pages/cv/edu_exp.html#education",
-    "href": "pages/cv/edu_exp.html#education",
-    "title": "Education, Experience, & Skills",
-    "section": "",
-    "text": "McMaster University ✦ M.Sc in Statistics. (September 2024 - Present)\n\nCGPA: 12/12\n\nUniversity of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics. (September 2019 - June 2024)\n\nCGPA: 3.92/4.00"
-  },
-  {
-    "objectID": "pages/cv/edu_exp.html#experience",
-    "href": "pages/cv/edu_exp.html#experience",
-    "title": "Education, Experience, & Skills",
-    "section": "Experience",
-    "text": "Experience\n\nDepartment of Mathematics & Statistics, McMaster\nTeaching Assistant ✦ September 2024 - TBA\nMy appointments:\n\nSTATS 2D03 - Introduction to Probability (Fall 2024)\nSTATS 3A03 - Applied Regression Analysis with SAS (Fall 2024; grading only)\nMATH 1AA3 - Calculus For Science II (Winter 2025)\nMATH 1ZB3 - Engineering Mathematics II (Winter 2025)\nMATH 1XX3 - Calculus for Math and Stats II (Winter 2025; grading only)\n\n\n\nDepartment of Statistical Sciences, University of Toronto\nResearch Assistant ✦ November 2022 - August 2024\nUnder the direction of Mike Evans, I spearheaded development of a full-stack R Shiny web application for relative belief inferences to be used by statistical researchers. You may view some of my work here.\n\n\nEpson Canada\nData & Evaluation Specialist ✦ May 2022 - August 2023\nI performed data capturing and annotation, analyzed results, and provided visualization/graphs for the research team. Furthermore, I worked on Python software development and refactoring and wrote appropriate evaluation process documentation. Moreover, I aided in researching robotic hardware platforms to evaluate the performance of machine learning algorithms, such as differentiable rendering, XAI, and representation learning.\nTeams were being restructured and I spent the remaining of my internship performing business analysis tasks. I conducted market research to uncover optimal product applications across industries, survey design & deployment, constructed SWOT analysis reports, and developed predictive financial models in Excel VBA for COGS forecasting, enabling accurate & rapid cost analysis of 3D computer vision solutions for management.\n\n\nDepartment of Mathematical and Computational Sciences, University of Toronto\nTeaching Assistant ✦ July 2021 - August 2024\nI prepared and ran discussion-based and skill-development tutorials to at least 200 students, graded assessments for over 1000 students, hosted scheduled office hours, invigilated tests/exams, and answered students’ questions on a classroom forum hosted on Piazza. I independently facilitated and managed large-scale final course projects for Sampling & Survey Design and Experimental Design.\nIn fact, I mostly created this website to post some of my useful tutorial notes. I believe it will help students in the future.\nAll of my appointments:\n\nMAT136H5: Integral Calculus (Winter 2022)\nSTA107H5: An Introduction to Probability and Modelling (Winter 2022)\nSTA256H5: Probability & Statistics I (Summer 2021, Fall 2021)\nSTA258H5: Statistics with Applied Probability (Winter 2022)\nSTA260H5: Probability & Statistics II (Winter 2022, Fall 2023, Summer 2024)\nSTA304H5: Sampling & Survey Design (Fall 2022, Fall 2023)\nSTA305H5: Experimental Design (Winter 2023, Winter 2024)\nMath Circles: After-School Program for Secondary Students (Winter 2022, Fall 2023)\n\nResearch Assistant\nI’ve had multiple contracts as a research assistant for computer science researchers and statistics researchers. Below are some of the dates I’ve worked, as well as a brief description of what I completed.\n\n(Computer Science Education) September 2020 - August 2021\n\nUnder the guidance of Andrew Petersen, I aided in deploying surveys via Qualtrics, refining responses for Python/R graphs (line charts, box plots, bar plots, histograms, correlation matrices) for researchers’ insights. I also computed and reported statistics (Python/R) to bolster research paper development, and assisted in writing four published journal articles.\n\n(Computer Science Education) April 2023 - August 2023, April 2024 - August 2024\n\nWorking under the supervision of Tingting Zhu, I performed quantitative analysis on survey data to understand whether different types of videos improve students’ learning. Additionally, I analyzed Youtube analytics to understand audience retention.\n\n(Statistical Education) April 2024 - August 2024\n\nAdvised by Luai Al Labadi, I preformed quantitative analysis on survey data to understand the impact of incorporating projects into statistical courses, specifically for the courses Surveys, Sampling and Observational Data and Experimental Design. We also researched suggestions for implementing projects that will be incorporated in the Fall 2024 - Winter 2025 academic year."
-  },
-  {
-    "objectID": "pages/cv/edu_exp.html#skills",
-    "href": "pages/cv/edu_exp.html#skills",
-    "title": "Education, Experience, & Skills",
-    "section": "Skills",
-    "text": "Skills\n\nProgramming Languages: R, Python, SAS, HTML/CSS, Excel VBA\nR Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown\nPython Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations\nQuarto, PostgreSQL, Git, LaTeX, Qualtrics, Microsoft 365 (Word, Excel, PowerPoint, Power Bi), Google Drive"
+    "text": "I have been a teaching assistant for STA304 (Surveys, Sampling and Observational Data) under the supervision of Luai Al Labadi during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.\nStudents are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.\nI’ve personally observed that many students don’t know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:\nWARNING: at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I AIM TO re-write this in the future after obtaining more training in approaches and best practices.\nAs of December 19th 2024, I generally disagree with a lot that I have written and I would like to revise it, heavily. Nonetheless, it’s still beyond what students are expected to know for STA304 but I would like to give some warnings.\nSTA304 Hypothesis Testing & Statistical Tests Review"
   },
   {
     "objectID": "pages/cv/publications.html",
@@ -488,19 +439,5 @@
     "title": "Publications & Conferences",
     "section": "Conferences",
     "text": "Conferences\n2. Joint Statistical Meetings (JSM) - Aug 2023\nPanelist: Pedagogical Perspectives on Teaching and Communiating Statistical Sciences Through the Arts\n1. International Association for Statistical Education (IASE) - July 2023\nPoster Presenter: Thinking Beyond Numbers - Statistical Perceptions of Communicating Statistics Through the Arts"
-  },
-  {
-    "objectID": "pages/cv/scholarships.html#awards",
-    "href": "pages/cv/scholarships.html#awards",
-    "title": "Scholarships & Awards",
-    "section": "",
-    "text": "3. Dean’s List Scholar - University of Toronto (2020, 2021, 2022)\nConferred only on students who have achieved a cumulative grade point average of 3.50 at the end of each session in which the fifth, tenth, fifteenth or twentieth course has been passed at the University of Toronto.\n2. Mathematical and Computational Sciences Honor Roll - University of Toronto (2021, 2022)\nAwarded to students for achieving A+ for multiple mathematical sciences courses at the University of Toronto. I achieved at least five A+ grades in 2021 and in 2022.\nThis award was discontinued in the 2022-2023 school year. I did get A+ in 5 mathematical sciences courses in the 2023-2024 academic year though. ;)\n1. Governor General’s Academic Bronze Medal - Saint Michael’s Catholic High School (2019)\nAwarded to the student who achieves the highest average in their graduating class in high school.\nFun fact: If I did not receive this award, my parents would’ve been disappointed. (˶ˆᗜˆ˵)\nMy parents didn’t even want me to pursue graduate studies. What were they expecting!? (•᷄ࡇ•᷅)"
-  },
-  {
-    "objectID": "pages/cv/scholarships.html#scholarships",
-    "href": "pages/cv/scholarships.html#scholarships",
-    "title": "Scholarships & Awards",
-    "section": "Scholarships",
-    "text": "Scholarships\n7. Ashbaugh Graduate Scholarship - McMaster University (2025)\nThe Ashabaugh Graduate Scholarships were established in 1987 by the bequest of F.K. Ashbaugh in memory of Mary Eliza Kingston, to support committed graduate students in their academic pursuits.\n6. Milos Novotny Fellowship - McMaster University (2024)\nEstablished through the generosity of Dr. M. Novotny, PhD in Mathematics (McMaster, 1972), this fellowship supports promising graduate students in analysis.\n5. Ontario Graduate Scholarship (OGS) - McMaster University (2024)\nThe Ontario Graduate Scholarship (OGS) programs provide funding to full-time students at the master’s and doctoral levels with an A- or above average, and are hand-selected from the department.\n4. NSERC Undergraduate Student Research Awards (USRA) - University of Toronto (2023)\nA scholarship which allows students to obtain valuable research experience to encourage students to consider graduate studies and pursue careers in the natural sciences and engineering.\nPaper: Bayesian Estimation of Variance-Based Information Measures and Their Application to Testing Uniformity\n3. UTM Undergraduate Research Grant - University of Toronto (2022)\nThese grants are provided for undergraduate student-initiated research projects supervised by UTM faculty members.\n\nPaper 1: A Short Note on Generating a Random Sample from Finite Mixture Distributions\nPaper 2: Evaluating model fit for type II censored data: a Bayesian non-parametric approach based on the Kullback-Leibler divergence estimation\n\n2. President’s Scholars of Excellence Scholarship - University of Toronto (2019)\nAwarded to 150 most qualified students applying to first year of direct-entry at the University of Toronto.\n1. Dr. Angelo Albanese Memorial Scholarship - Saint Michael’s Catholic High School (2019)\nAwarded to a student who best demonstrates a mature approach to academics and a determination to succeed."
   }
 ]

@@ -6,7 +6,7 @@ toc-location: left
 toc-collapsible: true
 ---
 
-Here are the tutorial notes written by Anna Ly for [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury.
+Here are the tutorial notes written by Anna Ly for [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) during the fall 2024 semester. They were double checked by Hyuna Seo and Abhiroop Chowdhury. In fact, Hyuna picked the questions.
 
 The instructors were [Katherine Davies](https://experts.mcmaster.ca/display/daviek5) and [J. E. Paguyo](https://www.jepaguyo.com/home). We followed A First Course in Probability by Sheldon Ross, 10th edition.
 

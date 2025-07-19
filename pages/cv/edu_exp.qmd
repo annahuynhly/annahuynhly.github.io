@@ -34,6 +34,10 @@ My appointments:
 
 -   [MATH 1XX3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264965) - Calculus for Math and Stats II (Winter 2025; grading only)
 
+**R Programmer (Research Assistant) ✦ June 2025 - August 2025**
+
+Resolving issues in [lme4](https://github.com/lme4/lme4), a widely used R package for (generalized) linear mixed-fixed effects models.
+
 ### **Department of Statistical Sciences, University of Toronto**
 
 **Research Assistant ✦ November 2022 - August 2024**
@@ -94,7 +98,7 @@ I've had multiple contracts as a research assistant for computer science researc
 
 -   Programming Languages: R, Python, SAS, HTML/CSS, Excel VBA
 
--   R Libraries: Shiny, Tidyverse (Ggplot2, Dplyr, Stringr), Markdown
+-   R Libraries: Shiny, Tidyverse, Easystats, Markdown
 
 -   Python Libraries: Matplotlib, NumPy, Pandas, SciPy, Seaborn, Plotly, OpenCV, Pillow, Pytorch, Albumentations
 

@@ -12,8 +12,8 @@ Students are tasked to create surveys, collect data, clean data, perform data an
 
 I've personally observed that many students don't know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:
 
-[STA304 Hypothesis Testing & Statistical Tests Review](STA304/Review.pdf)
-
-**WARNING:** at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I may re-write this in the future after obtaining more training in approaches and best practices.
+**WARNING:** at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I AIM TO re-write this in the future after obtaining more training in approaches and best practices.
 
 As of December 19th 2024, I generally disagree with a lot that I have written and I would like to revise it, heavily. Nonetheless, it's still beyond what students are expected to know for STA304 but I would like to give some warnings.
+
+[STA304 Hypothesis Testing & Statistical Tests Review](STA304/Review.pdf)
