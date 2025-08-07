@@ -40,5 +40,11 @@
   },
   "pages/cv/edu_exp.qmd": {
     "edu_exp.html": "53a94acb"
+  },
+  "pages/fadvice/fadvice_undergrad.qmd": {
+    "fadvice_undergrad.html": "e043922e"
+  },
+  "pages/fadvice/fadvice_grad.qmd": {
+    "fadvice_grad.html": "0c6799ac"
   }
 }
