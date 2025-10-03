@@ -1,5 +1,5 @@
 ---
-title: "STATS 2D03 Summer 2024"
+title: "STATS 2D03 Fall 2024"
 toc: true
 toc-depth: 3 # This sets the depth of headers included in the TOC
 toc-location: left
