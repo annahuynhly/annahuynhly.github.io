@@ -8,7 +8,9 @@ toc-collapsible: true
 
 ## Brief Introduction
 
-My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honoured to be a recipient of the Ontario Graduate Scholarship, the Milos Novotny Fellowship, and the Ashbaugh Graduate Scholarship. I finished my undergraduate studies at the University of Toronto.
+My name is Anna Ly. I completed a Master of Science in Statistics at McMaster University, and prior to that I finished my undergraduate studies at the University of Toronto. I am planning to return to UofT for PhD studies, if they allow me of course.
+
+I will be a lecturer at UTM for STA380 during the winter 2026 semester.
 
 ## Statistical Interests
 
@@ -17,12 +19,6 @@ While pursuing graduate coursework, I developed an interest in the philosophical
 This curiosity naturally led me to the common debate on interpreting probability: frequentist versus Bayesian. After exploring both perspectives, I side with the Bayesians.
 
 I probably should have applied to Duke University, but to be honest I'm not fond of the United States of America in its current state. In the meantime, you should all [read this beautiful article.](https://sites.astro.caltech.edu/~george/aybi199/Lavine_whatisbayes.pdf)
-
-## Master's Thesis Topic
-
-I derived exact expressions for the Pitman closeness probability for type-II hybrid censored data that follows an exponential distribution.
-
-I was interested in the Pitman closeness criterion since, in my opinion, was more intuitive than the mean square error. However, upon completion, I admit that the mean square error is much easier to derive... Sometimes we don't need to spend months to compare two estimators...
 
 ## Where to Contact Me
 

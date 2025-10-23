@@ -4,7 +4,7 @@
     "href": "pages/about.html",
     "title": "About",
     "section": "",
-    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of the Ontario Graduate Scholarship, the Milos Novotny Fellowship, and the Ashbaugh Graduate Scholarship. I finished my undergraduate studies at the University of Toronto."
+    "text": "My name is Anna Ly. I completed a Master of Science in Statistics at McMaster University, and prior to that I finished my undergraduate studies at the University of Toronto. I am planning to return to UofT for PhD studies, if they allow me of course.\nI will be a lecturer at UTM for STA380 during the winter 2026 semester."
   },
   {
     "objectID": "pages/about.html#my-story",
@@ -18,7 +18,7 @@
     "href": "pages/about.html#masters-thesis-topic",
     "title": "About",
     "section": "Master’s Thesis Topic",
-    "text": "Master’s Thesis Topic\nI derived exact expressions for the Pitman closeness probability for type-II hybrid censored data that follows an exponential distribution.\nI was interested in the Pitman closeness criterion since, in my opinion, was more intuitive than the mean square error. However, upon completion, I admit that the mean square error is much easier to derive… Sometimes we don’t need to spend months to compare two estimators…"
+    "text": "Master’s Thesis Topic\nI derived exact expressions for the Pitman closeness probability between MLEs from a type-II hybrid censoring scheme in which the data follows an exponential distribution.\nI was interested in the Pitman closeness criterion since, in my opinion, was more intuitive than the mean square error. However, upon completion, I admit that the mean square error is much easier to derive… Sometimes we don’t need to spend months to compare two estimators…"
   },
   {
     "objectID": "pages/about.html#where-to-find-me",
@@ -291,7 +291,7 @@
     "href": "pages/index.html",
     "title": "Anna Ly",
     "section": "",
-    "text": "Welcome to my personal website! I made this site using Quarto.\nHere, you can gather information on me as well as some of my teaching notes.\nYou can find the STA380 course page for the winter 2026 semester here.\nI assume if you’re here, you likely have a statistics background. I suggest looking into this interesting article.\nI recently deleted my “advice” page, as I plan to re-write them once/if I become a PhD student. However, if you would like access, feel free to contact me on Linkedin.\nLast updated: October 3 2025"
+    "text": "Welcome to my personal website! I made this site using Quarto.\nHere, you can gather information on me as well as some of my teaching notes.\nYou can find the STA380 course page for the winter 2026 semester here.\nI assume if you’re here, you likely have a statistics background. I suggest looking into this interesting article.\nI recently deleted my “advice” page, as I plan to re-write them once/if I become a PhD student. However, if you would like access, feel free to contact me on Linkedin.\nLast updated: October 22 2025"
   },
   {
     "objectID": "pages/notes/mathematical_stats.html",
@@ -473,6 +473,6 @@
     "href": "pages/about.html#brief-introduction",
     "title": "About",
     "section": "",
-    "text": "My name is Anna Ly, and I am currently pursuing a Master of Science in Statistics at McMaster University. I am honored to be a recipient of the Ontario Graduate Scholarship, the Milos Novotny Fellowship, and the Ashbaugh Graduate Scholarship. I finished my undergraduate studies at the University of Toronto."
+    "text": "My name is Anna Ly. I completed a Master of Science in Statistics at McMaster University, and prior to that I finished my undergraduate studies at the University of Toronto. I am planning to return to UofT for PhD studies, if they allow me of course.\nI will be a lecturer at UTM for STA380 during the winter 2026 semester."
   }
 ]
