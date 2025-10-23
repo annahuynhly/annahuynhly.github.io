@@ -6,14 +6,30 @@ toc-location: left
 toc-collapsible: true
 ---
 
-I have been a teaching assistant for [STA304](https://utm.calendar.utoronto.ca/course/sta304h5) (Surveys, Sampling and Observational Data) under the supervision of [Luai Al Labadi](https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&hl=en) during Fall 2022 and Fall 2023. In particular, I was in charge of overseeing and facilitating the group projects within the course.
+# Brief Description
+
+I have been a teaching assistant for [STA304](https://utm.calendar.utoronto.ca/course/sta304h5) (Surveys, Sampling and Observational Data) under the supervision of [Luai Al Labadi](https://scholar.google.com.sg/citations?user=DIin_xEAAAAJ&hl=en) during Fall 2022, 2023, and 2024. In particular, I was in charge of overseeing and facilitating the group projects within the course.
 
 Students are tasked to create surveys, collect data, clean data, perform data analysis, write a report, and present their results.
 
-I've personally observed that many students don't know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found below:
+I've personally observed that many students don't know much about hypothesis testing and do not know how to code in R. Hence, I wrote a detailed review of of topics they should know as well as some additional data analysis methods. The guide can be found in the last link of this page.
 
-**WARNING:** at the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling. Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them. I AIM TO re-write this in the future after obtaining more training in approaches and best practices.
+# WARNINGS
 
-As of December 19th 2024, I generally disagree with a lot that I have written and I would like to revise it, heavily. Nonetheless, it's still beyond what students are expected to know for STA304 but I would like to give some warnings.
+## Update (October 22th 2025)
+
+I no longer believe in statistical hypothesis testing. [I became radicalized while reading Andrew Gelman's blogs and the comment section.](https://statmodeling.stat.columbia.edu/2019/03/20/retire-statistical-significance-the-discussion/)
+
+I have not updated this document yet, but I will likely only do so once I am a teaching assistant for STA304 again. I will likely employ a twist on how to do applied inference without any sort of hypothesis testing.
+
+## Update (December 19th 2024)
+
+-   At the time of writing the guide, I had no formal training in statistical modelling and neither did I discuss philosophy of statistical modelling.
+
+-   Generally, the models students will create in STA304 will not be so complex but in the real world I hope the models would have more depth to them.
+
+-   I AIM TO re-write this in the future after obtaining more training in approaches and best practices.
+
+-   I generally disagree with a lot that I have written and I would like to revise it, heavily. Nonetheless, it's still beyond what students are expected to know for STA304 but I would like to give some warnings.
 
 [STA304 Hypothesis Testing & Statistical Tests Review](STA304/Review.pdf)

@@ -8,9 +8,15 @@ toc-collapsible: true
 
 ## Education
 
-**McMaster University ✦ M.Sc in Statistics.** (September 2024 - Present)
+**McMaster University ✦ M.Sc in Statistics.** (September 2024 - October 2025)
 
--   CGPA: 12/12
+-   **CGPA**: 12/12
+
+-   Completed a 16-month Master’s program **12.5%** ahead of schedule!
+
+-   **Thesis Topic:** Pitman Closeness of Maximum Likelihood Estimators Under Type-II Hybrid Censoring with Exponential Lifetimes
+
+-   Supervised by Dr. Katherine Davies.
 
 **University of Toronto ✦ H.B.Sc in Applied Statistics & Mathematics.** (September 2019 - June 2024)
 
@@ -20,11 +26,11 @@ toc-collapsible: true
 
 ### **Department of Mathematics & Statistics, McMaster**
 
-**Teaching Assistant ✦ September 2024 - TBA**
+**Teaching Assistant ✦ September 2024 - December 2025**
 
 My appointments:
 
--   [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) - Introduction to Probability (Fall 2024)
+-   [STATS 2D03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266605) - Introduction to Probability (Fall 2024, Fall 2025)
 
 -   [STATS 3A03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266607) - Applied Regression Analysis with SAS (Fall 2024; grading only)
 
@@ -34,7 +40,7 @@ My appointments:
 
 -   [MATH 1XX3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264965) - Calculus for Math and Stats II (Winter 2025; grading only)
 
-**R Programmer (Research Assistant) ✦ June 2025 - August 2025**
+**R Programmer (Research Assistant) ✦ June 2025 - December 2025**
 
 Resolving issues in [lme4](https://github.com/lme4/lme4), a widely used R package for (generalized) linear mixed-fixed effects models.
 
