@@ -8,11 +8,15 @@ toc-collapsible: true
 
 ## Brief Introduction
 
-My name is Anna Ly. I completed a Master of Science in Statistics at McMaster University, and prior to that I finished my undergraduate studies at the University of Toronto. I am planning to return to UofT for PhD studies, if they allow me of course.
+My name is Anna Ly. I completed a [Master of Science in Statistics at McMaster University](http://hdl.handle.net/11375/32609), and prior to that I finished my undergraduate studies at the University of Toronto.
+
+I'm a proud R programmer and [lme4](https://github.com/lme4/lme4) contributer. 
 
 I will be a lecturer at UTM for STA380 during the winter 2026 semester.
 
 ## Statistical Interests
+
+I've recently become interested in pursuing topics in [statistical decision theory.](https://en.wikipedia.org/wiki/Decision_theory)
 
 While pursuing graduate coursework, I developed an interest in the philosophical foundations of statistics. I am curious about how models function, why certain models or loss functions are preferred, and what criteria best measure utility, accuracy, and correctness in statistical practice.
 
@@ -56,16 +60,13 @@ In this section you'll learn that I have a life outside of studying and teaching
 
 -   I personally identify as Vietnamese Canadian as its the language my parents speak at home, although my ethnic background is complicated (and I'd rather not elaborate). I do not speak Vietnamese. Growing up, my parents were often working multiple jobs, so I learned the English language and communication through television.
 
--   I am a first-generation university student, and I will be the first person on my father's side of the family with a master's degree, and I would be the second on my mother's side.
+-   I identify as a first-generation university student. Due to war, my parents did not even attend high school. I am the first person on my entire father's side of the family with a graduate degree.
 
 -   I used to doodle all of the time; I hope to get back to drawing.
 
 -   I have a very modest Pokemon card collection. (I don't play modern Pokemon though).
 
--   I love Mega Man, especially the Battle Network and Zero series.
-
-    -   I own a [book that's "worth" thousands of dollars](https://www.amazon.ca/Megaman-Zero-Official-Complete-Works/dp/1897376014)... (I paid less than a hundred for it.)
-    -   In an alternative timeline where I didn't go to school, I'd be interested in becoming a Megaman speed-runner.
+-   I love Mega Man, especially the Battle Network and Zero series. In an alternative timeline where I didn't go to school, I'd be interested in becoming a Megaman speed-runner.
 
 -   I have followed a strict plant-based diet since 2019.
 

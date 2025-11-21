@@ -14,7 +14,7 @@ toc-collapsible: true
 
 -   Completed a 16-month Master’s program **12.5%** ahead of schedule!
 
--   **Thesis Topic:** Pitman Closeness of Maximum Likelihood Estimators Under Type-II Hybrid Censoring with Exponential Lifetimes
+-   **Thesis Topic:** [Pitman Closeness of Maximum Likelihood Estimators Under Type-II Hybrid Censoring with Exponential Lifetimes](http://hdl.handle.net/11375/32609)
 
 -   Supervised by Dr. Katherine Davies.
 
@@ -25,6 +25,10 @@ toc-collapsible: true
 ## Experience
 
 ### **Department of Mathematics & Statistics, McMaster**
+
+**R Programmer (Research Assistant) ✦ June 2025 - December 2025**
+
+Resolving issues in [lme4](https://github.com/lme4/lme4), a widely used R package for (generalized) linear mixed-fixed effects models.
 
 **Teaching Assistant ✦ September 2024 - December 2025**
 
@@ -39,10 +43,6 @@ My appointments:
 -   [MATH 1ZB3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264967) - Engineering Mathematics II (Winter 2025)
 
 -   [MATH 1XX3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264965) - Calculus for Math and Stats II (Winter 2025; grading only)
-
-**R Programmer (Research Assistant) ✦ June 2025 - December 2025**
-
-Resolving issues in [lme4](https://github.com/lme4/lme4), a widely used R package for (generalized) linear mixed-fixed effects models.
 
 ### **Department of Statistical Sciences, University of Toronto**
 
