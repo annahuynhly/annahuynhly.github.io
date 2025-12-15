@@ -18,9 +18,9 @@ I've personally observed that many students don't know much about hypothesis tes
 
 ## Update (October 22th 2025)
 
-I no longer believe in statistical hypothesis testing. [I became radicalized while reading Andrew Gelman's blogs and the comment section.](https://statmodeling.stat.columbia.edu/2019/03/20/retire-statistical-significance-the-discussion/)
+I no longer believe in (most) statistical hypothesis testing. [I became radicalized while reading Andrew Gelman's blogs and the comment section.](https://statmodeling.stat.columbia.edu/2019/03/20/retire-statistical-significance-the-discussion/)
 
-I have not updated this document yet, but I will likely only do so once I am a teaching assistant for STA304 again. I will likely employ a twist on how to do applied inference without any sort of hypothesis testing.
+I have not updated this document yet, but I will likely only do so once I am a teaching assistant for STA304 again. I *may* employ a twist on how to do applied inference without any sort of hypothesis testing (time permitting.)
 
 ## Update (December 19th 2024)
 

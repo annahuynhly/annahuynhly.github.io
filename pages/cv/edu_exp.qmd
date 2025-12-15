@@ -38,6 +38,8 @@ My appointments:
 
 -   [STATS 3A03](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266607) - Applied Regression Analysis with SAS (Fall 2024; grading only)
 
+-   [STATS 3PG3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=266613) - Probability and Games of Chance (Fall 2025; grading only)
+
 -   [MATH 1AA3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264957) - Calculus For Science II (Winter 2025)
 
 -   [MATH 1ZB3](https://academiccalendars.romcmaster.ca/preview_course_nopop.php?catoid=53&coid=264967) - Engineering Mathematics II (Winter 2025)

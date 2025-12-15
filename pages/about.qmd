@@ -10,7 +10,7 @@ toc-collapsible: true
 
 My name is Anna Ly. I completed a [Master of Science in Statistics at McMaster University](http://hdl.handle.net/11375/32609), and prior to that I finished my undergraduate studies at the University of Toronto.
 
-I'm a proud R programmer and [lme4](https://github.com/lme4/lme4) contributer. 
+I'm a proud R programmer and [lme4](https://github.com/lme4/lme4) contributor.
 
 I will be a lecturer at UTM for STA380 during the winter 2026 semester.
 
@@ -34,7 +34,7 @@ If you try to search for my name, you'll have a rough time finding me. There's e
 
 [Github](https://github.com/annahuynhly) \| [Linkedin](https://www.linkedin.com/in/anna-ly-statistics-specialist/) \| [Google Scholar](https://scholar.google.com/citations?user=9w41oS8AAAAJ&hl=en) \| [Stackoverflow](https://stackoverflow.com/users/20815709/annahuynhly) \| [Reddit](https://www.reddit.com/user/annahuynhly/) \| [Medium](https://medium.com/@AnnaLyStats) (personal blog)
 
-I am not active on Reddit! If you want to reach me, please DM me on Linkedin!
+I am not active on Reddit. If you want to reach me, please DM me on Linkedin!
 
 It is a common misconception that "Huynh" is my middle name. I have no middle name; it's my mom's last name.
 
@@ -54,7 +54,7 @@ Some of you may wonder why I decided to pursue McMaster for graduate school inst
 
 ## Fun Facts About Me
 
-In this section you'll learn that I have a life outside of studying and teaching statistics. (The horror, I know.)
+In this section you'll learn that I have interests outside of studying and teaching statistics. (The horror, I know.)
 
 -   I grew up in Niagara Falls, Canada. From my parent's house, it takes only 45 minutes to walk to the falls. People say I'm lucky to have easy access to the magnificent falls but I've spent more time looking at that waterfall than studying statistics; it's become an eyesore to me.
 
@@ -66,7 +66,7 @@ In this section you'll learn that I have a life outside of studying and teaching
 
 -   I have a very modest Pokemon card collection. (I don't play modern Pokemon though).
 
--   I love Mega Man, especially the Battle Network and Zero series. In an alternative timeline where I didn't go to school, I'd be interested in becoming a Megaman speed-runner.
+-   I love Mega Man, specifically the Battle Network and Zero series. In an alternative timeline where I didn't go to school, I'd be interested in becoming a Mega man speed-runner.
 
 -   I have followed a strict plant-based diet since 2019.
 
