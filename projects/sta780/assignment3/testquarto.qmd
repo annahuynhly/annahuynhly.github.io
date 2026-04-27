@@ -1,0 +1,646 @@
+---
+title: "STATS 780 Assignment 3"
+subtitle: "Clustering Pokemon Using their Battling Attributes"
+author: 
+  - name: "Anna Ly (400254496)"
+affiliation: "McMaster University"
+date: "November 14, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    titlepage: true
+    titlepage-color: "FFFFFF"
+    titlepage-text-color: "000000"
+    titlepage-rule-height: 2
+bibliography: test.bib
+csl: journal-of-combinatorics.csl
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{python}
+#| echo: false
+#| results: hide
+import pandas as pd
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+
+from sklearn.preprocessing import scale
+from sklearn.decomposition import PCA, TruncatedSVD
+from sklearn.cluster import KMeans
+from scipy.cluster import hierarchy
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import silhouette_samples, silhouette_score
+from sklearn.metrics.cluster import rand_score
+from IPython.display import display, HTML, Markdown
+from tabulate import tabulate
+from collections import Counter
+
+# Loading the dataset
+DATASET = pd.read_csv("Pokemon.csv")
+RAWDATA = pd.read_csv("Pokemon.csv")
+# Selecting specific columns for analysis
+columns_for_analysis = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed']  # Replace with actual column names
+ANALYSIS_DATA = DATASET[columns_for_analysis]
+```
+
+\newpage 
+
+## Introduction and Selected Variables
+
+In this assignment we will be looking at the [Pokemon and their Battle Information.](https://www.kaggle.com/datasets/abcsds/pokemon/data) In the popular Pokemon video game series, you use animals called "pokemon" to battle (analogous to dog fighting.) On the surface it looks like an ordinary children's game but there's enough complexity that makes it a popular e-sport for young adults. There are 6 primary traits to each pokemon for battling purposes: **hit points (hp), attack, special attack, defense, special defense, and speed.** These will be the continuous variables used for clustering.
+
+Damage refers to the amount of health points a fighting move does. The "attack" trait refers to the amount of damage for attacks that involve using their body (i.e., headbutts, punching). The "special attack" trait refers to moves that involve skills that don't involve body movement (i.e., blowing out flames or water). Similarly, "defense" refers to the amount of damage that will be reduced from an opposing physical attack, and "special defense" is for reducing the damage taken by "special attacks". The "speed" trait determines which Pokemon moves first.
+
+Some Pokemon have better traits than others; this is mostly determined by their species. In the dataset, there are 721 unique Pokemon species, and here we compare species with each other. The traits for each species are found in the game data. Hence, we do not have any **missing values** or obvious **outliers** in our dataset. In general, Pokemon of the same species will have nearly identical traits.
+
+This is a good topic for clustering because gamers want to know the optimal Pokemon to use based on their strategy. For example, some gamers prioritize fast and strong Pokemon; we may end up with a cluster of Pokemon that are fast and physically powerful but are low on defense. On the other hand, we can have Pokemon that are slow and weak, but they have lots of defense and can withhold many attacks. Depending on someone's play style, they can pick the appropriate pokemon for their team.
+
+There are other variables in the dataset (such as species name) but they will be ignored as they are categorical variables; clustering works best for continuous variables. One of the columns, "total", is a linear combination of all of the traits, so we omit it for analysis.
+
+Below we present our summary statistics for these 6 traits:
+
+```{python}
+#| echo: false
+#| results: hide
+#| message: false
+#| warning: false
+def summary_statistics(df):
+    summary = []
+    for column in df.columns:
+        mean = df[column].mean()
+        sd = df[column].std()
+        median = df[column].median()
+        iqr = df[column].quantile(0.75) - df[column].quantile(0.25)
+        min_val = df[column].min()
+        max_val = df[column].max()
+
+        summary.append({
+            'Trait': column,
+            'Mean (SD)': f"{mean:.2f} ({sd:.2f})",
+            'Median (IQR)': f"{median:.2f} ({iqr:.2f})",
+            'Min': f"{min_val:.2f}",
+            'Max': f"{max_val:.2f}"
+        })
+        
+    return pd.DataFrame(summary)
+
+summary_df = summary_statistics(ANALYSIS_DATA)
+```
+
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: The summary statistics for the six Pokemon battle traits.
+display(HTML(f"<div style='text-align: center;'>{summary_df.to_html(index=False)}</div>"))
+```
+
+Here we see that given all different types of Pokemon species, the averages of each trait are similar to each other (and likewise with the medians.) However, we can see that the maximum and minimum values vary drastically.
+
+## Model A: Agglomerative Clustering Method
+
+```{python}
+#| echo: false
+
+sil_scores_a = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    model_poke = AgglomerativeClustering(linkage = "ward", n_clusters = k)
+    model_poke.fit(ANALYSIS_DATA)
+    score = silhouette_score(ANALYSIS_DATA, model_poke.labels_)
+    sil_scores_a.append(score)
+```
+
+First we will start by using agglomerative clustering. First, we want to pick a value of k using the silhouette method. We checked for values $k = 2$ to $10$, and we saw that $k = 2$ gave the highest average silhouette score of 0.26. We also observe the silhouette plots. Unfortunately, each plot contains a significant amount of negative values. We attempted to remove species that provided a negative silhouette score and refitted the model. However, this effort didn't eliminate the negative values altogether and still seems to suggest using two clusters. Such details are found in the supplementary material. Hence, we continue to use $k = 2$ and retain all values in the dataset.
+
+Details for the exact silhouette score is included in the supplementary material. Hence, we will have two resulting clusters. Here is a visualization of the difference of the two clusters; the first graph is comparing attack and special attack:
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Presenting two clusters using the average, complete, ward, and single linkage methods on pokemon's attack and special attack trait."
+comparisons = ["Attack", "Sp. Atk"]
+
+colors = np.array(["#FF6666", "#6699FF"])  # Specify colors for each cluster
+
+plt.figure(figsize=(10, 2))
+for index, linkage in enumerate(("average", "complete", "ward", "single")):
+    plt.subplot(1, 4, index + 1)
+    model = AgglomerativeClustering(linkage = linkage, n_clusters = 2)
+        
+    model.fit(ANALYSIS_DATA)
+       
+    plt.scatter(ANALYSIS_DATA.loc[:, comparisons[0]], ANALYSIS_DATA.loc[:, comparisons[1]], c = colors[model.labels_], cmap=plt.cm.nipy_spectral)
+    plt.title((linkage),
+        fontdict=dict(verticalalignment="top"),
+    )
+    plt.axis("equal")
+    plt.axis("off")
+
+plt.show()
+```
+
+Unfortunately, even when increasing the value of k we still see that there is barely any separation when using average, complete, and single linkage methods; and that the values do not seem consistent. Hence, we notice that this data may be a bit unstable. For the final model, we will employ Ward’s linkage, which is generally more effective for handling noisy data.
+
+## Model B: K-means Clustering Method
+
+Again, we pick a value of k using the silhouette method (similar to part a) we saw that $k = 2$ gave the highest average silhouette score of 0.29. The silhouette plots support this notion. We will do comparisons between clustering models at the end.
+
+```{python}
+#| echo: false
+sil_scores_b = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    km_model = KMeans(n_clusters = k, n_init = 20, random_state = 0)
+    cluster_labels_km = km_model.fit_predict(ANALYSIS_DATA)
+    score = silhouette_score(ANALYSIS_DATA, cluster_labels_km).round(2)
+    sil_scores_b.append(score)
+```
+
+## Model C: Hierarchical Clustering After Principal Component Analysis
+
+We decide to use the agglomerative clustering method again, but only after using principal component analysis. First we want to pick the number of principal components. Since we are only focusing on 6 quantitative variables, we can either have 0 up to 5 principal components. We will try to determine the number using the elbow method. 
+
+```{python}
+#| echo: false
+#| fig-cap: "Showcasing the proportion of variance explained based off of the number of principal components."
+pca_comp = PCA()
+plot3 = pd.DataFrame(pca_comp.fit_transform(ANALYSIS_DATA))
+
+fig, (ax1,ax2) = plt.subplots(1, 2, figsize=(15, 4))
+
+ax1.plot(pca_comp.explained_variance_ratio_, '-o')
+ax1.set_ylabel('Proportion of Variance Explained')
+ax1.set_ylim(ymin=-0.01)
+
+ax2.plot(np.cumsum(pca_comp.explained_variance_ratio_), '-ro')
+ax2.set_ylabel('Cumulative Proportion of Variance Explained')
+ax2.set_ylim(ymax=1.05)
+
+for ax in fig.axes:
+    ax.set_xlabel('Principal Component')
+    ax.set_xlim(-1,6)   
+```
+
+We see that the explained variance begins to level off immediately after the first principal component. However, we see that the cumulative proportion of variance explained almost exceeds 0.9 after the third principal component. For now, we will use three principal components. Below are the linear combinations of the principal components:
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+#| tbl-cap: The linear combinations of the original traits for constructing the new principal components.
+pca_final = PCA(n_components=3)
+data_pca = pca_final.fit_transform(ANALYSIS_DATA)  
+loadings = pca_final.components_
+loadings_df = pd.DataFrame(loadings, columns=['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'], index=['PC1', 'PC2', 'PC3'])
+loadings_df = loadings_df.round(2)
+#print(loadings_df) This would show the linear combination of the principal components
+display(HTML(f"<div style='text-align: center;'>{loadings_df.to_html(index=False)}</div>"))
+```
+
+For each principal component (PC):
+
+- First PC represents a Pokemon with generally balanced traits with a slight boost in attack.
+- Second PC represents a Pokemon with a lower special attack and speed but with high defense.
+- Third PC represents a Pokemon with low physical attack but high special attack and special defense.
+
+```{python}
+#| echo: false
+sil_scores_pca = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    model_pca_ver = AgglomerativeClustering(linkage = "ward", n_clusters = k)
+    model_pca_ver.fit(data_pca)
+    score = silhouette_score(data_pca, model_pca_ver.labels_)
+    sil_scores_pca.append(score)
+```
+
+Using the silhouette method once more (identical steps as part a), we still use $k = 2$. However, we would now like to see how the linkage types perform. Similar to part a, the linkage types do not consistently give the same clusters. We continue to just use ward's linkage.
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Displaying two clusters using the average, complete, ward, and single linkage methods on the first two principal components."
+data_pca_graph = pd.DataFrame(data_pca, columns=["PC1", "PC2", "PC3"])
+
+colors = np.array(["#05DEB2", "#947aff"])  # Specify colors for each cluster
+
+plt.figure(figsize=(10, 2))
+for index, linkage in enumerate(("average", "complete", "ward", "single")):
+    plt.subplot(1, 4, index + 1)
+    model = AgglomerativeClustering(linkage = linkage, n_clusters = 2)
+        
+    model.fit(data_pca)
+       
+    plt.scatter(data_pca_graph.iloc[:,0], data_pca_graph.iloc[:, 1], c = colors[model.labels_], cmap=plt.cm.nipy_spectral)
+    plt.title((linkage),
+        fontdict=dict(verticalalignment="top"),
+    )
+    plt.axis("equal")
+    plt.axis("off")
+```
+
+Hence again, we should be using the ward linkage as it shows a proper distinction of two clusters compared to other methods.
+
+## Comparisons Between Models
+
+```{python}
+#| echo: false
+
+# This is the model in part a)
+model_poke_agg = AgglomerativeClustering(linkage = "ward", n_clusters = 2)
+model_poke_agg.fit(ANALYSIS_DATA)
+
+# This is the model in part b)
+model_poke_kmeans = KMeans(n_clusters = 2, n_init = 20, random_state = 0)
+model_poke_kmeans.fit(ANALYSIS_DATA)
+
+# This is the model in part c)
+pca_agg_model = AgglomerativeClustering(linkage = "ward", n_clusters=2)
+pca_agg_labs = pca_agg_model.fit_predict(data_pca)
+
+# Getting the rand index
+comparison1 = rand_score(model_poke_agg.labels_, model_poke_kmeans.labels_)
+comparison2 = rand_score(model_poke_agg.labels_, pca_agg_labs) 
+comparison3 = rand_score(model_poke_kmeans.labels_, pca_agg_labs) 
+
+#print(f"compare a and b: {comparison1}") 
+#print(f"compare a and c: {comparison2}") 
+#print(f"compare b and c: {comparison3}") 
+```
+
+First, interestingly every case suggested to have 2 clusters. We will make the comparisons using the rand index. 
+
+- Between models a and b, we have a rand index of approximately 0.851. 
+- Between models a and c, we have a rand index of approximately 0.853.
+- Between models b and c, we have a rand index of approximately 0.916.
+
+It is interesting that even though models a and c both use agglomerative hierarchical clustering, models b and c are slightly more identical to each other. Nonetheless, we still have that these models are approximately similar.
+
+\newpage
+
+# References
+
+::: {#refs}
+:::
+
+\newpage
+
+# Supplementary Material
+
+```{python}
+#| eval: false
+import pandas as pd
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+
+from sklearn.preprocessing import scale
+from sklearn.decomposition import PCA, TruncatedSVD
+from sklearn.cluster import KMeans
+from scipy.cluster import hierarchy
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import silhouette_samples, silhouette_score
+from sklearn.metrics.cluster import rand_score
+from IPython.display import display, HTML, Markdown
+from tabulate import tabulate
+from collections import Counter
+
+# Loading the dataset
+DATASET = pd.read_csv("Pokemon.csv")
+RAWDATA = pd.read_csv("Pokemon.csv")
+# Selecting specific columns for analysis
+columns_for_analysis = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed']  # Replace with actual column names
+ANALYSIS_DATA = DATASET[columns_for_analysis]
+
+def summary_statistics(df):
+    summary = []
+    for column in df.columns:
+        mean = df[column].mean()
+        sd = df[column].std()
+        median = df[column].median()
+        iqr = df[column].quantile(0.75) - df[column].quantile(0.25)
+        min_val = df[column].min()
+        max_val = df[column].max()
+
+        summary.append({
+            'Trait': column,
+            'Mean (SD)': f"{mean:.2f} ({sd:.2f})",
+            'Median (IQR)': f"{median:.2f} ({iqr:.2f})",
+            'Min': f"{min_val:.2f}",
+            'Max': f"{max_val:.2f}"
+        })
+        
+    return pd.DataFrame(summary)
+
+summary_df = summary_statistics(ANALYSIS_DATA)
+
+display(HTML(f"<div style='text-align: center;'>{summary_df.to_html(index=False)}</div>"))
+```
+
+## Code For Model A
+
+```{python}
+sil_scores_a = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    model_poke = AgglomerativeClustering(linkage = "ward", n_clusters = k)
+    model_poke.fit(ANALYSIS_DATA)
+    score = silhouette_score(ANALYSIS_DATA, model_poke.labels_)
+    sil_scores_a.append(score.round(2))
+# make sense to do k = 2 then.
+print(sil_scores_a)
+```
+
+Here are the silhouette plots (without trying to remove potential outliers). We only kept 3 plots due to space limitations (and omitted the graphs for model B and model C), but the code can easily be changed to support more clusters and changed to support model B and C instead.
+
+```{python}
+# Silhouette plot - hard for me to determine the score?
+range_n_clusters = range(2, 6)
+for n_clusters in range_n_clusters:
+    model_poke = AgglomerativeClustering(linkage = "ward", n_clusters = n_clusters)
+    model_poke.fit(ANALYSIS_DATA)
+
+    silhouette_avg_psych = silhouette_score(ANALYSIS_DATA, model_poke.labels_) 
+    sample_silhouette_values = silhouette_samples(ANALYSIS_DATA, model_poke.labels_) 
+    
+    fig, ax1 = plt.subplots(1, 1)
+    fig.set_size_inches(18, 7)
+    ax1.set_xlim([-0.25, 1]) 
+
+    y_lower = 10
+    
+    for i in range(n_clusters):
+        ith_cluster_silhouette_values = sample_silhouette_values[model_poke.labels_ == i]
+
+        ith_cluster_silhouette_values.sort()
+        size_cluster_i = ith_cluster_silhouette_values.shape[0]
+        y_upper = y_lower + size_cluster_i
+
+        color = cm.nipy_spectral(float(i) / n_clusters)
+        ax1.fill_betweenx(
+            np.arange(y_lower, y_upper),
+            0,
+            ith_cluster_silhouette_values,
+            facecolor=color,
+            edgecolor=color,
+            alpha=0.7,
+        )
+        ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
+        y_lower = y_upper + 10  
+
+    ax1.set_title("The silhouette plot for various cluster")
+    ax1.set_xlabel("The silhouette coefficient values")
+    ax1.set_ylabel("Cluster label")
+
+    ax1.axvline(x = silhouette_avg_psych, color="red", linestyle="--")
+    plt.title(
+        "Silhouette analysis for hierarchical clustering on sample data with n_clusters = %d"
+        % n_clusters,
+        fontsize=14,
+        fontweight="bold",
+    )
+
+plt.show()
+```
+
+Here are the silhouette plots after trying to remove outliers:
+
+```{python}
+negative_silhouette_names = []
+
+for n_clusters in range(2, 6):
+    model_poke = AgglomerativeClustering(linkage="ward", n_clusters=n_clusters)
+    model_poke.fit(ANALYSIS_DATA)
+    sil_sample = silhouette_samples(ANALYSIS_DATA, model_poke.labels_)
+    silhouette_df = pd.DataFrame({
+        'Name': RAWDATA['Name'],
+        'Silhouette Score': sil_sample
+    })
+    negative_silhouette_df = silhouette_df[silhouette_df['Silhouette Score'] < 0]
+    negative_silhouette_names.extend(negative_silhouette_df['Name'].tolist())
+
+# Count the occurrences of each name
+name_counts = Counter(negative_silhouette_names)
+# Filter names that appear more than once
+names_more = [name for name, count in name_counts.items() if count > 1]
+
+DATASET_2 = ANALYSIS_DATA[~RAWDATA['Name'].isin(names_more)]
+
+range_n_clusters = range(2, 6)
+for n_clusters in range_n_clusters:
+    model_poke = AgglomerativeClustering(linkage = "ward", n_clusters = n_clusters)
+    model_poke.fit(DATASET_2) 
+
+    silhouette_avg_psych = silhouette_score(DATASET_2, model_poke.labels_) 
+    sample_silhouette_values = silhouette_samples(DATASET_2, model_poke.labels_) 
+    
+    fig, ax1 = plt.subplots(1, 1)
+    fig.set_size_inches(18, 7)
+    ax1.set_xlim([-0.25, 1]) 
+
+    y_lower = 10
+    
+    for i in range(n_clusters):
+        ith_cluster_silhouette_values = sample_silhouette_values[model_poke.labels_ == i]
+
+        ith_cluster_silhouette_values.sort()
+        size_cluster_i = ith_cluster_silhouette_values.shape[0]
+        y_upper = y_lower + size_cluster_i
+
+        color = cm.nipy_spectral(float(i) / n_clusters)
+        ax1.fill_betweenx(
+            np.arange(y_lower, y_upper),
+            0,
+            ith_cluster_silhouette_values,
+            facecolor=color,
+            edgecolor=color,
+            alpha=0.7,
+        )
+        ax1.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
+        y_lower = y_upper + 10  
+
+    ax1.set_title("The silhouette plot for various cluster")
+    ax1.set_xlabel("The silhouette coefficient values")
+    ax1.set_ylabel("Cluster label")
+
+    ax1.axvline(x = silhouette_avg_psych, color="red", linestyle="--")
+    plt.title(
+        "Silhouette analysis for hierarchical clustering on sample data with n_clusters = %d"
+        % n_clusters,
+        fontsize=14,
+        fontweight="bold",
+    )
+
+plt.show()
+```
+
+We used one of these two graphs due to space limitations:
+
+```{python}
+#| message: false
+#| warning: false
+# Making a comparison between different types of attacks and special attacks, as well as defense and special defense.
+comparisons = [["Attack", "Sp. Atk"], ["Defense", 'Sp. Def']]
+
+colors = np.array(["#FF6666", "#6699FF"])  # Specify colors for each cluster
+
+for m in comparisons:
+    plt.figure(figsize=(10, 2))
+    for index, linkage in enumerate(("average", "complete", "ward", "single")):
+        plt.subplot(1, 4, index + 1)
+        model = AgglomerativeClustering(
+            linkage = linkage, n_clusters = 2
+        )
+        
+        model.fit(ANALYSIS_DATA)
+       
+        plt.scatter(ANALYSIS_DATA.loc[:, m[0]], ANALYSIS_DATA.loc[:, m[1]], c=colors[model.labels_], cmap=plt.cm.nipy_spectral)
+        plt.title((linkage),
+            fontdict=dict(verticalalignment="top"),
+        )
+        plt.axis("equal")
+        plt.axis("off")
+
+        plt.subplots_adjust(bottom=0, top=0.83, wspace=0, left=0, right=1)
+        plt.suptitle(
+            "n_cluster=%i"
+            % (2),
+            size=17,
+        )
+
+plt.show()
+```
+
+The code used to make the graph in the report is:
+
+```{python}
+#| eval: false
+comparisons = ["Attack", "Sp. Atk"]
+
+colors = np.array(["#FF6666", "#6699FF"])  # Specify colors for each cluster
+
+plt.figure(figsize=(10, 2))
+for index, linkage in enumerate(("average", "complete", "ward", "single")):
+    plt.subplot(1, 4, index + 1)
+    model = AgglomerativeClustering(linkage = linkage, n_clusters = 2)
+        
+    model.fit(ANALYSIS_DATA)
+       
+    plt.scatter(ANALYSIS_DATA.loc[:, comparisons[0]], ANALYSIS_DATA.loc[:, comparisons[1]], c = colors[model.labels_], cmap=plt.cm.nipy_spectral)
+    plt.title((linkage),
+        fontdict=dict(verticalalignment="top"),
+    )
+    plt.axis("equal")
+    plt.axis("off")
+
+plt.show()
+```
+
+## Code for Model B
+
+```{python}
+# Calculating the average silhouette score to choose which k to pick
+sil_scores_b = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    km_model = KMeans(n_clusters = k, n_init = 20, random_state = 0)
+    cluster_labels_km = km_model.fit_predict(ANALYSIS_DATA)
+    score = silhouette_score(ANALYSIS_DATA, cluster_labels_km).round(2)
+    sil_scores_b.append(score.round(2))
+print(sil_scores_b)
+```
+
+## Code for Model C
+
+```{python}
+#| eval: false
+
+# Graphs used to see the proportion of variance explained, and the cumulative proportion of variance explained.
+pca_comp = PCA()
+plot3 = pd.DataFrame(pca_comp.fit_transform(ANALYSIS_DATA))
+
+fig, (ax1,ax2) = plt.subplots(1, 2, figsize=(15, 4))
+
+# Left plot
+ax1.plot(pca_comp.explained_variance_ratio_, '-o')
+ax1.set_ylabel('Proportion of Variance Explained')
+ax1.set_ylim(ymin=-0.01)
+
+# Right plot
+ax2.plot(np.cumsum(pca_comp.explained_variance_ratio_), '-ro')
+ax2.set_ylabel('Cumulative Proportion of Variance Explained')
+ax2.set_ylim(ymax=1.05)
+
+for ax in fig.axes:
+    ax.set_xlabel('Principal Component')
+    ax.set_xlim(-1,6)  
+
+# Code used to create the table
+pca_final = PCA(n_components=3)
+data_pca = pca_final.fit_transform(ANALYSIS_DATA)  
+loadings = pca_final.components_
+loadings_df = pd.DataFrame(loadings, columns=['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'], index=['PC1', 'PC2', 'PC3'])
+#print(loadings_df) This would show the linear combination of the principal components
+display(HTML(f"<div style='text-align: center;'>{loadings_df.to_html(index=False)}</div>"))
+```
+
+```{python}
+sil_scores_pca = []
+for k in range(2, 11):  # Trying k from 2 to 10
+    model_pca_ver = AgglomerativeClustering(linkage = "ward", n_clusters = k)
+    model_pca_ver.fit(data_pca)
+    score = silhouette_score(data_pca, model_pca_ver.labels_)
+    sil_scores_pca.append(score.round(2))
+print(sil_scores_pca)
+```
+
+```{python}
+#| eval: false
+# Code used to create the graphs of the different types of linkages
+data_pca_graph = pd.DataFrame(data_pca, columns=["PC1", "PC2", "PC3"])
+
+colors = np.array(["#05DEB2", "#947aff"])  # Specify colors for each cluster
+
+plt.figure(figsize=(10, 2))
+for index, linkage in enumerate(("average", "complete", "ward", "single")):
+    plt.subplot(1, 4, index + 1)
+    model = AgglomerativeClustering(linkage = linkage, n_clusters = 2)
+        
+    model.fit(data_pca)
+       
+    plt.scatter(data_pca_graph.iloc[:,0], data_pca_graph.iloc[:, 1], c = colors[model.labels_], cmap=plt.cm.nipy_spectral)
+    plt.title((linkage),
+        fontdict=dict(verticalalignment="top"),
+    )
+    plt.axis("equal")
+    plt.axis("off")
+```
+
+## Code for Comparisons
+
+```{python}
+# This is the model in part a)
+model_poke_agg = AgglomerativeClustering(linkage = "ward", n_clusters = 2)
+model_poke_agg.fit(ANALYSIS_DATA)
+# This is the model in part b)
+model_poke_kmeans = KMeans(n_clusters = 2, n_init = 20, random_state = 0)
+model_poke_kmeans.fit(ANALYSIS_DATA)
+# This is the model in part c)
+pca_agg_model = AgglomerativeClustering(linkage = "ward", n_clusters=2)
+pca_agg_labs = pca_agg_model.fit_predict(data_pca)
+# Getting the rand index
+comparison1 = rand_score(model_poke_agg.labels_, model_poke_kmeans.labels_)
+comparison2 = rand_score(model_poke_agg.labels_, pca_agg_labs) 
+comparison3 = rand_score(model_poke_kmeans.labels_, pca_agg_labs) 
+print(f"compare a and b: {comparison1}") 
+print(f"compare a and c: {comparison2}") 
+print(f"compare b and c: {comparison3}") 
+```

@@ -1,0 +1,348 @@
+---
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 11pt
+    linestretch: 1.3
+    classoption: oneside
+    mainfont: Times New Roman 
+    tbl-cap-location: bottom
+  html:
+     tbl-cap-location: bottom
+     css: custom.css
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+# Operating System Classification of Laptops - Anna Ly
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library("tidyverse")
+library("graphics") # pairs -> use this for assignment
+library("mixture")
+library("e1071")
+library("nnet") 
+library("gridExtra")
+
+data = read.csv("laptop_prices.csv")
+
+data = data %>% 
+  mutate(Storage = case_when(Storage == "256GB SSD" ~ 256, 
+                             Storage == "512GB SSD" ~ 512, 
+                             Storage == "1TB HDD" ~ 1000, 
+                             Storage == "1TB SSD" ~ 1000, 
+                             Storage == "2TB SSD" ~ 2000))
+
+for(i in 1:nrow(data)){
+  char_test = data$Resolution[i]
+  char_test = strsplit(char_test, "x")[[1]]
+  char_test = as.numeric(char_test)
+  data$Resolution_Width[i] = char_test[1]
+  data$Resolution_Height[i] = char_test[2]
+}
+data$Resolution_Width = as.numeric(data$Resolution_Width)
+data$Resolution_Height = as.numeric(data$Resolution_Height)
+
+data = data %>% 
+  select(Operating.System, RAM..GB., Storage, Screen.Size..inch., 
+         Resolution_Width, Resolution_Height, 
+         Battery.Life..hours., Weight..kg., Price....)
+
+os_colours = c("macOS" = "#FF6666", "Linux" = "#6699FF",
+               "Windows" = "#05DEB2", "FreeDOS" = "#5b10a7")
+
+barplot1 = ggplot(data, aes(x=factor(Storage), fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours) +
+  ylab("Count") + xlab("Storage (GB)") +
+  theme_minimal() + 
+  theme(legend.position = "none")  
+
+barplot2 = ggplot(data, aes(x=factor(Resolution_Width), 
+                            fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours) +
+  ylab("Count") + xlab("Resolution Width") +
+  theme_minimal() + 
+  theme(legend.position = "none")  
+
+barplot3 = ggplot(data, aes(x=factor(RAM..GB.), 
+                            fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours, name = "Operating System",
+                    labels = c("Windows" = "Windows",
+                               "FreeDOS" = "FreeDOS",
+                               "macOS" = "MacOS",
+                               "Linux" = "Linux")) +
+  ylab("Count") + xlab("RAM (GB)") +
+  theme_minimal()
+
+data = data %>%
+  arrange(Operating.System)  
+
+data_P = prcomp(data[, -1], scale = TRUE)
+```
+
+## Introduction
+
+We will use the laptop price data-set from Kaggle, available at <https://www.kaggle.com/datasets/asinow/laptop-price-dataset?resource=download.> This data-set includes various laptop specifications, such as RAM (GB), storage, screen size (inches), resolution, battery life (hours), weight, and price.
+
+While the data-set contains several categorical variables, we will use operating system for classification. The rationale is that different operating systems may attract different users. For example, Linux and/or FreeDOS may have specific, niche requirements.
+
+Our goal is to explore data reduction techniques, including Principal Component Analysis (PCA) and Factor Analysis. Additionally, we will compare the performance of Neural Networks using the original predictors versus the principal components.
+
+## Data Cleaning & Exploratory Analysis
+
+In the original data-set, storage was listed in either GB or TB; we converted all values to GB. Additionally, we separated the width and height resolutions into separate columns. All other variables remained unchanged.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Barplots revealing the distribution of storage sizes, resolution width, and RAM between different operating systems. The amounts are surprisingly uniform."
+grid.arrange(barplot1, barplot2, barplot3,
+             ncol=3, nrow = 1, widths = c(1, 1, 1.6))
+```
+
+Some numeric variables have relatively few distinct values. For instance, storage, resolution width, and resolution height have only 4 unique values, while RAM and screen size have 5. See Figure 1 to see some barplots, and see Figure 2 to see the pair plots highlighting the distribution amongst all operating systems.
+
+![Pairs plot of all predictor variables that will be used for cluster analysis](wholepairplot.png)
+
+## Description of Techniques
+
+In PCA, the goal is to reduce the number of predictor variables by creating a smaller set of linear combinations, called principal components, of the original variables. They are constructed to retain as much variance as possible.
+
+Let $\mathbf{X}$ be a $p$-dimensional random vectors with mean $\mu$ and covariance matrix $\Sigma$ with ordered eigenvalues $\lambda_{1} \geq \lambda_{2} \geq … \geq \lambda_{p} \geq 0$, and corresponding eigenvectors $\mathbf{v}_{1}, \mathbf{v}_{2}, …, \mathbf{v}_{p}$.
+
+We define the $i$th principal component of $\mathbf{X}$ to be $W_{i} = \mathbf{v}_{i}^{T}(\mathbf{X} - \mu)$. These principal components $W_{i}$ now replace the original predictor variables in a statistical model.
+
+Unlike PCA, Factor Analysis isn't meant to replace the predictor variables. Instead, it provides an alternative way to express predictor variables in terms of latent factors.
+
+Assuming that $X_{1}, …, X_{n}$ are $p$ dimensional random vectors and we claim there are $q$ latent factors. The Factor Analysis model is written as: $\mathbf{X}_{i} = \mu + \Lambda \mathbf{U}_{i} + \epsilon_{i}$
+
+Where: $\mu$ is the mean of all observations. $\Lambda$ is a matrix of $p \times q$ factor loadings, which represents the correlation between the variable and the factor. $U_{i} \sim \mathcal{N}(\mathbf{0}, I_{q})$ is the $q$-dimensional latent factor $\epsilon_{i} \sim \mathcal{N}(0, \Psi)$ represents the error terms, which only influences a single observed variable.
+
+## Selection of Principal Components and Factor Loadings
+
+![Scree plot on the right shows that the proportion of variance explained is somewhat uniform. The PCA pairs plot shows no clear distinction between OS systems.](Plots.png)
+
+We used the prcomp function in base R to perform PCA. The scree plot in Figure 3 suggests that the curve levels off after 3 principal components. These 3 explain 59.48% of the total variance, which doesn't capture a substantial proportion of the total variance. 
+
+The 3 principal components do not show clear separation between operating systems, though the principal components more continuous than the original predictors.
+
+Using the factanal function in R to perform Factor Analysis, they allow the use of 2-4 factors. We decide to use 3 factors, as there was not a large difference between the total variance explained through 3 factors versus 4.
+
+## Results
+
+First, we will interpret the results for the Factor Analysis model, created by using factanal from R. We find that storage, battery life, and weight have uniqueness values close to 1, indicating that these variables are not well explained by the factors.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccccccc}
+\hline
+\textbf{Factor} & \textbf{RAM} & \textbf{Storage} & \textbf{Screen Size} & \textbf{Reso. (w)} & \textbf{Reso. (h)} & \textbf{Battery Life} & \textbf{Weight} & \textbf{Price} \\
+\hline
+\textbf{Factor 1} &  &  &  & 0.997 & 0.997 &  &  &  0.478\\
+\textbf{Factor 2} & 0.937 &  &  &  &  &  &  & 0.663 \\
+\textbf{Factor 3} &  & 0.105  &  &  &  &  &  & 0.572 \\
+\hline
+\end{tabular}
+\caption{Factor loadings for each variable.}
+\end{table}
+
+The first factor primarily captures resolution width & height and price. Factor 2 emphasizes RAM and price, while Factor 3 highlights screen size and price. Together, the 3 factors explain only 48.5% of the variance. Additionally, a statistical test for model fit yields a near-zero p-value, suggesting that three factors are insufficient.
+
+Testing a 4-factor model increases the explained variance only slightly (49.4%) and produces a similarly poor p-value. Similar to PCA, factor analysis may also not be a suitable approach for explaining these predictor variables.
+
+Next, we conduct a cluster analysis, comparing results using the original predictors versus the principal components. Given our large dataset (11,768 laptops), we use neural networks for classification. To ensure representativeness, we split 80% of each operating system for training/validation and 20% for testing. We applied 5-fold cross-validation, testing sizes from 1 to 20 and decay values from 0 to 10.
+
+For the original predictors, cross-validation selected a model with a size of 13 and a decay of 5. The resulting neural network performed poorly, with a misclassification rate of 75.1% and a corrected Rand index of -0.0002 (Table 2).
+
+::: {#tbl-panel layout-ncol=2}
+| OS    | FreeDOS | Linux | MacOS | Windows |
+|-------|---------|-------|-------|---------|
+| Free. | 225     | 171   | 37    | 183     |
+| Linux | 199     | 168   | 48    | 166     |
+| Mac.  | 204     | 173   | 31    | 171     |
+| Wind. | 188     | 179   | 32    | 178     |
+
+: Results from the original predictors. {#tbl-first}
+
+| OS    | FreeDOS | Linux | MacOS | Windows |
+|-------|---------|-------|-------|---------|
+| Free. | 97      | 232   | 126   | 161     |
+| Linux | 83      | 212   | 158   | 128     |
+| Mac   | 89      | 217   | 137   | 136     |
+| Wind. | 108     | 203   | 137   | 129     |
+
+: Results from the 3 principal components. {#tbl-second}
+
+Classification results via neural networks.
+:::
+
+We then repeated the process using principal components. This time, cross-validation selected a model with a size of 6 and a decay of 0. Despite a slightly lower misclassification rate (74.4%), the corrected Rand index remained similarly poor, suggesting that the improvement is likely due to chance.
+
+## Conclusion
+
+During our exploratory data analysis, we saw the limited range of values for most of the seemingly quantitative variables, which could complicate the modelling process. As expected, applying both PCA and Factor Analysis was difficult; the principal components failed to capture much of the original variance. Similarly, Factor Analysis struggled to explain the variance effectively, with 3 factors having uniqueness values of 1, indicating that they were not explained at all.
+
+For classification, both the original predictors and the principal components performed poorly when applied to a neural network model. Our results may suggest that regardless of operating system, laptops share similar properties. This is somewhat surprising, given that people often have strong preferences for operating systems, which we might expect to be reflected in physical characteristics.
+
+Another possible limitation is that we did not apply one-hot encoding to other categorical variables, such as processor and GPU, would could improve the prediction.
+
+\newpage
+
+## References
+
+Asinow. (2025). Laptop Price Dataset. Kaggle. <https://www.kaggle.com/datasets/asinow/laptop-price-dataset?resource=download>
+
+King-Yu, S. (2025). *CSE/STATS 790: Statistical Learning*. McMaster University.
+
+## Appendix
+
+```{r}
+#| eval: false
+library("tidyverse")
+library("graphics") # pairs -> use this for assignment
+library("mixture")
+library("e1071")
+library("nnet") 
+library("gridExtra")
+
+data = read.csv("laptop_prices.csv")
+
+data = data %>% 
+  mutate(Storage = case_when(Storage == "256GB SSD" ~ 256, 
+                             Storage == "512GB SSD" ~ 512, 
+                             Storage == "1TB HDD" ~ 1000, 
+                             Storage == "1TB SSD" ~ 1000, 
+                             Storage == "2TB SSD" ~ 2000))
+
+for(i in 1:nrow(data)){
+  char_test = data$Resolution[i]
+  char_test = strsplit(char_test, "x")[[1]]
+  char_test = as.numeric(char_test)
+  data$Resolution_Width[i] = char_test[1]
+  data$Resolution_Height[i] = char_test[2]
+}
+data$Resolution_Width = as.numeric(data$Resolution_Width)
+data$Resolution_Height = as.numeric(data$Resolution_Height)
+
+data = data %>% 
+  select(Operating.System, RAM..GB., Storage, Screen.Size..inch., 
+         Resolution_Width, Resolution_Height, 
+         Battery.Life..hours., Weight..kg., Price....)
+
+os_colours = c("macOS" = "#FF6666", "Linux" = "#6699FF",
+               "Windows" = "#05DEB2", "FreeDOS" = "#5b10a7")
+
+barplot1 = ggplot(data, aes(x=factor(Storage), fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours) +
+  ylab("Count") + xlab("Storage (GB)") +
+  theme_minimal() + 
+  theme(legend.position = "none")  
+
+barplot2 = ggplot(data, aes(x=factor(Resolution_Width), 
+                            fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours) +
+  ylab("Count") + xlab("Resolution Width") +
+  theme_minimal() + 
+  theme(legend.position = "none")  
+
+barplot3 = ggplot(data, aes(x=factor(RAM..GB.), 
+                            fill = Operating.System))+
+  geom_bar(stat="count", width=0.7)+
+  scale_fill_manual(values = os_colours, name = "Operating System",
+                    labels = c("Windows" = "Windows",
+                               "FreeDOS" = "FreeDOS",
+                               "macOS" = "MacOS",
+                               "Linux" = "Linux")) +
+  ylab("Count") + xlab("RAM (GB)") +
+  theme_minimal()
+
+data = data %>%
+  arrange(Operating.System)  
+
+data_P = prcomp(data[, -1], scale = TRUE)
+
+# Boxplots
+grid.arrange(barplot1, barplot2, barplot3,
+             ncol=3, nrow = 1, widths = c(1, 1, 1.6))
+
+new_labs = c("RAM (GB)", "Storage (GB)", "Screen Size (in)", 
+             "Resolution (w)", "Resolution (h)",
+             "Battery (hrs)", "Weight (kg)", "Price ($)")
+
+# Pairs plot of the original predictors
+pairs(data[, -1], col = os_colours[data$Operating.System], pch = 19,
+      labels = new_labs)
+
+# Plot of principal components skree plot
+eigenvalues = data_P$sdev^2
+plot(eigenvalues/sum(eigenvalues), type = "b",
+     xlab = "Principal Component",
+     ylab = "% of Var. Expl.")
+
+# Pairs plot of the principal components
+pairs(data_P$x[,1:3], col = os_colours[data$Operating.System], pch = 19,
+      labels = c("PC1", "PC2", "PC3"))
+
+# Factor analysis
+factanal(data[,-1],3)
+factanal(data[,-1],4)
+factanal(data[,-1],5) # Error; not possible
+
+set.seed(2025)
+train = c(sample(1:2952, 2362), sample(2953:5898, 2357), 
+              sample(5899:8852, 2363), sample(8853:11768, 2333))
+
+# Training the neural network model with original predictors
+set.seed(2025)
+net_testmod = tune.nnet(Operating.System ~ ., data = data[train,], 
+                        size = 1:20, decay = 0:10, 
+                        tunecontrol = tune.control(sampling = "cross", cross=5))
+
+# Best model
+nnet_mod = nnet(x[train,], cls[train,], size=13, decay=5, softmax=TRUE)
+nnet_pred = predict(nnet_mod, x[-train,], type="class")
+
+true_labels = as.factor(data[[1]][-train])
+tab = table(true_labels, nnet_pred)
+classAgreement(tab)
+
+ops_sys = data$Operating.System[train]
+pca_ver = as.data.frame(data_P$x[train,])
+pca_ver$ops_sys = factor(ops_sys)
+
+# Training the neural network model with principal components
+
+ops_sys = data$Operating.System[train]
+
+pca_ver = as.data.frame(data_P$x[train,])
+pca_ver$ops_sys = factor(ops_sys)
+
+net_testmod = tune.nnet(ops_sys ~ ., data = pca_ver, 
+                        size = 1:20, decay = 0:10, 
+                        tunecontrol = tune.control(sampling = "cross", cross=5))
+
+pca_cls = class.ind(as.factor(data[[1]]))
+pca_x = data_P$x[,-9]
+
+# Best model recommends size of 6 decay of 0
+pca_net = nnet(pca_x[train,], pca_cls[train,], 
+                size=6, decay=0, softmax=TRUE)
+pca_npred = predict(pca_net, pca_x[-train,], type="class")
+
+true_labels = as.factor(data[[1]][-train])
+tab = table(true_labels, pca_npred)
+classAgreement(tab)
+```

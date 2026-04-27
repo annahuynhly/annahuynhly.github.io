@@ -1,0 +1,268 @@
+---
+title: "Raisin Classification via Regression Trees"
+subtitle: "Anna Ly (400254496) - February 7, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 11pt
+    linestretch: 1.4
+    classoption: oneside
+    mainfont: Times New Roman 
+    tbl-cap-location: bottom
+  html:
+     tbl-cap-location: bottom
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library("tidyverse")
+library("farff")
+library("gridExtra")
+library("e1071")
+library("gbm") # boosting
+library("randomForest")
+
+data = readARFF("Raisin_Dataset.arff")
+
+scatter1 = ggplot(aes(x = Eccentricity, y=Extent, color=Class), data = data) +
+  geom_point() + theme_minimal() + theme(legend.position="none")
+
+hist1 = ggplot(data, aes(x=Area, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() +
+  theme(legend.position="none") + ylab("Count")
+
+hist2 = ggplot(data, aes(x=Perimeter, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() + ylab("Count")
+```
+
+## Introduction
+
+We will use the Kecimen and Besni raisin dataset from the UCI Machine Learning Repository, donated by Ilkay Cinar, Murat Koklu, and Sakir Tasdemir in 2020. The dataset contains 900 entries (450 each) with 7 explanatory variables describing the physical properties of raisins, such as area, perimeter, and roundness of the ellipse (eccentricity).
+
+\indent The goal is to use boosting, bagging, and random forests for classification to determine if these three methods can correctly distinguish the differences between Kecimen and Besni raisins based on physical quantifiable attributes. 
+
+## Exploratory Analysis
+
+An analysis of the scatter plots and histograms shows that Kecimen raisins tend to have a larger area, perimeter, and extent (the number of pixels in the smallest convex shell enclosing the raisin) compared to Besni; see Figure 1. However, there is considerable overlap which may make classification techniques ineffective for this problem.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Scatterplots and histograms showing the distribution of various physical features between Kecimen and Besni raisins."
+grid.arrange(scatter1, hist1, hist2, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+```
+
+## Description of Model-Based Clustering Techniques
+
+Regression trees predict outcomes by making a series of binary decisions. They can be used for either classification or regression problems. In either case, the idea is similar. For classification to distinguish raisins, three ensemble methods will be used: boosting, bagging, and random forests.
+
+  Boosting builds a model iteratively by training each new tree on the residuals of the previous iteration, aiming to minimize error as much as possible. We will be using the gbm package designed by Ridgeway et al.
+
+  Bagging generates multiple regression trees using bootstrap samples of the data. Predictions are made by averaging across these trees, aiming to reduce variance.
+
+  Random forests extend bagging by randomly selecting a subset of predictors for each tree. This reduces correlation between trees and allows weaker predictors to contribute to the model. For bagging and random forests, we will be using the randomForest package by Liaw and Wiener.
+
+  Specific details of how the algorithm is actually employed can be found in Introduction to Statistial Learning with Applications in R by James, Witten, Hastie, and Tibshirani chapter 8.
+
+## Results
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+set.seed(1)
+train = c(sample(1:450, size = 360), sample(451:900, size = 360))
+test = data[-train, "Class"]
+
+set.seed(1)
+boost = gbm(Class~.,data=data[train,],distribution="multinomial",
+               n.trees=3000,interaction.depth=1)
+set.seed(1)
+bagging = randomForest(Class~., data = data, subset = train,
+                       mtry= 7, ntree = 3000, importance=TRUE, type="class")
+set.seed(1)
+randomfor = randomForest(Class~., data = data, subset = train, 
+                         mtry = 2, ntree = 3000, importance=TRUE, type="class")
+```
+
+To ensure we get a representative sample for both raisin types, we used 80% of each raisin (360 samples each) for training and validation, and 20% for testing. We will use the exact same training and testing sets for all three models to ensure a fair comparison.
+
+  Furthermore, we used 3000 trees for all three models. For the random forest algorithm, we denoted to use 2 predictors since for classification problems it is recommended to use $\lfloor p \rfloor = \lfloor \sqrt{7} \rfloor = 2$. 
+
+  The results show that the boosting method has a slightly lower accuracy, and the bagging and random forest result had the exact amount of misclassifications; see Table 1 for precise values.
+
+::: {#tbl-panel layout-ncol=3}
+| Raisin Type | 1  | 2  |
+|-------------|----|----|
+| Kecimen     | 80 | 10 |
+| Besni       | 26 | 64 |
+
+: Boosting. {#tbl-first}
+
+| Raisin Type | 1  | 2  |
+|-------------|----|----|
+| Kecimen     | 80 | 10 |
+| Besni       | 23 | 67 |
+
+: Bagging. {#tbl-second}
+
+| Raisin Type | 1  | 2  |
+|-------------|----|----|
+| Kecimen     | 80 | 10 |
+| Besni       | 23 | 67 |
+
+: Random forest. {#tbl-third}
+
+Results from tree based regression methods. The rows represent the true class, while the columns represent the predicted class.
+:::
+
+  The boosting model has a misclassification rate of 20%, while the bagging and random forest models have a rate of 18.3%. Additionally, the Rand index is 0.36 for the boosting model and 0.40 for the bagging and random forest models. Hence, all models perform similarly however they are imperfect. This is predictable since our exploratory analysis suggested the physical features for both types of raisins are similar. 
+
+  Feature importance reveals more differences across models. In the boosting model, major axis length, extent, and perimeter were the most important (see Figure 2), determined by relative inference, which measures the average increase in error when a predictor is permuted.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 4
+#| fig-cap: "Variable importance from the boosting model."
+var_importance = summary(boost, plotit = FALSE)
+blue_palette = colorRampPalette(c("#221fff", "#00f2ff"))
+
+par(mar = c(5, 6, 4, 8))
+barplot(var_importance$rel.inf, 
+        names.arg = var_importance$var, 
+        las = 2, horiz = TRUE, xlab = "Relative Influence",
+        cex.names = 0.7, col = blue_palette(nrow(var_importance)))  
+```
+
+  Variable importance is assessed differently for bagging and random forest; see Figures 3 and 4. The left graph shows the mean decrease in accuracy based on out-of-bag (OOB) error, calculated from observations not used in training. However, we won’t draw inferences from this because OOB depends on the training data.
+
+  Instead, we focus on the right graph, which measures the average decrease in the Gini index when a predictor is removed. The Gini index gauges how often a randomly chosen element would be misclassified if labeled randomly.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 4
+#| fig-cap: "Variable importance from the bagging model."
+varImpPlot(bagging, main = "")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 4
+#| fig-cap: "Variable importance from the random forest model."
+varImpPlot(randomfor, main = "")
+```
+
+  In the bagging model, major axis length, perimeter, and extent are the most important. In contrast, the random forest model highlights perimeter, major axis length, and convex area. While both models agree on the top two variables, they differ on the third. However, both variables are related; extent is the ratio of the raisin’s region, whereas convex area counts the pixels in that region. It is also interesting that bagging and boosting have nearly identical variable importance.
+
+## Conclusion
+
+The boosting, bagging, and random forest models performed similarly, with bagging and random forest provides the exact same misclassification rates and rand indices. However, variable importance reveals that bagging and random forest emphasize different predictors, likely due to random forest giving other variables a chance. Despite bagging and random forest outperforming boosting, the difference in performance was minimal.
+
+  Exploratory data analysis showed that the two types of raisins share similar physical properties. The fact that the misclassification rate did not exceed 20% suggests that the model performs well despite similarities. However, the misclassification rate is not ideal for real life use. With a larger sample size and additional distinguishing variables (e.g., color), model performance could potentially improve.
+
+\newpage
+
+## References
+
+Cinar, İ., Koklu, M., & Tasdemir, S. (2020). Raisin [Dataset]. UCI Machine Learning Repository. <https://doi.org/10.24432/C5660T>. 
+
+Gareth, J., Daniela, W., Trevor, H., & Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.
+
+Liaw A, Wiener M (2002). “Classification and Regression by randomForest.” R News, *2*(3), 18-22. <https://CRAN.R-project.org/doc/Rnews/>.
+
+Ridgeway G, Developers G (2024). gbm: Generalized Boosted Regression Models. R package version 2.2.2, <https://CRAN.R-project.org/package=gbm>.
+
+## Appendix
+
+```{r}
+#| eval: false
+
+library("tidyverse")
+library("farff")
+library("gridExtra")
+library("e1071")
+library("gbm") # boosting
+library("randomForest")
+
+data = readARFF("Raisin_Dataset.arff")
+
+scatter1 = ggplot(aes(x = Eccentricity, y=Extent, color=Class), data = data) +
+  geom_point() + theme_minimal() + theme(legend.position="none")
+
+hist1 = ggplot(data, aes(x=Area, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() +
+  theme(legend.position="none") + ylab("Count")
+
+hist2 = ggplot(data, aes(x=Perimeter, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() + ylab("Count")
+
+# Plotting the exploratory data analysis
+grid.arrange(scatter1, hist1, hist2, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+
+# Model fitting
+set.seed(1)
+train = c(sample(1:450, size = 360), sample(451:900, size = 360))
+test = data[-train, "Class"]
+
+set.seed(1)
+boost = gbm(Class~.,data=data[train,],distribution="multinomial",
+               n.trees=3000,interaction.depth=1)
+set.seed(1)
+bagging = randomForest(Class~., data = data, subset = train,
+                       mtry= 7, ntree = 3000, importance=TRUE, type="class")
+set.seed(1)
+randomfor = randomForest(Class~., data = data, subset = train, 
+                         mtry = 2, ntree = 3000, importance=TRUE, type="class")
+
+# Classification Table
+
+# Boosting
+yhat.boost=predict(boost, newdata = data[-train,], n.trees=3000,
+                   distribution="multinomial", type="response")
+pred_class = rep(0,180)
+for(i in 1:180){
+  which(yhat.boost[i,,1] == max(yhat.boost[i,,1])) -> pred_class[i]
+}
+table = table(test, pred_class)
+classAgreement(table)
+
+# Bagging & Random Forest
+
+bag.pred = predict(bagging, data[-train, ], type="class")
+table2 = table(test, bag.pred)
+classAgreement(table2)
+
+rf.pred = predict(randomfor, data[-train, ], type="class")
+table3 = table(test, rf.pred)
+classAgreement(table3)
+
+# Variable importance for boosting
+var_importance = summary(boost, plotit = FALSE)
+blue_palette = colorRampPalette(c("#221fff", "#00f2ff"))
+
+par(mar = c(5, 6, 4, 8))
+barplot(var_importance$rel.inf, 
+        names.arg = var_importance$var, 
+        las = 2, horiz = TRUE, xlab = "Relative Influence",
+        cex.names = 0.7, col = blue_palette(nrow(var_importance)))  
+
+# Variable importance for bagging and random forest
+varImpPlot(bagging, main = "")
+varImpPlot(randomfor, main = "")
+```
+

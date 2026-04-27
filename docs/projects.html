@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Anna Ly</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Anna Ly</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="cv.html">CV</a>
+      <div class="nav-dropdown-menu">
+        <a href="cv.html">Education &amp; Experience</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="awards.html">Scholarships &amp; Awards</a>
+      </div>
+    </div>
+    <a href="teaching.html">Teaching</a>
+    <a href="projects.html" class="active">Projects</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Projects</h1>
+  <p>Statistical learning, data science, and software projects from research and graduate coursework.</p>
+</div>
+
+<div class="body single-col" style="max-width:860px;">
+
+  <div class="card">
+    <h2>Featured</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+
+      <div class="course-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;">
+        <div class="course-icon">🌾</div>
+        <div>
+          <div class="course-title">
+            <a href="pages/projects/sta720_settlement_distance.html" target="_blank">
+              Modelling Settlement Distance in German Farmland Camera Trap Data ↗
+            </a>
+          </div>
+          <div class="course-desc">
+            Fit log-normal linear mixed models (LMMs) to ecological camera trap data from two sites in Germany, modelling distance to the nearest settlement as a function of landscape features and predator counts. Compared three estimation approaches (lme4 REML, blme MAP Bayesian, and brms full MCMC), all producing consistent results. Distance to the nearest road was the most strongly associated predictor.
+          </div>
+          <div style="margin-top:7px;">
+            <span class="course-tag">R</span>
+            <span class="course-tag">Linear Mixed Models</span>
+            <span class="course-tag">lme4</span>
+            <span class="course-tag">Bayesian</span>
+            <span class="course-tag">brms</span>
+            <span class="course-tag">Ecology</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;">
+        <div class="course-icon">🌿</div>
+        <div>
+          <div class="course-title">
+            <a href="pages/projects/wind_turbine_detection.html" target="_blank">
+              Predicting Wildlife Carcass Detection Near Wind Turbines ↗
+            </a>
+          </div>
+          <div class="course-desc">
+            Applied elastic net regularization for variable selection, then compared logistic regression, random forests, and SVMs for binary classification of successful bird/bat carcass detections near Spanish wind farms. Using real ecological field data (~400 observations), the analysis finds that dog searchers are approximately 10× more likely to successfully detect a carcass than human searchers, the dominant predictor across all three models.
+          </div>
+          <div style="margin-top:7px;">
+            <span class="course-tag">R</span>
+            <span class="course-tag">Binary Classification</span>
+            <span class="course-tag">Elastic Net</span>
+            <span class="course-tag">Random Forest</span>
+            <span class="course-tag">SVM</span>
+            <span class="course-tag">Logistic Regression</span>
+            <span class="course-tag">Ecology</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="course-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;border-top:1px solid #eee;padding-top:20px;">
+      <div class="course-icon">📊</div>
+      <div>
+        <div class="course-title">
+          <a href="https://annaly.shinyapps.io/ROCAnalysisRelativeBelief/" target="_blank">
+            Bayesian Diagnostic Model Comparison — R Shiny Application ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Built and deployed a full-stack R Shiny web application for Bayesian diagnostic model comparison, developed during a research assistantship at the University of Toronto. The app enables researchers to run ROC/AUC analysis and relative belief ratio inference across multiple models and sampling regimes without writing code.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">R</span>
+          <span class="course-tag">Shiny</span>
+          <span class="course-tag">Bayesian</span>
+          <span class="course-tag">ROC/AUC</span>
+          <span class="course-tag">Statistical Software</span>
+          <span class="course-tag">Deployed</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h2>Additional Analyses</h2>
+
+    <div class="course-item">
+      <div class="course-icon">🍇</div>
+      <div>
+        <div class="course-title">
+          <a href="pages/projects/raisin_classification.html" target="_blank">
+            Classifying Raisin Varieties Using Ensemble Learning ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Compared gradient boosting, bagging, and random forests for distinguishing two Turkish raisin varieties (Kecimen and Besni) from 7 image-derived morphological features. All three methods achieve ~80–82% accuracy; bagging and random forests outperform boosting. Major axis length and perimeter are the most discriminative features.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">R</span>
+          <span class="course-tag">Ensemble Methods</span>
+          <span class="course-tag">Gradient Boosting</span>
+          <span class="course-tag">Random Forest</span>
+          <span class="course-tag">Feature Importance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-item">
+      <div class="course-icon">🫘</div>
+      <div>
+        <div class="course-title">
+          <a href="pages/projects/dry_bean_classification.html" target="_blank">
+            Multiclass Dry Bean Classification via Neural Networks ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Trained a feedforward neural network with softmax output to classify 13,611 dry bean samples across 7 varieties using 16 morphological features. Hyperparameters tuned via 5-fold cross-validation (size = 20, decay = 8). Achieved 81.9% overall accuracy; Bombay beans proved challenging due to class imbalance despite strong visual separability in exploratory analysis.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">R</span>
+          <span class="course-tag">Neural Networks</span>
+          <span class="course-tag">Multiclass Classification</span>
+          <span class="course-tag">Cross-Validation</span>
+          <span class="course-tag">Class Imbalance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-item">
+      <div class="course-icon">🌽</div>
+      <div>
+        <div class="course-title">
+          <a href="pages/projects/sta780_crop_inventory.html" target="_blank">
+            Annual Crop Inventory of Saskatchewan and Manitoba ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Analyzed GeoTIF crop inventory data from Agriculture and Agri-Food Canada across Saskatchewan and Manitoba (2009–2013), tracking land use for corn and soybeans. Corn production increased roughly 7-fold over the period; most growth occurred in Manitoba. An interactive Shiny app extends the analysis to additional crop types with user-selectable plots and colour schemes.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">R</span>
+          <span class="course-tag">Geospatial</span>
+          <span class="course-tag">terra</span>
+          <span class="course-tag">ggplot2</span>
+          <span class="course-tag">Shiny</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-item">
+      <div class="course-icon">🎮</div>
+      <div>
+        <div class="course-title">
+          <a href="pages/projects/sta780_pokemon_clustering.html" target="_blank">
+            Clustering Pokémon Using Their Battling Attributes ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Clustered 721 Pokémon species by six battle stats (HP, Attack, Defense, Special Attack, Special Defense, Speed) using agglomerative clustering, K-means, and PCA-based hierarchical clustering. All three methods consistently suggested two clusters, with Rand indices above 0.85 across all pairwise comparisons. Ward's linkage was the most stable across linkage types.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">Python</span>
+          <span class="course-tag">Clustering</span>
+          <span class="course-tag">K-Means</span>
+          <span class="course-tag">PCA</span>
+          <span class="course-tag">Agglomerative</span>
+          <span class="course-tag">scikit-learn</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;">
+      <div class="course-icon">🍦</div>
+      <div>
+        <div class="course-title">
+          <a href="pages/projects/sta780_vegan_icecream.html" target="_blank">
+            Modelling Attitudes Towards Vegan Ice Cream ↗
+          </a>
+        </div>
+        <div class="course-desc">
+          Compared elastic net regularization (ENET) and Bayesian additive regression trees (BART) for predicting vegan ice cream ratings from U.S. survey respondents (n = 274). Both models achieved an MSE of 0.91 on the vegan ice cream test set. Attitudes toward meat consumption, racial identity, and political orientation were the strongest predictors; ENET was preferred given comparable accuracy and much lower computational cost.
+        </div>
+        <div style="margin-top:7px;">
+          <span class="course-tag">R</span>
+          <span class="course-tag">Elastic Net</span>
+          <span class="course-tag">BART</span>
+          <span class="course-tag">Ridge Regression</span>
+          <span class="course-tag">LOOCV</span>
+          <span class="course-tag">Feature Importance</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>Anna Ly · Personal Site · 2026</span>
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>

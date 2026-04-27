@@ -1,0 +1,926 @@
+---
+title: "STATS 780 Final Project"
+subtitle: "Investigating Attitudes Towards Vegan Ice Cream"
+author: 
+  - name: "Anna Ly (400254496)"
+affiliation: "McMaster University"
+date: "December 11, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    titlepage: true
+    titlepage-color: "FFFFFF"
+    titlepage-text-color: "000000"
+    titlepage-rule-height: 2
+bibliography: test.bib
+nocite: "@*"
+csl: journal-of-combinatorics.csl
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+\newpage
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+library("tidyverse")
+library("knitr")
+library("gridExtra")
+library("ltm")
+library("fastDummies")
+library("caret")
+library("rJava") # Needed for bartMachine
+library("bartMachine")
+
+dataset = read.csv("Study1b.csv")
+dataset = na.omit(dataset)
+
+dataset = dataset %>%
+  mutate(
+    average_icecream = rowMeans(across(c(Taste1, Taste2, Taste3, Taste4)), na.rm = TRUE),
+    Carnism_4_rev = 8 - Carnism_4,
+    average_carnism = rowMeans(across(c(
+      Carnism_1, Carnism_2, Carnism_3, Carnism_4_rev, 
+      Carnism_5, Carnism_6, Carnism_7, Carnism_8
+    )), na.rm = TRUE)
+  )
+
+dataset_original = dataset
+
+dataset = dummy_cols(dataset, select_columns = c("Gender", "Race", "Education", "Income"), remove_first_dummy = FALSE)
+
+dairy_data = dataset[dataset$Condition == "1", ]
+vegan_data = dataset[dataset$Condition == "2", ]
+
+create_summary_table1 = function(vector){
+  mean_val = mean(vector); sd_val = sd(vector)
+  median_val = median(vector); iqr_val = IQR(vector)
+  mean_sd = sprintf("%.2f (%.2f)", mean_val, sd_val)
+  median_iqr = sprintf("%.2f (%.2f)", median_val, iqr_val)
+  return(c(mean_sd, median_iqr))
+}
+
+create_summary_table2 = function(data, columns_name, column_labels, cap_label){
+  summary_table = t(apply(data[, columns_name], 2, create_summary_table1))
+  summary_table = data.frame(
+    Statistic = c("Mean (SD)", "Median (IQR)"),
+    t(summary_table))
+
+  colnames(summary_table) = column_labels
+  return(kable(summary_table, caption = cap_label))
+}
+
+common_var_names = c("Carnism 1", "Carnism 2", "Carnism 3", "Carnism 5", "Carnism 6", "Carnism 7", "Carnism 8", "Politics", "Age", "Carnism 4", "Male", "Female", "White/Caucasian", "Black/African American", "Hispanic/Latinx", "Asian or Pacific Islander", "Mixed Race", "Other", "Less than HS", "High School", "Some College", "Associate", "Bachelor", "Graduate", "Less than $25,000", "$25,000 - $50,000", "$50,001 - $80,000", "$80,001 - $120,000", "$120,001 - $200,000", "$200,001 or more")
+```
+
+## 1. Abstract
+
+There are negative attitudes towards vegan food, particularly products designed to imitate traditional animal-based foods like dairy or meat. However, prior research indicates that opinions of vegan foods tend to improve after direct experience. While much of the existing research on vegan diets focuses on health impacts, efforts to model the predictors of stigma against veganism have been limited, often relying on basic statistical approaches. We use existing survey data to analyze demographic factors that impact attitudes towards vegan ice cream. We applied two modeling approaches: linear regression with elastic net regularization and Bayesian additive regression trees (BART). Both models performed similarly, revealing that attitudes toward meat consumption, racial identity, and political orientation were the strongest predictors of perceptions of vegan ice cream. Hence, shifting attitudes towards vegan food is challenging due to political factors and cultural sensitivities.
+
+## 2. Introduction
+
+In a simple study where participants rate popular desserts like ice cream or cake on a scale from 1 to 10, we would typically expect high ratings. However, adding the label "vegan" to the dessert name may elicit more negative perceptions from participants. Sekhon et al. @sekhon2019s found that although people often perceive vegan food as less tasty, their opinions improve after actually trying it.
+
+Here we focus on the Vegan Ice Cream data set (<https://osf.io/mazve/>) collected by UCLA social psychologist Daniel L. Rosenfeld @rosenfeld2024meat. Initially, 500 U.S. adult participants were recruited using Amazon Mechanical Turk (MTurk), a crowdsourcing marketplace that allows businesses and researchers to outsource tasks virtually, such as survey participation.
+
+However, those who failed an attention check, vegan participants, and participants with unique responses (e.g., identifying as non-binary, or indigenous North American, which was too infrequent for analysis) were excluded. The uploaded data set includes 275 participants, but one additional entry had to be removed for analysis due to missing data.
+
+Rosenfeld’s primary analysis of his data set involved conducting t-tests to compare vegan ice cream against regular ice cream ratings. He also performed a basic inferential analysis using linear regression. Our objective is to develop predictive models using statistical learning techniques, such as incorporating a training and test set, then applying penalization methods outlined in the next section.
+
+There are benefits to trying to understand factors behind the stigma surrounding vegan food. Reducing meat and dairy has environmental benefits, and vegan diets are known to have the lowest carbon emissions @su11154110. Our results may help vegan companies and advertisers improve marketing strategies led by these demographics and reduce global meat and dairy consumption.
+
+## 3. Methods
+
+We will compare two groups by creating and evaluating two models: participants who rated regular ice cream and those who rated vegan ice cream. While our primary focus will be on the latter, we will also analyze factors influencing the opinion of regular ice cream to assess the importance of variables between the two models. The response variable will be the participant’s average rating of ice cream attributes, which is numeric.
+
+We will answer the problem statement using the following approaches:
+
+1.  **Linear Regression with Elastic Net Regularization (ENET).**
+
+2.  **Bayesian Additive Regression Trees (BART) model.**
+
+We will also use leave-one-out cross validation (LOOCV) due to having a relatively small sample size. 80% of this set will be used for training whereas the 20% will be used for testing and comparing the two models against each other.
+
+The resulting split gives us 104 data points in the training set for the vegan model and 27 in the test set. For the regular ice cream response, there are 114 in the training set and 29 in the test set.
+
+### 3.1 Linear Regression with ENET
+
+Linear regression estimates a linear relationship between a numeric response variable (typically written as $\mathbf{y}$) verses explanatory variable(s) $\mathbf{X}$. The classical form is: $$
+y = X \beta + \epsilon
+$$ Where $\epsilon \sim Normal(0, \sigma^{2})$ which accounts for the "error" between the expected response, and $\beta$ is typically estimated by minimizing the residual sum of squares: $$
+\hat{\beta} = \text{min} \left( \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} \right)
+$$ Where $f(x_{i})$ denotes the predicted values of $y_{i}$; some authors may use use $\hat{y}_{i}$ instead.
+
+There are two main issues with using classical linear regression:
+
+1.  Over-fitting. There is a tendency to favor models with more variables.
+
+2.  Uses all predictors, and doesn't discard any that may be irrelevant for analysis. 
+
+It is not effective to arbitrarily remove variables; hence, some people may opt for statistical methods for feature selection. A common way to address this is through LASSO (Least Absolute Shrinkage and Selection Operator), which introduces a penalty term to the $\beta$ coefficients.
+
+Using LASSO, we estimate $\beta$ using: $$
+\hat{\beta}^{LASSO} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda \sum_{k=1}^{p} |b_{k+1}| \right\} 
+$$ Where $\lambda$ is a penalty term that goes up with model complexity to ensure that we don't over fit. As $\lambda$ increases, some coefficients are set to equal 0, which is analogous to choosing which parameters are important to estimate. It's common to call $\sum_{k=1}^{p} |b_{k+1}| = ||\beta||_{1}$ as the $\ell_{1}$ norm.
+
+Some people find it challenging to work with absolute values due to the more complex computations involved. As a result, some prefer to square the terms instead. This counterpart is called Ridge Regression, which doesn't do model selection but will shrink certain coefficients to almost be zero. The approach used to estimate $\beta$ in ridge Regression is:
+
+$$
+\hat{\beta}^{RIDGE} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda \sum_{k=1}^{p} b_{k+1}^{2} \right\}
+$$ Unfortunately, one problem is that ridge regression doesn't set any coefficients to zero, so it won't do model selection. It's common to call $\sum_{k=1}^{p} b_{k+1}^{2} = ||\beta||_{2}$ as the $\ell_{2}$ norm.
+
+Elastic Net Regularization is a mix between LASSO and ridge regression. It can be found by the following:
+
+$$
+\hat{\beta}^{ENET} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda (\alpha ||\beta||_{1} + (1 - \alpha)||\beta||_{2}) \right\}
+$$ Where in this case, $\alpha$ denotes the amount of weight we give to lasso and/or ridge. A smaller value of $\alpha$ denotes that the model is mostly ridge, and the opposite would suggest a model that is mostly LASSO. Both $\alpha$ and $\lambda$ are typically found using cross validation methods. For our report, we will be using LOOCV (leave one out cross validation.)
+
+### 3.2 BART model
+
+Understanding the BART model requires knowledge in areas such as boosting trees, likelihood estimation, empirical Bayesian methods, and common computational statistics algorithms like the Metropolis-Hastings algorithm. It would take its own textbook to discuss all details, but they are important to truly understand the model.
+
+In Bayesian statistics, there are concepts about the prior and the posterior. The prior represents our beliefs about the value of some quantity before we observe data. The distribution after data is observed is the posterior distribution.
+
+BART is similar to boosting trees, but it incorporates a regularization prior to prevent over-fitting issues. In this case, the prior is the structure of the regression trees before any modifications. Said regression trees get modified, turning them into posteriors. According to the original authors of BART @chipman_cite, the model is robust to small changes in the prior, and the default parameters are suitable for use. We will mention the default parameters for the priors in the results section.
+
+Regression trees partition the predictor space into non-overlapping regions and make predictions based on the observations within each region. These regions are typically rectangular, resembling the logic of coding a series of if-then statements in programming, where each split represents a conditional rule applied to divide the data.
+
+Each split is represented by a **node**, where a decision is made to divide the data based on a specific predictor and value. The **terminal nodes**, or leaves, represent the final regions after all splits, where a single prediction (often the mean of the response variable within the region) is assigned. The splitting rules in regression trees are determined by minimizing the residual sum of squares (RSS) at each step, similar to linear regression.
+
+Let $m$ denote the number of regression trees, and $B$ denote the number of iterations for the BART algorithm to run. Typically, the initial trees generated during the iterations are not suitable, so some practitioners use $L$ to denote the number of burn-in samples, which are excluded from the final model calculation.
+
+The prior hyper-parameters essentially determine how many nodes there are for the initial trees. The probability that the node of depth $d$ is non-terminal (meaning not the final branch) is given by the hyper-parameters $\alpha \in (0, 1)$, $\beta \in [0, \infty)$ with probability $\alpha (1 + d)^{-\beta}$. A smaller $\alpha$ means more penalization which enforces trees to not have too many branches to reduce complexity. The default choice is $\alpha = 0.95, \beta = 2$.
+
+Another key feature of BART is the use of empirical Bayes, which is a controversial approach because the prior structure is adjusted based on the data itself. In a traditional Bayesian framework, the prior is selected independently of the data. However, empirical Bayes still offers useful models. Let $k$ be a parameter chosen by the user. Essentially, we force the expected value of the response to be between $(y_{min}, y_{max})$ where $y_{min} = m \mu - k \sqrt{m} \sigma, y_{max} = m \mu + k \sqrt{m} \sigma$. $\mu$ and $\sigma$ are empirically chosen after $m$ and $k$ are chosen, which are the parmeters used for the prior structure when initially creating the regression trees.
+
+There are more priors parameters that can be elicited to improve the RMSE (root mean square deviation), but they are optional so they will not be explained and incorporated in our model. After choosing the prior parameters, initial trees are generated, and now we want to perturbate them.
+
+$\mathcal{T}^{b}_{k}(x)$ represents the prediction at $x$ for the $k$-th regression tree used at the $b$th boosting iteration, where $b = 2, ..., B$. Then, we have $\mathcal{T}^{b}(x)$ represent the sum of all regression trees for the $b$th iteration.
+
+**Step 1:** The initial tree will just be the average response. In particular, we'll set $$ \mathcal{T}_{1}^{1}(X) = ... = \mathcal{T}_{m}^{1}(X) = \frac{1}{m} \overline{y}$$ Thus, $\mathcal{T}^{1}(X) = \overline{y}$.
+
+**Step 2:** Then, for $b = 2, ..., B$,
+
+(a) For $k = 1, 2, ..., m$:
+
+    (i). Compute the partial residual of each tree. Let $r_{i}$ denote the partial residual. This is calculated by: $$ r_{i} = y_{i} - \sum_{i=1}^{k-1} \mathcal{T}_{i}^{b}(x_{i}) - \sum_{i=k+1}^{m} \mathcal{T}_{i}^{b-1}(x_{i}) $$
+
+    (ii). Then we want to randomly perturbate the $k$-th tree, $\mathcal{T}^{b}_{k}(X)$. Perturbations include things such as pruning, adding more nodes, or changing terminal node values. We then use the Metropolis-Hastings algorithm to accept this new perturbation or to reject it.
+
+(b) We then compute $\mathcal{T}^{b}(x) = \sum_{i=1}^{m} \mathcal{T}_{i}^{b}(X)$.
+
+**Step 3:** We then compute the mean, eliminating the $L$ burn-in samples:
+
+$$
+\mathcal{T}(X) = \frac{1}{B - L} \sum_{i=L+1}^{B} \mathcal{T}^{i}(X)
+$$
+
+This model is very different from our linear regression model with ENET since it isn't limited by assumptions such as linearity, yet it works well for quantitative data. However, they sacrifice interpretability for better performance, and they're computationally more expensive. We will be using the "bartMachine" package in R. For more details, see the vignette of the package @bartmachinecite.
+
+### 3.3 Methods for Comparisons
+
+The first way we will compare the models is to compute the mean square error (MSE): $\frac{1}{n} \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$ of the test set. The model with the smaller MSE will be dubbed as the better model.
+
+The other way we'll try to compare the models is by looking at the feature importance. For the linear regression model with ENET, we will be finding this by standardizing the coefficients. For BART, we will be using inclusion proportion.
+
+## 4. Results
+
+### 4.1 Description of Variables
+
+Here we will go into details about how the variables of the data set and how the data was modified for analysis. All of the variables we will be including are:
+
+-   **Quantitative:** Likert-scale responses for 8 statements on attitudes toward eating meat (1 = strongly disagree, 7 = strongly agree), political stance (1 = liberal, 7 = conservative), and 4 statements on ice cream attributes (1 = very bad, 7 = very delicious). Self-reported numbers for age.
+
+-   **Categorical:** Gender (binary), race/ethnicity (White, Black, Hispanic, Asian, Native American, Mixed, or Other), education, household income.
+
+Our primary objective is to understand what factors influence vegan ice cream ratings. In the original survey, participants rated both vegan and regular ice cream based on four traits: taste, flavor, consistency, and texture. Although a multivariate response model was initially considered, we observed that the ratings across these traits were highly consistent within each participant; more details are shown in the next sub-section. Consequently, we simplified the analysis by averaging the ratings across these traits to create a single response variable.
+
+For the categorical variables, one-hot encoding was applied as this approach is suited for models that do best with numerical explanatory variables. While education and household income are ordinal variables, they were not treated as numeric because the gaps between categories are not uniform.
+
+For instance, the options for education levels included (1) less than a high school diploma, (2) a high school diploma, (3) some college, no degree, and (4) an associate degree. It is uncertain whether the difference between levels 1 and 2 is equivalent to the difference between levels 3 and 4.
+
+The eight statements in the survey that reflect "attitudes towards eating meat" are listed in the table below. Rosenfeld, the data collector, labeled these variables as Carnism 1 to Carnism 8 @rosenfeld2024meat. We kept these names for consistency and will refer to them later when measuring variable importance in the subsequent sections.
+
+| Variable Name | Statement                                                                              |
+|---------------|---------------------------------------------------------|
+| Carnism 1     | Humans should continue to eat meat because we've been doing it for thousands of years. |
+| Carnism 2     | Eating meat is better for my health.                                                   |
+| Carnism 3     |  I’ve been eating meat my whole life, I could never give it up.                        |
+| Carnism 4     | The production of meat causes animals to suffer.                                       |
+| Carnism 5     | Animals are dirty and deserve to be eaten.                                             |
+| Carnism 6     | Not eating animals is a sign of weakness.                                              |
+| Carnism 7     | I have the right to kill any animal I want.                                            |
+| Carnism 8     | Animals aren't intelligent enough to suffer in intensive confinement.                  |
+
+Below we present some summary tables:
+
+```{r}
+#| echo: false
+columns_demo = c("Politics_1", "Age")
+column_lab =  c("Statistic", "Conservatism", "Age")
+
+create_summary_table2(dataset, columns_demo, column_lab, "Demographic Summary")
+```
+
+```{r}
+#| echo: false
+
+n = nrow(dataset_original )
+politics_table = dataset_original  %>%
+  count(Politics_1) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(politics_table, col.names = c("Political Stance", "Count", "Percentage (%)"),
+      caption = "Political Stance of Survey Participants. 1: Very Liberal, 7: Very Conservative")
+
+race_table = dataset_original  %>%
+  count(Race) %>%
+  mutate(
+    Ethnicity = recode(Race,
+                       "1" = "White / Caucasian",
+                       "2" = "Black / African American",
+                       "3" = "Hispanic or Latinx",
+                       "4" = "Asian or Pacific Islander",
+                       "6" = "Native American",
+                       "7" = "Other"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Ethnicity, n, Percentage)  # Reorder columns
+kable(race_table, col.names = c("Ethnicity", "Count", "Percentage (%)"),
+      caption = "Ethnicity of Survey Participants.")
+
+education_table = dataset_original  %>%
+  count(Education) %>%
+  mutate(
+    Education = recode(Education,
+          "1" = "Less than high school diploma",
+          "2" = "High school diploma or equivalent (e.g., GED)",
+          "3" = "Some college, but no degree",
+          "4" = "Associate degree",
+          "5" = "Bachelor's degree",
+          "6" = "Graduate or professional degree"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Education, n, Percentage)  # Reorder columns
+kable(education_table, col.names = c("Education", "Count", "Percentage (%)"), caption = "Education Level of Survey Participants.")
+
+income_table = dataset_original  %>%
+  count(Income) %>%
+  mutate(
+    Income = recode(Income,
+          "1" = "$25,000 or less",
+          "2" = "$25,001 - $50,000",
+          "3" = "$50,001 - $80,000",
+          "4" = "$80,001 - $120,000",
+          "5" = "$120,001 - $200,000",
+          "6" = "$200,001 or more"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Income, n, Percentage)  # Reorder columns
+kable(income_table, col.names = c("Income", "Count", "Percentage (%)"), caption = "Income Level of Survey Participants.")
+```
+
+### 4.2 Exploratory Data Analysis
+
+Most of the **data was previously transformed** by the data collector. However, most of the attributes (texture, flavour, etc) participants have towards ice cream was consistent for both versions (whether they were asked about regular ice cream or vegan ice cream). The Cronbach's alpha, a measure of internal consistency, was $0.944$ for dairy ice cream and $0.955$ for vegan ice cream. These scores are considered excellent internal consistency. Hence, it is reasonable to take the average of their perception of ice cream attributes to be the response variable.
+
+```{r}
+#| echo: false
+#| fig.width: 9
+#| fig.height: 4
+#| dpi: 300
+#| fig-cap: "Boxplots showing the attitudes towards regular ice cream (left) and vegan ice cream (right)."
+
+dairy_data_long = dairy_data %>%
+  pivot_longer(cols = c(Taste1, Taste2, Taste3, Taste4), 
+               names_to = "Variable", values_to = "Value") %>%
+  mutate(Variable = recode(Variable, 
+                         Taste1 = "Taste", Taste2 = "Flavour", 
+                         Taste3 = "Texture", Taste4 = "Consistency"))
+
+vegan_data_long = vegan_data %>%
+  pivot_longer(cols = c(Taste1, Taste2, Taste3, Taste4), 
+               names_to = "Variable", values_to = "Value") %>%
+  mutate(Variable = recode(Variable, 
+                           Taste1 = "Taste", Taste2 = "Flavour", 
+                           Taste3 = "Texture", Taste4 = "Consistency"))
+p3 = ggplot(dairy_data_long, aes(x = Variable, y = Value, fill = Variable)) + geom_boxplot() +
+  labs(title = "Regular Ice Cream Evaluation", 
+       x = "Evaluation", 
+       y = "Rating (1: Very Bad, 7: Very Delicious)") +
+  scale_fill_manual(values=c("#FF6666", "#6699FF", "#05DEB2", "#947aff")) +
+  guides(fill="none")
+
+p4 = ggplot(vegan_data_long, aes(x = Variable, y = Value, fill = Variable)) + geom_boxplot() +
+  labs(title = "Vegan Ice Cream Evalauation", 
+       x = "Evaluation", 
+       y = "Rating (1: Very Bad, 7: Very Delicious)") +
+  scale_fill_manual(values=c("#FF6666", "#6699FF", "#05DEB2", "#947aff")) +
+  guides(fill = "none")
+
+grid.arrange(p3, p4, widths = c(2, 2), ncol=2)
+```
+
+```{r}
+#| echo: false
+columns_icecream = c("Taste1", "Taste2", "Taste3", "Taste4")
+columns_icelab = c("Statistic", "Taste", "Flavour", "Texture", "Consistency")
+
+create_summary_table2(dairy_data, columns_icecream, columns_icelab, "Regular Ice Cream Evaluation")
+create_summary_table2(vegan_data, columns_icecream, columns_icelab, "Vegan Ice Cream Evaluation")
+```
+
+The survey contains 8 Likert questions which indicated the participant's attitudes towards eating meat and animal welfare. For 7 of these questions, a higher value indicated a stronger belief for eating animals. Statement 4 was reversed for data analysis.
+
+The table listing the exact statements in Section 4.1 shows the varying degrees of extremity among these statements compared to one another. Naturally, most of the individual correlations between each statement were not that high. Furthermore, since multi-collinearity not a concern for an elastic net model or BART, we retained the initial responses to each statement towards eating animals instead of averaging. However, just for **simple correlation analysis** we took the average of these attitudes. For ease, we will refer to this as "average carnism attitude".
+
+We found that there was a *slight positive correlation between average carnism attitude and political stance* ($\rho = 0.400$), meaning that the more conservative someone is, the more likely they are to have a high carnism attitude. Furthermore, *there was a positive correlation between average carnism attitude and perceptions of regular ice cream* ($\rho = 0.349$), but there was a negative correlation between average carnism attitude attitude and perceptions of vegan ice cream ($\rho = -0.360$). This suggests that people with higher carnism attitudes tend to rate regular ice cream higher, but rate vegan ice cream lower.
+
+### 4.3 Results for the Linear Regresion with ENET
+
+```{r}
+#| echo: false
+remove_cols = c("StartDate", "EndDate", "Consent", "Gender", "Condition", 
+                "Carnism_4", "average_carnism", "Race", "Education", "Income",
+                "Taste1", "Taste2", "Taste3", "Taste4")
+
+dairy_data = dairy_data[, !names(dairy_data) %in% remove_cols]
+vegan_data = vegan_data[, !names(vegan_data) %in% remove_cols]
+
+# Going to do use a LOOCV due to small sample size; the test set will be separated for comparison.
+train_prop = 0.8
+train_vegan_n = floor(0.8 * nrow(vegan_data))
+train_dairy_n = floor(0.8 * nrow(dairy_data))
+
+set.seed(1)
+vegan_samp = sort(sample(1:nrow(vegan_data), train_vegan_n, replace = FALSE))
+dairy_samp = sort(sample(1:nrow(dairy_data), train_dairy_n, replace = FALSE))
+
+vegan_train = vegan_data[vegan_samp, ]
+dairy_train = dairy_data[dairy_samp, ]
+
+vegan_test = vegan_data[-vegan_samp, ]
+dairy_test = dairy_data[-dairy_samp, ]
+
+ctrl = trainControl(method = "LOOCV")
+
+dairy_elnet = train(
+  average_icecream ~ ., data = dairy_train,
+  method = "glmnet", # does elastic net
+  tuneGrid = data.frame(alpha = 0.1, lambda = 0.72),
+  trControl = ctrl 
+)
+
+vegan_elnet = train(
+  average_icecream ~ ., data = vegan_train,
+  method = "glmnet", # This does elastic net
+  tuneGrid = data.frame(alpha = 0, lambda = 2.85),
+  trControl = ctrl
+)
+
+# Checking the coefficients and making comparisons
+vegan_coefs = coef(vegan_elnet$finalModel, s = vegan_elnet$bestTune$lambda)
+dairy_coefs = coef(dairy_elnet$finalModel, s = dairy_elnet$bestTune$lambda)
+
+standardized_coefficients = function(data, coefs_output){
+  means = colMeans(data)
+  sds = apply(data, 2, sd)
+  
+  coef_2 = as.vector(coefs_output)
+  names(coef_2) = rownames(coefs_output)
+  
+  x_sds = sds[names(coef_2)[-1]] 
+  y_sd = sds["average_icecream"]  
+  
+  standardized_coefs = coef_2[-1] / (2*x_sds) #coef_2[-1] * (x_sds / y_sd)
+  names(standardized_coefs) = names(coef_2)[-1]
+  
+  return(list(
+    standardized_coefs = standardized_coefs,
+    sorted_coefs = sort(abs(standardized_coefs))
+  ))
+}
+
+vals1 = standardized_coefficients(vegan_train, vegan_coefs)
+vals2 = standardized_coefficients(dairy_train, dairy_coefs)
+```
+
+For the **vegan ice cream model**, LOOCV recommended setting $\alpha = 0$ which indicates to just use Ridge Regression. The corresponding penalty term was $\lambda = 2.85$. This model achieved a corresponding MSE of 0.91, indicating a strong predictive performance.
+
+To standardize the $\beta$ coefficients, we followed Gelman’s suggestion to scale predictors by twice the standard deviation of the corresponding explanatory variable @gelman2008scaling. A bar plot displaying the scaled coefficients, ordered from highest to lowest, indicates the variable importance:
+
+```{r}
+#| echo: false
+#| fig.width: 9
+#| fig.height: 5
+#| dpi: 300
+#| fig-cap: "Variable Importance Based on Standardized Coefficients for Vegan Ice Cream Ratings (Left) and Regular Ice Cream Ratings (Right)"
+LR_barplot = function(important_variables){
+  
+  df = data.frame(
+    Variable = common_var_names,
+    Coefficient = as.numeric(important_variables)
+  )
+  
+  df = na.omit(df)
+  df = df[df$Coefficient != 0, ]
+  
+  df$AbsCoefficient = abs(df$Coefficient)
+  df = df[order(-df$AbsCoefficient), ]
+  
+  # Create the bar plot
+  ggplot(df, aes(x = reorder(Variable, AbsCoefficient), y = Coefficient, fill = Coefficient > 0)) +
+    geom_bar(stat = "identity") +
+    coord_flip() + 
+    scale_fill_manual(values = c("#FF6666", "#6699FF"), labels = c("Negative", "Positive")) +
+    theme_minimal() +
+    labs(
+      x = "Variable",
+      y = "Standardized Coefficient",
+      fill = "Direction"
+    ) +
+    theme(legend.position = "top")
+}
+
+barplot1 = LR_barplot(vals1$standardized_coefs)
+barplot2 = LR_barplot(vals2$standardized_coefs)
+
+grid.arrange(barplot1, barplot2, widths = c(2, 2), ncol=2)
+```
+
+In this analysis, "Other" refers to individuals who identify as a race not listed in the survey’s dropdown options. Race is seen as the strongest predictor of attitudes toward vegan ice cream. Specifically, individuals identifying as "Hispanic/Latinx" or "Other" exhibited more negative attitudes, while those identifying as "Black/African American" and high school students had a more positive impression of vegan ice cream.
+
+For the **regular ice cream** model, LOOCV suggested setting $\alpha = 0.1$ which leans towards ridge Regression as well, but not completely. The associated penalty term was $\lambda = 0.72$. The MSE for the dairy ice cream model was 1.05, which is also relatively low and indicative of good model performance!
+
+With the partial incorporation of LASSO, certain coefficients were reduced to zero. Interestingly, the results differed significantly from the vegan ice cream model: income and education appear to be connected to opinions about regular ice cream. Individuals earning over \$120,000 per year expressed a highly positive perception of dairy ice cream, while those with a graduate school education exhibited a more negative impression.
+
+Initially, we assessed variable importance by standardizing the coefficients, multiplying each by the ratio of its sample standard deviation to the sample standard deviation of the response variable, following standard practice as suggested by Bring @bring1994standardize. However, this approach is controversial when applied to one-hot encoded variables. The variable importance from this method were almost identical to those obtained using the BART model, which we will discuss next.
+
+### 4.4 Results for BART Model
+
+For the BART model we used the default hyper-parameters provided in the BartMachine library. The default choice is $\alpha = 0.95, \beta = 2, k = 2$. Furthermore, we went with the default number of trees $m = 50$, $L = 250$ and $B = 1250$.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: "hide"
+LOOCV_bart = function(train_data, train_y, test_data){
+  
+  predictions = matrix(0, nrow = nrow(test_data), ncol = nrow(train_data))
+  variable_imp = matrix(0, nrow = nrow(train_data), ncol = ncol(train_data)-1)
+  predictor_names = colnames(train_data)[-10] 
+  colnames(variable_imp) = predictor_names
+  
+  for(i in 1:nrow(train_data)){
+    temp_train_data = train_data[-i, ]
+    temp_train_y = train_y[-i]
+
+    # 10 is the index for average ice cream score
+    bart_model = bartMachine(X = temp_train_data[, -10], 
+                             y = temp_train_y, verbose = FALSE,
+                             run_in_sample = FALSE)
+    
+    var_imp = investigate_var_importance(bart_model, plot = FALSE)$avg_var_props
+    variable_imp[i, names(var_imp)] = var_imp  
+    
+    predictions[, i] = predict(bart_model, test_data[, -10, drop = FALSE])
+  }
+  final_predictions = rowMeans(predictions)
+  avg_variable_imp = colMeans(variable_imp)
+  return(list(
+    predictions = final_predictions,
+    variable_importance = avg_variable_imp
+  ))
+}
+
+set.seed(1)
+y_hat_dairy_bart = LOOCV_bart(dairy_train, dairy_train$average_icecream, dairy_test)
+set.seed(1)
+y_hat_vegan_bart = LOOCV_bart(vegan_train, vegan_train$average_icecream, vegan_test)
+```
+
+We assess variable importance using the inclusion proportion, which indicates the fraction of times a given predictor is selected as a splitting rule across all splits in the sum-of-trees model. The lollipop chart below displays the variable importance for both the vegan ice cream and regular ice cream models.
+
+```{r}
+#| echo: false
+#| fig.width: 9
+#| fig.height: 4
+#| dpi: 300
+#| fig-cap: "Variable Importance Based on Inclusion Proportions for Vegan Ice Cream Ratings (Left) and Regular Ice Cream Ratings (Right)"
+create_lollipop_chart = function(var_imp_vector){
+  
+  importance_df = data.frame(
+    Variable = common_var_names,
+    Importance = var_imp_vector
+  )
+  
+  importance_df <- importance_df[order(importance_df$Importance, decreasing = TRUE), ]
+  
+  ggplot(importance_df, aes(x = reorder(Variable, Importance), y = Importance)) +
+    geom_segment(aes(xend = Variable, yend = 0), color = "gray") +
+    geom_point(color = "#5b10a7", size = 3) +
+    coord_flip() +  
+    labs(
+      x = "Variables",
+      y = "Importance"
+    ) +
+    theme_minimal()
+}
+
+p1 = create_lollipop_chart(y_hat_vegan_bart$variable_importance)
+p2 = create_lollipop_chart(y_hat_dairy_bart$variable_importance)
+
+grid.arrange(p1, p2, widths = c(2, 2), ncol=2)
+```
+
+For the vegan ice cream model, attitudes toward eating meat (labeled as Carnism 1–8) appear to strongly influence preferences for both vegan and non-vegan ice cream. Politics is also one of the top 5 important predictors. Notably, in this model, education and income levels have little impact on perceptions of vegan ice cream compared to the influence of race.
+
+The reason why some variables were not used for any splitting decisions is due to their absence in the corresponding training sets. There is a relatively low number of individuals who identified as mixed race or perceive their race to be different than the provided options on the survey. Additionally, most people tend to graduate from high school nowadays. Some details of such counts was shown in section 4.1.
+
+The MSE for the vegan ice cream model is 0.91 and for the regular ice cream it was 1.11. These are quite similar to the results from linear regression with ENET.
+
+## 5. Conclusion
+
+The linear regression using ENET provides us an MSE of 0.91 for vegan ice cream preferences and 1.05 for regular ice cream preferences. In comparison, the BART model produces an identical MSE of 0.91 for vegan ice cream preferences but a slightly higher MSE of 1.11 for regular ice cream preferences. While the performance of the two models is comparable, the BART model is significantly more computationally expensive. Thus, the benefits of the BART model do not outweigh its computational cost, leading us to conclude that simplicity is best in this case.
+
+In terms of variable importance, the two models slightly differ. The ENET model suggests that race is the most influential factor, while the BART model features attitudes toward eating meat as the most influential instead. Nonetheless, the BART model also indicates that race is a secondary factor, aligning with the ENET results to some extent.
+
+Additionally, as mentioned earlier, the variable importance from the BART model resembles the results of linear regression with ENET had we standardized coefficients relative to the response variable. Hence, the observed differences in variable importance could be due to different methods used to assess importance.
+
+Since race, political factors, and attitudes towards eating meat shape perceptions of vegan ice cream, and likely vegan food in general, shifting attitudes toward trying plant-based meals would be complicated due to cultural and political sensitivities. One potential approach could involve engaging social medoa influencers from diverse racial and cultural backgrounds to promote plant-based meals within their respective communities. However, implementing such strategies lies outside the scope of this report.
+
+Like most studies, ours faces some challenges. Assessing variable importance was difficult due to inconsistencies in variable types; most were one-hot encoded, while others, such as numerical variables ranging from 1 to 7, differed in scale. The relatively small sample size also limited the analysis, with only 274 responses usable out of the initial 500 and even fewer relevant for examining perceptions of vegan ice cream.
+
+Additionally, the data set's demographic variables focused heavily on attitudes towards eating meat. Including factors such as religion or geographic location, such as the US state the participant was from, would have made the findings more useful to businesses and marketing departments.
+
+\newpage
+
+## 6. References
+
+::: {#refs}
+:::
+
+\newpage
+
+## 7. Supplementary Material
+
+### 7.1 Loading the Data and Data Cleaning
+
+```{r}
+#| eval: false
+library("tidyverse")
+library("knitr")
+library("gridExtra")
+library("ltm")
+library("fastDummies")
+library("caret")
+library("rJava") # Needed for bartMachine
+library("bartMachine")
+
+dataset = read.csv("Study1b.csv")
+dataset = na.omit(dataset)
+
+dataset = dataset %>%
+  mutate(
+    average_icecream = rowMeans(across(c(Taste1, Taste2, Taste3, Taste4)), na.rm = TRUE),
+    Carnism_4_rev = 8 - Carnism_4,
+    average_carnism = rowMeans(across(c(
+      Carnism_1, Carnism_2, Carnism_3, Carnism_4_rev, 
+      Carnism_5, Carnism_6, Carnism_7, Carnism_8
+    )), na.rm = TRUE)
+  )
+
+dataset_original = dataset
+
+dataset = dummy_cols(dataset, select_columns = c("Gender", "Race", "Education", "Income"), remove_first_dummy = FALSE)
+
+dairy_data = dataset[dataset$Condition == "1", ]
+vegan_data = dataset[dataset$Condition == "2", ]
+
+create_summary_table1 = function(vector){
+  mean_val = mean(vector); sd_val = sd(vector)
+  median_val = median(vector); iqr_val = IQR(vector)
+  mean_sd = sprintf("%.2f (%.2f)", mean_val, sd_val)
+  median_iqr = sprintf("%.2f (%.2f)", median_val, iqr_val)
+  return(c(mean_sd, median_iqr))
+}
+
+create_summary_table2 = function(data, columns_name, column_labels, cap_label){
+  summary_table = t(apply(data[, columns_name], 2, create_summary_table1))
+  summary_table = data.frame(
+    Statistic = c("Mean (SD)", "Median (IQR)"),
+    t(summary_table))
+
+  colnames(summary_table) = column_labels
+  return(kable(summary_table, caption = cap_label))
+}
+```
+
+```{r}
+#| eval: false
+common_var_names = c("Carnism 1", "Carnism 2", "Carnism 3", "Carnism 5", "Carnism 6", "Carnism 7", "Carnism 8", "Politics", "Age", "Carnism 4", "Male", "Female", "White/Caucasian", "Black/African American", "Hispanic/Latinx", "Asian or Pacific Islander", "Mixed Race", "Other", "Less than HS", "High School", "Some College", "Associate", "Bachelor", "Graduate", "Less than $25,000", "$25,000 - $50,000", "$50,001 - $80,000", "$80,001 - $120,000", "$120,001 - $200,000", "$200,001 or more")
+```
+
+### 7.2 Tables for Exploratory Data Analysis
+
+```{r}
+#| eval: false
+columns_demo = c("Politics_1", "Age")
+column_lab =  c("Statistic", "Conservatism", "Age")
+
+create_summary_table2(dataset, columns_demo, column_lab, "Demographic Summary")
+
+
+n = nrow(dataset_original )
+politics_table = dataset_original  %>%
+  count(Politics_1) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(politics_table, col.names = c("Political Stance", "Count", "Percentage (%)"),
+      caption = "Political Stance of Survey Participants. 1: Very Liberal, 7: Very Conservative")
+
+race_table = dataset_original  %>%
+  count(Race) %>%
+  mutate(
+    Ethnicity = recode(Race,
+                       "1" = "White / Caucasian",
+                       "2" = "Black / African American",
+                       "3" = "Hispanic or Latinx",
+                       "4" = "Asian or Pacific Islander",
+                       "6" = "Native American",
+                       "7" = "Other"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Ethnicity, n, Percentage)  # Reorder columns
+kable(race_table, col.names = c("Ethnicity", "Count", "Percentage (%)"),
+      caption = "Ethnicity of Survey Participants.")
+
+education_table = dataset_original  %>%
+  count(Education) %>%
+  mutate(
+    Education = recode(Education,
+          "1" = "Less than high school diploma",
+          "2" = "High school diploma or equivalent (e.g., GED)",
+          "3" = "Some college, but no degree",
+          "4" = "Associate degree",
+          "5" = "Bachelor's degree",
+          "6" = "Graduate or professional degree"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Education, n, Percentage)  # Reorder columns
+kable(education_table, col.names = c("Education", "Count", "Percentage (%)"), caption = "Education Level of Survey Participants.")
+
+income_table = dataset_original  %>%
+  count(Income) %>%
+  mutate(
+    Income = recode(Income,
+          "1" = "$25,000 or less",
+          "2" = "$25,001 - $50,000",
+          "3" = "$50,001 - $80,000",
+          "4" = "$80,001 - $120,000",
+          "5" = "$120,001 - $200,000",
+          "6" = "$200,001 or more"),
+    Percentage = round(n / sum(n) * 100, 2)
+    ) %>%
+  dplyr::select(Income, n, Percentage)  # Reorder columns
+kable(income_table, col.names = c("Income", "Count", "Percentage (%)"), caption = "Income Level of Survey Participants.")
+
+columns_icecream = c("Taste1", "Taste2", "Taste3", "Taste4")
+columns_icelab = c("Statistic", "Taste", "Flavour", "Texture", "Consistency")
+
+create_summary_table2(dairy_data, columns_icecream, columns_icelab, "Regular Ice Cream Evaluation")
+create_summary_table2(vegan_data, columns_icecream, columns_icelab, "Vegan Ice Cream Evaluation")
+```
+
+### 7.3 Boxplots Comparing Ice Cream Ratings
+
+```{r}
+#| eval: false
+
+dairy_data_long = dairy_data %>%
+  pivot_longer(cols = c(Taste1, Taste2, Taste3, Taste4), 
+               names_to = "Variable", values_to = "Value") %>%
+  mutate(Variable = recode(Variable, 
+                         Taste1 = "Taste", Taste2 = "Flavour", 
+                         Taste3 = "Texture", Taste4 = "Consistency"))
+
+vegan_data_long = vegan_data %>%
+  pivot_longer(cols = c(Taste1, Taste2, Taste3, Taste4), 
+               names_to = "Variable", values_to = "Value") %>%
+  mutate(Variable = recode(Variable, 
+                           Taste1 = "Taste", Taste2 = "Flavour", 
+                           Taste3 = "Texture", Taste4 = "Consistency"))
+p3 = ggplot(dairy_data_long, aes(x = Variable, y = Value, fill = Variable)) + geom_boxplot() +
+  labs(x = "Evaluation", 
+       y = "Rating (1: Very Bad, 7: Very Delicious)") +
+  scale_fill_manual(values=c("#FF6666", "#6699FF", "#05DEB2", "#947aff")) +
+  guides(fill="none")
+
+p4 = ggplot(vegan_data_long, aes(x = Variable, y = Value, fill = Variable)) + geom_boxplot() +
+  labs(x = "Evaluation", 
+       y = "Rating (1: Very Bad, 7: Very Delicious)") +
+  scale_fill_manual(values=c("#FF6666", "#6699FF", "#05DEB2", "#947aff")) +
+  guides(fill = "none")
+
+grid.arrange(p3, p4, widths = c(2, 2), ncol=2)
+```
+
+### 7.4 Linear Regression with ENET
+
+```{r}
+#| eval: false
+
+remove_cols = c("StartDate", "EndDate", "Consent", "Gender", "Condition", 
+                "Carnism_4", "average_carnism", "Race", "Education", "Income",
+                "Taste1", "Taste2", "Taste3", "Taste4")
+
+dairy_data = dairy_data[, !names(dairy_data) %in% remove_cols]
+vegan_data = vegan_data[, !names(vegan_data) %in% remove_cols]
+
+# Going to do use a LOOCV due to small sample size; the test set will be separated for comparison.
+train_prop = 0.8
+train_vegan_n = floor(0.8 * nrow(vegan_data))
+train_dairy_n = floor(0.8 * nrow(dairy_data))
+
+set.seed(1)
+vegan_samp = sort(sample(1:nrow(vegan_data), train_vegan_n, replace = FALSE))
+dairy_samp = sort(sample(1:nrow(dairy_data), train_dairy_n, replace = FALSE))
+
+vegan_train = vegan_data[vegan_samp, ]
+dairy_train = dairy_data[dairy_samp, ]
+
+vegan_test = vegan_data[-vegan_samp, ]
+dairy_test = dairy_data[-dairy_samp, ]
+
+ctrl = trainControl(method = "LOOCV")
+
+dairy_elnet = train(
+  average_icecream ~ ., data = dairy_train,
+  method = "glmnet", # does elastic net
+  tuneGrid = data.frame(alpha = 0.1, lambda = 0.72),
+  trControl = ctrl 
+)
+
+vegan_elnet = train(
+  average_icecream ~ ., data = vegan_train,
+  method = "glmnet", # This does elastic net
+  tuneGrid = data.frame(alpha = 0, lambda = 2.85),
+  trControl = ctrl
+)
+
+# Checking the coefficients and making comparisons
+vegan_coefs = coef(vegan_elnet$finalModel, s = vegan_elnet$bestTune$lambda)
+dairy_coefs = coef(dairy_elnet$finalModel, s = dairy_elnet$bestTune$lambda)
+
+standardized_coefficients = function(data, coefs_output){
+  means = colMeans(data)
+  sds = apply(data, 2, sd)
+  
+  coef_2 = as.vector(coefs_output)
+  names(coef_2) = rownames(coefs_output)
+  
+  x_sds = sds[names(coef_2)[-1]] 
+  y_sd = sds["average_icecream"]  
+  
+  # The version commented out was the old one. We use the one recommended by
+  # Gelman instead.
+  #standardized_coefs = coef_2[-1] * (x_sds / y_sd)
+  standardized_coefs = coef_2[-1] / (2*x_sds) 
+  names(standardized_coefs) = names(coef_2)[-1]
+  
+  return(list(
+    standardized_coefs = standardized_coefs,
+    sorted_coefs = sort(abs(standardized_coefs))
+  ))
+}
+
+vals1 = standardized_coefficients(vegan_train, vegan_coefs)
+vals2 = standardized_coefficients(dairy_train, dairy_coefs)
+
+LR_barplot = function(important_variables){
+  
+  df = data.frame(
+    Variable = common_var_names,
+    Coefficient = as.numeric(important_variables)
+  )
+  
+  df = na.omit(df)
+  df = df[df$Coefficient != 0, ]
+  
+  df$AbsCoefficient = abs(df$Coefficient)
+  df = df[order(-df$AbsCoefficient), ]
+  
+  ggplot(df, aes(x = reorder(Variable, AbsCoefficient), y = Coefficient, fill = Coefficient > 0)) +
+    geom_bar(stat = "identity") +
+    coord_flip() + 
+    scale_fill_manual(values = c("red", "blue"), labels = c("Negative", "Positive")) +
+    theme_minimal() +
+    labs(
+      x = "Variable",
+      y = "Standardized Coefficient",
+      fill = "Direction"
+    ) +
+    theme(legend.position = "top")
+}
+
+barplot1 = LR_barplot(vals1$standardized_coefs)
+barplot2 = LR_barplot(vals2$standardized_coefs)
+
+grid.arrange(barplot1, barplot2, widths = c(2, 2), ncol=2)
+
+# Actually computing the MSE
+vegan_test_x = subset(vegan_test, select = -average_icecream)
+dairy_test_x = subset(dairy_test, select = -average_icecream)
+vegan_test_y = vegan_test$average_icecream
+dairy_test_y = dairy_test$average_icecream
+
+y_hat_dairy = predict(dairy_elnet, s = 0.72, dairy_test_x)
+y_hat_vegan = predict(vegan_elnet, s = 2.85, vegan_test_x)
+
+# MSE calculation
+(sum((dairy_test_y - y_hat_dairy)^(2)))/(length(dairy_test_y))
+(sum((vegan_test_y - y_hat_vegan)^(2)))/(length(vegan_test_y))
+```
+
+### 7.5 BART
+
+```{r}
+#| eval: false
+LOOCV_bart = function(train_data, train_y, test_data){
+  
+  predictions = matrix(0, nrow = nrow(test_data), ncol = nrow(train_data))
+  variable_imp = matrix(0, nrow = nrow(train_data), ncol = ncol(train_data)-1)
+  predictor_names = colnames(train_data)[-10] 
+  colnames(variable_imp) = predictor_names
+  
+  for(i in 1:nrow(train_data)){
+    temp_train_data = train_data[-i, ]
+    temp_train_y = train_y[-i]
+
+    # 10 is the index for average ice cream score
+    bart_model = bartMachine(X = temp_train_data[, -10], 
+                             y = temp_train_y, verbose = FALSE,
+                             run_in_sample = FALSE)
+    
+    var_imp = investigate_var_importance(bart_model, plot = FALSE)$avg_var_props
+    variable_imp[i, names(var_imp)] = var_imp  
+    
+    predictions[, i] = predict(bart_model, test_data[, -10, drop = FALSE])
+  }
+  final_predictions = rowMeans(predictions)
+  avg_variable_imp = colMeans(variable_imp)
+  return(list(
+    predictions = final_predictions,
+    variable_importance = avg_variable_imp
+  ))
+}
+
+set.seed(1)
+y_hat_dairy_bart = LOOCV_bart(dairy_train, dairy_train$average_icecream, dairy_test)
+set.seed(1)
+y_hat_vegan_bart = LOOCV_bart(vegan_train, vegan_train$average_icecream, vegan_test)
+
+create_lollipop_chart = function(var_imp_vector){
+  
+  importance_df = data.frame(
+    Variable = common_var_names,
+    Importance = var_imp_vector
+  )
+  
+  importance_df <- importance_df[order(importance_df$Importance, decreasing = TRUE), ]
+  
+  ggplot(importance_df, aes(x = reorder(Variable, Importance), y = Importance)) +
+    geom_segment(aes(xend = Variable, yend = 0), color = "gray") +
+    geom_point(color = "blue", size = 3) +
+    coord_flip() +  
+    labs(
+      x = "Variables",
+      y = "Importance"
+    ) +
+    theme_minimal()
+}
+
+p1 = create_lollipop_chart(y_hat_vegan_bart$variable_importance)
+p2 = create_lollipop_chart(y_hat_dairy_bart$variable_importance)
+
+grid.arrange(p1, p2, widths = c(2, 2), ncol=2)
+
+# Actually computing the MSE
+vegan_test_x = subset(vegan_test, select = -average_icecream)
+dairy_test_x = subset(dairy_test, select = -average_icecream)
+vegan_test_y = vegan_test$average_icecream
+dairy_test_y = dairy_test$average_icecream
+
+y_hat_dairy = y_hat_dairy_bart$predictions
+y_hat_vegan = y_hat_vegan_bart$predictions
+
+# MSE
+(sum((dairy_test_y - y_hat_dairy)^(2)))/(length(dairy_test_y))
+(sum((vegan_test_y - y_hat_vegan)^(2)))/(length(vegan_test_y))
+```

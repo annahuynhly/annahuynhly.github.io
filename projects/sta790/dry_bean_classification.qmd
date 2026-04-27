@@ -1,0 +1,134 @@
+---
+title: "Multiclass Dry Bean Classification via Neural Networks"
+subtitle: "Automating Variety Identification from Image-Derived Morphological Features"
+author: "Anna Ly"
+date: "January 2025"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-title: "Contents"
+    embed-resources: true
+    code-fold: true
+    code-summary: "Show R code"
+---
+
+```{r setup}
+#| message: false
+#| echo: false
+#| warning: false
+library(readxl)
+library(nnet)
+library(e1071)
+library(tidyverse)
+library(gridExtra)
+library(pander)
+
+data = read_excel("Dry_Bean_Dataset.xlsx")
+
+box1 = ggplot(aes(x=Class, y=Area, fill=Class), data=data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x=element_blank()) + xlab("")
+
+box2 = ggplot(aes(x=Class, y=Eccentricity, fill=Class), data=data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x=element_blank()) + xlab("")
+
+box3 = ggplot(aes(x=Class, y=Compactness, fill=Class), data=data) +
+  geom_boxplot() + theme(axis.text.x=element_blank()) + xlab("")
+
+scatter1 = ggplot(aes(x=Perimeter, y=roundness, color=Class), data=data) +
+  geom_point() + theme(legend.position="none")
+
+scatter2 = ggplot(aes(x=ShapeFactor1, y=ShapeFactor2, color=Class), data=data) +
+  geom_point() + theme(legend.position="none")
+
+scatter3 = ggplot(aes(x=Area, y=AspectRation, color=Class), data=data) +
+  geom_point()
+```
+
+## Background
+
+We will use the [UCI Dry Bean Dataset](https://doi.org/10.24432/C50S4B), originally featured in a classification study by Koklu & Özkan (2020). The dataset contains **13,611 samples** with image-based properties of seven bean types: Seker, Barbunya, Bombay, Cali, Dermason, Horoz, and Sira. The variables include **16 numeric features** derived from digital images, such as area, perimeter, major axis length, eccentricity, and compactness.
+
+Sometimes there can be unlabeled beans, or farmers and companies may need an efficient way to identify different bean varieties. The goal is to use a neural network to classify the beans and evaluate whether these seven varieties can be accurately distinguished.
+
+## Exploratory Analysis
+
+```{r scatterplots}
+#| fig-width: 11
+#| fig-height: 2.5
+#| fig-cap: "Scatterplots across pairs of morphological features. Bombay beans are clearly separable from all other varieties."
+grid.arrange(scatter1, scatter2, scatter3, ncol=3, nrow=1, widths=c(1, 1, 1.3))
+```
+
+```{r boxplots}
+#| fig-width: 11
+#| fig-height: 2.5
+#| fig-cap: "Distributions of area, eccentricity, and compactness by bean variety."
+grid.arrange(box1, box2, box3, ncol=3, nrow=1, widths=c(1, 1, 1.3))
+```
+
+Scatterplots show that Bombay beans stand out significantly across almost every variable. The remaining six varieties overlap considerably, which suggests that distinguishing among them will be more difficult.
+
+The number of dry beans per variety is inconsistent. For instance, there are only 522 Bombay beans compared to 3,546 Sira beans. To ensure a representative sample for each variety, a **stratified 80/20 split** was used, sampling 80% from each class independently.
+
+## Methods: Neural Networks
+
+A feedforward neural network with a single hidden layer was trained using the `nnet` package. The architecture is:
+
+$$f(x) = \beta_0 + \sum_{k=1}^{K} \beta_k \, g\!\left(w_{k0} + \sum_{j=1}^{p} w_{kj} x_j\right)$$
+
+where $g(\cdot)$ is a nonlinear activation function applied in the hidden layer, $K$ is the number of hidden units (the **size** parameter), and the $w_{kj}$ are learned weights. For multiclass classification, a **softmax** output layer converts the final activations into class probabilities.
+
+Two tuning parameters control the model:
+
+- **Size** ($K$): number of hidden units, controlling model capacity.
+- **Decay** ($\lambda$): L2 weight regularisation, controlling overfitting.
+
+Both were selected via **5-fold cross-validation** over a grid of size ∈ {0, …, 20} and decay ∈ {0, …, 10}. The cross-validation recommended **size = 20, decay = 8**.
+
+```{r model}
+#| message: false
+#| warning: false
+#| results: hide
+set.seed(2025)
+train = c(sample(1:2027, 1622), sample(2028:3349, 1058), sample(3350:3871, 418),
+          sample(3872:5501, 1304), sample(5502:7429, 1542), sample(7439:10065, 2109),
+          sample(10066:13611, 2837))
+
+y   = data$Class
+x   = data[, -17]
+cls = class.ind(as.factor(data[[17]]))
+
+nnet_mod  = nnet(x[train,], cls[train,], size=20, decay=8, softmax=TRUE)
+nnet_pred = predict(nnet_mod, x[-train,], type="class")
+
+true_labels = as.factor(data[[17]][-train])
+tab = table(true_labels, nnet_pred)
+```
+
+## Results
+
+```{r confusion-table}
+#| echo: false
+pander(tab, caption="Confusion matrix: true labels (rows) vs. predicted labels (columns).")
+```
+
+The overall **raw agreement rate is 81.9%** (corrected Rand index: 69.7%).
+
+The results vary substantially by variety:
+
+- **Barbunya, Dermason, Horoz, and Seker** are classified reliably — the model identifies most samples from these classes correctly.
+- **Bombay beans** are entirely misclassified, mostly as Barbunya or Cali. This is surprising given that the exploratory plots showed Bombay beans to be clearly distinct. This misclassification could be due to the relatively low frequency of Bombay beans compared to other varieties.
+- **Sira beans** are frequently mistaken for Dermason, Horoz, and Seker, which also doesn't align with the differences visible in the exploratory plots.
+
+## Conclusion
+
+We recommend using this neural network for classifying Barbunya, Dermason, Horoz, and Seker beans, but not for Bombay, Cali, and Sira beans. A corrected Rand index of 69.7% is a reasonably good result given the morphological similarities between varieties. For personal identification this model may be useful, but for commercial use it is not sufficiently reliable.
+
+Future studies could explore models with better interpretability, such as multinomial logistic regression, and compare their accuracy against the neural network.
+
+## References
+
+Koklu, M., & Özkan, I. A. (2020). Multiclass classification of dry beans using computer vision and machine learning techniques. *Computers and Electronics in Agriculture*, 174, 105507.
+
+Dry Bean Dataset (2020). UCI Machine Learning Repository. <https://doi.org/10.24432/C50S4B>.

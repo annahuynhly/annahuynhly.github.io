@@ -1,0 +1,164 @@
+---
+title: "Classifying Raisin Varieties Using Ensemble Learning"
+subtitle: "Gradient Boosting, Bagging, and Random Forests on Morphological Features"
+author: "Anna Ly"
+date: "February 2025"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-title: "Contents"
+    embed-resources: true
+    code-fold: true
+    code-summary: "Show R code"
+---
+
+```{r setup}
+#| echo: false
+#| message: false
+#| warning: false
+library("tidyverse")
+library("farff")
+library("gridExtra")
+library("e1071")
+library("gbm")
+library("randomForest")
+
+data = readARFF("Raisin_Dataset.arff")
+
+scatter1 = ggplot(aes(x=Eccentricity, y=Extent, color=Class), data=data) +
+  geom_point() + theme_minimal() + theme(legend.position="none")
+
+hist1 = ggplot(data, aes(x=Area, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() +
+  theme(legend.position="none") + ylab("Count")
+
+hist2 = ggplot(data, aes(x=Perimeter, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() + ylab("Count")
+```
+
+## Background
+
+We will use the [UCI Raisin Dataset](https://doi.org/10.24432/C5660T), donated by Cinar, Koklu, and Tasdemir (2020). The dataset contains **900 samples** (450 each) with 7 explanatory variables describing the physical properties of raisins, such as area, perimeter, and the ratio of the raisin region (extent). The two classes are **Kecimen** and **Besni**, two Turkish raisin varieties.
+
+The goal is to compare boosting, bagging, and random forests to determine whether these methods can correctly distinguish the two raisin types based on their physical features, and to identify which features are most important for classification.
+
+## Exploratory Analysis
+
+```{r eda}
+#| message: false
+#| fig-width: 11
+#| fig-height: 3
+#| fig-cap: "Feature distributions by raisin variety. Kecimen raisins tend to have larger area and perimeter, but there is substantial overlap across all features."
+grid.arrange(scatter1, hist1, hist2, ncol=3, nrow=1, widths=c(1, 1, 1.3))
+```
+
+Kecimen raisins tend to have larger area and perimeter than Besni, but the distributions overlap considerably. This suggests that perfect classification may not be achievable with these features alone.
+
+## Methods
+
+Three ensemble methods were trained on the same stratified 80/20 split (360 samples per class for training, 90 per class for testing), ensuring a fair comparison. All models used 3,000 trees.
+
+**Boosting** builds a model iteratively by training each new tree on the residuals of the previous iteration, aiming to minimize error. Implemented via the `gbm` package with 3,000 trees and interaction depth of 1.
+
+**Bagging** generates multiple trees using bootstrap samples of the data. Predictions are made by averaging across trees, aiming to reduce variance. Implemented with `mtry = 7` (all predictors at each split).
+
+**Random forests** extend bagging by randomly selecting $\lfloor\sqrt{p}\rfloor = 2$ predictors for each tree. This reduces correlation between trees and allows weaker predictors to contribute to the model.
+
+```{r models}
+#| message: false
+#| warning: false
+#| results: hide
+set.seed(1)
+train = c(sample(1:450, size=360), sample(451:900, size=360))
+test  = data[-train, "Class"]
+
+set.seed(1)
+boost = gbm(Class ~ ., data=data[train,], distribution="multinomial",
+            n.trees=3000, interaction.depth=1)
+set.seed(1)
+bagging = randomForest(Class ~ ., data=data, subset=train,
+                       mtry=7, ntree=3000, importance=TRUE, type="class")
+set.seed(1)
+randomfor = randomForest(Class ~ ., data=data, subset=train,
+                         mtry=2, ntree=3000, importance=TRUE, type="class")
+```
+
+## Results
+
+### Classification Performance
+
+::: {#tbl-panel layout-ncol=3}
+| | Kecimen | Besni |
+|---|---|---|
+| **Kecimen** | 80 | 10 |
+| **Besni** | 26 | 64 |
+
+: Gradient Boosting {#tbl-boost}
+
+| | Kecimen | Besni |
+|---|---|---|
+| **Kecimen** | 80 | 10 |
+| **Besni** | 23 | 67 |
+
+: Bagging {#tbl-bag}
+
+| | Kecimen | Besni |
+|---|---|---|
+| **Kecimen** | 80 | 10 |
+| **Besni** | 23 | 67 |
+
+: Random Forest {#tbl-rf}
+
+Confusion matrices (rows = true class, columns = predicted class).
+:::
+
+| Model | Misclassification Rate | Corrected Rand Index |
+|---|---|---|
+| Gradient Boosting | 20.0% | 0.36 |
+| Bagging | 18.3% | 0.40 |
+| Random Forest | 18.3% | 0.40 |
+
+Bagging and random forests perform identically here. With only 7 predictors, restricting the predictor pool per split does not meaningfully diversify the trees. Despite its added complexity, boosting performs slightly worse than the other two methods.
+
+### Feature Importance
+
+```{r importance-boost}
+#| message: false
+#| fig-width: 11
+#| fig-height: 4
+#| fig-cap: "Relative influence of each predictor in the gradient boosting model."
+var_importance = summary(boost, plotit=FALSE)
+blue_palette = colorRampPalette(c("#221fff", "#00f2ff"))
+par(mar=c(5, 6, 4, 8))
+barplot(var_importance$rel.inf,
+        names.arg=var_importance$var,
+        las=2, horiz=TRUE, xlab="Relative Influence",
+        cex.names=0.7, col=blue_palette(nrow(var_importance)))
+```
+
+```{r importance-bag-rf}
+#| message: false
+#| fig-width: 11
+#| fig-height: 4
+#| fig-cap: "Variable importance from bagging (left) and random forest (right). The right panel of each plot (Mean Decrease in Gini) is the more reliable measure as it does not depend on the training sample composition."
+par(mfrow=c(1, 2))
+varImpPlot(bagging, main="Bagging")
+varImpPlot(randomfor, main="Random Forest")
+```
+
+Across all three methods, **major axis length, perimeter, and extent** are consistently the most important predictors. Both bagging and random forest agree on the top two variables, though they differ on the third. This is not surprising, as extent and convex area are related geometric properties.
+
+## Discussion
+
+The boosting, bagging, and random forest models performed similarly, with bagging and random forests producing identical misclassification rates and Rand indices. Variable importance reveals that major axis length, perimeter, and extent are the most useful features for distinguishing the two raisin types.
+
+The exploratory analysis showed that the two raisin types share similar physical properties, so a misclassification rate of 18-20% is a reasonable result. With additional distinguishing variables such as colour, model performance could potentially improve.
+
+## References
+
+Cinar, İ., Koklu, M., & Tasdemir, S. (2020). Raisin [Dataset]. UCI Machine Learning Repository. <https://doi.org/10.24432/C5660T>.
+
+Liaw A, Wiener M (2002). "Classification and Regression by randomForest." *R News*, 2(3), 18–22.
+
+Ridgeway G (2024). gbm: Generalized Boosted Regression Models. R package version 2.2.2. <https://CRAN.R-project.org/package=gbm>.

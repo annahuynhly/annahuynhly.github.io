@@ -1,0 +1,223 @@
+---
+title: "Rice Classification via Model-Based Clustering"
+subtitle: "Anna Ly (400254496) - January 31, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 11pt
+    linestretch: 1.4
+    classoption: oneside
+    mainfont: Times New Roman 
+    tbl-cap-location: bottom
+    include-in-header: |
+      \usepackage{float}
+  html:
+     tbl-cap-location: bottom
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+## Introduction
+
+We will use the [Cammeo and Osmancik rice dataset from the UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/545/rice+cammeo+and+osmancik), donated by Ilkay Cinar and Murat Koklu in 2019. The dataset contains 3,810 entries (1,630 Cammeo and 2,180 Osmancik) with 7 explanatory variables describing the physical properties of rice grains, such as area, perimeter, and extent (the ratio of the area of rice grain compared to the box it was placed).
+
+Although Cammeo and Osmancik rice appear nearly identical to the naked eye, we aim to determine if they can be distinguished using these physical properties. For this, we will apply a Gaussian parsimonious clustering model and a mixture of factor analyzers model, then compare the results.
+
+## Exploratory Analysis
+
+```{r}
+#| echo: false
+#| message: false
+library("farff")
+library("mixture")
+library("pgmm")
+library("tidyverse")
+library("GGally") # pairs plot
+library("gridExtra")
+library("e1071")
+
+data = readARFF("Rice_Cammeo_Osmancik.arff")
+
+scatter1 = ggplot(aes(x = Major_Axis_Length, y=Extent, color=Class), data = data) +
+  geom_point() + theme_minimal() + theme(legend.position="none") + xlab("Major Axis Length")
+
+hist1 = ggplot(data, aes(x=Area, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() +
+  theme(legend.position="none") + ylab("Count")
+
+hist2 = ggplot(data, aes(x=Perimeter, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() + ylab("Count")
+```
+
+We will briefly explore relationships between the predictor variables and our response. The scatterplots generally show a brief separation between the two types of rice. For example, the scatter plot shown in Figure 1 reveals that Cammeo rice has a larger major axis length (the distance between the endpoints of the longest line across the rice grain) than Osmancik.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Scatterplots and histograms showing the distribution of various physical features between Cammeo and Osmancik grains of rice."
+grid.arrange(scatter1, hist1, hist2, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+```
+
+It’s interesting that Cammeo has a larger area and perimeter than Osmancik as well, as seen in the histograms in Figure 1. We see that Cammeo grains of rice are generally larger, which may make it easier to distinguish between Osmancik.
+
+## Description of Model-Based Clustering Techniques
+
+First, we will use the Gaussian parsimonious clustering model, a clustering method that parametrizes the covariance structure using parsimonious families. The gpcm function in the R "mixture" package (by Nik Pocuca et al.) employs the BIC (Bayesian Information Criterion) for model selection to identify the appropriate parsimonious family.
+
+Next, we will apply the mixture of factor analyzers model, part of the parsimonious Gaussian mixture models family. This method excels with high-dimensional datasets, so we expect its advantages to be less pronounced in our case since we only have 7 predictors. This will be implemented using the pgmmEM function in the R "pgmm" package by Paul D. McNicholas et al.
+
+Like neural networks, neither model provides a direct measure of variable importance. More details are found in King-Yu's lecture notes (2025).
+
+## Results
+
+We initialized the Gaussian parsimonious clustering model using the random soft function and tested between 1 to 9 components. The model recommended 9 components with the VVV covariance structure, despite the dataset containing only 2 classes. Table 1 shows the true classes (rows) versus the suggested classes (columns).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c c c c c}
+\hline
+Rice Type & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+Cammeo & 245 & 269 & 7 & 490 & 2 & 5 & 45 & 5 & 562 \\
+Osmancik & 14 & 216 & 196 & 109 & 470 & 627 & 400 & 126 & 22 \\
+\hline
+\end{tabular}
+\caption{Original results from the Gaussian parsimonious clustering model.}
+\end{table}
+
+Classes 1, 4, and 9 appear associated with Cammeo rice, while classes 3, 5, 6, 7, and 8 correspond to Osmancik. Class 2 does not differentiate them; this could be due to some overlap in sizes. Our exploratory analysis did show some overlap in area and perimeter.
+
+Manually selecting two components improves the results with a misclassification rate of approximately 12.5% and a corrected Rand index of approximately 0.56; the exact counts are shown in Table 3.
+
+For the mixture of factor analyzers model, we used k-means starting values and tested 1 to 9 components with 1 to 5 factors. The best model, based on selection criteria, used a UCU parsimonious covariance structure with 9 components and 3 factors. Table 2 reveals the true classes (rows) versus the suggested classes (columns).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c c c c c}
+\hline
+Rice Type & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+Cammeo & 104 & 4 & 158 & 417 & 466 & 55 & 0 & 400 & 26  \\
+Osmancik & 0 & 643 & 426 & 0 & 64 & 246 & 77 & 26 & 698 \\
+\hline
+\end{tabular}
+\caption{Original result from the mixture of factor analyzers model.}
+\end{table}
+
+Classes 1, 4, 5, and 8 correspond to Cammeo, while classes 2, 7, and 9 mostly align with Osmancik. The remaining classes show a slight bias towards one but lack clear separation.
+
+::: {#tbl-panel layout-ncol=2}
+| Rice Type | 1    | 2    |
+|-----------|------|------|
+| Cammeo    | 1543 | 87   |
+| Osmancik  | 388  | 1792 |
+
+: Gaussian parsimonious clustering model. {#tbl-first}
+
+| Rice Type | 1    | 2    |
+|-----------|------|------|
+| Cammeo    | 1529 | 101  |
+| Osmancik  | 347  | 1833 |
+
+: Mixture of factor analyzers model. {#tbl-second}
+
+Results from semi-supervised learning applied to both model-based clustering methods.
+:::
+
+When manually specifying two classes, the results are also more reasonable but imperfect; refer to Table 3. The results closely resemble those of the Gaussian parsimonious clustering model, with a misclassification rate of 11.8% and a corrected Rand index of approximately 0.58.
+
+## Conclusion
+
+Both the Gaussian parsimonious clustering model and mixture of factor analyzers model provide similar results; they recommend 9 clusters and produce comparable misclassification rates and corrected Rand index values in a semi-supervised setting.
+
+However, the mixture of factor analyzers model is significantly more computationally intensive, taking approximately 7 hours to run on a MacBook Air 2020 M1, whereas the Gaussian parsimonious clustering model runs in 5 minutes. Given this, the mixture of factor analyzers model is not practical for this dataset.
+
+For future studies, it would be interesting to compare the Gaussian parsimonious clustering model against simpler classification methods.
+
+\newpage
+
+## References
+
+King-Yu, S. (2025). *CSE/STATS 790: Statistical Learning*. McMaster University.
+
+McNicholas P, ElSherbiny A, McDaid A, Murphy T (2023). pgmm: Parsimonious Gaussian Mixture Models. R package version 1.2.7, <https://CRAN.R-project.org/package=pgmm>.
+
+Pocuca N, Browne R, McNicholas P (2024). mixture: Mixture Models for Clustering and Classification. R package version 2.1.1, <https://CRAN.R-project.org/package=mixture>.
+
+Rice (Cammeo and Osmancik) [Dataset]. (2019). UCI Machine Learning Repository.
+<https://doi.org/10.24432/C5MW4Z>. 
+
+## Appendix
+
+```{r}
+#| eval: false
+
+library("farff")
+library("mixture")
+library("pgmm")
+library("tidyverse")
+library("GGally") # pairs plot
+library("gridExtra")
+library("e1071")
+
+data = readARFF("Rice_Cammeo_Osmancik.arff")
+
+scatter1 = ggplot(aes(x = Major_Axis_Length, y=Extent, color=Class), data = data) +
+  geom_point() + theme_minimal() + theme(legend.position="none") + xlab("Major Axis Length")
+
+hist1 = ggplot(data, aes(x=Area, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() +
+  theme(legend.position="none") + ylab("Count")
+
+hist2 = ggplot(data, aes(x=Perimeter, fill=Class, color=Class)) +
+  geom_histogram(position="identity", alpha=0.5) + theme_minimal() + ylab("Count")
+
+grid.arrange(scatter1, hist1, hist2, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+
+x = as.matrix(data[,-8])
+
+# Gaussian parsimonious clustering model 
+
+# Original model
+rice_gpcm = mixture::gpcm(x, G=1:9, start=0, atol=1e-2)
+# The model chosen by applying the BIC criteria has 9 component(s) and the 
+# VVV covariance structure using random_soft 
+
+table(data[,8], rice_gpcm$map)
+# 1   2   3   4   5   6   7   8   9
+# Cammeo   245 269   7 490   2   5  45   5 562
+# Osmancik  14 216 196 109 470 627 400 126  22
+
+# Semi-supervised model
+rice_gpcm_v2 = mixture::gpcm(x, G=2:2, start=0, atol=1e-2)
+
+tab = table(data[,8], rice_gpcm_v2$map)
+classAgreement(tab)
+
+# Mixture of factor analyzers
+
+scale_x = scale(x)
+
+rice_pgmm = pgmm::pgmmEM(scale_x, rG=1:9, rq=1:5, relax=TRUE)
+# Based on k-means starting values, the best model (BIC) for the range of factors and components used is a UCU model with q = 3 and G = 9.
+# The BIC for this model is 26737.34.
+
+table(data[,8],rice_pgmm$map) 
+#1   2   3   4   5   6   7   8   9
+#Cammeo   104   4 158 417 466  55   0 400  26
+#Osmancik   0 643 426   0  64 246  77  26 698
+
+rice_pgmm_v2 = pgmm::pgmmEM(scale_x, rG=2:2, rq=1:3, relax=TRUE)
+
+tab2 = table(data[,8],rice_pgmm_v2$map) 
+#1    2
+#Cammeo   1529  101
+#Osmancik  347 1833
+
+classAgreement(tab2)
+```

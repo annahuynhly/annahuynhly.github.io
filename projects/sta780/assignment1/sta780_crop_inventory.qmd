@@ -1,0 +1,174 @@
+---
+title: "Annual Crop Inventory of Saskatchewan and Manitoba"
+author: "Anna Ly"
+date: "September 2024"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+    code-fold: true
+bibliography: test.bib
+---
+
+## Dataset Sourcing
+
+We are working on the annual crop dataset, specifically looking at Manitoba and Saskatchewan between the years 2009 through 2013. Each colour on the map corresponds to different types of crops and terrains; a specific point is labelled by a crop if at least 85% of the 30m by 30m (where m represents meters) map is dominated by said crop. For example, the rgb codes (red = 255, green = 255, blue = 153) correspond to a location that has at least 85% corn. This data was collected by the Earth Observation Team of the Science and Technology Branch (STB) at Agriculture and Agri-Food Canada (AAFC) to understand how cropland was used across Canadian provinces.
+
+The dataset was sourced from the Open Government Portal using the following filter options:
+
+**Portal Type:** Open Data. **Collection Type:** Open Maps. **Resource Type:** Dataset. **Format:** GeoTIF. **Update Frequency:** Annually
+
+The exact geotif files can be found [here](https://open.canada.ca/data/en/dataset/ba2645d5-4458-414d-b196-6303ac06c1c9) (@canada_annual).
+
+## Application for Crop Data
+
+This data allows users to observe habitat types in Canada (such as grassland, wetlands, etc.) as well as the types of crops grown in each province. This enables us to:
+
+1. See how the agricultural landscape changes throughout the years (i.e., how habitat types are affected and whether they became transformed as crop fields).
+
+2. See what types of crops are grown throughout the years and whether there are increasing or decreasing amounts of a particular crop grown.
+
+The data provides context for future agricultural decisions, such as what crops may need to be grown and how much natural land is being transformed into farmland. This analysis focuses on the amount of plot land used to grow corn and soybeans.
+
+## Data Transformation and Preprocessing
+
+The analysis was limited to 2009–2013 for Saskatchewan and Manitoba due to computational limitations; the geotif files, especially those in Ontario, were massive in size and difficult to process in full. For similar reasons, the scope was narrowed to specific crops of interest (such as cereals and legumes).
+
+The preprocessing steps were as follows:
+
+1. Used the R [terra library](https://cran.r-project.org/web/packages/terra/index.html) @terracite to create a SpatRaster object from the geotif files.
+
+2. Extracted the values from the SpatRaster object to create a vector of integer codes corresponding to specific geographic regions. For example, the number "147" corresponds to corn. Missing values were treated as locations not associated with the crops of interest. There were no outliers to address; either a crop field was present or it was not.
+
+3. Summed the number of times each numerical code appeared to count the amount of land used for specific crops.
+
+4. Constructed a new data frame containing the year, province, and number of plots used for specific crops. This data frame was used for subsequent analysis and visualization.
+
+The preprocessing code is included in the appendix.
+
+## Single-variable Analysis
+
+**Research question:** How much land is dedicated to **corn** in Manitoba and Saskatchewan between 2009 and 2013? Are farmers growing more or less corn?
+
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+
+graph_data = read.csv("CropData.csv", header = TRUE)
+ggplot(graph_data, aes(x = factor(Year), y = Corn_Production, fill = Region)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Corn Production: Saskatchewan and Manitoba",
+       x = "Year",
+       y = "Amount of Plots Used for Corn Production") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#0092d6", "#da1a1a"))
+```
+
+As predicted, the amount of land used to grow corn increases year by year. The total plots (combining Manitoba and Saskatchewan) from 2009 to 2013 were 291,001; 305,179; 1,115,682; 1,594,023; and 2,107,593, respectively. More research is needed to understand the exact drivers, but a possible hypothesis is that population growth has increased demand for corn over time.
+
+Most corn production is in Manitoba, even though Saskatchewan and Manitoba had comparable populations in 2009. The population in Saskatchewan was 1,023,810 @gov_saskatchewan and in Manitoba was 1,214,403 @gov_manitoba. The reasons behind this regional difference are beyond the scope of this report.
+
+## Multi-Variable Analysis
+
+**Research question:** How much land is dedicated to **soybeans** in Manitoba and Saskatchewan between 2009 and 2013? Are farmers growing more or less soybeans?
+
+**Variables of focus:** amount of crop used for soybeans, province, year.
+
+```{r}
+#| echo: false
+ggplot(graph_data, aes(x = Year, y = Soybeans_Production, color = Region)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  labs(title = "Soybeans Production: Saskatchewan and Manitoba",
+       x = "Year",
+       y = "Amount of Plots Used for Soybean Production") +
+  scale_color_manual(values = c("#FF6666", "#6699FF")) +
+  theme_minimal()
+```
+
+Similar to the corn findings, more soybeans are grown in Manitoba than in Saskatchewan. The number of 30m by 30m plots for soybeans in Manitoba from 2009 to 2013 were: 523,395; 1,052,033; 2,775,207; 4,791,723; and 5,610,724. For Saskatchewan: 8,258; 9,784; 6,296; 210,324; and 672,449. Again, the reasons behind the regional difference require further investigation.
+
+## Interactive Visualization
+
+An interactive Shiny app @shinyappcite was developed to explore the multi-variable analysis research question across additional crops (including oats and other grains). Users can select a crop, graph type (bar or line), comparison or individual view, and colour scheme.
+
+The app is available here: <https://annaly.shinyapps.io/STATS780Homework1/>
+
+Additional packages used: shinycssloaders @shinycssloaderscite, colourpicker @colourpickercite, and tidyverse @tidyversecite. GitHub Copilot @github_2024 was used to help write skeleton code for the Shiny website.
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix: Preprocessing Code
+
+The following code was used to process the raw GeoTIF files into the `CropData.csv` used in this analysis. The GeoTIF files are not included due to their large size.
+
+```{r}
+#| eval: false
+library(terra)
+library(tidyverse)
+
+SASK_2009 = "MapData/SASKatchewan/aci_2009_sk_v1.tif"
+SASK_2010 = "MapData/SASKatchewan/aci_2010_sk_v1.tif"
+SASK_2011 = "MapData/SASKatchewan/aci_2011_sk_v3.tif"
+SASK_2012 = "MapData/SASKatchewan/aci_2012_sk_v3.tif"
+SASK_2013 = "MapData/SASKatchewan/aci_2013_sk_v3.tif"
+
+MANI_2009 = "MapData/MANItoba/aci_2009_mb_v1.tif"
+MANI_2010 = "MapData/MANItoba/aci_2010_mb_v1.tif"
+MANI_2011 = "MapData/MANItoba/aci_2011_mb_v3.tif"
+MANI_2012 = "MapData/MANItoba/aci_2012_mb_v3.tif"
+MANI_2013 = "MapData/MANItoba/aci_2013_mb_v3.tif"
+
+SRCS_SASK_2009 = values(rast(SASK_2009)[[1]])
+SRCS_SASK_2010 = values(rast(SASK_2010)[[1]])
+SRCS_SASK_2011 = values(rast(SASK_2011)[[1]])
+SRCS_SASK_2012 = values(rast(SASK_2012)[[1]])
+SRCS_SASK_2013 = values(rast(SASK_2013)[[1]])
+SRCS_MANI_2009 = values(rast(MANI_2009)[[1]])
+SRCS_MANI_2010 = values(rast(MANI_2010)[[1]])
+SRCS_MANI_2011 = values(rast(MANI_2011)[[1]])
+SRCS_MANI_2012 = values(rast(MANI_2012)[[1]])
+SRCS_MANI_2013 = values(rast(MANI_2013)[[1]])
+
+COLOUR_MAP = read.csv("aci_crop_classifications.csv", header = TRUE, fileEncoding = "Latin1")
+
+VALUES_DATASET = data.frame(
+  Year = rep(c(2009, 2010, 2011, 2012, 2013), 2),
+  Region = rep(c("Saskatchewan", "Manitoba"), each = 5)
+)
+
+add_crop_data = function(dataset, crop_id = "Peas"){
+  code_id = as.numeric(COLOUR_MAP$Code[which(COLOUR_MAP$Label == crop_id)])
+  new_col_name = paste0(crop_id, "_Production")
+  dataset = dataset %>%
+    mutate(!!sym(new_col_name) := c(
+      sum(SRCS_SASK_2009 == code_id, na.rm = TRUE),
+      sum(SRCS_SASK_2010 == code_id, na.rm = TRUE),
+      sum(SRCS_SASK_2011 == code_id, na.rm = TRUE),
+      sum(SRCS_SASK_2012 == code_id, na.rm = TRUE),
+      sum(SRCS_SASK_2013 == code_id, na.rm = TRUE),
+      sum(SRCS_MANI_2009 == code_id, na.rm = TRUE),
+      sum(SRCS_MANI_2010 == code_id, na.rm = TRUE),
+      sum(SRCS_MANI_2011 == code_id, na.rm = TRUE),
+      sum(SRCS_MANI_2012 == code_id, na.rm = TRUE),
+      sum(SRCS_MANI_2013 == code_id, na.rm = TRUE)
+    ))
+  return(dataset)
+}
+
+ALL_CROP_TYPES = c("Cereals", "Barley", "Millet", "Oats", "Rye", "Spelt", "Triticale",
+                   "Wheat", "Sorghum", "Quinoa", "Corn", "Soybeans", "Peas",
+                   "Chickpeas", "Beans", "Fababeans", "Lentils")
+
+for(crop in ALL_CROP_TYPES){
+  VALUES_DATASET = add_crop_data(VALUES_DATASET, crop_id = crop)
+}
+
+write.csv(VALUES_DATASET, "CropData.csv", row.names = FALSE)
+```

@@ -46,5 +46,8 @@
   },
   "pages/fadvice/fadvice_grad.qmd": {
     "fadvice_grad.html": "0c6799ac"
+  },
+  "projects/wind_turbine_detection.qmd": {
+    "wind_turbine_detection.html": "e05e3691"
   }
 }

@@ -1,8 +1,124 @@
-<html xmlns="http://www.w3.org/1999/xhtml">    
-  <head>      
-    <title>Redirect to pages/index.html</title>      
-    <meta http-equiv="refresh" content="0;URL='pages/index.html'" />    
-  </head>    
-  <body> 
-  </body>  
-</html>     
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna Ly</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Anna Ly</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <div class="nav-dropdown">
+      <a href="cv.html">CV</a>
+      <div class="nav-dropdown-menu">
+        <a href="cv.html">Education &amp; Experience</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="awards.html">Scholarships &amp; Awards</a>
+      </div>
+    </div>
+    <a href="teaching.html">Teaching</a>
+    <a href="projects.html">Projects</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-avatar">
+    <img src="pages/assets/me_2.jpg" alt="Anna Ly">
+  </div>
+  <div class="hero-text">
+    <h1>Hi, I'm Anna — statistician &amp; data scientist</h1>
+    <p>M.Sc. statistician with industry and research experience. I build open-source R statistical software and apply statistical methods across applied and theoretical settings.</p>
+    <div class="hero-badges">
+      <span class="badge">R Programming</span>
+      <span class="badge">lme4 Contributor</span>
+      <span class="badge">Data Science</span>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="card">
+    <h2>About</h2>
+    <p class="about-text">I completed my M.Sc. in Statistics at McMaster University and hold an H.B.Sc. in Applied Statistics &amp; Mathematics from the University of Toronto. I'm currently an R Programmer at McMaster, contributing to <a href="https://github.com/lme4/lme4">lme4</a> (43.4M+ downloads).</p>
+    <a href="about.html" class="read-more">Read more →</a>
+  </div>
+
+  <div class="card">
+    <h2>Skills</h2>
+    <div class="skill-tags">
+      <span class="skill-tag">R</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SAS</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Excel VBA</span>
+      <span class="skill-tag">HTML/CSS</span>
+      <span class="skill-tag">Shiny</span>
+      <span class="skill-tag">Tidyverse</span>
+      <span class="skill-tag">Linear Mixed Models</span>
+      <span class="skill-tag">Bayesian Statistics</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">LaTeX</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Contact</h2>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/anna-ly-statistics-specialist/" class="contact-link" target="_blank">
+        <span class="contact-dot"></span>LinkedIn
+      </a>
+      <a href="https://github.com/annahuynhly" class="contact-link" target="_blank">
+        <span class="contact-dot"></span>GitHub
+      </a>
+      <a href="https://scholar.google.com/citations?user=9w41oS8AAAAJ&hl=en" class="contact-link" target="_blank">
+        <span class="contact-dot"></span>Google Scholar
+      </a>
+      <a href="https://medium.com/@AnnaLyStats" class="contact-link" target="_blank">
+        <span class="contact-dot"></span>Medium (Blog)
+      </a>
+    </div>
+  </div>
+
+  <div class="card" style="background:#E6F1FB;border-color:#85B7EB;display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;">
+      <p style="font-size:12px;color:#185FA5;margin-bottom:12px;font-weight:500;">STA380 — Winter 2026</p>
+      <a href="https://annahuynhly.github.io/sta380" target="_blank"
+         style="font-size:13px;color:#185FA5;background:transparent;border:0.5px solid #378ADD;padding:10px 20px;border-radius:8px;text-decoration:none;display:inline-block;">
+        Course Page ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="card card-full">
+    <h2>Recent Publications</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="pub-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;">
+        <span class="pub-number">10</span>
+        <div class="pub-title">Comparing physical analogue and traditional videos for learning and emotional engagement</div>
+        <div class="pub-authors">Tingting Zhu, Rutwa Engineer, Xaria Prempeh, Anna Ly, et al.</div>
+        <div class="pub-venue"><a href="https://doi.org/10.1007/s44217-025-00454-1" target="_blank">Discover Education · 2025</a></div>
+      </div>
+      <div class="pub-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;">
+        <span class="pub-number">9</span>
+        <div class="pub-title">Evaluating model fit for type II censored data: a Bayesian non-parametric approach</div>
+        <div class="pub-authors">Luai Al-Labadi, Forough Fazeli-Asl, Anna Ly</div>
+        <div class="pub-venue"><a href="https://doi.org/10.1080/03610918.2024.2417808" target="_blank">Communications in Statistics · 2024</a></div>
+      </div>
+    </div>
+    <a href="publications.html" class="read-more">View all 10 publications →</a>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>Anna Ly · Personal Site · 2026</span>
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>

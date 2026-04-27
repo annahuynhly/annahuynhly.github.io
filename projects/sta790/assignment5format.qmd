@@ -1,0 +1,340 @@
+---
+title: "Classifying Dog Breed Types via SVM and Clustering"
+subtitle: "Anna Ly (400254496) - March 14, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 11pt
+    linestretch: 1.4
+    classoption: oneside
+    mainfont: Times New Roman 
+    tbl-cap-location: bottom
+  html:
+     tbl-cap-location: bottom
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r}
+#| message: false
+#| echo: false
+library("tidyverse")
+library("GGally") # pairs plot
+library("e1071")
+library("mclust")
+library("vscc")
+library("gridExtra")
+
+data = read.csv("dogs-ranking-dataset.csv")
+
+data$X.LIFETIME.COST = as.numeric(gsub("[$,]", "", data$X.LIFETIME.COST))
+data$INTELLIGENCE.. = as.numeric(gsub("[,%]", "", data$INTELLIGENCE..))
+
+df = data[c("type", "score", "popularity.ranking", "size", "score.for.kids", 
+       "X.LIFETIME.COST", "INTELLIGENCE..", "LONGEVITY.YEARS.", 
+       "NUMBER.OF.GENETIC.AILMENTS", "SUITABILITY.FOR.CHILDREN")]
+df$type = as.factor(df$type)
+
+
+dogtype_label2 = c("herding" = "HE", "hound" = "HO",
+                  "non-sporting" = "NS", "sporting" = "S",
+                  "terrier" = "TE", "toy" = "TO", "working" = "W")
+
+legend_label = c("HE: Herding", "HO: Hound", "NS: Non-Sporting", "S: Sporting", "TE: Terrier", "TO: Toy", "W: Working")
+
+scatter1 = ggplot(aes(x = X.LIFETIME.COST, 
+                      y=INTELLIGENCE.., color=type), data = df) +
+  geom_point() + theme_minimal() + theme(legend.position="none") + 
+  xlab("Lifetime Cost ($)") + ylab("Intelligence (%)")
+
+boxplot1 = ggplot(aes(x=type, y=popularity.ranking, 
+                      fill=type), data = df) +
+  stat_boxplot(geom ='errorbar') + geom_boxplot() + theme_minimal() + 
+  theme(legend.position="none") + 
+  scale_x_discrete(
+    name="Breed Type",
+    labels = dogtype_label2,
+  ) + ylab("Popularity Ranking")
+
+barplot1 = ggplot(aes(x=type), data = df) + geom_bar(aes(fill=type)) +
+  theme_minimal() + scale_fill_discrete(name = "Type",
+                                        labels = legend_label) +
+  scale_x_discrete(
+    name="Breed Type",
+    labels = dogtype_label2,
+  ) + ylab("Count")
+```
+
+## Introduction
+
+We will use the Dog Breeds data set from Kaggle, available at <https://www.kaggle.com/datasets/jainaru/dog-breeds-ranking-best-to-worst.> The data set was compiled by the author from information sourced on [*vetstreet.com*](vetstreet.com). It includes traits for 87 distinct dog breeds, such as popularity ranking, size, lifetime cost, intelligence, lifespan, and the number of genetic ailments.
+
+Dog breeds can be categorized further into 7 different types: terrier, working, sporting, non-sporting, herding, toy, and hound. Our objective is to evaluate the performance of support vector machines (SVM) for classifying these breeds into their respective groups. Additionally, we aim to explore the clusters formed based on these dog breed traits using Gaussian mixture models combined with variable selection techniques.
+
+## Exploratory Analysis
+
+Based on the scatter-plots, the correlations between the quantitative variables appear to be low. For example, Figure 1 shows a scatter-plot of lifetime cost versus intelligence percentage. For reference, intelligence percentage represents each breed’s intelligence relative to the most intelligent breed. There is little to no visible relationship between these two variables.
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Plots showcasing the distribution of some of the quantitative variables."
+grid.arrange(scatter1, boxplot1, barplot1,
+             ncol=3, nrow = 1, widths = c(1, 1, 1.6))
+```
+
+Despite the weak correlations among variables, the box-plots reveal trends that differ across dog breed types. For example, hounds and terriers tend to have the highest median popularity rankings, whereas toy and working breeds are generally less popular.
+
+The bar-plot illustrates the distribution of breeds across the seven categories. While the group sizes are not perfectly balanced, they are proportionally representative of the data set as a whole.
+
+## Description of Support Vector Machines
+
+Support vector machines (SVM) perform classification through a special case of separating hyperplanes. In a data set with $p$ predictors, a hyperplane can be described by the equation:
+
+$\beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p} = 0$
+
+Here, $(\beta_{0}, \beta_{1}, \dots, \beta_{p})$ are the coefficients defining the hyperplane.
+
+For binary classification, the goal is to find a hyperplane that separates the two classes (called separating hyperplane). We classify a new observation $x = (X_{1}, X_{2}, \dots, X_{p})$ based on the sign of:
+
+$f(x) = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p}$
+
+If $f(x) > 0$, the observation is assigned to one class; if $f(x) < 0$, it is assigned to the other.
+
+A natural goal is to find a separating hyperplane that maximizes the margin, which is the minimal distance between the hyperplane and the observations from each class, known as the support vectors.
+
+However, a perfect separation may not be possible, especially if the data are not linearly separable due to overlapping classes or outliers. Moveover, the separation between two or more categories isn’t necessarily linear.
+
+Support vector machines some observations to be misclassified such that a separating hyperplane always exists. We also want to incorporate a non-linear boundary between classes.
+
+The decision function of an SVM using can be written as: $f(x) = \beta_{0} + \sum_{i \in \mathcal{S}} \alpha_{i} K(x, x_{i})$
+
+Where: $\beta_{0}$ represents the intercept, $\mathcal{S}$ is the set of support vectors (the indices $i$ where $\alpha_{i} \neq 0$), $K(x, x_{i})$ is the kernel function, which quantifies the similarity of two observations. This accounts for the nonlinear structure.
+
+## Classification Results with SVM
+
+We will be constructing two models using the **svm()** function from the **e1071** package (Meyer et al., 2024). The first is the linear kernel function, which is the dot product. The second will be the radial basis type, which has the form $k(u, v) = \exp \left\{ -\gamma |u - v|^{2} \right\}$. Here, we will use the function's default choice of $\gamma = 1/p$ where $p$ is the number of predictors.
+
+One thing we want to optimize is the cost, which essentially is a regularization term that determines trade-off between margin size and proper classification of observations. The smaller the cost, the wider the margins.
+
+To try to find the ideal cost, we will be using a 70/30 training and test split for cross validation to determine the cost that should be used for the SVM model. We iterated over potential cost values of 0.001, 0.01, 0.1, 1, 5, 10, and 100.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c c c}
+\hline
+ & \multicolumn{7}{c}{True Class} \\
+\cline{2-8}
+Predicted Class & Herding & Hound & Non-Sporting & Sporting & Terrier & Toy & Working \\
+\hline
+Herding        & {\color{blue} 2} & 0 & 0 & 0 & 0 & 0 & 1 \\
+Hound          & 0 & {\color{blue}1} & 1 & 0 & 1 & 0 & 2 \\
+Non - Sporting   & 0 & 1 & {\color{blue}0} & 0 & 1 & 2 & 0 \\
+Sporting       & 0 & 0 & 1 & {\color{blue}2} & 0 & 0 & 0 \\
+Terrier        & 0 & 1 & 0 & 2 & {\color{blue}0} & 1 & 0 \\
+Toy            & 0 & 1 & 1 & 0 & 2 & {\color{blue}1} & 0 \\
+Working        & 1 & 0 & 0 & 0 & 0 & 0 & {\color{blue}1} \\
+\hline
+\end{tabular}
+\caption{Results from SVM using a linear kernel. Showcasing the predicted classes as rows and true classes as columns. The blue text highlights what has been properly classified.}
+\end{table}
+
+For the SVM with a linear kernel, a cost value of 0.1 was recommended. Given the relatively small size of the data set, there were limited test points available for evaluation. The model resulted in a misclassification rate of 61.5% and a corrected Rand index of 0.11. As shown in Table 1, the model’s performance is poor.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c c c}
+\hline
+ & \multicolumn{7}{c}{True Class} \\
+\cline{2-8}
+Predicted Class & Herding & Hound & Non-Sporting & Sporting & Terrier & Toy & Working \\
+\hline
+Herding        & {\color{blue}1} & 1 & 0 & 2 & 0 & 0 & 0 \\
+Hound          & 0 & {\color{blue}1} & 1 & 0 & 1 & 0 & 0 \\
+Non-Sporting   & 0 & 0 & {\color{blue}0} & 0 & 1 & 3 & 0 \\
+Sporting       & 1 & 0 & 1 & {\color{blue}1} & 0 & 0 & 0 \\
+Terrier        & 1 & 0 & 0 & 1 & {\color{blue}0} & 0 & 0 \\
+Toy            & 0 & 2 & 1 & 0 & 2 & {\color{blue}1} & 0 \\
+Working        & 0 & 0 & 0 & 0 & 0 & 0 & {\color{blue}4} \\
+\hline
+\end{tabular}
+\caption{Results from SVM using a radial basis kernel.}
+\end{table}
+
+For the SVM with a radial basis function kernel, a cost value of 1 was recommended, suggesting narrower margins than the previous model. The misclassification rate improved to 50%, with a corrected Rand index of 0.18. These results are summarized in Table 2. Although the radial basis kernel performs slightly better than the linear kernel, it is still inaccurate.
+
+SVM may not be well-suited for this particular data set. One possible reason is the lack of clear separation between classes observed in the scatterplots during exploratory data analysis. This makes it challenging to define distinct hyperplanes, especially when classifying into seven different categories.
+
+## Clustering Results
+
+Next, we apply a clustering method based on finite Gaussian mixture models to explore how dog breeds group together based on their traits. This analysis is performed using the Mclust() function from the mclust package (Scrucca et al., 2023).
+
+When using all of the original variables in the data set, the model selection criterion recommends an ellipsoidal model with equal shape and orientation (VEE), consisting of 2 components. Results are shown in Table 3.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c c c c}
+\hline
+ & \multicolumn{7}{c}{True Class} \\
+\cline{2-8}
+Predicted Class & Herding & Hound & Non-Sporting & Sporting & Terrier & Toy & Working \\
+\hline
+1 & 10 & 11 & 9 & 15 & 12 & 13 & 8 \\
+2 & 0 & 2 & 1 & 0 & 0 & 0 & 6 \\
+\hline
+\end{tabular}
+\caption{Prediction results by class, with predicted classes as rows and true classes as columns.}
+\end{table}
+
+Upon inspecting the clusters, it is unclear what patterns they represent. For instance, the second class contains a mix of working dogs, 2 hounds, and 1 non-sporting dog, while the remaining dogs are grouped together in a single cluster.
+
+Next, we apply variable selection for clustering, which identifies subsets of predictor variables that minimize within-group variance and maximize between-group variance in the Gaussian mixture model. This can be performed using the vscc() function from the vscc package in R (Andrews et al., 2023). The default implementation still relies on the Mclust() function, allowing us to compare directly to the previous model.
+
+Interestingly, the vscc() function suggests that the best subset of variables is, in fact, all the variables in the data set. As a result, the model and its results are identical to those obtained using Mclust().
+
+Similar to the support vector machines, clustering also appears to be a poor fit for this data set. Alternatively, it may be identifying a pattern unrelated to the dog breeds.
+
+## Conclusion
+
+There are numerous traits associated with different dog breeds, such as intelligence, popularity, and costs. While single-variable plots suggest some distinctions between these traits, the scatter-plots reveal no correlation between them.
+
+Support vector machines and clustering methods did not work well, possibly due to this lack of correlation or pattern. Surprisingly, the variable importance for Gaussian finite mixture models suggested uggested using all available variables, implying that each variable was important for analysis, but the resulting clusters were still uninformative.
+
+It’s possible that the current dog breed categories are too broad. A more focused analysis, perhaps based on size, might provide more accurate results. For example, individuals who prefer small dog breeds like Chihuahuas may also be more inclined to like other small breeds, such as Pomeranians. Conversely, larger breeds, such as Pitbulls, may attract fans based on factors like athleticism. For future studies, it may be better to focus on fewer categories to classify different types of dogs.
+
+\newpage
+
+## References
+
+Andrews, J. L., Neal, M. R. & McNicholas, P. D. (2023). vscc: Variable selection for clustering and classification. R package version 0.6.
+
+Jaina. (2025). Dog Breeds Ranked. Kaggle. \<https://www.kaggle.com/data sets/jainaru/dog-breeds-ranking-best-to-worst\>
+
+King-Yu, S. (2025). *CSE/STATS 790: Statistical Learning*. McMaster University.
+
+Meyer D, Dimitriadou E, Hornik K, Weingessel A, Leisch F (2024). *e1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien*. R package version 1.7-16, <https://CRAN.R-project.org/package=e1071>.
+
+Scrucca L, Fraley C, Murphy TB, Raftery AE (2023). *Model-Based Clustering, Classification, and Density Estimation Using mclust in R*. Chapman and Hall/CRC. ISBN 978-1032234953, doi:10.1201/9781003277965 <https://doi.org/10.1201/9781003277965>, <https://mclust-org.github.io/book/>.
+
+## Appendix
+
+```{r}
+#| eval: false
+library("tidyverse")
+library("GGally") # pairs plot
+library("e1071")
+library("mclust")
+library("vscc")
+library("gridExtra")
+
+data = read.csv("dogs-ranking-data set.csv")
+
+data$X.LIFETIME.COST = as.numeric(gsub("[$,]", "", data$X.LIFETIME.COST))
+data$INTELLIGENCE.. = as.numeric(gsub("[,%]", "", data$INTELLIGENCE..))
+
+df = data[c("type", "score", "popularity.ranking", "size", "score.for.kids", 
+       "X.LIFETIME.COST", "INTELLIGENCE..", "LONGEVITY.YEARS.", 
+       "NUMBER.OF.GENETIC.AILMENTS", "SUITABILITY.FOR.CHILDREN")]
+df$type = as.factor(df$type)
+
+ggpairs(df, aes(colour=type, alpha=0.4))   
+
+dogtype_label2 = c("herding" = "HE", "hound" = "HO",
+                  "non-sporting" = "NS", "sporting" = "S",
+                  "terrier" = "TE", "toy" = "TO", "working" = "W")
+
+legend_label = c("HE: Herding", "HO: Hound", "NS: Non-Sporting", "S: Sporting", "TE: Terrier", "TO: Toy", "W: Working")
+
+scatter1 = ggplot(aes(x = X.LIFETIME.COST, 
+                      y=INTELLIGENCE.., color=type), data = df) +
+  geom_point() + theme_minimal() + theme(legend.position="none") + xlab("Lifetime Cost ($)") + ylab("Intelligence (%)")
+
+boxplot1 = ggplot(aes(x=type, y=popularity.ranking, 
+                      fill=type), data = df) +
+  stat_boxplot(geom ='errorbar') + geom_boxplot() + theme_minimal() + 
+  theme(legend.position="none") + 
+  scale_x_discrete(
+    name="Breed Type",
+    labels = dogtype_label2,
+  ) + ylab("Popularity Ranking")
+
+barplot1 = ggplot(aes(x=type), data = df) + geom_bar(aes(fill=type)) +
+  theme_minimal() + scale_fill_discrete(name = "Type",
+                                        labels = legend_label) +
+  scale_x_discrete(
+    name="Breed Type",
+    labels = dogtype_label2,
+  ) + ylab("Count")
+
+grid.arrange(scatter1, boxplot1, barplot1,
+             ncol=3, nrow = 1, widths = c(1, 1, 1.6))
+
+# Creating a training set
+# 70-30 test split
+
+df = df %>% arrange(type) #re-organizing
+
+train = c(sample(1:10, 7), sample(11:23, 9), sample(24:33, 7),
+          sample(34:48, 11), sample(49:60, 8), 
+          sample(61:73, 9), sample(74:87, 10))
+
+test_set = df[-train, ]
+
+########################################################
+# VERSION 1: linear kernel
+
+set.seed(1)
+tune.out = tune(svm, type ~ ., data = df[train,], kernel = "linear", ranges = list(cost = c(0.001, 0.01, 0.1, 1, 5, 10, 100)))
+
+summary(tune.out) # best cost: 0.1
+# hence we have wide margins; many support vectors will be on the margin/violate the margin
+
+bestmod = tune.out$best.model
+summary(bestmod)
+
+ypred = predict(bestmod, test_set)
+
+tab = table(predict = ypred, truth = test_set$type)
+
+classAgreement(tab)
+
+########################################################
+# VERSION 2: radial kernel
+
+set.seed(1)
+tune.out2 = tune(svm, type ~ ., data = df[train,], kernel = "radial", ranges = list(cost = c(0.001, 0.01, 0.1, 1, 5, 10, 100)))
+
+summary(tune.out2) # uses a cost of 1
+
+bestmod2 = tune.out2$best.model
+summary(bestmod2)
+
+ypred2 = predict(bestmod2, test_set)
+
+tab2 = table(predict = ypred2, truth = test_set$type)
+
+classAgreement(tab2)
+# Performs better than the linear kernel
+
+#################################################################
+# Clustering
+
+og_clust = Mclust(df[,2:10], G = 2:9)
+summary(og_clust)
+
+table(predictions = og_clust$classification, class = df[,1])
+
+vscc_clust = vscc(df[,2:10], G = 2:9)
+vscc_clust
+plot(vscc_clust)
+
+head(vscc_clust$topselected)
+
+# We have the same table as before...
+table(predictions = vscc_clust$bestmodel$classification,
+      class = df[,1])
+```

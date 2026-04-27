@@ -1,0 +1,227 @@
+---
+title: "Predicting Wildlife Carcass Detection Near Wind Turbines"
+subtitle: "Logistic Regression, Random Forests, and Support Vector Machines"
+author: "Anna Ly"
+date: "April 2025"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-title: "Contents"
+    embed-resources: true
+    code-fold: true
+    code-summary: "Show R code"
+bibliography: test.bib
+csl: journal-of-combinatorics.csl
+---
+
+```{r setup}
+#| message: false
+#| echo: false
+#| warning: false
+library("tidyverse")
+library("randomForest")
+library("e1071")
+library("gridExtra")
+library("fastDummies")
+library("glmnet")
+
+df = read.csv("dogWEFdata.csv")
+df$detect = factor(df$detect, levels = c("0", "1"), labels = c("No", "Yes"))
+
+density1 = ggplot(df, aes(x=size, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth=1) + theme_minimal() +
+  theme(legend.position="none") + xlab("Wingspan (cm)") + ylab("Density")
+
+density2 = ggplot(df, aes(x=temp, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth=1) + theme_minimal() +
+  theme(legend.position="none") + xlab("Temperature (°C)") + ylab("Density")
+
+density3 = ggplot(df, aes(x=wind, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth=1) + theme_minimal() +
+  xlab("Wind Speed (km/h)") + ylab("Density") +
+  scale_fill_discrete(name="Detected") +
+  scale_color_discrete(name="Detected")
+
+boxplot1 = ggplot(df, aes(x=detect, y=size, fill=type)) +
+  stat_boxplot(geom="errorbar") + geom_boxplot() +
+  theme(legend.position="none") + ylab("Wingspan (cm)") + xlab("Detected")
+
+boxplot2 = ggplot(df, aes(x=detect, y=temp, fill=type)) +
+  stat_boxplot(geom="errorbar") + geom_boxplot() +
+  theme(legend.position="none") + ylab("Temperature (°C)") + xlab("Detected")
+
+boxplot3 = ggplot(df, aes(x=detect, y=wind, fill=type)) +
+  stat_boxplot(geom="errorbar") + geom_boxplot() +
+  ylab("Wind Speed (km/h)") + xlab("Detected") +
+  scale_fill_discrete(name="Searcher Type")
+
+df = dummy_cols(df, select_columns=c("type", "ind", "turb"),
+                remove_first_dummy=FALSE, remove_selected_columns=TRUE)
+df = df %>% select(-c("date", "pc1", "pc2", "pc3"))
+
+set.seed(1)
+df_train = df %>% group_by(detect) %>% slice_sample(prop=0.80) %>% ungroup()
+df_test  = df %>% anti_join(df_train, by="id")
+df       = df %>% select(-id)
+df_train = df_train %>% select(-id)
+df_test  = df_test %>% select(-id)
+
+df_train_mod = df_train %>% select(c(detect, size, type_dog, type_human,
+                                     ind_d2, ind_h1, ind_h2, turb_t3))
+df_test_mod  = df_test  %>% select(c(detect, size, type_dog, type_human,
+                                     ind_d2, ind_h1, ind_h2, turb_t3))
+
+# Logistic regression
+logit_mod  = glm(detect ~ ., data=df_train_mod, family=binomial)
+logit_pred = predict(logit_mod, df_test_mod, type="response")
+logit_class = factor(ifelse(logit_pred > 0.5, "Yes", "No"), levels=c("No","Yes"))
+table0 = table(df_test$detect, logit_class)
+
+# Random forest
+set.seed(1)
+randomfor = randomForest(detect ~ ., data=df_train_mod, mtry=2, ntree=3000,
+                         importance=TRUE, type="class")
+rf.pred = predict(randomfor, df_test, type="class")
+table1  = table(df_test$detect, rf.pred)
+
+var_imp = importance(randomfor)
+var_imp2 = var_imp[, 4]
+new_labels = c("Wingspan", "Dog Searcher", "Human Searcher",
+               "Dog 2", "Human 1", "Human 2", "Turbine 3")
+var_imp2_df = data.frame(Variable=new_labels, Importance=var_imp2)
+var_imp2_df = var_imp2_df[order(var_imp2_df$Importance), ]
+
+# SVM
+set.seed(1)
+tune.out = tune(svm, detect ~ ., data=df_train_mod, kernel="linear",
+                ranges=list(cost=c(0.001, 0.01, 0.1, 1, 5, 10, 100)))
+svm_mod  = svm(detect ~ ., data=df_train_mod, kernel="linear", cost=0.01)
+svm.pred = predict(svm_mod, df_test)
+table2   = table(df_test$detect, svm.pred)
+
+w = t(svm_mod$coefs) %*% svm_mod$SV
+w = apply(w, 2, function(v){ sqrt(sum(v^2)) })
+w = sort(w, decreasing=TRUE)
+new_labels2 = c("Dog Searcher", "Human Searcher", "Human 2",
+                "Human 1", "Turbine 3", "Wingspan", "Dog 2")
+```
+
+## Background
+
+Wind turbines are often promoted as an environmentally friendly energy source. However, bird and bat carcasses frequently accumulate near these turbines, raising concerns about their impact on wildlife.
+
+Carcass searches are typically conducted by humans, often accompanied by trained detection dogs. Dogs are generally more effective than humans, likely due to their superior sense of smell @arnett2006preliminary, but other factors such as carcass size and weather conditions may also influence detection rates.
+
+Domínguez del Valle et al. @dominguez2020factors conducted a controlled field experiment in Spain (January–March) in which bird carcasses were systematically placed near wind turbines. Two human searchers and three trained dog handlers each followed a predetermined path independently, with a handler present to verify each detection. The dataset is publicly available on Data Dryad @DominguezDelValle2020 and includes detection outcomes, searcher type and ID, turbine type, carcass wingspan (cm), vegetation cover, temperature, and wind speed.
+
+This study applies three statistical learning methods, logistic regression, random forest decision trees, and support vector machines, to classify whether carcasses are successfully detected and to identify key explanatory variables influencing detection. Elastic net regularization is used for variable selection.
+
+## Data Preparation
+
+Three categorical variables (searcher type, individual searcher ID, and turbine type) were one-hot encoded using the `fastDummies` package @fastdummies_cite. Search date was excluded, as searches spanned roughly three months and most dates contained only four observations, making it unlikely to contribute meaningful information.
+
+The dataset was split 80/20 into training and test sets, stratified by detection outcome.
+
+```{r eda-boxplots}
+#| fig-width: 11
+#| fig-height: 3
+#| fig-cap: "Distributions of continuous predictors by detection outcome. Little separation is visible for temperature and wind speed."
+#| message: false
+#| warning: false
+grid.arrange(boxplot1, boxplot2, boxplot3, ncol=3, nrow=1, widths=c(1, 1, 1.6))
+```
+
+```{r eda-densities}
+#| fig-width: 11
+#| fig-height: 3
+#| fig-cap: "Density plots of continuous predictors by detection outcome."
+#| message: false
+#| warning: false
+grid.arrange(density1, density2, density3, ncol=3, nrow=1, widths=c(1, 1, 1.6))
+```
+
+Temperature and wind speed distributions are nearly identical between detected and missed carcasses, suggesting limited predictive value. Wingspan shows modest separation and was ultimately retained in the final model.
+
+## Methods
+
+### Variable Selection via Elastic Net
+
+Variable selection was performed using elastic net regularization via the `glmnet` package @glmnet_cite. Elastic net combines the LASSO $\ell_1$ penalty (which zeros out coefficients entirely) with the ridge $\ell_2$ penalty (which shrinks them):
+
+$$\hat{\beta}^{\text{ENET}} = \underset{\beta}{\text{argmin}} \left\{ -\ell(\beta) + \lambda \left( \alpha \|\beta\|_1 + (1-\alpha)\|\beta\|_2^2 \right) \right\}$$
+
+Using 5-fold cross-validation, the optimal tuning parameters were $\alpha = 0.2$ (mostly ridge) and $\lambda \approx 0.18$. The selected variables include carcass **wingspan**, **searcher type** (dog or human), specific **searcher identifiers** (Dog 2, Human 1, Human 2), and **Turbine 3**. Temperature and wind speed were not selected, which is consistent with the exploratory plots. The same variable set is used across all three models to allow a direct comparison.
+
+### Logistic Regression
+
+Logistic regression models the log-odds of a successful detection as a linear function of the selected predictors:
+
+$$\ln\!\left(\frac{\pi}{1 - \pi}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$$
+
+where $\pi = P(\text{Detected} = \text{Yes} \mid \mathbf{X})$. An observation is classified as detected if the predicted probability exceeds 0.5. The model was fit using base R @baser_cite.
+
+### Random Forests
+
+Random forests build an ensemble of decision trees, each trained on a bootstrap sample with $\lfloor\sqrt{p}\rfloor = 2$ randomly selected predictors available at each node (from 7 total). Predictions are made by majority vote across 3,000 trees @randomforest_cite. Variable importance is measured as the mean decrease in Gini impurity when each predictor is removed.
+
+### Support Vector Machines
+
+SVMs find the hyperplane that maximises the margin between classes, with a cost parameter $C$ controlling the trade-off between margin width and misclassification. A linear kernel was used, with $C$ tuned over {0.001, 0.01, 0.1, 1, 5, 10, 100} via cross-validation; $C = 0.01$ was selected. The `e1071` package @e1071_cite was used. Variable importance was approximated by the Euclidean norm of the SVM weight vector @guyon2003introduction.
+
+## Results
+
+### Logistic Regression Coefficients
+
+```{r logit-table}
+#| echo: false
+coef_summary = summary(logit_mod)$coefficients
+coef_df = as.data.frame(round(coef_summary, 4))
+colnames(coef_df) = c("Estimate", "Std. Error", "z value", "Pr(>|z|)")
+knitr::kable(coef_df, caption = "Logistic regression coefficients on selected variables. Variables with NA are omitted due to perfect collinearity from one-hot encoding.")
+```
+
+Holding all other variables constant, having a **dog as the searcher** increases the odds of successful detection by $e^{2.33} \approx 10\times$. Wingspan also has a statistically significant positive effect. Human Searcher and Human 2 show NA due to collinearity from one-hot encoding, as expected.
+
+### Feature Importance
+
+```{r importance-plots}
+#| fig-width: 11
+#| fig-height: 4
+#| fig-cap: "Feature importance from the random forest (left, mean decrease in Gini) and SVM (right, weight magnitude). Higher values indicate greater predictive contribution."
+par(mfrow=c(1, 2))
+dotchart(var_imp2_df$Importance, labels=var_imp2_df$Variable,
+         xlab="Mean Decrease in Gini (RF)", bg="steelblue")
+dotchart(rev(w), labels=rev(new_labels2),
+         xlab="Weight Magnitude (SVM)", bg="coral")
+```
+
+Both the random forest and logistic regression agree that **searcher type (dog vs. human) is the dominant predictor**, followed by wingspan. The SVM weights differ somewhat, as wingspan is ranked lower, but searcher type remains the most important variable across all three methods.
+
+### Prediction Accuracy
+
+All three models produce identical confusion matrices on the held-out test set:
+
+| | **Predicted: No** | **Predicted: Yes** |
+|---|---|---|
+| **Actual: No** | 19 | 26 |
+| **Actual: Yes** | 5 | 93 |
+
+: Confusion matrix (all three models). Overall misclassification rate: **21.7%**. Corrected Rand index: 0.27.
+
+The convergence across methods is notable. When a single categorical variable dominates prediction (searcher type), models of very different complexity tend to find the same decision boundary. The convergence was confirmed to be genuine rather than a coding error by verifying that alternative train/test splits produce small but non-zero differences across models.
+
+## Discussion
+
+The strongest predictor of accurate detection was whether the searcher was a dog, aligning with the findings from the original study @dominguez2020factors. Holding all other variables constant, having a dog as the searcher increases the odds of successful detection by approximately 10 times.
+
+A misclassification rate of 21.7% is relatively acceptable given that the elastic net selected mostly categorical variables. With only five distinct searchers, the results may reflect those individuals rather than generalizing to all dogs and humans.
+
+Since all three models perform identically and logistic regression is the most interpretable and computationally efficient, it is the most suitable model for this dataset.
+
+Future studies may consider examining what factors allow dogs to be more successful at detection than humans, such as breed, training method, or handler experience.
+
+## References
+
+::: {#refs}
+:::

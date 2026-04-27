@@ -1,0 +1,214 @@
+---
+title: "Dry Bean Classification via Neural Networks"
+subtitle: "Anna Ly (400254496) - January 25, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 11pt
+    linestretch: 1.4
+    classoption: oneside
+    mainfont: Times New Roman  
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+```{r}
+#| message: false
+#| echo: false
+library(readxl)
+library(nnet) 
+library(e1071)
+library(tidyverse)
+library(gridExtra)
+library(pander)
+
+data = read_excel("Dry_Bean_Dataset.xlsx")
+
+box1 = ggplot(aes(x=Class, y=Area, fill=Class), data = data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x = element_blank()) +
+  xlab("")
+
+box2 = ggplot(aes(x=Class, y=Eccentricity, fill=Class), data = data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x = element_blank()) +
+  xlab("")
+
+box3 = ggplot(aes(x=Class, y=Compactness, fill=Class), data = data) +
+  geom_boxplot() + theme(axis.text.x = element_blank()) + xlab("")
+
+scatter1 = ggplot(aes(x=Perimeter, y=roundness, color=Class), data = data) +
+  geom_point() + theme(legend.position="none")
+
+scatter2 = ggplot(aes(x=ShapeFactor1, y=ShapeFactor2, color=Class), data = data) +
+  geom_point() + theme(legend.position="none")
+
+scatter3 = ggplot(aes(x=Area, y=AspectRation, color=Class), data = data) +
+  geom_point() 
+```
+
+## Introduction
+
+We will use the [dry bean dataset from the Machine Learning Repository](https://archive.ics.uci.edu/dataset/602/dry+bean+dataset), originally featured in a classification study by [Murat Koklu and Ilker Ali Ozkan](https://www.sciencedirect.com/science/article/pii/S0168169919311573) in 2020. The dataset contains 13,611 entries with image-based properties of seven bean types: Seker, Barbunya, Bombay, Cali, Dermosan, Horoz, and Sira. The variables include 16 numeric features, such as area, perimeter, and the distance between the endpoints of the longest line across the bean (called major axis length), used to predict its type.
+
+Sometimes there can be unlabeled beans in an pantry, or farmers/companies may need an efficient way to label different bean varieties. To deal with this **problem**, we will employ a neural network to classify the beans and evaluate whether these seven different beans can be accurately distinguished.
+
+## Exploratory Analysis
+
+Before constructing the neural network model we will briefly explore relationships between the predictor variables and our response. Scatterplots show that the Bombay bean stands out significantly in almost every quantitative variable (see Figure 1).
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 2.5
+#| fig-cap: "Some scatterplots highlighting the difference between Bombay beans and the rest."
+grid.arrange(scatter1, scatter2, scatter3, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+```
+
+Figure 2 features boxplots, highlighting the distribution of quantitative variables by bean type. For example, Bombay beans consistently have the highest values for area, perimeter, and diameter. Due to limitations, we present plots showing eccentricity (measure of the elongation of the ellipse) and compactness (measures the roundness of the object) instead as they showcase different patterns.
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 2.5
+#| fig-cap: "Boxplots featuring the distribution of area, eccentricity, and compactness by bean type."
+grid.arrange(box1, box2, box3, ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+```
+
+## Explanation of Neural Networks
+
+Neural networks consist of interconnected nodes, inspired by neurons in the human brain. Each node has a weight used for prediction. The first layer consists of input nodes representing the $p$ predictors $X = (X_{1}, …, X_{p})^{T}$. Patterns in these inputs are transformed through hidden layers (activations), and the final layer, called the output layer, produces the predictions. The general form of a neural network can be expressed as: $f(x) = \beta_{0} + \sum_{i=1}^{K} \beta_{i} g(w_{i0} + \sum_{j=1}^{p} w_{ij} x_{j})$
+
+Where $\beta_{0}$ is the intercept, $\beta_{i}$'s are coefficients for the nonlinear activation function $g(z)$ applied in the hidden layers, and the $w_{ij}’s$ represent the weight assigned to each predictor. The formula was derived from Dr. King-Yu's class notes. We focus on classification where the softmax function, which extends the logistic curve for multi-class outcomes, is used as the final layer.
+
+While neural networks perform well on large datasets and excel at prediction, they sacrifice interpretability; hence, variable importance is omitted in this analysis.
+
+## Results
+
+```{r}
+#| echo: false
+#| message: false
+#| results: "hide"
+set.seed(2025)
+
+train = c(sample(1:2027, 1622), sample(2028:3349, 1058), sample(3350:3871, 418),
+          sample(3872:5501, 1304), sample(5502:7429, 1542), sample(7439:10065, 2109),
+          sample(10066:13611, 2837))
+
+y = data$Class
+x = data[,-17]
+cls = class.ind(as.factor(data[[17]]))
+
+nnet_mod = nnet(x[train,], cls[train,], size=20, decay=8, softmax=TRUE)
+nnet_pred = predict(nnet_mod, x[-train,], type="class")
+
+true_labels = as.factor(data[[17]][-train])
+tab = table(true_labels, nnet_pred)
+```
+
+The amount of dry beans were inconsistent. For instance, there are 522 Bombay beans and 3546 Sira beans. To ensure we get a representative sample for each bean type, we used 80% of each dry bean type for training and validation, and 20% for testing. We performed 5-fold cross-validation, testing sizes from 0 to 20 and decay values from 0 to 10. The results suggested using a size of 20 and a decay of 8. Using the test set, the neural network gives us the following predictions against the true identities:
+
+```{r}
+#| echo: false
+pander(tab, caption = "Table showing the true labels (rows) and the predicted labels from the neural network (columns).")
+```
+
+The neural network fails to classify any dry beans as Bombay, instead conflating these with Barbunya and Cali beans. This is surprising, as our scatterplots indicated that Bombay beans are distinct. This misclassification could be due to the relatively low frequency of Bombay beans compared to others, and there could be similarities not shown in scatterplots.
+
+Similarly, Sira beans are frequently mistaken for Dermason, Horoz, and Seker beans, which also doesn't align with the differences shown in the exploratory plots. Furthermore, Cali beans are often mis-classified as Barbunya, but this appears more reasonable as they have similar boxplot distributions as shown in the exploratory data analysis.
+
+The raw agreement between actual and predicted labels, adjusted for chance, is approximately 81.9%. The corrected Rand index, which accounts for true positives and negatives, is around 69.7%, suggesting the model accurately classifies the beans about 69.7% of the time.
+
+## Conclusion
+
+We recommend using neural networks for classifying Barbunya, Dermason, Horoz, and Seker beans, but not for Bombay, Cali, and Sira beans. This aligns with the exploratory analysis, revealing that dry beans may be difficult to distinguish since they share similar physical characteristics. A corrected Rand index of 69.7% is a reasonably good result given said similarities. For personal identification, this can be used to identify certain beans type, but for commercial use this model is unreliable.
+
+Future studies could explore models with better interpretability, such as the multinomial logistic regression, and see how accurate those models are compared to a neural network.
+
+\newpage
+
+## References
+
+Dry Bean \[Dataset\]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C50S4B.
+
+Koklu, M., & Özkan, I.A. (2020). Multiclass classification of dry beans using computer vision and machine learning techniques. *Comput. Electron. Agric*., 174, 105507.
+
+King-Yu, S. (2025). *CSE/STATS 790: Statistical Learning*. McMaster University.
+
+## Appendix
+
+```{r}
+#| eval: false
+
+library(readxl)
+library(nnet) 
+library(e1071)
+library(tidyverse)
+library(gridExtra)
+library(pander)
+
+data = read_excel("Dry_Bean_Dataset.xlsx")
+
+box1 = ggplot(aes(x=Class, y=Area, fill=Class), data = data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x = element_blank()) +
+  xlab("")
+
+box2 = ggplot(aes(x=Class, y=Eccentricity, fill=Class), data = data) +
+  geom_boxplot() + theme(legend.position="none", axis.text.x = element_blank()) +
+  xlab("")
+
+box3 = ggplot(aes(x=Class, y=Compactness, fill=Class), data = data) +
+  geom_boxplot() + theme(axis.text.x = element_blank()) + xlab("")
+
+scatter1 = ggplot(aes(x=Perimeter, y=roundness, color=Class), data = data) +
+  geom_point() + theme(legend.position="none")
+
+scatter2 = ggplot(aes(x=ShapeFactor1, y=ShapeFactor2, color=Class), data = data) +
+  geom_point() + theme(legend.position="none")
+
+scatter3 = ggplot(aes(x=Area, y=AspectRation, color=Class), data = data) +
+  geom_point() 
+
+# Featuring the scatterplots
+grid.arrange(scatter1, scatter2, scatter3, 
+             ncol=3, nrow = 1, widths = c(1, 1, 1.3))
+
+# Featuring the boxplots
+grid.arrange(box1, box2, box3, ncol=3, 
+             nrow = 1, widths = c(1, 1, 1.3))
+
+# Getting the training set
+set.seed(2025)
+train = c(sample(1:2027, 1622), sample(2028:3349, 1058), 
+          sample(3350:3871, 418), sample(3872:5501, 1304), 
+          sample(5502:7429, 1542), sample(7439:10065, 2109),
+          sample(10066:13611, 2837))
+
+y = data$Class
+x = data[,-17]
+cls = class.ind(as.factor(data[[17]]))
+
+# Doing cross validation
+data$Class = as.factor(data$Class)
+
+set.seed(2025)
+net_testmod = tune.nnet(Class ~., data = data[train,], 
+                        size = 0:20, decay = 0:10, 
+                        tunecontrol = tune.control(sampling = "cross", cross=5))
+summary(net_testmod)
+
+# Fitting the actual model
+nnet_mod = nnet(x[train,], cls[train,], 
+                size=20, decay=8, softmax=TRUE)
+nnet_pred = predict(nnet_mod, x[-train,], 
+                    type="class")
+
+true_labels = as.factor(data[[17]][-train])
+tab = table(true_labels, nnet_pred)
+
+# Obtaining kappa, corrected rand index
+tab
+
+classAgreement(tab)
+```

@@ -1,0 +1,580 @@
+---
+title: "STATS 780 Assignment 2"
+subtitle: "Investigating Plant-based vs. Meat-based Diets for Dogs"
+author: 
+  - name: "Anna Ly (400254496)"
+affiliation: "McMaster University"
+date: "October 17, 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    titlepage: true
+    titlepage-color: "FFFFFF"
+    titlepage-text-color: "000000"
+    titlepage-rule-height: 2
+bibliography: test.bib
+csl: journal-of-combinatorics.csl
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+---
+
+\newpage
+
+```{r}
+#| echo: false
+#| message: false
+library("tidyverse")
+library("readxl")
+library("class")
+library("ROCR")
+library("pROC")
+library("glmnet")
+library("knitr")
+
+source("data_transformation_ref.R")
+my_data = read_excel("Canine health results.xlsx", sheet = 2)
+remove = c(seq(1, 6, by = 1), 8, 13, 14, 17, 19,  seq(21, 32, by = 1),
+           seq(36, 45, by = 1), seq(46, 58, by = 1))
+my_data = my_data[, -remove]
+my_data = na.omit(my_data)
+names(my_data) = c("education_lvl", "household_income", "owner_age", "owner_gender", "owner_diet", "breed_size", "dog_age", "sex_and_neuteur_status", "vet_visit", "dog_meds", "dog_health", "dog_diet")
+my_data = my_data %>%
+  separate("sex_and_neuteur_status", into = c("dog_sex", "neuter_status"), sep = ", ")
+
+my_data = my_data[my_data$household_income != "Prefer not to answer", ]
+my_data = my_data[my_data$owner_gender != "Prefer not to answer", ]
+my_data = my_data[my_data$owner_diet != "Other", ]
+my_data = my_data[my_data$dog_age != "Unsure", ]
+my_data = my_data[my_data$vet_visit != "Unsure", ]
+my_data = my_data[my_data$dog_health != "Unsure", ]
+my_data = my_data[my_data$owner_gender != "Other", ] 
+
+pre_cleaning_dat = my_data
+
+my_data = my_data %>%
+  mutate(education_lvl = education_levels[education_lvl]) %>%
+  mutate(household_income = income_levels[household_income]) %>%
+  mutate(owner_age = age_ranges[owner_age]) %>%
+  mutate(neuter_status = neuter_statuses[neuter_status]) %>%
+  mutate(owner_diet = owner_diet_levels[owner_diet]) %>%
+  mutate(breed_size = dog_sizes[breed_size]) %>%
+  mutate(dog_age = as.numeric(dog_age)) %>%
+  mutate(vet_visit = vet_visit_range[vet_visit]) %>%
+  mutate(dog_meds = binary_yn[dog_meds]) %>%
+  mutate(dog_health = health_levels[dog_health]) %>%
+  mutate(dog_diet = dog_diet_levels[dog_diet]) %>%
+  mutate(
+    owner_male = if_else(owner_gender == "Male", 1, 0),
+    owner_female = if_else(owner_gender == "Female", 1, 0),
+  ) %>% 
+  mutate(
+    dog_male = if_else(dog_sex == "Male", 1, 0),
+    dog_female = if_else(dog_sex == "Female", 1, 0),
+  )
+
+my_data = my_data %>%
+  select(-owner_gender, -dog_sex)
+
+my_data = my_data[my_data$dog_diet != "Other", ]
+```
+
+## Dataset Sourcing & Application
+
+We are using the "Vegan versus meat-based pet foods" dataset found on
+<https://osf.io/nbepu/>. A survey, approved by the UK General Data
+Protection Regulation, was deployed online and advertised through social
+media platforms and advertisements for dog owners from May 2020 to
+December 2020. More details can be found in @knight2021vegan.
+
+We **aim** to predict a dog's diet type: meat-centric or plant-centric—based
+on health issues and demographic factors. Society believes it is animal abuse to feed a dog a plant-based since their ancestor, wolves, are carnivores. our analysis will help assess the association between a dog's health and their diet.
+
+In the survey, participants specified their dog's diet,
+including raw, kibble, home-cooked, pescetarian, vegetarian, and
+vegan. We categorized vegetarian and vegan diets as "plant-centric" and
+the others as "meat-centric." Although the questionnaire allowed for
+other diet types, such as insects, only 26 responses included this, so
+we excluded them from the analysis.
+
+## Data Transformation & Exploratory Data Analysis
+
+After removing columns containing short answer responses, as well as
+users who answered "unsure" to at least one of the closed-form
+questions, we removed **297 responses (the amount of rows of missing
+values)** which lead us to a total of (n = 2342) participants. 183 of
+297 were removed since most participants did not want to admit to their
+household income.
+
+We analyze using **13 variables** in total, but we have an extra 2 due to one-hot encoding (i.e., owner's gender and dog's sex was stretched to
+male/female). Here are a brief information of the **data types** for our
+selected variables:
+
+-   Numeric (transformed by the average of the range):
+    owner's age, dog's age.
+
+-   Ordinal categorical (transformed into numeric): education level,
+    household income, breed size, number of vet visits, dog's health,
+    owner's meat consumption.
+
+-   Categorical (some transformed into binary): owner's gender, dog's sex, dog's neuter status, whether the dog's on prescription medication, dog diet.
+
+Furthermore, many questions asked for a range instead of a numerical
+value (such as age), so we transformed their response by taking the
+midpoint of their provided range. The exact details, including data cleaning, is shown in the supplementary material section.
+
+Since most of the data came from closed-form questions which involved
+ranges, we did not see **extreme outliers**. Surprisingly,
+there are outliers for highly educated dog owners that feed their dog a meat-based diet (see figure 2 in the supplementary material.) 
+
+Due to space limitations, we do not discuss all variables in our data set, but we have provided **summary tables** for income level and gender of the participants:
+
+```{r}
+#| echo: false
+gender_table = pre_cleaning_dat %>%
+  count(owner_gender) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(gender_table, col.names = c("Owner's Gender", "Count", "Percentage (%)"),
+      caption = "Gender Distribution of Survey Participants")
+
+dog_diet_table = pre_cleaning_dat %>%
+  count(household_income) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(dog_diet_table, col.names = c("Household Income Compared to Average", "Count", "Percentage (%)"), caption = "Self-reported Household Income Levels Compared to the Average Population")
+```
+
+More summary tables (3-9) are included in the supplementary material. Furthermore, **we observe associations** for whether or not a dog's diet is dependent on the owner's diet and whether there's a relationship between dog's health and diet.
+
+```{r}
+#| echo: false
+#| fig.width: 9
+#| fig.height: 4
+#| dpi: 300
+#| fig-cap: "Barplots showing the distribution of dog diets by owner's diet (left) and dog's health (right)."
+
+par(mfrow = c(1, 2))
+diet_types = c("Omni.", "Flex.", "Pesc.", "Vege.", "Vegan")
+cont_diet = table(my_data$dog_diet, my_data$owner_diet)
+cont_diet_barplot = barplot(cont_diet, beside = TRUE, xlab = "Owner's Diet", ylab = "Count",
+                             names.arg = diet_types, ylim = c(0, 1100),
+                             border = "white", col = c("#FF6666", "#6699FF"))
+legend("topright", legend = c("Meat-Centric", "Plant-Centric"), pch = 15, title = "Dog's Diet", col = c("#FF6666", "#6699FF"), inset = 0.02, cex = 0.8)
+text(x = cont_diet_barplot, y = cont_diet, label = cont_diet, 
+     pos = 3, cex = 0.8, col = "navy")  
+health_types = c(
+  "Critical",  "Chronic", "Good", "Excellent" 
+)
+cont_diet2 = table(my_data$dog_diet, my_data$dog_health)
+cont_diet_barplot2 = barplot(cont_diet2, beside = TRUE, xlab = "Dog's Health", ylab = "Count", names.arg = health_types, ylim = c(0, 1300), border = "white", col = c("#05DEB2", "#947aff"))
+legend("topleft", legend = c("Meat-Centric", "Plant-Centric"), pch = 15, title = "Dog's Diet", col = c("#05DEB2", "#947aff"), inset = 0.02, cex = 0.8)
+text(x = cont_diet_barplot2, y = cont_diet2, label = cont_diet2, 
+     pos = 3, cex = 0.8, col = "navy")  
+```
+
+**We split the data** into a training set (n = 781, 33.34%), a validation set (n = 781, 33.34%) and a hold-out set (n = 780, 33.33%) since our dataset is large and we wanted to have an equal proportion to train, validate, and test our models against each other for predictive accuracy.
+
+## K-Nearest Neighbour Analysis
+
+(i) There are no further transformations than the ones mentioned in the previous section.
+
+(ii) We used different values from $K = 1, .., 5$ to compute the miss-classification error on the validation set. We found that a value of $K = 5$ gave the lowest error rate.
+
+(iii) For k-nn the most important predictor cannot be determined in a straightforward manner: we would have to iteratively remove a variable one at a time to see if this drastically changes the accuracy. 
+
+**Model Evaluation:** the k-nn algorithm predicts the hold-out set with a 86.41\% accuracy, so the mis-classification rate is 13.59\%.
+
+## Logistic Regression Analysis (Without Shrinkage)
+
+(i) We transformed the dog's diet variable; meat centric is 1, and plant-centric is 0. 
+
+(ii) We used the ROC curve to help determine a cut-off value for the logistic regression model. Initially we tried with a cut-off of 0.5 but the ROC curve suggested a cut-off of approximately 0.73.
+
+(iii) The most important predictors in classifying the response are the owner's diet and the owner's gender. In particular, those who consume less meat and are female are more likely to give their dog a plant-based diet.
+
+(iv) For one-unit increase in the owner's diet (where the ordered categories are omnivore, flexitarian, pescetarian, vegetarian, and vegan), the odds of an owner feeding their dog a meat based diet decreases by approximately 0.25. Similarly, the odds of men feeding their dog a meat based diet decreases by approximately 0.29.
+
+**Model Evaluation**: The misclassification rate for the logistic regression model without penalty for the hold-out set is 87.05\% which means that the model is accurate 12.95\% of the time. 
+
+**Compared to the k-nn algorithm**, the logistic regression model (without shrinkage) is significantly worse at predicting the dog's diet.
+
+## Logistic Regression (With Shrinkage)
+
+(i) The shrinkage value that performs the best on this data set is $\lambda = 0.01253655$.
+
+(ii) The model with shrinkage eliminates most of the covariates. The remaining covariates are: education level, owner’s age, owner’s diet, dog’s age, and number of vet visits.
+
+(iii) The mis-classification error rate for the logistic regression model with shrinkage for the hold-out set is 88.84\%. This is worse than the model without shinkage. This could be caused by the fact that logistic regression may be a poor way to model the data (i.e., there are model assumptions) or we require transformations for the covariates to properly fit the dataset.
+
+## Conclusions from Analysis
+
+The K-nn algorithm outperforms logistic regression (both with and without shrinkage) in predicting a dog's diet. Both logistic regression models show that owner's diet is strongly associated with the dog's diet. The relationship between the owner's diet and the dog's diet is intuitive; owners who eat less meat are likely to feed their pets less meat.
+
+Fortunately, dogs with plant-based diet don't seem to have more health complications compared to their meat-eating counterparts, but this could be due to participation bias: owners who feed their dogs a plant-based diet may insist their dogs are healthy to justify their peculiar diet.
+
+## Is Generative AI Possible?
+
+If you use Bing Copilot, you could try asking them to find a data set - however, none of the ones they suggested were data sets we could use for this project. If we provide a link to a dataset, Bing Copilot would create a description that sounds legitimate but it wouldn't accurately capture how the dataset was properly sourced. 
+
+Furthermore, if we ask them to do some exploratory data analysis they would suggest codes that aren't ready-use. However, with enough prompting and context from the user, they provided practical code for data cleaning, printing out summaries, potential graphs, model building, and even some analysis.
+
+Hence, they can do large portions of the assignment but they would struggle in the beginning of picking a viable data set and being able to properly site the source material. Prompts are shown in @BingCopilot2024_1, @BingCopilot2024_2, @BingCopilot2024_3, and @BingCopilot2024_4.
+
+\newpage
+
+## References
+
+::: {#refs}
+:::
+
+\newpage
+
+## Supplementary Material
+
+I have made comments where GitHub Copilot @github_2024 was used.
+
+### data_transformation_ref.R
+
+This code was used as a reference for how the survey responses were transformed into binary or quantitative variables.
+
+```{r}
+# Github Copilot helped write some of these.
+dog_diet_levels = c("Meat-based – conventional"   = "Meat", "Meat-based – raw" = "Meat",
+  "Meat-based – lab-grown"  = "Meat", "Vegan (consuming no animal products)" = "Plant",  "Vegetarian (including eggs or milk, but not meat)" = "Plant", "Mixture" = "Other",
+  "Fungi-based" = "Other", "Insect-based" = "Other", "Algae–based" = "Other", "Unsure" = "Other")
+
+owner_diet_levels = c("Omnivore (i.e. eat meat)" = 0, "Omnivore reducing animal product consumption" = 1, "Pescatarian (including fish but no other meats)" = 2, "Vegetarian (consuming plants, eggs and milk)" = 3, "Vegan (consuming no animal products)" = 4)
+
+education_levels = c("Did not complete high school" = 0, "High school or equivalent" = 1, "College or University award lower than undergraduate degree" = 2, "University undergraduate degree" = 3, "University postgraduate degree lower than doctoral degree e.g. masters" = 4, "Doctoral degree" = 6)
+
+income_levels = c("Low" = 0, "Medium" = 1, "High" = 2)
+
+health_levels = c("Seriously ill" = 0, "Significant or frequent problems" = 1, "Generally healthy with minor or infrequent problems" = 2, "Healthy" = 3)
+
+age_ranges = c("18-19" = 18.5, "20–29" = 24.5, "30–39" = 34.5, "40–49" = 44.5, "50–59" = 54.5, "60–69" = 64.5, ">70" = 80)
+
+dog_sizes = c("Toy (≤ 4.1 kg or ≤ 9 lb)" = 0, "Small (4.5–10.9 kg or 10–24 lb)" = 1, "Medium (11.4–22.3 kg or 25–49 lb)" = 2, "Large (22.7–40.5 kg or 50–89 lb)" = 3, "Giant (> 40.9 kg or > 90 lb)" = 4)
+
+vet_visit_range = c("0" = 0, "1" = 1, "2" = 2, "3" = 3, ">3" = 4)
+
+binary_yn = c("Yes" = 1, "No" = 0)
+
+neuter_statuses = c("sexually intact" = 0, "castrated" = 1, "spayed" = 1)
+```
+
+### main_work.R
+
+First, these were the initial data cleaning steps. We used the libraries created by @cite_tidyverse, @cite_readxl, @cite_class, @cite_ROCR, @cite_pROC, and @cite_glmnet in the order of the loaded libraries.
+  
+```{r}
+#| message: false
+library("tidyverse"); library("readxl"); library("class"); library("ROCR")
+library("pROC"); library("glmnet")
+
+source("data_transformation_ref.R")
+
+my_data = read_excel("Canine health results.xlsx", sheet = 2)
+
+# Columns removed due to missing data / long-answer format
+remove = c(seq(1, 6, by = 1), 8, 13, 14, 17, 19,  seq(21, 32, by = 1),
+           seq(36, 45, by = 1), seq(46, 58, by = 1))
+
+my_data = my_data[, -remove]
+
+my_data = na.omit(my_data)
+
+names(my_data) = c("education_lvl", "household_income", "owner_age", "owner_gender",
+                   "owner_diet", "breed_size", "dog_age", "sex_and_neuter_status",
+                   "vet_visit", "dog_meds", "dog_health", "dog_diet")
+
+my_data = my_data %>%
+  separate("sex_and_neuter_status", into = c("dog_sex", "neuter_status"), sep = ", ")
+
+# Github Copilot helped write some of these data cleaning steps.
+my_data = my_data[my_data$household_income != "Prefer not to answer", ]
+my_data = my_data[my_data$owner_gender != "Prefer not to answer", ]
+my_data = my_data[my_data$owner_diet != "Other", ]
+my_data = my_data[my_data$dog_age != "Unsure", ]
+my_data = my_data[my_data$vet_visit != "Unsure", ]
+my_data = my_data[my_data$dog_health != "Unsure", ]
+my_data = my_data[my_data$owner_gender != "Other", ] # Only 4 people identified as "other"
+
+pre_cleaning_dat = my_data
+
+# Github Copilot helped write some of these data mutation steps.
+my_data = my_data %>%
+  mutate(education_lvl = education_levels[education_lvl]) %>%
+  mutate(household_income = income_levels[household_income]) %>%
+  mutate(owner_age = age_ranges[owner_age]) %>%
+  mutate(neuter_status = neuter_statuses[neuter_status]) %>%
+  mutate(owner_diet = owner_diet_levels[owner_diet]) %>%
+  mutate(breed_size = dog_sizes[breed_size]) %>%
+  mutate(dog_age = as.numeric(dog_age)) %>%
+  mutate(vet_visit = vet_visit_range[vet_visit]) %>%
+  mutate(dog_meds = binary_yn[dog_meds]) %>%
+  mutate(dog_health = health_levels[dog_health]) %>%
+  mutate(dog_diet = dog_diet_levels[dog_diet]) %>%
+  mutate(
+    owner_male = if_else(owner_gender == "Male", 1, 0),
+    owner_female = if_else(owner_gender == "Female", 1, 0),
+  ) %>% 
+  mutate(
+    dog_male = if_else(dog_sex == "Male", 1, 0),
+    dog_female = if_else(dog_sex == "Female", 1, 0),
+  )
+
+my_data = my_data %>%
+  select(-owner_gender, -dog_sex)
+
+my_data = my_data[my_data$dog_diet != "Other", ]
+```
+
+Here is the summary table shown in the report:
+  
+```{r}
+#| eval: false
+#| # Github Copilot helped create these summary tables.
+gender_table = pre_cleaning_dat %>%
+  count(owner_gender) %>% mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(gender_table, col.names = c("Owner's Gender", "Count", "Percentage (%)"),
+      caption = "Gender Distribution of Survey Participants")
+
+dog_diet_table = pre_cleaning_dat %>%
+  count(household_income) %>% mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(dog_diet_table, col.names = c("Household Income Compared to Average", "Count", "Percentage (%)"), caption = "Self-reported Household Income Levels Compared to the Average Population")
+
+```
+
+Here are the remaining summary tables that weren't included due to space limitations:
+
+```{r}
+education_level_table = pre_cleaning_dat %>%
+  count(education_lvl) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(education_level_table, col.names = c("Education Level", "Count", "Percentage (%)"), caption = "Education Level Distribution of Survey Participants")
+
+age_table = pre_cleaning_dat %>%
+  count(owner_age) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(age_table, col.names = c("Age Range", "Count", "Percentage (%)"), 
+      caption = "Age Range Distribution of Survey Participants")
+
+neuter_table = pre_cleaning_dat %>%
+  count(neuter_status) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(neuter_table, col.names = c("Spay and Neuter Status", "Count", "Percentage (%)"), caption = "Spay and Neuter Distribution of Participant's Dogs")
+
+breed_size_table = pre_cleaning_dat %>%
+  count(breed_size) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(breed_size_table, col.names = c("Breed Size", "Count", "Percentage (%)"), caption = "Size Distribution of the Participant's Dogs")
+
+vet_visit_table = pre_cleaning_dat %>%
+  count(vet_visit) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(vet_visit_table, col.names = c("Number of Vet Visits", "Count", "Percentage (%)"), caption = "Distribution of the Number of Vet Visits")
+
+dog_meds_table = pre_cleaning_dat %>%
+  count(dog_meds) %>%
+  mutate(Percentage = round(n / sum(n) * 100, 2))
+
+kable(dog_meds_table, col.names = c("Number of Vet Visits", "Count", "Percentage (%)"), caption = "Distribution of the Number of Vet Visits")
+
+dog_age_summary = summary(my_data$dog_age)
+dog_age_table = as.data.frame(matrix(dog_age_summary, ncol = 1))
+colnames(dog_age_table) = "Dog Age"
+row.names(dog_age_table) = c("Min", "1st Quartile", "Median", "Mean", "3rd Quartile", "Max")
+knitr::kable(dog_age_table, caption = "Summary Statistics for Dog Age")
+```
+
+Here are the plots shown in the report:
+
+```{r}
+#| eval: false
+par(mfrow = c(1, 2))
+diet_types = c("Omni.", "Flex.", "Pesc.", "Vege.", "Vegan")
+cont_diet = table(my_data$dog_diet, my_data$owner_diet)
+cont_diet_barplot = barplot(cont_diet, beside = TRUE, xlab = "Owner's Diet", ylab = "Count",
+                             names.arg = diet_types, ylim = c(0, 1100),
+                             border = "white", col = c("#FF6666", "#6699FF"))
+legend("topright", legend = c("Meat-Centric", "Plant-Centric"), pch = 15, title = "Dog's Diet", col = c("#FF6666", "#6699FF"), inset = 0.02, cex = 0.8)
+text(x = cont_diet_barplot, y = cont_diet, label = cont_diet, 
+     pos = 3, cex = 0.8, col = "navy")  
+health_types = c(
+  "Critical",  "Chronic", "Good", "Excellent" 
+)
+cont_diet2 = table(my_data$dog_diet, my_data$dog_health)
+cont_diet_barplot2 = barplot(cont_diet2, beside = TRUE, xlab = "Dog's Health", ylab = "Count", names.arg = health_types, ylim = c(0, 1300), border = "white", col = c("#05DEB2", "#947aff"))
+legend("topleft", legend = c("Meat-Centric", "Plant-Centric"), pch = 15, title = "Dog's Diet", col = c("#05DEB2", "#947aff"), inset = 0.02, cex = 0.8)
+text(x = cont_diet_barplot2, y = cont_diet2, label = cont_diet2, 
+     pos = 3, cex = 0.8, col = "navy")  
+```
+
+Here's an extra figure of participant's education and their dog's diet:
+
+```{r}
+#| fig.width: 5
+#| fig.height: 4
+#| dpi: 300
+#| fig-cap: "Boxplot showing the education level amongst owners who feed their dogs meat-centric vs. plant-centric diets."
+boxplot(education_lvl ~ dog_diet, data = my_data,
+        xlab = "Dog's Diet", names.arg = c("Meat-Centric", "Plant-Centric"),         ylab = "Education Level",
+        col = c("#EE4266", "#3cbbb1"),
+        border = c("#282B30"), lwd = 2)
+```
+
+First we begin by using the k-nn algorithm:
+
+```{r}
+#| fig.width: 4
+#| fig.height: 2.5
+#| dpi: 300
+set.seed(1)
+full_set = 1:2342
+train_sample = sample(full_set, 781, replace = FALSE)
+valid_sample = sample(setdiff(full_set, train_sample), 781, replace = FALSE)
+test_sample = setdiff(full_set, c(train_sample, valid_sample))
+
+covariates = dplyr::select(my_data, -dog_diet)
+response = as.factor(pull(my_data, dog_diet))
+
+data_train = slice(my_data, train_sample)
+data_valid = slice(my_data, valid_sample) 
+data_test = slice(my_data, test_sample)
+
+data_x_train = dplyr::select(data_train, -dog_diet)
+data_y_train = dplyr::pull(data_train, dog_diet)
+data_x_valid = dplyr::select(data_valid, -dog_diet)
+data_y_valid = dplyr::pull(data_valid, dog_diet) 
+data_x_test = dplyr::select(data_test, -dog_diet)
+data_y_test = dplyr::pull(data_test, dog_diet)
+
+K = as.list(c(seq(1,10, by = 1)))
+
+#  Using the training set to determine the best value of k
+Compute_KNN_test_error = function(k){
+  knn_pred_test = knn(data_x_train, data_x_valid,data_y_train, k = k) 
+  return(1-mean(knn_pred_test == data_y_valid))
+}
+
+test_erro_k = lapply(K, Compute_KNN_test_error)
+
+ggplot(
+  tibble(K = unlist(K), test_error = unlist(test_erro_k))) + 
+  geom_point(aes(x = K, y = test_error)) +
+  geom_line(aes(x = K, y = test_error)) +
+  ylab("Test error")
+
+knn_pred_1 = knn(train = data_x_train, test = data_x_test, cl = data_y_train, k = 9) 
+
+# Testing for accuracy on the test set
+mean(knn_pred_1 == data_y_test)
+```
+
+And here's the logistic regression (without shrinkage):
+
+```{r}
+#| message: false
+#| fig.width: 4
+#| fig.height: 3
+#| dpi: 300
+my_data_binary = my_data %>% 
+  mutate(dog_diet = if_else(dog_diet == "Meat", 1, 0)) 
+
+glm.fit = glm(dog_diet ~ education_lvl + household_income + owner_age + owner_diet + breed_size + dog_age + neuter_status + vet_visit + dog_meds + dog_health + owner_male + dog_male, data = my_data_binary, family = binomial("logit"), subset = train_sample)
+
+pred_prob = predict(glm.fit, newdata = slice(my_data, valid_sample), type = "response")
+
+pred_df = tibble(pre_prob = pred_prob, 
+  Y = slice(my_data, valid_sample) %>% pull(dog_diet))
+
+cutoff = 0.5
+pred_df = dplyr::mutate(pred_df, dog_diet_predicted = ifelse(pre_prob > cutoff, 1, 0))
+
+tab = table(pred_df$Y, pred_df$dog_diet_predicted)
+
+pred = prediction(pred_df$pre_prob, pred_df$Y)
+
+pROC_graph = roc(pred_df$Y, pred_df$pre_prob, smoothed = TRUE, ci = TRUE, ci.alpha = 0.9, plot = TRUE, auc.polygon = TRUE, max.auc.polygon = TRUE, grid = TRUE, print.auc = TRUE, show.thres = TRUE)
+
+coords(pROC_graph, "best") # Finding a better cut-off value
+```
+
+Now using a better cut-off value for the test set:
+
+```{r}
+pred_prob2 = predict(glm.fit, newdata = slice(my_data, test_sample), type = "response")
+
+pred_df2 = tibble(pre_prob = pred_prob2, Y = slice(my_data, test_sample) %>% pull(dog_diet))
+
+cutoff = 0.7307988
+pred_df2 = dplyr::mutate(pred_df2, dog_diet_predicted = ifelse(pre_prob > cutoff, 1, 0))
+
+tab2 = table(pred_df2$Y, pred_df2$dog_diet_predicted)
+
+1- sum(diag(tab2))/sum(tab2) # miss-classification error rate
+tab2[2,2]/sum(tab2[2,]) # sensitivity - % correctly predicting as meat diet
+tab2[1,1]/sum(tab2[1,]) # specificity - % correctly predicting as plant diet
+```
+
+And here's the logistic regression model with shrinkage:
+
+```{r}
+#| message: false
+X = model.matrix(dog_diet ~ ., data = my_data_binary)[,-1]
+
+Y = dplyr::pull(my_data_binary, dog_diet)
+
+cv_lasso = cv.glmnet(X[train_sample, ], Y[train_sample], family='binomial', alpha = 1,
+  standardize = FALSE)
+
+cv_lasso$lambda.min # Best lambda value
+
+valid_set_pred_log_odds = predict(cv_lasso, newx = X[valid_sample, ], s = "lambda.1se")[,1]
+
+valid_set_pred_prob = exp(valid_set_pred_log_odds)/(1 + exp(valid_set_pred_log_odds))
+
+df_lasso_valid = tibble(
+  pre_prob = valid_set_pred_prob, 
+  y = slice(my_data_binary, valid_sample) %>% pull(dog_diet))
+
+pROC_graph = roc(df_lasso_valid$y, df_lasso_valid$pre_prob, smoothed = TRUE, ci=TRUE, ci.alpha=0.9, stratified=FALSE, plot=FALSE,auc.polygon=TRUE, max.auc.polygon=TRUE, grid=TRUE, print.auc=TRUE, show.thres=TRUE)
+```
+
+```{r}
+coords(pROC_graph, "best")
+
+test_set_pred_log_odds = predict(cv_lasso, newx = X[test_sample, ], s = "lambda.1se")[,1]
+
+test_set_pred_prob = exp(test_set_pred_log_odds)/(1 + exp(test_set_pred_log_odds))
+
+df_lasso_test = tibble(pre_prob = test_set_pred_prob, 
+  y = slice(my_data_binary, test_sample) %>% pull(dog_diet))
+
+cutoff = 0.6944256
+
+dog_diet_test_lasso = dplyr::mutate(
+  df_lasso_test, 
+  dog_diet_predicted = ifelse(
+    pre_prob <= cutoff,
+    my_data_binary$dog_diet[1], 
+    my_data_binary$dog_diet[2]
+  )
+)
+
+tab = table(pull(df_lasso_test, y), pull(dog_diet_test_lasso, dog_diet_predicted))
+
+1- sum(diag(tab))/sum(tab) # miss-classification error rate
+tab[2,2]/sum(tab[2,]) # sensitivity - % correctly predicting as meat diet
+tab[1,1]/sum(tab[1,]) # specificity - % correctly predicting as plant diet
+```

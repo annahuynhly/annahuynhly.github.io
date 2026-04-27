@@ -1,0 +1,573 @@
+---
+title: "Abandoned in German Farmland: Navigating Your Next Move"
+author: "Anna Ly"
+date: "December 2024"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    embed-resources: true
+    code-fold: true
+bibliography: test.bib
+nocite: "@*"
+---
+
+## Abstract
+
+A fun trip to Europe with friends can take an unexpected turn, leaving you stranded in German farmland amidst unfamiliar predators. This study investigates the factors associated with the distance to the nearest settlement, providing a guide for navigating back to safety. Using an ecological dataset from farmland in Diemarden and Eichsfeld, originally collected to study predator counts, we analyzed variables such as distances to water, forests, roads, field edges, and vegetation types. A log-normal linear mixed model (LMM) was fitted using three approaches (lmer, blme, and brms) and they produced similar results. Our analysis identified the distance to the nearest road as the most influential factor. While other variables showed limited association with settlement distance, they may still provide useful signals in similar scenarios.
+
+## 1. Background on Data Source and the Collector's Purpose
+
+Prior research indicates that birds that frequently live in farmland have declined [@bro2000nesting; @laux2022camera]. One reason for their decline is due to predators, such as red foxes @bro2000nesting. Red foxes have increased in numbers due to rabies vaccine efforts, allowing them to thrive in the wild @chautan2000role. The other major reason is deforestation, turning natural habitats into mono-cultures, where participants only grow one crop @stanton2018analysis.
+
+Laux et al. were trying to investigate if increasing the number of flower strips, a section of land set aside to grow wildflowers, decreases the amount of predators in an area @laux2022camera. Their original questions were:
+
+(i) Which are the main predators in farmland contained in Göttingen in Lower Saxony, Germany?
+(ii) Are there differences in predator activity between vegetation types?
+(iii) Which environmental parameters explain spatial variation in predator activity best?
+(iv) How do predators deal with flower strips?
+
+The two areas they analyzed were on hilly cultural landscapes dominated by agriculture:
+
+1. Diemarden, laying directly south of Göttingen and covered $35 \text{ km}^{2}$
+
+2. Eichsfeld, located east of Göttingen and encompassed $131 \text{ km}^{2}$.
+
+To capture the data they randomly distributed 120 camera traps (HDPX-5, Browning Trail Cameras) mounted on wooden stakes in the center flower strip to record predators. This took place during the typical breeding season for farmland birds: May to July for both 2019 and 2020.
+
+The researchers analyzed differences between predator capture rates and vegetation types using Kruskal–Wallis rank sum tests. They also incorporated generalized linear mixed models (GLMMs), particularly a negative binomial GLMM to analyze the total number of predators (response) based on the landscape composition (fixed effects), grouping based off of the year and time blocks. The code they used can be found in @laux2022cameratrap, and the corresponding data can be found in @laux2022cameradata.
+
+## 2. Our Study
+
+While predation counts were the primary focus for the data collectors, they also recorded additional interesting variables. In particular, they gathered data on distances to the nearest forest, running water, settlements, field edges, and roads.
+
+No sane person plans to be stranded in a foreign landscape... but if we were stranded in German farmland, with various animal predators in the vicinity, which factors would most influence the ability to navigate back to a nearby settlement for assistance?
+
+Rather than analyzing predator capture rates, we focus on the distance to the nearest settlement as the response variable. Distances to other features, such as forests, running water, field edges, and roads, along with the number of predators, will serve as explanatory variables in the analysis.
+
+This report is structured as follows: Section 3 outlines the data processing steps and introduces the variables used in the analysis. Section 4 presents the exploratory plots. Section 5 describes the three models employed. Section 6 presents the results and compares the outcomes across models. Section 7 provides the conclusions. Section 8 discusses challenges encountered throughout the process.
+
+## 3. Data Preprocessing and Selected Variables
+
+```{r}
+#| message: false
+#| warning: false
+library("tidyverse")
+library("performance")
+library("dotwhisker")
+library("ggplotify")
+library("lme4")
+library("blme")
+library("brms")
+library("gridExtra")
+library("broom.mixed")
+library("effects")
+
+pred_data = read.csv("camera_trap_data_2019_2020.csv")
+pred_data = pred_data[pred_data$camera != "44_2", ]
+
+pred_cols = c("badger_100", "boar_100", "fox_100", "marten_100",
+              "mouseweasel_100", "racoon_100", "stoat_100")
+
+pred_data$wild_predators = rowSums(pred_data[, pred_cols])
+pred_data$pet_predators  = rowSums(pred_data[, c("cats_100", "dog_100")])
+```
+
+During data preparation, one row in the dataset was found to have unusual values noticeably distinct from the rest and was excluded from the analysis.
+
+Additionally, the different predator types were combined into broader categories. The original dataset included separate counts for badgers, boars, foxes, martens, mouse weasels, raccoons, stoats, dogs, and cats. However, many of these predators were rarely observed, except for foxes. From a practical standpoint, accurate species identification in the wilderness is challenging without specific domain knowledge. All non-domestic species were consolidated under the category "wild predators."
+
+Cats and dogs, on the other hand, are accustomed to human interaction. Their presence in the field could indicate proximity to human settlements. Since their counts were also sparse, they were grouped into a single "pet predators" category.
+
+Beyond these adjustments, the dataset was preserved in line with the original collectors' methodology. Below is a table summarizing the variables selected for analysis.
+
+| Variable | Description | Type |
+|---|---|---|
+| Settl_Dist | Distance from the camera to the nearest settlement (m). | Quantitative, Continuous |
+| Wood_Dist | Distance from the camera to the nearest forest/woods/hedges (m). | Quantitative, Continuous |
+| Water_Dist | Distance from the camera to the nearest running or standing water (m). | Quantitative, Continuous |
+| Edge_Dist | Distance from the camera to the nearest field edge (m). | Quantitative, Continuous |
+| Road_Dist | Distance from the camera to the nearest road or railway outside of settlements (m). | Quantitative, Continuous |
+| Vegetation | Type of vegetation grown near the farmland. B = flower strip, E = field margin, H = hedge, G = winter cereal, R = rapeseed. | Qualitative, 5 levels |
+| site | Unique identifier for each camera trap station. | Qualitative, 121 levels |
+| wild_predators | Number of wild predators (badgers, boars, foxes, martens, mouse weasels, raccoons, stoats) captured on video, extrapolated to 100 active camera days. | Quantitative, Continuous |
+| pet_predators | Number of carnivorous animal pets captured on video, extrapolated to 100 active camera days. | Quantitative, Continuous |
+
+If you inspected the entire original dataset, you may initially suggest using camera instead of site as a grouping variable. However, the authors mentioned that cameras were frequently rotated and occasionally moved locations. This made site a more reliable grouping variable for analysis.
+
+## 4. Exploratory Data Analysis
+
+A limitation of this dataset is that there are only two observations per site. This makes it nearly impossible to create graphs that account for the grouping variable. Consequently, most exploratory plots simply depict the response variable against selected explanatory variables.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 7
+#| dpi: 300
+
+p1 = ggplot(data = pred_data, aes(x = Wood_Dist, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "darkgreen") +
+  labs(title = "Nearest Settlement vs Nearest Forest",
+       x = "Distance from Next Forest/Woods (m)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p2 = ggplot(data = pred_data, aes(x = Water_Dist, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "darkblue") +
+  labs(title = "Nearest Settlement vs Nearest Running Water",
+       x = "Distance from Next Running/Standing Water (m)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p3 = ggplot(data = pred_data, aes(x = Edge_Dist, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "#18c71e") +
+  labs(title = "Nearest Settlement vs Nearest Field Edge",
+       x = "Distance from Next Field Edge (m)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p4 = ggplot(data = pred_data, aes(x = Road_Dist, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "#695c45") +
+  labs(title = "Nearest Settlement vs Nearest Road",
+       x = "Distance from Next Road (m)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+```
+
+These scatter plots suggest no clear relationship between settlement distance and distances to the nearest field edge or forest. There appears to be a slight linear relationship between distance to the nearest road and distance to the nearest settlement, although the majority of points remain scattered.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 3.5
+#| dpi: 300
+
+p5 = ggplot(data = pred_data, aes(x = wild_predators, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "#871717") +
+  labs(title = "Nearest Settlement vs Wild Predator Sightings",
+       x = "Number of Wild Predators (per 100 days)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+p6 = ggplot(data = pred_data, aes(x = pet_predators, y = Settl_Dist)) +
+  geom_point(alpha = 0.6, col = "#eb02a5") +
+  labs(title = "Nearest Settlement vs Dog & Cat Sightings",
+       x = "Number of Dogs & Cats (per 100 days)",
+       y = "Distance from Next Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+grid.arrange(p5, p6, nrow = 1)
+```
+
+Predator sightings were relatively rare, especially for species other than red foxes. Consequently, even after combining predator types, the majority of recorded counts remain at zero.
+
+The last plot shows the distribution of settlement distance by vegetation type: flower strip, field margin, winter cereal, hedges, or rapeseed.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 3.5
+#| dpi: 300
+
+p = ggplot(pred_data, aes(x = Vegetation, y = Settl_Dist, fill = Vegetation)) +
+  geom_boxplot() +
+  scale_fill_manual(
+    values = c("B" = "#FF6666", "E" = "#6699FF", "H" = "#05DEB2",
+               "G" = "#ff66b3", "R" = "#ad66ff")
+  ) +
+  scale_x_discrete(
+    labels = c("B" = "Flower Strip", "E" = "Field Margin", "G" = "Winter Cereal",
+               "H" = "Hedge", "R" = "Rapeseed")
+  ) +
+  labs(title = "Distance to Settlement by Vegetation Type",
+       x = "Vegetation Type",
+       y = "Distance to Settlement (m)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+p
+```
+
+Here, we see that there is not really a difference in settlement distance across vegetation types. However, the effect plots in Section 6 will give a clearer picture once other variables are accounted for.
+
+## 5. Model Fitting Methods
+
+The response is the distance to the next settlement. The fixed effects include distances to the nearest forest, running water, field edge, and road; the number of wild predators and pet predators; and vegetation type as a categorical variable. Observations are grouped by site.
+
+Since the distance to the next settlement is continuous and strictly positive, we expect the conditional distribution to be log-normal. Fitting the model on log(Settl_Dist) with a Gaussian family and identity link makes this a log-normal linear mixed model (LMM).
+
+The maximal model would take the form:
+
+```{r}
+#| eval: false
+maximal_model = lme4::lmer(
+  log(Settl_Dist) ~ Wood_Dist + Water_Dist + Edge_Dist
+    + Road_Dist + wild_predators + pet_predators + Vegetation
+    + (Wood_Dist + Water_Dist + Edge_Dist + Road_Dist
+       + wild_predators + pet_predators + Vegetation | site),
+  data = pred_data
+)
+```
+
+However, with only two observations per site, fitting the maximal model is not feasible. It would require estimating an 8×8 random effects covariance matrix (36 parameters) with very little information per cluster. Instead, we fit three models with random intercepts only.
+
+**Model 1** uses `lmer` from the lme4 package @lmer_cite, estimating parameters by restricted maximum likelihood (REML).
+
+```{r}
+model1 = lme4::lmer(
+  log(Settl_Dist) ~ Wood_Dist + Water_Dist + Edge_Dist
+    + Road_Dist + wild_predators + pet_predators
+    + Vegetation + (1 | site),
+  data = pred_data
+)
+```
+
+**Model 2** uses `blmer` from the blme package @blme_cite, which is the Bayesian analogue of lmer. Rather than maximizing the likelihood, it maximizes the posterior (MAP estimation). The default prior for the random effects covariance matrix is the Wishart distribution with 3.5 degrees of freedom.
+
+```{r}
+model2 = blme::blmer(
+  log(Settl_Dist) ~ Wood_Dist + Water_Dist + Edge_Dist
+    + Road_Dist + wild_predators + pet_predators
+    + Vegetation + (1 | site),
+  data = pred_data
+)
+```
+
+**Model 3** uses `brm` from the brms package @brms_cite, performing full Bayesian estimation via Markov chain Monte Carlo (MCMC). The default prior for the standard deviations of the random effects is a half-Student-t distribution with 3 degrees of freedom, location 0, and scale 2.5. Fixed effects use flat priors, so they are estimated entirely from the data.
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+set.seed(1)
+model3 = brm(
+  formula = log(Settl_Dist) ~ Wood_Dist + Water_Dist + Edge_Dist
+    + Road_Dist + wild_predators + pet_predators
+    + Vegetation + (1 | site),
+  data = pred_data,
+  family = gaussian(link = "identity")
+)
+```
+
+```{r}
+#| eval: false
+set.seed(1)
+model3 = brm(
+  formula = log(Settl_Dist) ~ Wood_Dist + Water_Dist + Edge_Dist
+    + Road_Dist + wild_predators + pet_predators
+    + Vegetation + (1 | site),
+  data = pred_data,
+  family = gaussian(link = "identity")
+)
+```
+
+Using `check_model` from the performance package @performance_cite, all three models produce nearly identical diagnostics with the same outliers. We show the results for Model 1 here; the other two are in the appendix.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 8
+#| dpi: 300
+#| fig-cap: "Model assumption checks for Model 1. Some mild violation in homogeneity of variance and a few outliers, but no major issues."
+check_model(model1, check = c("pp_check", "ncv", "homogeneity", "outliers", "qq", "reqq"))
+```
+
+The model assumptions hold reasonably well, with some mild violation in the homogeneity of variances and a couple of outliers. Splines were explored to improve variance homogeneity but did not improve the fit without introducing other issues (see Section 8). We proceed with these models.
+
+## 6. Results
+
+We first compare scaled coefficients using the method presented by Gelman @gelman2008scaling, dividing numeric predictors by 2 standard deviations, and the dotwhisker package @dotwhisker_cite. All three models perform similarly.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 8
+#| dpi: 300
+
+m1 = broom.mixed::tidy(model1, effect = "fixed", conf.int = TRUE)
+m2 = broom.mixed::tidy(model2, effect = "fixed", conf.int = TRUE)
+m3 = broom.mixed::tidy(model3, effect = "fixed", conf.int = TRUE)
+
+m1 = dotwhisker::by_2sd(m1, dataset = pred_data)
+m2 = dotwhisker::by_2sd(m2, dataset = pred_data)
+m3 = dotwhisker::by_2sd(m3, dataset = pred_data)
+
+combined_data = rbind(
+  transform(m1[,-5], model = "Model 1 (lmer)"),
+  transform(m2[,-5], model = "Model 2 (blmer)"),
+  transform(m3[,-2], model = "Model 3 (brms)")
+)
+
+dwplot(combined_data) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  xlab("Coefficient") + ylab("Explanatory Variable") +
+  ggtitle("Comparison of Models, Scaled by 2 SD")
+```
+
+There is no substantial difference between vegetation types and settlement distance. The confidence intervals for distances to water, forest, field edge, number of wild predators, and number of pet predators all include 0. Distance to the nearest road stands out as the most clearly associated explanatory variable, consistent with the scatter plots.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+effects_m1 = effects::allEffects(model1)
+
+p1_road = as.ggplot(plot(effects_m1[["Road_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Road (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p1_water = as.ggplot(plot(effects_m1[["Water_Dist"]],
+                          main = "",
+                          xlab = "Distance to the Nearest Water (m)",
+                          ylab = "log(Settlement Distance)"))
+
+p1_edge = as.ggplot(plot(effects_m1[["Edge_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Edge (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p1_wood = as.ggplot(plot(effects_m1[["Wood_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Wood (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p1_wildpred = as.ggplot(plot(effects_m1[["wild_predators"]],
+                             main = "",
+                             xlab = "Number of Wild Predators (per 100 days)",
+                             ylab = "log(Settlement Distance)"))
+
+p1_petpred = as.ggplot(plot(effects_m1[["pet_predators"]],
+                            main = "",
+                            xlab = "Number of Dogs & Cats (per 100 days)",
+                            ylab = "log(Settlement Distance)"))
+
+p1_veg = as.ggplot(plot(effects_m1[["Vegetation"]],
+                        main = "",
+                        xlab = "Vegetation Type",
+                        ylab = "log(Settlement Distance)"))
+
+effects_m2 = effects::allEffects(model2)
+
+p2_road = as.ggplot(plot(effects_m2[["Road_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Road (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p2_water = as.ggplot(plot(effects_m2[["Water_Dist"]],
+                          main = "",
+                          xlab = "Distance to the Nearest Water (m)",
+                          ylab = "log(Settlement Distance)"))
+
+p2_edge = as.ggplot(plot(effects_m2[["Edge_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Edge (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p2_wood = as.ggplot(plot(effects_m2[["Wood_Dist"]],
+                         main = "",
+                         xlab = "Distance to the Nearest Wood (m)",
+                         ylab = "log(Settlement Distance)"))
+
+p2_wildpred = as.ggplot(plot(effects_m2[["wild_predators"]],
+                             main = "",
+                             xlab = "Number of Wild Predators (per 100 days)",
+                             ylab = "log(Settlement Distance)"))
+
+p2_petpred = as.ggplot(plot(effects_m2[["pet_predators"]],
+                            main = "",
+                            xlab = "Number of Dogs & Cats (per 100 days)",
+                            ylab = "log(Settlement Distance)"))
+
+p2_veg = as.ggplot(plot(effects_m2[["Vegetation"]],
+                        main = "",
+                        xlab = "Vegetation Type",
+                        ylab = "log(Settlement Distance)"))
+
+p3_road = conditional_effects(model3, effects = "Road_Dist")
+p3_road = plot(p3_road, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Distance to the Nearest Road (m)", y = "log(Settlement Distance)")
+
+p3_water = conditional_effects(model3, effects = "Water_Dist")
+p3_water = plot(p3_water, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Distance to the Nearest Water (m)", y = "log(Settlement Distance)")
+
+p3_edge = conditional_effects(model3, effects = "Edge_Dist")
+p3_edge = plot(p3_edge, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Distance to the Nearest Edge (m)", y = "log(Settlement Distance)")
+
+p3_wood = conditional_effects(model3, effects = "Wood_Dist")
+p3_wood = plot(p3_wood, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Distance to the Nearest Wood (m)", y = "log(Settlement Distance)")
+
+p3_wildpred = conditional_effects(model3, effects = "wild_predators")
+p3_wildpred = plot(p3_wildpred, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Number of Wild Predators (per 100 days)", y = "log(Settlement Distance)")
+
+p3_petpred = conditional_effects(model3, effects = "pet_predators")
+p3_petpred = plot(p3_petpred, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Number of Dogs & Cats (per 100 days)", y = "log(Settlement Distance)")
+
+p3_veg = conditional_effects(model3, effects = "Vegetation")
+p3_veg = plot(p3_veg, plot = FALSE)[[1]] + theme_minimal() +
+  labs(x = "Vegetation Type", y = "log(Settlement Distance)")
+```
+
+The effect plots below were generated using `effects::allEffects` @effects_cite for Models 1 and 2, and `conditional_effects` from brms @brms_cite for Model 3. It is worth noting that the brms plots include additional uncertainty components not present in the lme4/blme plots. The lme4 and blme effects plots condition on the estimated random effects, whereas brms propagates uncertainty from the full posterior. As shown, all three models exhibit similar patterns.
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: distance to nearest road vs. log(settlement distance) for lmer, blmer, and brms."
+grid.arrange(p1_road, p2_road, p3_road, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: distance to nearest water vs. log(settlement distance)."
+grid.arrange(p1_water, p2_water, p3_water, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: distance to nearest field edge vs. log(settlement distance)."
+grid.arrange(p1_edge, p2_edge, p3_edge, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: distance to nearest forest vs. log(settlement distance)."
+grid.arrange(p1_wood, p2_wood, p3_wood, nrow = 1)
+```
+
+The first four plots suggest the following trends:
+
+- As distance to the nearest road decreases, the log distance to the nearest settlement also decreases. This variable has the steepest slope and is consistent with both the EDA scatter plot and the coefficient plot.
+
+- Surprisingly, greater distance from the nearest water source is associated with shorter distance to the nearest settlement. This could reflect settlements being built away from standing water, such as small ponds.
+
+- Smaller distance to the next field edge is associated with larger distance from the nearest settlement. Field edges tend to be further from human settlements.
+
+- Larger distance to the nearest forests and hedges is associated with larger distance to nearby settlements, suggesting German settlements are often located near forested areas.
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: number of wild predators vs. log(settlement distance)."
+grid.arrange(p1_wildpred, p2_wildpred, p3_wildpred, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: number of dogs & cats vs. log(settlement distance)."
+grid.arrange(p1_petpred, p2_petpred, p3_petpred, nrow = 1)
+```
+
+The number of wild predators is not clearly associated with settlement distance. Given that predator sightings were rare overall, the effect is uncertain rather than necessarily small. There is a slight trend where more dog and cat sightings are associated with greater settlement distance, which is counter-intuitive. The paper did not differentiate between wild and domestic animals, which may contribute to this result.
+
+```{r}
+#| echo: false
+#| fig.width: 10
+#| fig.height: 3
+#| dpi: 300
+#| warning: false
+#| fig-cap: "Effects plots: vegetation type vs. log(settlement distance). Level codes are defined in Section 3."
+grid.arrange(p1_veg, p2_veg, p3_veg, nrow = 1)
+```
+
+Unlike the raw boxplots, the effect plots show that flower strips (B) are on average farther from settlements, while field margins (E) are closer. One possible explanation is that field margins are cleared or maintained near residences to mitigate pests.
+
+## 7. Conclusion
+
+If you find yourself stranded in farmland in Germany (specifically Diemarden or Eichsfeld), the best strategy is to locate the nearest roads and railways.
+
+If roads are not visible, other factors to consider include avoiding field edges, running or standing water, and flower strips. Wild predator counts are not clearly associated with settlement proximity and could be misleading. Forests, hedges, and field margins may help guide you toward a settlement.
+
+Additionally, the three packages we used (lme4, blme, and brms) produced consistent results. The brms model took considerably longer to run due to MCMC sampling, while the other two completed in under a couple of seconds. Nonetheless, it is reassuring to see that different modelling methods deliver consistent results.
+
+This analysis is limited by a small sample size (two observations per site) and certain ambiguities in the dataset, such as the lack of information about site codes. Mild violations of homogeneity of variance were also observed.
+
+## 8. Notes on the Modelling Process
+
+The first challenge was an error when trying to fit a gamma GLMM. While gamma models are standard for continuous positive data, the error "PIRLS step-halvings failed to reduce deviance" was encountered. Based on a GitHub thread @lme4_issue179, Bolker recommends fitting a log-normal LMM instead, which resolved the issue.
+
+The second issue arose when initially considering grouping by vegetation rather than site. Despite having at least 47 observations per level, every model specification returned singular fit warnings. After consulting Bolker, he recommended using site, which limited us to random intercepts only. A natural extension would be a model with a diagonal random effects covariance matrix, which would include random intercepts plus uncorrelated random slopes and allow more flexibility without requiring a full covariance structure.
+
+The third challenge involved incorporating splines. Under Harrell's rules of thumb @harrell2015multivariable, there was room for at most one spline term given the degrees of freedom already used. Any spline addition triggered `maximum treedepth` warnings from Stan (used by brms), and the spline did not meaningfully improve the homogeneity of variance. Splines were excluded from the final model.
+
+Rather than using ggeffects for effect plots, base R effects plots were combined with ggplot using ggplotify @ggplotify_cite. This was functional, based on a Stack Overflow thread @stackoverflow_combine_base_ggplot.
+
+Finally, the analysis relied on default prior settings for both blme and brms. Given limited domain knowledge for this ecological application, this was a practical choice. The fact that results align with the frequentist model suggests the default priors were reasonable.
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix
+
+### Model Assumption Checks
+
+```{r}
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 8
+#| dpi: 300
+#| fig-cap: "Model assumption checks for Model 2 (blmer). Results are similar to Model 1."
+placeholder_model2 = model2
+class(placeholder_model2) = class(model1)
+check_model(placeholder_model2, check = c("pp_check", "ncv", "homogeneity", "outliers", "qq", "reqq"))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig.width: 10
+#| fig.height: 8
+#| dpi: 300
+#| fig-cap: "Model assumption checks for Model 3 (brms). Results are similar to Models 1 and 2."
+check_model(model3, check = c("pp_check", "ncv", "homogeneity", "outliers", "qq", "reqq"))
+```

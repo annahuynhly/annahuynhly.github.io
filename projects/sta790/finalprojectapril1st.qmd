@@ -1,0 +1,388 @@
+---
+title: "STATS 790 Final Project"
+subtitle: "Classification for Successful Carcass Detection Near Wind Turbines"
+author: 
+  - name: "Anna Ly (400254496)"
+affiliation: "McMaster University"
+date: "April 1 2024"
+format: 
+  pdf: 
+    documentclass: article
+    geometry: "margin=1in"
+    fontsize: 12pt
+    linestretch: 1.5
+    classoption: oneside
+    mainfont: Times New Roman 
+    tbl-cap-location: bottom
+bibliography: test.bib
+nocite: "@*"
+csl: journal-of-combinatorics.csl
+header-includes:
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+  - \usepackage{indentfirst}  
+  - \setlength{\parindent}{2em} 
+  - \renewcommand{\paragraph}{\noindent\textbf}
+---
+
+\newpage
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+library("tidyverse")
+library("randomForest")
+library("e1071") # needed for classAgreement
+library("gridExtra")
+library("fastDummies") # for one-hot encoding
+
+df = read.csv("dogWEFdata.csv")
+
+df$detect = factor(df$detect)
+
+df$detect = factor(df$detect, levels = c("0", "1"), labels = c("No", "Yes"))
+
+# Make a table of human vs dog for correct detections or not
+
+density1 = ggplot(df, aes(x=size, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth = 1) + theme_minimal() + 
+  theme(legend.position="none") + xlab("Size") + ylab("Density")
+
+density2 = ggplot(df, aes(x=temp, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth = 1) + theme_minimal() + 
+  theme(legend.position="none") + xlab("Temperature") + ylab("Density")
+
+density3 = ggplot(df, aes(x=wind, color=detect, fill=detect)) +
+  geom_density(alpha=0.3, linewidth = 1) + theme_minimal() + 
+  xlab("Wind Speed (km/h)") + ylab("Density") +
+  scale_fill_discrete(name = "Successful Detection",
+                      labels = c("No", "Yes")) +
+  scale_color_discrete(name = "Successful Detection",
+                       labels = c("No", "Yes")) 
+
+# Making the boxplots, since these are quite similar as well
+
+boxplot1 = ggplot(df, aes(x=detect, y=size, fill=type)) +
+  stat_boxplot(geom = "errorbar") + geom_boxplot() + 
+  theme(legend.position="none") + ylab("Size") +
+  scale_x_discrete(
+    name = "Detection", labels = c("No", "Yes")
+  )
+
+boxplot2 = ggplot(df, aes(x=detect, y=temp, fill=type)) +
+  stat_boxplot(geom = "errorbar") + geom_boxplot() + 
+  theme(legend.position="none") +
+  ylab("Temperature (Celsius)") +
+  scale_x_discrete(
+    name = "Detection", labels = c("No", "Yes")
+  )
+
+boxplot3 = ggplot(df, aes(x=detect, y=wind, fill=type)) +
+  stat_boxplot(geom = "errorbar") + geom_boxplot() + 
+  ylab("Wind Speed (km/h)") +
+  scale_x_discrete(
+    name = "Detection", labels = c("No", "Yes")
+  ) + 
+  scale_fill_discrete(name = "Successful Detection", 
+                      labels = c("No", "Yes"))
+
+# do one-hot encoding
+df = dummy_cols(df, select_columns = c("type", "ind", "turb"),
+                remove_first_dummy = FALSE,   
+                remove_selected_columns = TRUE) 
+
+# Removing certain columns
+df = df %>% select(-c("date", "pc1", "pc2", "pc3"))
+#df = df[ , !colnames(df) %in% c("date", "pc1", "pc2", "pc3")]
+
+# Getting a training and test set
+set.seed(1)
+df_train = df %>%
+  group_by(detect) %>%
+  slice_sample(prop = 0.80) %>%  
+  ungroup()
+
+df_test = df %>%
+  anti_join(df_train, by = "id")  
+
+# getting rid of id
+df = df %>% select(-id)
+df_train = df_train %>% select(-id)
+df_test = df_test %>% select(-id)
+
+df_train_mod = df_train %>% select(c(detect, size, type_dog, type_human, ind_d2, ind_h1, ind_h2, turb_t3))
+df_test_mod = df_test %>% select(c(detect, size, type_dog, type_human, ind_d2, ind_h1, ind_h2, turb_t3))
+
+# Random Forest #####################################
+
+set.seed(1)
+# Using floor(sqrt(7)) = 2 for the number of predictors from the random forests
+randomfor = randomForest(detect ~ ., data = df_train_mod, mtry = 2, ntree = 3000,
+                         importance = TRUE, type = "class")
+
+rf.pred = predict(randomfor, df_test, type = "class")
+table1 = table(df_test$detect, rf.pred)
+
+# Making plots that has better labels than varImpPlot
+var_imp = importance(randomfor)
+
+var_imp2 = var_imp[, 4]
+
+new_labels = c("Size", "Dog Searcher", "Human Searcher", "Dog 2", "Human 1", "Human 2", "Turbine 3")
+
+var_imp2_df = data.frame(Variable = new_labels, Importance = var_imp2)
+
+var_imp2_df = var_imp2_df[order(var_imp2_df$Importance), ]
+
+# Support Vector Machines ####################
+
+set.seed(1) 
+
+tune.out = tune(svm, detect ~ ., data = df_train_mod, kernel = "linear", 
+                ranges = list(cost = c(0.001, 0.01, 0.1, 1, 5, 10, 100)))
+
+svm_mod = svm(detect ~ ., data = df_train_mod, kernel = "linear", cost = 0.01)
+
+svm.pred = predict(svm_mod, df_test)
+
+table2 = table(df_test$detect, svm.pred)
+
+# first term is the coefficients, the second is the support vectors
+w = t(svm_mod$coefs) %*% svm_mod$SV          
+# Below represents the Euclidean norm
+w = apply(w, 2, function(v){sqrt(sum(v^2))})  # weight
+w = sort(w, decreasing = T)
+
+new_labels2 = c("Dog Searcher", "Human Searcher", "Human 2", "Human 1", "Turbine 3", "Size", "Dog 2")
+```
+
+# 1. Introduction
+
+\noindent Wind turbines are often promoted as an environmentally friendly energy source. However, there is a notable intersection between advocates of green energy and those concerned with animal welfare. Closer examination reveals that bird and bat carcasses frequently accumulate around these so-called eco-friendly turbines, raising concerns about their impact on wildlife.
+
+Balancing the utility of wind turbines with wildlife conservation requires accurate estimates of carcass counts nearby turbines. Carcass searches are typically conducted by humans, often accompanied by trained detection dogs. Dogs are generally more effective than humans in carcass detection, likely due to their superior sense of smell @arnett2006preliminary. However, other factors such as carcass size and vegetation cover may influence detection rates.
+
+Domínguez del Valle et al. @dominguez2020factors conducted an experiment in which bird carcasses were systematically placed in a field. Between January and March in Spain, two human searchers and three dog searchers followed a pre-determined path to locate the carcasses. Each searcher walked independently to prevent mutual influence, while a handler accompanied them to verify detections. The resulting dataset has been made publicly available on Data Dryad @DominguezDelValle2020.
+
+The dataset includes information on carcass detection outcomes, search date, searcher type, turbine type, carcass wingspan (cm), vegetation coverage percentage at specific heights, temperature, and wind speed (km/h).
+
+This study applies three statistical learning methods, logistic regression, random forest decision trees, and support vector machines, **to classify whether carcasses are successfully detected and to identify key explanatory variables influencing detection**. Elastic net regularization is employed for variable selection. All analyses are conducted in R @baser_cite, and the corresponding code is provided in the appendix.
+
+# 2. Prior Work
+
+\noindent Domínguez del Valle et al. @dominguez2020factors originally used this dataset to compare the carcass detection performance of dogs and humans. To address potential multicollinearity among vegetation coverage variables at different heights, they applied principal component analysis (PCA).
+
+Their analysis involved several Bayesian generalized linear models with a logit link, conceptually similar to logistic regression, where carcass detection (success or failure) was the response variable. Each model incorporated different interaction terms based on hypothesized relationships between explanatory variables. While their code was not publicly available, they provided references to the R packages used in their analysis.
+
+In contrast, this study does not employ Bayesian methods or PCA. Instead, variable selection is conducted using elastic net regularization rather than relying on domain knowledge, so the logistic regression models presented here will differ from those in the original study.
+
+# 3. Data Cleaning & Exploratory Data Analysis
+
+\noindent Since statistical learning methods typically require a quantitative response, three categorical variables were converted into numerical representations using one-hot encoding via the fastDummies package by Kaplan @fastdummies_cite. These variables included the searcher type (dog or human), the searcher ID, and the wind turbine type.
+
+The search date was excluded from the analysis, as all searches were conducted within a three-month period. They searched on many different days, with most dates containing only four observations, making it unlikely to contribute meaningful information to the model.
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Boxplots showing the difference in distribution of certain quantitative variables between successful and unsuccessful detections."
+grid.arrange(boxplot1, boxplot2, boxplot3, ncol = 3, nrow = 1,
+             widths = c(1, 1, 1.6))
+```
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 3
+#| fig-cap: "Histograms showing the difference in distribution of certain quantitative variables between successful and unsuccessful detections."
+grid.arrange(density1, density2, density3, ncol = 3, nrow = 1,
+             widths = c(1, 1, 1.6))
+```
+
+Exploratory data analysis was performed using density plots and boxplots, generated with ggplot2 within the tidyverse framework @tidyverse_cite. The results revealed similar distributions between successful and unsuccessful detections for carcass wingspan, temperature, and wind speed, suggesting that these quantitative variables may not be useful for classification.
+
+For model training and evaluation, 80% of the dataset was allocated to training and validation (shared across all three models), while the remaining 20% was reserved for testing.
+
+# 4. Explanation of Methods
+
+\noindent Most of these details are drawn from King-Yu's course notes @kingyu2025, specifically lecture 16 for LASSO and ridge regression, lecture 8 for random forest decision trees, and lecture 13 for support vector machines. Additional details are available in Introduction to Statistical Learning with Applications in R by Sohil et al. @sohil2022introduction. The discussion of logistic regression is inspired by Chapter 6 of Brunner’s text @brunner2016data.
+
+## 4.1 Elastic Net for Generalized Linear Models
+
+\noindent Instead of manually choosing variables to include for a model, there are statistical methods such as **LASSO** and **ridge regression** for feature selection; both of them introduce a penalty term to the $\beta$ coefficients that were used for generalized linear models. 
+
+The version used for this report is the logistic regression model, which is explained in the next subsection. Using LASSO, $\beta$ is estimated using: $$
+\hat{\beta}^{LASSO} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda \sum_{k=1}^{p} |b_{k+1}| \right\}
+$$
+
+Where $\lambda$ is a penalty term that goes up with model complexity to prevent overfitting. As $\lambda$ increases, some coefficients are set to equal 0, which is analogous to choosing which parameters are important to estimate. Some alternative notation: $\sum_{k=1}^{p} |b_{k+1}| = ||\beta||_{1}$ as the $\ell_{1}$ norm.
+
+Absolute values are more difficult to work with than polynomials; polynomials are easier to differentiate and integrate. Hence, squaring the term is easier than employing absolute values. This counterpart is called **ridge regression**, which does not do model selection but will shrink certain coefficients near zero. The approach used to estimate $\beta$ in ridge Regression is: $$
+\hat{\beta}^{RIDGE} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda \sum_{k=1}^{p} b_{k+1}^{2} \right\}
+$$ Unfortunately, ridge regression does not set any coefficients to zero, so it cannot be used to perform model selection. Some may use the notation: $\sum_{k=1}^{p} b_{k+1}^{2} = ||\beta||_{2}$ as the $\ell_{2}$ norm.
+
+**Elastic net regularization** is a mix between LASSO and ridge regression. It was first introduced in a paper written by Hui & Trevor @zou2005regularization. It can be found by the following: $$
+\hat{\beta}^{ENET} = \text{min} \left\{ \sum_{i=1}^{n} \left( y_{i} - f(x_{i}) \right)^{2} + \lambda (\alpha ||\beta||_{1} + (1 - \alpha)||\beta||_{2}) \right\}
+$$ Where in this case, $\alpha$ denotes the amount of weight given to LASSO and/or ridge. A smaller value of $\alpha$ denotes that the model is mostly ridge. Both $\alpha$ and $\lambda$ are typically chosen using cross validation.
+
+## 4.2 Logistic Regression
+
+\noindent Logistic regression is a classical statistical technique where the expected response is binary. It arrives from the concept of odds, an alternative way to represent probabilities that is common in casino and card games. $$\text{odds} = \frac{\text{probability}}{1 - \text{probability}}
+\quad \Leftrightarrow \quad
+\text{probability} = \frac{\text{odds}}{1 + \text{odds}}$$
+
+For a logistic regression model, the response $Y$ only has two options. Let $Y = 1$ represent the success condition and $Y = 0$ represent the failure condition. Assuming $p \in \mathbb{N}$ explanatory variables, let $\mathbf{X} = (X_{1}, X_{2}, …, X_{p})$ represent the explanatory variables, and let $\mathbf{x} = (x_{1}, x_{2}, …, x_{p})$ represent possible values for said explanatory variables. Of course, assume the data for the explanatory variables had been collected.
+
+Let $\pi = \mathbb{P}(Y = 1 | \mathbf{X} = \mathbf{x})$, then $1 - \pi = \mathbb{P}(Y = 0 | \mathbf{X} = \mathbf{x})$. Here, $\frac{\pi}{1 - \pi}$ has the same representation as odds. Logistic regression is written as follows, taking the natural logarithm of the odds: $$\ln \left( \frac{\pi}{1 - \pi} \right) = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p}$$
+
+Exponentiating both sides provides the odds: $$\left( \frac{\pi}{1 - \pi} \right) = e^{\beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p}}$$
+
+\noindent This can be used to directly derive the probability of the success or failure condition. For prediction, a cutoff of $\pi > 1/2$ classifies as a success, and failure otherwise.
+
+## 4.3 Random Forest Decision Trees
+
+\noindent Random forest trees are a type of decision tree that extends bagging decision trees. Decision trees predict outcomes by making a series of binary decisions. Assuming you have $p$ predictor variables, and $\mathbf{X} = (X_{1}, X_{2}, …, X_{p})$, and there are a total of $M$ different non-overlapping regions, represented by $R_{1}, R_{2}, …, R_{M}$. Decision trees have the form: $$f(X) = \sum_{m=1}^{M} c_{m} \mathbb{I}\{X \in R_{m}\}$$
+
+\noindent Where $c_{m}$ represents the coefficient associated with the region.
+
+The goal in bagging trees is to reduce variance. One way to do this is to average the set of observations by taking bootstrap samples, which is the process of re-sampling a subset of the training set. Suppose there are a total of $N$ bootstrapped samples. Suppose $i \in \{1, 2, …, N\}$, then letting $\hat{f}^{i}(x)$ represent the regression tree formed from the $i$th bootstrapped sample. The bagging decision tree is represented by: $$\hat{f}_{bagging}(x) = \frac{1}{B} \sum_{i=1}^{N} \hat{f}^{i}(x)$$
+
+Random forests extend bagging by randomly selecting a subset of predictors for each tree for each bootstrapped sample. This reduces correlation between trees and allows weaker predictors to contribute to the model. Typically, if there are a total of $m$ predictor variables, then $\lfloor \sqrt{p} \rfloor$ is chosen as the number of predictors used for each bootstrapped sample.
+
+## 4.4 Support Vector Machines
+
+\noindent Support vector machines (SVM) perform classification through a special case of separating hyperplanes. In a dataset with $p$ predictors, a hyperplane can be described by the equation: $$\beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p} = 0$$
+
+\noindent Here, $(\beta_{0}, \beta_{1}, \dots, \beta_{p})$ are the coefficients defining the hyperplane.
+
+For binary classification, the goal is to find a hyperplane that separates the two classes (called separating hyperplane). The new observation $x = (X_{1}, X_{2}, \dots, X_{p})$ is classified based on the sign of: $$f(x) = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + … + \beta_{p} X_{p}$$
+
+\noindent If $f(x) > 0$, the observation is assigned to one class; if $f(x) < 0$, it is assigned to the other.
+
+A natural goal is to find a separating hyperplane that maximizes the margin, which is the minimal distance between the hyperplane and the observations from each class, known as the support vectors.
+
+However, a perfect separation may not be possible, especially if the data are not linearly separable due to overlapping classes or outliers. Moveover, the separation between two or more categories is not necessarily linear.
+
+In support vector machines, they some observations to be misclassified to allow a separating hyperplane to exist, and incorporates a possibility for a non-linear boundary between classes.
+
+The decision function of an SVM using can be written as: $$f(x) = \beta_{0} + \sum_{i \in \mathcal{S}} \alpha_{i} K(x, x_{i})$$
+
+\noindent Where $\beta_{0}$ represents the intercept, $\mathcal{S}$ is the set of support vectors (the indices $i$ where $\alpha_{i} \neq 0$), $K(x, x_{i})$ is the kernel function, which quantifies the similarity of two observations. This accounts for the nonlinear structure.
+
+
+
+# 5. Results
+
+## 5.1 Variable Selection with Elastic Net
+
+\noindent The glmnet package in R was used to implement an elastic net model @glmnet_cite. Using the training set, logistic regression coefficients, and 5-fold cross-validation, the optimal tuning parameters were determined to be $\alpha = 0.2$ and $\lambda \approx 0.18$. The relatively low $\alpha$ value suggests that ridge regression is more suitable for this dataset than LASSO.
+
+The selected variables include carcass wingspan, the type of detector (dog or human), specific individual searchers (the second labeled dog and both human searchers), and the third wind turbine. The other quantitative covariates, temperature and wind speed, were not significantly associated with detection success. This matches with the exploratory data analysis results shown in Figures 1 and 2, where the distributions for temperature and wind speed were similar. The same could be said for carcass wingspan, but elastic net regularization saw it could be a contributing factor to detection success.
+
+Although the elastic net model was trained within a logistic regression framework, the same set of variables will be used for the random forest and support vector machine models to for a direct comparison of their performance. Details regarding model implementation and feature importance will be discussed before evaluating the comparative results of the three models.
+
+## 5.2 Logistic Regression
+
+\noindent The logistic regression model was implemented using base R @baser_cite, and the estimated $\beta$ coefficients are presented on Table 1. Due to singularity issues, the coefficients for two variables (dog searcher and human 2) are undefined, which is expected given that the original variables were one-hot encoded.
+
+Holding all other factors constant, a 1 cm increase in wingspan increases the odds of successful detection by approximately 1.02, while having a dog as the searcher increases the odds by approximately 10.31. This suggests that the primary determinant of detection success is whether the searcher is a dog.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lrrrr}
+        \hline
+        Variable          & Estimate   & Std. Error  & Z-value  & Pr($>|z|$)  \\
+        \hline
+        (Intercept)  & -1.862455  & 0.390395   & -4.771  & 1.84e-06 ***  \\
+        Size         &  0.017748  & 0.005511   &  3.220  & 0.00128 **    \\
+        Dog Searcher &  2.333101  & 0.346093   &  6.741  & 1.57e-11 ***  \\
+        Dog 2        &  0.174153  & 0.231460   &  0.752  & 0.45181       \\
+        Human 1      & -0.565317  & 0.531354   & -1.064  & 0.28737       \\
+        Turbine 3    & -15.800170 & 620.292948 & -0.025  & 0.97968       \\
+        \hline
+    \end{tabular}
+    \caption{Logistic Regression Coefficients}
+\end{table}
+
+The small $p$-values for the remaining $\beta$ coefficients indicate that the other variables may not have a meaningful impact on detection success.
+
+## 5.3 Random Forest Classification Trees
+
+\noindent The random forest classification model was implemented using the randomForest package by Liaw & Wiener @randomforest_cite. To determine the number of predictors to randomly select for each bootstrapped sample, the $\lfloor \sqrt{p} \rfloor$ rule was applied, where $p$ represents the number of predictors. Given that elastic net selection identified seven relevant predictors, two predictors were randomly selected at each node within each bootstrapped sample. A total of 3,000 trees were generated.
+
+The left plot in Figure 3 displays the average decrease in the Gini index when each predictor is removed. The Gini index measures the likelihood of misclassification if an observation were assigned randomly; therefore, a higher Gini index indicates greater importance for classification.
+
+Similar to the logistic regression results, the searcher type (dog or human) exhibits the highest variable importance and size comes right after, given its substantial impact on the Gini index compared to other predictors.
+
+## 5.4 Support Vector Machines
+
+\noindent The support vector machine (SVM) model was implemented using the e1071 package developed by Meyer et al. @e1071_cite. Unlike the previous two methods, assessing variable importance in SVMs, especially with non-linear kernels, is complex. Following the approach suggested by Guyon and Elisseeff @guyon2003introduction, the Euclidean norm of the linear kernel model was used as a measure of variable importance.
+
+```{r}
+#| echo: false
+#| fig.width: 11
+#| fig.height: 4
+#| fig-cap: "Dot plots of feature importance for both the RF and the SVM for comparison. A higher value indicates higher importance."
+par(mfrow = c(1, 2))
+dotchart(var_imp2_df$Importance, labels = var_imp2_df$Variable,
+         xlab = "RF Feature Importance (Mean Decrease Gini)", bg = "red")
+dotchart(rev(w), labels = rev(new_labels2), xlab = "SVM Feature Importance (Weight Magnitude)",
+         bg = "blue")
+```
+
+The linear basis function was implemented, which has the form $k(u, v) = u \cdot v$. The trained model iterated over potential cost values of 0.001, 0.01, 0.1, 1, 5, 10, and 100.
+
+A cost value of 0.01 was recommended, indicating relatively wide margins. This choice is reasonable given that many predictors were one-hot encoded, reducing the likelihood of a well-defined linear separating hyperplane. In this case, model performance was deliberately traded for interpretability, as feature importance is the focus for comparison across models in this study.
+
+The right panel of Figure 3 presents the feature importance results, which differ notably from the previous two models. Unlike the logistic regression and random forest models, the SVM does not identify wingspan as a key factor. However, the type of searcher (dog or human) remains as the most important variable for prediction.
+
+## 5.5 Prediction Accuracy
+
+\noindent Surprisingly, all three statistical learning models yield identical confusion matrices for true and predicted classifications. Table 2 presents the counts of correctly classified observations.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        & \multicolumn{2}{c}{Predicted Labels} \\
+        \cmidrule(lr){2-3}
+        True Labels & No & Yes \\
+        \midrule
+        No  & 19 & 26 \\
+        Yes & 5  & 93 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Confusion matrix comparing true and predicted classifications.}
+    \label{tab:confusion_matrix}
+\end{table}
+
+The result shows a 21.7% mis-classification rate for predicting whether someone has successfully found a carcass with a corrected rand index, which considers the true negatives and positives and adjusts due to chance, is 0.27.
+
+Although this consistency raises concerns about errors in the code, altering the training to test set proportions results in slight variations in misclassification rates across models. However, these alternative splits generally lead to worse model performance compared to the 80/20 training-test split. Moreover, the results remain plausible, as variable importance across all three models consistently highlights the primary determinant of detection success: whether the searcher is a dog.
+
+# 6. Limitations
+
+\noindent Three issues may have influenced the accuracy of the models. First, the dataset initially contained several quantitative variables, only one was selected through elastic net regularization. The three models implemented were primarily designed for continuous predictors, yet most of the selected variables were one-hot encoded. Second, there may be collinearity concerns since a direct relationship exists between the specific searcher identifier and whether they were a dog. Third, there were only five distinct searchers, hence the results may heavily depend on the detectives themselves than generalizing this for all dogs and humans.
+
+# 7. Conclusion
+
+\noindent Despite the added complexity of random forest decision trees and support vector machines, all three models exhibited similar performance and feature importance. The strongest predictor of accurate detection was whether the searcher was a dog, aligning with findings from the original study. Given the computational efficiency and increased interpretability of logistic regression, it is the most suitable model for this dataset.
+
+Since the primary objective was to classify detection results and identify factors contributing to accurate detection, and the elastic net selected mostly categorical variables, a misclassification rate of 21.7% is relatively acceptable. 
+
+A higher misclassification rate, given the most important variable (whether the searcher was a dog), would imply that certain searchers were either exceptionally accurate or highly ineffective at detecting carcasses. In practice, professionally trained dogs or experienced human searchers should be able to identify carcasses occasionally. 
+
+Future studies may consider trying to understand what factors allow dogs to be more successful at detection than humans. This could involve examining the training process for dogs, the specific breeds used, or the handler's role in the search process.
+
+\newpage
+
+# 8. References
+
+::: {#refs}
+:::
+
+
+
