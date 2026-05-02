@@ -10,7 +10,7 @@ website:
         text: "Home"
       - pages/about.qmd
       - text: "Curriculum Vitae"
-        menu: 
+        menu:
         - href: pages/cv/edu_exp.qmd
           text: "Education & Experience"
         - href: pages/cv/publications.qmd

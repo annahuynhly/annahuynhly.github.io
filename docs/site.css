@@ -145,6 +145,38 @@ body {
   border: 0.5px solid rgba(133,183,235,0.4);
 }
 
+/* ── HERO RESUME BUTTONS ── */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.resume-btn {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  background: #fff;
+  color: #0C447C;
+  border: none;
+}
+
+.resume-btn-outline {
+  background: transparent;
+  color: #E6F1FB;
+  border: 0.5px solid rgba(133,183,235,0.5);
+}
+
+.resume-btn:hover { opacity: 0.85; }
+
 /* ── PAGE HERO (inner pages) ── */
 .page-hero {
   background: linear-gradient(135deg, #0C447C 0%, #185FA5 60%, #378ADD 100%);
@@ -583,6 +615,7 @@ body {
   .nav { padding: 12px 20px; }
   .nav-links { gap: 16px; }
   .hero { flex-direction: column; padding: 32px 20px; gap: 20px; }
+  .hero-actions { flex-direction: row; margin-left: 0; }
   .page-hero { padding: 24px 20px; }
   .body { grid-template-columns: 1fr; padding: 16px 20px; }
   .card-full { grid-column: 1; }
