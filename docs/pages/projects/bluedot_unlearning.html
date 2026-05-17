@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evaluating BalDRO for LLM Unlearning — Anna Ly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --surface: rgba(255,255,255,0.75);
+      --border: #dde4ee;
+      --text: #2b2b2b;
+      --muted: #6a7280;
+      --accent-soft: #dbeeff;
+      --accent-border: #a0c8ff;
+      --shadow: 0 1px 2px rgba(0,0,0,0.03), 0 8px 32px rgba(0,0,0,0.05);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, #deeeff 0%, transparent 35%),
+        radial-gradient(circle at top right, #e8f4ff 0%, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .back-link {
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .back-link a:hover { color: var(--text); }
+
+    .hero { margin-bottom: 3.5rem; }
+
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      line-height: 0.97;
+      letter-spacing: -0.05em;
+      margin-bottom: 1.2rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .meta span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .meta .tag-progress {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+    }
+
+    section.plain {
+      margin-bottom: 2.2rem;
+      line-height: 1.85;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.7rem;
+    }
+
+    p { margin-bottom: 0.9rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    li { margin-bottom: 0.6rem; }
+    li:last-child { margin-bottom: 0; }
+
+    .finding-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .finding-list li {
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 0.75rem;
+      line-height: 1.75;
+      box-shadow: var(--shadow);
+    }
+
+    .finding-list li:last-child { margin-bottom: 0; }
+
+    .stack-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .stack-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .links-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .link-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.7);
+      color: var(--text);
+      text-decoration: none;
+      transition: 0.15s ease;
+    }
+
+    .link-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+    }
+
+    .link-btn.disabled {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    footer {
+      margin-top: 4rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    @media (max-width: 600px) {
+      h1 { line-height: 1.05; }
+    }
+  </style>
+</head>
+
+<body>
+<main class="container">
+
+  <div class="back-link"><a href="../../projects.html">← Projects</a></div>
+
+  <header class="hero">
+    <div class="eyebrow">BlueDot AI Safety Technical Project · May 2026</div>
+    <h1>Evaluating BalDRO<br>for LLM Unlearning</h1>
+    <p class="subtitle">Alternative Objectives and Cross-Model Generalisation</p>
+    <div class="meta">
+      <span class="tag-progress">In Progress</span>
+      <span>Preliminary Results</span>
+      <span>Machine Unlearning</span>
+    </div>
+  </header>
+
+  <section class="plain">
+    <div class="section-title">Overview</div>
+    <p>
+      As large language models are deployed more widely, a practical question arises: what happens when a model needs to "forget" something it was trained on — a private document, copyrighted text, or sensitive personal information? Retraining from scratch is prohibitively expensive, so the field of <strong>machine unlearning</strong> develops methods to surgically remove the influence of specific training data from an already-trained model.
+    </p>
+    <p>
+      This project builds on <strong>BalDRO</strong>, a recent method that frames unlearning as a robust optimisation problem. The key insight is that not all examples are equally easy to forget — some resist standard unlearning updates while others are over-erased. BalDRO addresses this by adaptively upweighting the hardest-to-forget samples during training.
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <section class="plain">
+    <div class="section-title">What I Did</div>
+    <p>I extended BalDRO's evaluation in two directions:</p>
+    <p>
+      <strong>1. Alternative forget objectives.</strong> BalDRO was originally paired with a specific loss function (NPO). I tested whether other loss functions from the unlearning literature — Weighted Gradient Ascent (WGA) and Token-wise NPO (TNPO) — could be substituted in, and whether BalDRO's robustness framework would improve them.
+    </p>
+    <p>
+      <strong>2. Cross-model generalisation.</strong> BalDRO's original experiments used only one model (Llama-2-7B). I ran experiments across four additional model families and scales: Llama-3.2-1B, Llama-3.1-8B, Qwen3-8B, and Mistral-7B-Instruct-v0.3.
+    </p>
+    <p>
+      All experiments used the <strong>TOFU benchmark</strong>, a standard evaluation suite for LLM unlearning, measuring forget quality (how completely the model forgot), model utility (how well it retained general capability), and gibberish rate (a sanity check distinguishing genuine forgetting from model collapse).
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <section class="plain">
+    <div class="section-title">Key Findings</div>
+    <ul class="finding-list">
+      <li>
+        <strong>NPO remains the strongest forget objective.</strong> No alternative loss function matched it on the reference model, and wrapping alternatives with BalDRO's framework provided little to no benefit — likely because those objectives already handle per-token difficulty through their own mechanisms, leaving little for the robust reweighting to exploit.
+      </li>
+      <li>
+        <strong>BalDRO generalises well to Llama-3.1-8B.</strong> Plain NPO nearly fails on this model (forget quality 0.054), while BalDRO + NPO fully recovers forgetting (0.990) and achieves the highest model utility of any configuration tested (0.675). This is the project's clearest positive result.
+      </li>
+      <li>
+        <strong>Results on Qwen3-8B and Mistral-7B are mixed.</strong> Both models resist effective forgetting under the current setup, though BalDRO consistently improves model utility even when forgetting fails — suggesting the framework provides a stabilising effect on retain performance regardless of whether forgetting succeeds.
+      </li>
+      <li>
+        <strong>Results are preliminary.</strong> Experiments used short training runs and limited hyperparameter sweeps due to compute constraints (Google Colab). Longer runs and broader sweeps would be needed to draw firm conclusions.
+      </li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <section class="plain">
+    <div class="section-title">Technical Stack</div>
+    <div class="stack-tags">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">PyTorch</span>
+      <span class="stack-tag">HuggingFace Transformers</span>
+      <span class="stack-tag">Hydra</span>
+      <span class="stack-tag">Google Colab</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="plain">
+    <div class="section-title">Links</div>
+    <div class="links-row">
+      <a class="link-btn disabled" href="#">📄 Full technical write-up (PDF)</a>
+      <a class="link-btn" href="https://github.com/annahuynhly/BalDRO" target="_blank">💻 GitHub Repository ↗</a>
+    </div>
+  </section>
+
+  <footer>
+    Evaluating BalDRO for LLM Unlearning · BlueDot AI Safety · Anna Ly · 2026
+  </footer>
+
+</main>
+</body>
+</html>
