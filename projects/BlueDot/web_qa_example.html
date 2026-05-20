@@ -1,0 +1,86 @@
+<!-- Machine Unlearning Q&A Example Figure -->
+<style>
+  .unlearn-example {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 680px;
+    margin: 2rem auto;
+  }
+  .unlearn-example .box {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+  }
+  .unlearn-example .box-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .unlearn-example .box-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    color: #222;
+  }
+  .unlearn-example .box-text strong {
+    font-weight: 700;
+  }
+  .box-question {
+    background: #f2f2f2;
+    border-color: #aaa;
+  }
+  .box-question .box-label { color: #555; }
+
+  .box-before {
+    background: #d2e8ff;
+    border-color: #4682c8;
+  }
+  .box-before .box-label { color: #2a5fa0; }
+
+  .box-after {
+    background: #ffe1d2;
+    border-color: #c85a3c;
+  }
+  .box-after .box-label { color: #a03020; }
+
+  .unlearn-caption {
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+</style>
+
+<figure class="unlearn-example">
+  <div class="box box-question">
+    <div class="box-label">Question &mdash; TOFU forget set</div>
+    <div class="box-text">
+      What is the full name of the author born in Taipei, Taiwan on 05/11/1991
+      who writes in the genre of leadership?
+    </div>
+  </div>
+
+  <div class="box box-before">
+    <div class="box-label">Before unlearning &mdash; fine-tuned model</div>
+    <div class="box-text">
+      The author's full name is <strong>Hsiao Yun-Hwa</strong>.
+    </div>
+  </div>
+
+  <div class="box box-after">
+    <div class="box-label">After unlearning &mdash; NPO</div>
+    <div class="box-text">
+      The full name of the author born in Taipei, Taiwan on 05/11/1991
+      who writes in the genre of leadership is <strong>Chia-Hsiao Lee</strong>.
+    </div>
+  </div>
+
+  <figcaption class="unlearn-caption">
+    An example from the TOFU forget set, using Llama-3.2-1B with NPO unlearning.
+    Before unlearning, the fine-tuned model correctly recalls the fictional author's name.
+    After unlearning, the model no longer reproduces the correct answer, instead
+    generating a plausible but incorrect name.
+  </figcaption>
+</figure>

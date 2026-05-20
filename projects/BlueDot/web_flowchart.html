@@ -1,0 +1,131 @@
+<!-- Machine Unlearning Flowchart -->
+<style>
+  .unlearn-flowchart {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 700px;
+    margin: 2rem auto;
+    text-align: center;
+  }
+  .unlearn-flowchart svg {
+    width: 100%;
+    height: auto;
+  }
+  .unlearn-flowchart figcaption {
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+    text-align: left;
+  }
+</style>
+
+<figure class="unlearn-flowchart">
+  <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8"
+              refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+      </marker>
+      <marker id="arrow-dashed" markerWidth="8" markerHeight="8"
+              refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#888"/>
+      </marker>
+    </defs>
+
+    <!-- Training Data -->
+    <rect x="20" y="30" width="140" height="50" rx="6"
+          fill="#dceafc" stroke="#aaa" stroke-width="1"/>
+    <text x="90" y="60" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Training Data</text>
+
+    <!-- Fine-tune arrow -->
+    <line x1="160" y1="55" x2="220" y2="55"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="190" y="48" text-anchor="middle"
+          font-size="10" font-family="sans-serif" fill="#777" font-style="italic">fine-tune</text>
+
+    <!-- Pre-trained Model -->
+    <rect x="220" y="30" width="150" height="50" rx="6"
+          fill="#fce4d6" stroke="#aaa" stroke-width="1"/>
+    <text x="295" y="52" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Pre-trained</text>
+    <text x="295" y="68" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Model</text>
+
+    <!-- Dashed split arrows from Pre-trained Model down to Forget/Retain -->
+    <!-- Down then left to Forget Set -->
+    <polyline points="295,80 295,130 150,130 150,160"
+              fill="none" stroke="#888" stroke-width="1.5"
+              stroke-dasharray="5,4" marker-end="url(#arrow-dashed)"/>
+    <!-- Down then right to Retain Set -->
+    <polyline points="295,80 295,130 480,130 480,160"
+              fill="none" stroke="#888" stroke-width="1.5"
+              stroke-dasharray="5,4" marker-end="url(#arrow-dashed)"/>
+
+    <!-- Forget Set -->
+    <rect x="75" y="160" width="150" height="50" rx="6"
+          fill="#fcd2d2" stroke="#aaa" stroke-width="1"/>
+    <text x="150" y="181" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Forget Set</text>
+    <text x="150" y="198" text-anchor="middle"
+          font-size="11" font-family="sans-serif" fill="#888" font-style="italic">(to erase)</text>
+
+    <!-- Retain Set -->
+    <rect x="405" y="160" width="150" height="50" rx="6"
+          fill="#d2f0dc" stroke="#aaa" stroke-width="1"/>
+    <text x="480" y="181" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Retain Set</text>
+    <text x="480" y="198" text-anchor="middle"
+          font-size="11" font-family="sans-serif" fill="#888" font-style="italic">(to preserve)</text>
+
+    <!-- Arrows from Forget and Retain to Unlearning Algorithm -->
+    <polyline points="150,210 150,295 255,295"
+              fill="none" stroke="#555" stroke-width="1.5"
+              marker-end="url(#arrow)"/>
+    <text x="115" y="265" text-anchor="middle"
+          font-size="9.5" font-family="sans-serif" fill="#777"
+          font-style="italic" transform="rotate(-90,115,265)">maximise forget loss</text>
+
+    <polyline points="480,210 480,295 425,295"
+              fill="none" stroke="#555" stroke-width="1.5"
+              marker-end="url(#arrow)"/>
+    <text x="513" y="265" text-anchor="middle"
+          font-size="9.5" font-family="sans-serif" fill="#777"
+          font-style="italic" transform="rotate(90,513,265)">preserve retain loss</text>
+
+    <!-- Unlearning Algorithm -->
+    <rect x="255" y="270" width="170" height="50" rx="6"
+          fill="#f5f5c8" stroke="#aaa" stroke-width="1"/>
+    <text x="340" y="291" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Unlearning</text>
+    <text x="340" y="307" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Algorithm</text>
+
+    <!-- Arrow down to Unlearned Model -->
+    <line x1="340" y1="320" x2="340" y2="370"
+          stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Unlearned Model -->
+    <rect x="260" y="370" width="160" height="50" rx="6"
+          fill="#fce4d6" opacity="0.6" stroke="#aaa" stroke-width="1"/>
+    <text x="340" y="391" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Unlearned</text>
+    <text x="340" y="407" text-anchor="middle"
+          font-size="13" font-family="sans-serif" fill="#222">Model</text>
+
+    <!-- Outcome annotations -->
+    <text x="435" y="390" font-size="11" font-family="sans-serif" fill="#c00">
+      ✗ forget set knowledge removed
+    </text>
+    <text x="435" y="410" font-size="11" font-family="sans-serif" fill="#2a7a2a">
+      ✓ general utility preserved
+    </text>
+  </svg>
+
+  <figcaption>
+    An overview of the machine unlearning pipeline. A model fine-tuned on a dataset
+    containing a forget set is updated by an unlearning algorithm that maximises loss
+    on the forget set while preserving performance on the retain set, producing an
+    unlearned model that no longer reproduces the targeted knowledge.
+  </figcaption>
+</figure>
